@@ -257,32 +257,32 @@ table {
   font-size: 15px;
   line-height: 20px;
 }
-.btn-small {
+.btn-big {
   height: 36px;
   padding: 0 20px;
   color: var(--cTextPrimary);
 }
-.btn-small_type_primary {
+.btn-big_type_primary {
   background-color: var(--bgBtnPrimary);
 }
-.btn-small_type_secondary {
+.btn-big_type_secondary {
   background-color: var(--bgBtnSecondary);
 }
-.btn-icon {
+.btn-small {
   height: 28px;
   color: var(--cTextPrimary);
   background-color: var(--bgBtnSecondary);
 }
-.btn-icon_type_only-icon {
+.btn-small_type_only-icon {
   padding: 8px;
 }
-.btn-icon_type_only-text {
-  padding: 13px;
+.btn-small_type_only-text {
+  padding: 0 13px;
 }
-.btn-icon_type_icon-text {
+.btn-small_type_icon-text {
   padding: 8px 13px 8px 8px;
 }
-.btn-icon_type_icon-text::before {
+.btn-small_type_icon-text::before {
   content: '';
   display: block;
   width: 12px;
