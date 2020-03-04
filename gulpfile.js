@@ -55,6 +55,7 @@ gulp.task('build', gulp.series('clean', 'css', 'html', 'font'));
 
 gulp.task('watch', () => {
   gulp.watch('./src/css/**/*.styl', gulp.series('css'));
+  gulp.watch('./src/css/**/*.html', gulp.series('html'));
 });
 
 
