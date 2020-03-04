@@ -41,11 +41,17 @@ gulp.task('html', () => {
     .pipe(gulp.dest('./build'));
 });
 
+// Copy fonts
+gulp.task('font', () => {
+  return gulp.src('./src/font/**/*')
+    .pipe(gulp.dest('./build/font'));
+});
+
 
 // ==========
 // Composed tasks
 // ==========
-gulp.task('build', gulp.series('clean', 'css', 'html'));
+gulp.task('build', gulp.series('clean', 'css', 'html', 'font'));
 
 gulp.task('watch', () => {
   gulp.watch('./src/css/**/*.styl', gulp.series('css'));
