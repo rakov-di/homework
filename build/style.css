@@ -257,3 +257,35 @@ table {
   font-size: 15px;
   line-height: 20px;
 }
+.btn-small {
+  height: 36px;
+  padding: 0 20px;
+  color: var(--cTextPrimary);
+}
+.btn-small_type_primary {
+  background-color: var(--bgBtnPrimary);
+}
+.btn-small_type_secondary {
+  background-color: var(--bgBtnSecondary);
+}
+.btn-icon {
+  height: 28px;
+  color: var(--cTextPrimary);
+  background-color: var(--bgBtnSecondary);
+}
+.btn-icon_type_only-icon {
+  padding: 8px;
+}
+.btn-icon_type_only-text {
+  padding: 13px;
+}
+.btn-icon_type_icon-text {
+  padding: 8px 13px 8px 8px;
+}
+.btn-icon_type_icon-text::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+}
