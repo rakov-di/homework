@@ -47,11 +47,17 @@ gulp.task('font', () => {
     .pipe(gulp.dest('./build/font'));
 });
 
+// Copy svg
+gulp.task('svg', () => {
+  return gulp.src('./src/svg/**/*')
+    .pipe(gulp.dest('./build/svg'));
+});
+
 
 // ==========
 // Composed tasks
 // ==========
-gulp.task('build', gulp.series('clean', 'css', 'html', 'font'));
+gulp.task('build', gulp.series('clean', 'css', 'html', 'font', 'svg'));
 
 gulp.task('watch', () => {
   gulp.watch('./src/css/**/*.styl', gulp.series('css'));
