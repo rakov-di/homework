@@ -9,6 +9,7 @@ const stylus = require('gulp-stylus');
 const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
 
+var browserSync = require('browser-sync').create();
 
 const mode = process.env.NODE_ENV;
 const isDevelopment = (mode === 'development');
@@ -61,10 +62,23 @@ gulp.task('build', gulp.series('clean', 'css', 'html', 'font', 'svg'));
 
 gulp.task('watch', () => {
   gulp.watch('./src/css/**/*.styl', gulp.series('css'));
-  gulp.watch('./src/css/**/*.html', gulp.series('html'));
+  gulp.watch('./src/pages/**/*.html', gulp.series('html'));
 });
 
+gulp.task('start', gulp.series('build', 'watch'));
 
+gulp.task('serve', () => {
+  browserSync.init({
+    server: {
+      baseDir: 'build',
+      index: 'build-history.html'
+    }
+  });
+
+  browserSync.watch('./src/**/*.*').on('change', browserSync.reload);
+});
+
+gulp.task('dev', gulp.series('build', gulp.parallel('watch', 'serve')));
 
 // ==========
 // Пример конфига для создания спрайта
