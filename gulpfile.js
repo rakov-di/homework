@@ -42,12 +42,6 @@ gulp.task('html', () => {
     .pipe(gulp.dest('./build'));
 });
 
-// Copy fonts
-gulp.task('font', () => {
-  return gulp.src('./src/font/**/*')
-    .pipe(gulp.dest('./build/font'));
-});
-
 // Copy svg
 gulp.task('svg', () => {
   return gulp.src('./src/svg/**/*')
@@ -58,7 +52,7 @@ gulp.task('svg', () => {
 // ==========
 // Composed tasks
 // ==========
-gulp.task('build', gulp.series('clean', 'css', 'html', 'font', 'svg'));
+gulp.task('build', gulp.series('clean', 'css', 'html', 'svg'));
 
 gulp.task('watch', () => {
   gulp.watch('./src/css/**/*.styl', gulp.series('css'));
