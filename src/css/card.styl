@@ -31,22 +31,58 @@
     display: flex
     justify-content: space-between
 
+    @media screen and (max-width: 320px)
+      flex-direction: column
+
   &__task
+    display: flex
+    flex-direction: row
     margin-bottom: 8px
+
+    @media screen and (max-width: 320px)
+      flex-direction: column
+      margin-bottom: 0
+
+  &__task-num
+    display: inline-block
+    margin-right: 4px
+
+    @media screen and (max-width: 320px)
+      margin-bottom: 8px
+
+  &__task-text
+    display: inline-block
 
   &__meta
     display: flex
 
+    @media screen and (max-width: 320px)
+      padding: 8px 0
+
     &_vertical
       flex-direction: column
+
+      @media screen and (max-width: 320px)
+        flex-direction: row
+        border-top: 1px solid var(--bgContainerMobile)
 
       & ^[0]__icon-text:not(:first-child)
         margin-top: 12px
 
+        @media screen and (max-width: 320px)
+          margin-top: 0
+          margin-left: 10px
+
     &_horizontal
       flex-direction: row
+
+      @media screen and (max-width: 320px)
+        flex-direction: column
 
       & ^[0]__icon-text:not(:first-child)
         margin-left: 10px
 
+        @media screen and (max-width: 320px)
+          margin-left: 0
+          margin-top: 8px
 
