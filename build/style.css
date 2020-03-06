@@ -196,6 +196,7 @@ table {
   --cTaskDescription: rgba(68,68,68,0.267) 4;
   --cLinkHovered: #e00000;
   --cBorder: #d9d9d9;
+  --cBorderFocused: #b3b3b3;
   --bgMain: #e5e5e5;
   --bgBtnPrimary: #fc0;
   --bgBtnSecondary: #e6e6e6;
@@ -262,6 +263,46 @@ table {
   margin: 32px 0 24px;
   text-align: center;
 }
+.form__field {
+  padding: 8px 0;
+}
+.form__btn-group__btn:not(:first-child) {
+  margin-left: 8px;
+}
+.label_type_block {
+  display: block;
+  margin-top: 2px;
+}
+.label_type_inline {
+  display: inline-block;
+}
+.input {
+  height: 36px;
+  padding: 11px 13px 10px;
+  border: 2px solid var(--cBorder);
+  color: var(--cTextPrimary);
+  background: var(--cWhite);
+}
+.input::-ms-input-placeholder {
+  color: var(--cInputPlh);
+}
+.input::placeholder {
+  color: var(--cInputPlh);
+}
+.input:focus {
+  border: 2px solid var(--cBorderFocused);
+  outline: none;
+}
+.input_type_block {
+  display: block;
+  width: 100%;
+  max-width: 474px;
+  margin-top: 6px;
+}
+.input_type_inline {
+  display: inline-block;
+  margin: 4px 8px;
+}
 .footer {
   width: 100%;
   background-color: var(--bgContainerDesktop);
@@ -312,6 +353,7 @@ table {
   font-weight: 500;
   font-size: 24px;
   line-height: 30px;
+  color: var(--cTextPrimary);
 }
 .text_title2 {
   font-weight: 500;
