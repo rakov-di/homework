@@ -441,6 +441,17 @@ table {
   font-size: 15px;
   line-height: 20px;
 }
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-group__btn:not(:first-child) {
+  margin-left: 4px;
+}
+.btn-group__btn:not(:last-child) {
+  margin-right: 4px;
+}
 .btn-big {
   height: 36px;
   padding: 0 20px;
