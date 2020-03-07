@@ -9,6 +9,18 @@
     align-items: center
     max-width: var(--wMaxContent);
     min-width: var(--wMinContent)
-    height: var(--hFooter)
+    //height: var(--hFooter)
+    padding: 8px 0
     margin: auto
+
+    @media only screen and (max-width: $bpMobile)
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
+      padding: 12px 0
+
+  &__copyright
+    @media only screen and (max-width: $bpMobile)
+      margin-top: 8px
+
 
