@@ -94,6 +94,7 @@ table {
   --cIconPlay: #111;
   --cIconLogo: rgba(0,0,0,0.1);
   --wMaxContent: 800px;
+  --wMinContent: 320px;
   --hHeader: 48px;
   --hFooter: 32px;
 }
@@ -258,6 +259,7 @@ table {
   justify-content: space-between;
   align-items: flex-start;
   max-width: var(--wMaxContent);
+  min-width: var(--wMinContent);
   margin: auto;
 }
 .main {
@@ -266,6 +268,7 @@ table {
 }
 .main__container {
   max-width: var(--wMaxContent);
+  min-width: var(--wMinContent);
   height: 100%;
   margin: auto;
 }
@@ -462,6 +465,20 @@ table {
     width: 100%;
   }
 }
+.log {
+  background-color: var(--bgBtnDisabled);
+  padding: 8px 12px;
+  overflow-x: auto;
+  width: 100%;
+}
+@media only screen and (max-width: 540px) {
+  .log {
+    border-radius: 0;
+  }
+}
+.log__container {
+  border-radius: 6px;
+}
 .footer {
   width: 100%;
   background-color: var(--bgContainerDesktop);
@@ -472,6 +489,7 @@ table {
   justify-content: space-between;
   align-items: center;
   max-width: var(--wMaxContent);
+  min-width: var(--wMinContent);
   height: var(--hFooter);
   margin: auto;
 }
@@ -536,6 +554,12 @@ table {
   font-size: 15px;
   line-height: 20px;
 }
+.text_log {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 20px;
+  color: var(--cTextPrimary);
+}
 .btn-group {
   flex-shrink: 0;
   display: flex;
@@ -591,6 +615,7 @@ table {
   color: var(--cTextPrimary);
   background-color: var(--bgBtnSecondary);
   cursor: pointer;
+  outline: none;
 }
 .btn-small_type_only-icon {
   padding: 8px;
