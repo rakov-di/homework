@@ -6,12 +6,18 @@
 // num - number
 // w - width
 // h - height
+// bp - breakpoint
 
 // ПСД - повод спросить дизайнера
 // ДДД - Думай, Дмитрий, думай
 
 *
   box-sizing: border-box
+
+// Breakpoints
+// CSS переменные не срабатывают в media query,
+// поэтому вместо них использую переменную препроцессора
+$bpMobile = 540px
 
 :root
   // Цвета текстов
@@ -49,3 +55,4 @@
   --wMaxContent: 800px
   --hHeader: 48px
   --hFooter: 32px
+

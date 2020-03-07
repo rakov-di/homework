@@ -42,7 +42,7 @@
     display: flex
     justify-content: space-between
 
-    @media screen and (max-width: 320px)
+    @media only screen and (max-width: $bpMobile)
       flex-direction: column
 
   &__task
@@ -50,7 +50,7 @@
     flex-direction: row
     margin-bottom: 8px
 
-    @media screen and (max-width: 320px)
+    @media only screen and (max-width: $bpMobile)
       flex-direction: column
       margin-bottom: 0
 
@@ -58,42 +58,43 @@
     display: inline-block
     margin-right: 4px
 
-    @media screen and (max-width: 320px)
+    @media only screen and (max-width: $bpMobile)
       margin-bottom: 8px
 
   &__task-text
     display: inline-block
 
   &__meta
+    flex-shrink: 0
     display: flex
 
-    @media screen and (max-width: 320px)
+    @media only screen and (max-width: $bpMobile)
       padding: 8px 0
 
     &_vertical
       flex-direction: column
 
-      @media screen and (max-width: 320px)
+      @media only screen and (max-width: $bpMobile)
         flex-direction: row
         border-top: 1px solid var(--bgContainerMobile)
 
       & ^[0]__icon-text:not(:first-child)
         margin-top: 12px
 
-        @media screen and (max-width: 320px)
+        @media only screen and (max-width: $bpMobile)
           margin-top: 0
           margin-left: 10px
 
     &_horizontal
       flex-direction: row
 
-      @media screen and (max-width: 320px)
+      @media only screen and (max-width: $bpMobile)
         flex-direction: column
 
       & ^[0]__icon-text:not(:first-child)
         margin-left: 10px
 
-        @media screen and (max-width: 320px)
+        @media only screen and (max-width: $bpMobile)
           margin-left: 0
           margin-top: 8px
 
