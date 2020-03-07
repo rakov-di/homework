@@ -94,6 +94,7 @@ gulp.task('build', gulp.series('clean', 'css', 'html', 'img'));
 gulp.task('watch', () => {
   gulp.watch('./src/css/**/*.styl', gulp.series('css'));
   gulp.watch('./src/pages/**/*.html', gulp.series('html'));
+  gulp.watch('./src/img/**/*.svg', gulp.series('img'));
 });
 
 gulp.task('start', gulp.series('build', 'watch'));

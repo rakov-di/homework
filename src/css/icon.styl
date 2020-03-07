@@ -1,7 +1,7 @@
 
 $svg-common
   display inline-block
-  background url("img/icons-89345f6e.svg") no-repeat
+  background url("img/icons-49e3b694.svg") no-repeat
 
 
 // миксин для конкретной иконки
@@ -138,25 +138,6 @@ $icon_logo
 
 
 // миксин для конкретной иконки
-$icon_play
-  @extend $svg-common
-  background-position: (-128px - (13px - 9px)/2) (-54px - (14px - 10px)/2)
-  width 9px
-  height 10px
-
-// класс для иконки без использования before
-.icon_play
-  @extend $icon_play
-
-// класс для иконки через before
-.icon_play-before
-  &::before
-    content ''
-    @extend $icon_play
-
-
-
-// миксин для конкретной иконки
 $icon_rebuild
   @extend $svg-common
   background-position: (-146px - (16px - 12px)/2) (-112px - (16px - 12px)/2)
@@ -172,6 +153,25 @@ $icon_rebuild
   &::before
     content ''
     @extend $icon_rebuild
+
+
+
+// миксин для конкретной иконки
+$icon_run
+  @extend $svg-common
+  background-position: (-128px - (13px - 9px)/2) (-54px - (14px - 10px)/2)
+  width 9px
+  height 10px
+
+// класс для иконки без использования before
+.icon_run
+  @extend $icon_run
+
+// класс для иконки через before
+.icon_run-before
+  &::before
+    content ''
+    @extend $icon_run
 
 
 
