@@ -9,6 +9,9 @@ const stylus = require('gulp-stylus');
 const cssnano = require('gulp-cssnano');
 const autoprefixer = require('gulp-autoprefixer');
 
+//Картинки
+const svgSprite = require('gulp-svg-sprite');
+
 var browserSync = require('browser-sync').create();
 
 const mode = process.env.NODE_ENV;
@@ -42,17 +45,51 @@ gulp.task('html', () => {
     .pipe(gulp.dest('./build'));
 });
 
-// Copy svg
-gulp.task('svg', () => {
-  return gulp.src('./src/svg/**/*')
-    .pipe(gulp.dest('./build/svg'));
+// Create sprite
+const configSprite = {
+  shape: {
+    spacing: { // Add padding
+      padding: 2
+    }
+  },
+  mode: {
+    css: {
+      dest: 'src',
+      render: {
+        styl: {
+          dest: 'css/icon.styl',
+          template: 'src/css/icon-tmpl.styl'
+        }
+      },
+      sprite: 'img/icons.svg',
+      prefix: '',
+      dimensions: true
+    }
+  }
+};
+
+gulp.task('sprite', () => {
+  return gulp.src('./src/svg/*.svg')
+    .pipe(svgSprite(configSprite))
+    .pipe(gulp.dest('.'));
 });
+
+// Copy img
+gulp.task('img', () => {
+  return gulp.src('./src/img/**/*')
+    .pipe(gulp.dest('./build/img'));
+});
+
+// gulp.task('svg', () => {
+//   return gulp.src('./src/svg/**/*')
+//     .pipe(gulp.dest('./build/svg'));
+// });
 
 
 // ==========
 // Composed tasks
 // ==========
-gulp.task('build', gulp.series('clean', 'css', 'html', 'svg'));
+gulp.task('build', gulp.series('clean', 'css', 'html', 'img'));
 
 gulp.task('watch', () => {
   gulp.watch('./src/css/**/*.styl', gulp.series('css'));
@@ -74,38 +111,7 @@ gulp.task('serve', () => {
 
 gulp.task('dev', gulp.series('build', gulp.parallel('watch', 'serve')));
 
-// ==========
-// Пример конфига для создания спрайта
-//==========
-// Дополнительно требуется установить пакет gulp-svg-sprite
-// const svgSprite = require('gulp-svg-sprite');
-//
-// const configSprite = {
-//   shape: {
-//     spacing: { // Add padding
-//       padding: 2
-//     }
-//   },
-//   mode: {
-//     css: {
-//       dest: 'src',
-//       render: {
-//         styl: {
-//           dest: 'css/icons.styl'
-//         }
-//       },
-//       sprite: 'img/icons.svg',
-//       prefix: '.',
-//       dimensions: true
-//     }
-//   }
-// };
-//
-// gulp.task('sprite', () => {
-//   return gulp.src('./src/assets/*.svg')
-//     .pipe(svgSprite(configSprite))
-//     .pipe(gulp.dest('.'));
-// });
+
 
 
 // ==========

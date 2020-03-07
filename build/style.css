@@ -192,6 +192,147 @@ table {
   display: inline-block;
   margin: 4px 8px;
 }
+.icon_calendar,
+.icon_calendar-before::before,
+.icon_clear,
+.icon_clear-before::before,
+.icon_clock,
+.icon_clock-before::before,
+.icon_code-commit,
+.icon_code-commit-before::before,
+.icon_done,
+.icon_done-before::before,
+.icon_fail,
+.icon_fail-before::before,
+.icon_logo,
+.icon_logo-before::before,
+.icon_play,
+.icon_play-before::before,
+.icon_rebuild,
+.icon_rebuild-before::before,
+.icon_settings,
+.icon_settings-before::before,
+.icon_user,
+.icon_user-before::before,
+.icon_wait,
+.icon_wait-before::before,
+.card_status_done .card__icon,
+.card_status_wait .card__icon,
+.card_status_fail .card__icon {
+  display: inline-block;
+  background: url("img/icons-89345f6e.svg") no-repeat;
+}
+.icon_calendar,
+.icon_calendar-before::before {
+  background-position: -130px -2px;
+  width: 14px;
+  height: 16px;
+}
+.icon_calendar-before::before {
+  content: '';
+}
+.icon_clear,
+.icon_clear-before::before {
+  background-position: -148px -2px;
+  width: 16px;
+  height: 16px;
+}
+.icon_clear-before::before {
+  content: '';
+}
+.icon_clock,
+.icon_clock-before::before {
+  background-position: -148px -22px;
+  width: 14px;
+  height: 16px;
+}
+.icon_clock-before::before {
+  content: '';
+}
+.icon_code-commit,
+.icon_code-commit-before::before {
+  background-position: -148px -42px;
+  width: 16px;
+  height: 8px;
+}
+.icon_code-commit-before::before {
+  content: '';
+}
+.icon_done,
+.icon_done-before::before,
+.card_status_done .card__icon {
+  background-position: -148px -54px;
+  width: 16px;
+  height: 16px;
+}
+.icon_done-before::before {
+  content: '';
+}
+.icon_fail,
+.icon_fail-before::before,
+.card_status_fail .card__icon {
+  background-position: -148px -74px;
+  width: 16px;
+  height: 16px;
+}
+.icon_fail-before::before {
+  content: '';
+}
+.icon_logo,
+.icon_logo-before::before {
+  background-position: -2px -2px;
+  width: 124px;
+  height: 124px;
+}
+.icon_logo-before::before {
+  content: '';
+}
+.icon_play,
+.icon_play-before::before {
+  background-position: -130px -56px;
+  width: 9px;
+  height: 10px;
+}
+.icon_play-before::before {
+  content: '';
+}
+.icon_rebuild,
+.icon_rebuild-before::before {
+  background-position: -148px -114px;
+  width: 12px;
+  height: 12px;
+}
+.icon_rebuild-before::before {
+  content: '';
+}
+.icon_settings,
+.icon_settings-before::before {
+  background-position: -130px -40px;
+  width: 12px;
+  height: 12px;
+}
+.icon_settings-before::before {
+  content: '';
+}
+.icon_user,
+.icon_user-before::before {
+  background-position: -130px -22px;
+  width: 13px;
+  height: 14px;
+}
+.icon_user-before::before {
+  content: '';
+}
+.icon_wait,
+.icon_wait-before::before,
+.card_status_wait .card__icon {
+  background-position: -148px -94px;
+  width: 16px;
+  height: 16px;
+}
+.icon_wait-before::before {
+  content: '';
+}
 .icon-text {
   display: flex;
   align-items: center;
@@ -211,6 +352,7 @@ table {
   color: var(--cTextSecondary);
 }
 .card {
+  display: flex;
   width: 100%;
   margin-bottom: 8px;
   padding: 12px 24px;
@@ -231,6 +373,7 @@ table {
 }
 .card__icon {
   flex-shrink: 0;
+  margin-right: 10px;
 }
 .card__info {
   flex-grow: 1;
