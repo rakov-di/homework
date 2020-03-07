@@ -6,9 +6,26 @@
   border: none
   color: var(--cTextPrimary)
   cursor: pointer
+  outline: none
+
+  &:disabled
+    background-color: var(--bgBtnDisabled)
+    color: var(--cBtnDisabled)
 
   &_type_primary
     background-color: var(--bgBtnPrimary)
 
+    &:hover
+      background-color: var(--bgBtnPrimaryHovered)
+
+    &:focus
+      box-shadow: inset 0 0 0 2px var(--cBorderBtnPrimaryFocused)
+
   &_type_secondary
     background-color: var(--bgBtnSecondary)
+
+    &:hover
+      background-color: var(--bgBtnSecondaryHovered)
+
+    &:focus
+      box-shadow: inset 0 0 0 2px var(--cBorderFocused)

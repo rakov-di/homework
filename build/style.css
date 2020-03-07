@@ -75,6 +75,7 @@ table {
   --cTextTitle: #7f8285;
   --cTextValue: #434445;
   --cInputPlh: rgba(0,0,0,0.2);
+  --cBtnDisabled: rgba(127,127,127,0.5);
   --cTaskWait: #ff9a00;
   --cTaskFail: #f33;
   --cTaskDone: #00b341;
@@ -82,11 +83,14 @@ table {
   --cLinkHovered: #e00000;
   --cBorder: #d9d9d9;
   --cBorderFocused: #b3b3b3;
+  --cBorderBtnPrimaryFocused: #b38f00;
   --bgMain: #e5e5e5;
   --bgBtnPrimary: #fc0;
+  --bgBtnPrimaryHovered: #f2c200;
   --bgBtnSecondary: #e6e6e6;
+  --bgBtnSecondaryHovered: #dbdbdb;
   --bgContainerDesktop: #f0f2f3;
-  --bgContainerMobile: #f2f2f2;
+  --bgBtnDisabled: #f2f2f2;
   --cIconPlay: #111;
   --cIconLogo: rgba(0,0,0,0.1);
   --wMaxContent: 800px;
@@ -552,12 +556,29 @@ table {
   border: none;
   color: var(--cTextPrimary);
   cursor: pointer;
+  outline: none;
+}
+.btn-big:disabled {
+  background-color: var(--bgBtnDisabled);
+  color: var(--cBtnDisabled);
 }
 .btn-big_type_primary {
   background-color: var(--bgBtnPrimary);
 }
+.btn-big_type_primary:hover {
+  background-color: var(--bgBtnPrimaryHovered);
+}
+.btn-big_type_primary:focus {
+  box-shadow: inset 0 0 0 2px var(--cBorderBtnPrimaryFocused);
+}
 .btn-big_type_secondary {
   background-color: var(--bgBtnSecondary);
+}
+.btn-big_type_secondary:hover {
+  background-color: var(--bgBtnSecondaryHovered);
+}
+.btn-big_type_secondary:focus {
+  box-shadow: inset 0 0 0 2px var(--cBorderFocused);
 }
 .btn-small {
   flex-shrink: 0;
