@@ -196,8 +196,6 @@ table {
 .icon_calendar-before::before,
 .icon_clear,
 .icon_clear-before::before,
-.icon_clock,
-.icon_clock-before::before,
 .icon_code-commit,
 .icon_code-commit-before::before,
 .icon_done,
@@ -212,6 +210,8 @@ table {
 .icon_run-before::before,
 .icon_settings,
 .icon_settings-before::before,
+.icon_stopwatch,
+.icon_stopwatch-before::before,
 .icon_user,
 .icon_user-before::before,
 .icon_wait,
@@ -220,12 +220,12 @@ table {
 .card_status_wait .card__icon,
 .card_status_fail .card__icon {
   display: inline-block;
-  background: url("img/icons-49e3b694.svg") no-repeat;
+  background: url("img/icons-0ebc40b5.svg") no-repeat;
 }
 .icon_calendar,
 .icon_calendar-before::before {
   background-position: -130px -2px;
-  width: 14px;
+  width: 16px;
   height: 16px;
 }
 .icon_calendar-before::before {
@@ -233,27 +233,18 @@ table {
 }
 .icon_clear,
 .icon_clear-before::before {
-  background-position: -148px -2px;
+  background-position: -130px -22px;
   width: 16px;
   height: 16px;
 }
 .icon_clear-before::before {
   content: '';
 }
-.icon_clock,
-.icon_clock-before::before {
-  background-position: -148px -22px;
-  width: 14px;
-  height: 16px;
-}
-.icon_clock-before::before {
-  content: '';
-}
 .icon_code-commit,
 .icon_code-commit-before::before {
-  background-position: -148px -42px;
+  background-position: -130px -42px;
   width: 16px;
-  height: 8px;
+  height: 16px;
 }
 .icon_code-commit-before::before {
   content: '';
@@ -261,7 +252,7 @@ table {
 .icon_done,
 .icon_done-before::before,
 .card_status_done .card__icon {
-  background-position: -148px -54px;
+  background-position: -130px -62px;
   width: 16px;
   height: 16px;
 }
@@ -271,7 +262,7 @@ table {
 .icon_fail,
 .icon_fail-before::before,
 .card_status_fail .card__icon {
-  background-position: -148px -74px;
+  background-position: -130px -82px;
   width: 16px;
   height: 16px;
 }
@@ -289,7 +280,7 @@ table {
 }
 .icon_rebuild,
 .icon_rebuild-before::before {
-  background-position: -148px -114px;
+  background-position: -59px -130px;
   width: 12px;
   height: 12px;
 }
@@ -298,7 +289,7 @@ table {
 }
 .icon_run,
 .icon_run-before::before {
-  background-position: -130px -56px;
+  background-position: -75px -130px;
   width: 9px;
   height: 10px;
 }
@@ -307,18 +298,27 @@ table {
 }
 .icon_settings,
 .icon_settings-before::before {
-  background-position: -130px -40px;
-  width: 12px;
+  background-position: -42px -130px;
+  width: 13px;
   height: 12px;
 }
 .icon_settings-before::before {
   content: '';
 }
+.icon_stopwatch,
+.icon_stopwatch-before::before {
+  background-position: -130px -102px;
+  width: 16px;
+  height: 16px;
+}
+.icon_stopwatch-before::before {
+  content: '';
+}
 .icon_user,
 .icon_user-before::before {
-  background-position: -130px -22px;
-  width: 13px;
-  height: 14px;
+  background-position: -2px -130px;
+  width: 16px;
+  height: 16px;
 }
 .icon_user-before::before {
   content: '';
@@ -326,7 +326,7 @@ table {
 .icon_wait,
 .icon_wait-before::before,
 .card_status_wait .card__icon {
-  background-position: -148px -94px;
+  background-position: -22px -130px;
   width: 16px;
   height: 16px;
 }
@@ -563,6 +563,7 @@ table {
   display: flex;
   align-items: center;
   height: 28px;
+  min-width: 28px;
   border-radius: 4px;
   border: none;
   color: var(--cTextPrimary);
@@ -571,6 +572,7 @@ table {
 }
 .btn-small_type_only-icon {
   padding: 8px;
+  width: 28px;
 }
 .btn-small_type_only-text {
   padding: 8px 13px;
@@ -591,7 +593,7 @@ table {
 }
 @media screen and (max-width: 320px) {
   .btn-small_type_icon-text::before {
-    margin-right: 0;
+    margin: auto;
   }
 }
 .link {

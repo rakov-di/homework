@@ -3,6 +3,7 @@
   display: flex
   align-items: center
   height: 28px
+  min-width: 28px
   border-radius: 4px
   border: none // одинаковый с btn-big
   color: var(--cTextPrimary)
@@ -11,6 +12,7 @@
 
   &_type_only-icon
     padding: 8px
+    width: 28px // ДДД
 
   &_type_only-text
     padding: 8px 13px
@@ -30,4 +32,4 @@
       margin-right: 8px
 
       @media screen and (max-width: 320px)
-        margin-right: 0
+        margin: auto

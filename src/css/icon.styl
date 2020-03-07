@@ -1,14 +1,14 @@
 
 $svg-common
   display inline-block
-  background url("img/icons-49e3b694.svg") no-repeat
+  background url("img/icons-0ebc40b5.svg") no-repeat
 
 
 // миксин для конкретной иконки
 $icon_calendar
   @extend $svg-common
-  background-position: (-128px - (18px - 14px)/2) (0px - (20px - 16px)/2)
-  width 14px
+  background-position: (-128px - (20px - 16px)/2) (0px - (20px - 16px)/2)
+  width 16px
   height 16px
 
 // класс для иконки без использования before
@@ -26,7 +26,7 @@ $icon_calendar
 // миксин для конкретной иконки
 $icon_clear
   @extend $svg-common
-  background-position: (-146px - (20px - 16px)/2) (0px - (20px - 16px)/2)
+  background-position: (-128px - (20px - 16px)/2) (-20px - (20px - 16px)/2)
   width 16px
   height 16px
 
@@ -43,30 +43,11 @@ $icon_clear
 
 
 // миксин для конкретной иконки
-$icon_clock
-  @extend $svg-common
-  background-position: (-146px - (18px - 14px)/2) (-20px - (20px - 16px)/2)
-  width 14px
-  height 16px
-
-// класс для иконки без использования before
-.icon_clock
-  @extend $icon_clock
-
-// класс для иконки через before
-.icon_clock-before
-  &::before
-    content ''
-    @extend $icon_clock
-
-
-
-// миксин для конкретной иконки
 $icon_code-commit
   @extend $svg-common
-  background-position: (-146px - (20px - 16px)/2) (-40px - (12px - 8px)/2)
+  background-position: (-128px - (20px - 16px)/2) (-40px - (20px - 16px)/2)
   width 16px
-  height 8px
+  height 16px
 
 // класс для иконки без использования before
 .icon_code-commit
@@ -83,7 +64,7 @@ $icon_code-commit
 // миксин для конкретной иконки
 $icon_done
   @extend $svg-common
-  background-position: (-146px - (20px - 16px)/2) (-52px - (20px - 16px)/2)
+  background-position: (-128px - (20px - 16px)/2) (-60px - (20px - 16px)/2)
   width 16px
   height 16px
 
@@ -102,7 +83,7 @@ $icon_done
 // миксин для конкретной иконки
 $icon_fail
   @extend $svg-common
-  background-position: (-146px - (20px - 16px)/2) (-72px - (20px - 16px)/2)
+  background-position: (-128px - (20px - 16px)/2) (-80px - (20px - 16px)/2)
   width 16px
   height 16px
 
@@ -140,7 +121,7 @@ $icon_logo
 // миксин для конкретной иконки
 $icon_rebuild
   @extend $svg-common
-  background-position: (-146px - (16px - 12px)/2) (-112px - (16px - 12px)/2)
+  background-position: (-57px - (16px - 12px)/2) (-128px - (16px - 12px)/2)
   width 12px
   height 12px
 
@@ -159,7 +140,7 @@ $icon_rebuild
 // миксин для конкретной иконки
 $icon_run
   @extend $svg-common
-  background-position: (-128px - (13px - 9px)/2) (-54px - (14px - 10px)/2)
+  background-position: (-73px - (13px - 9px)/2) (-128px - (14px - 10px)/2)
   width 9px
   height 10px
 
@@ -178,8 +159,8 @@ $icon_run
 // миксин для конкретной иконки
 $icon_settings
   @extend $svg-common
-  background-position: (-128px - (16px - 12px)/2) (-38px - (16px - 12px)/2)
-  width 12px
+  background-position: (-40px - (17px - 13px)/2) (-128px - (16px - 12px)/2)
+  width 13px
   height 12px
 
 // класс для иконки без использования before
@@ -195,11 +176,30 @@ $icon_settings
 
 
 // миксин для конкретной иконки
+$icon_stopwatch
+  @extend $svg-common
+  background-position: (-128px - (20px - 16px)/2) (-100px - (20px - 16px)/2)
+  width 16px
+  height 16px
+
+// класс для иконки без использования before
+.icon_stopwatch
+  @extend $icon_stopwatch
+
+// класс для иконки через before
+.icon_stopwatch-before
+  &::before
+    content ''
+    @extend $icon_stopwatch
+
+
+
+// миксин для конкретной иконки
 $icon_user
   @extend $svg-common
-  background-position: (-128px - (17px - 13px)/2) (-20px - (18px - 14px)/2)
-  width 13px
-  height 14px
+  background-position: (0px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
+  width 16px
+  height 16px
 
 // класс для иконки без использования before
 .icon_user
@@ -216,7 +216,7 @@ $icon_user
 // миксин для конкретной иконки
 $icon_wait
   @extend $svg-common
-  background-position: (-146px - (20px - 16px)/2) (-92px - (20px - 16px)/2)
+  background-position: (-20px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
   width 16px
   height 16px
 
