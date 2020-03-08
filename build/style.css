@@ -540,6 +540,9 @@ table {
   flex-grow: 1;
   padding: 8px 16px 16px;
 }
+.main_center {
+  display: flex;
+}
 .main__container {
   display: flex;
   flex-direction: column;
