@@ -291,8 +291,15 @@ table {
   padding: 0 20px;
   border-radius: var(--br-s);
   border: none;
-  cursor: pointer;
   outline: none;
+  cursor: pointer;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 36px;
+  color: var(--cTextBtnBig);
 }
 .btn-big:disabled {
   background-color: var(--bgBtnBifDisabled);
@@ -325,10 +332,16 @@ table {
   min-width: 28px;
   border-radius: var(--br-s);
   border: none;
-  color: var(--cTextPrimary);
-  background-color: var(--bgBtnSecondary);
   cursor: pointer;
   outline: none;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 28px;
+  color: var(--cTextBtnSmall);
+  background-color: var(--bgBtnSecondary);
 }
 .btn-small:hover {
   background-color: var(--bgBtnSecondaryHovered);
@@ -337,18 +350,17 @@ table {
   box-shadow: inset 0 0 0 2px var(--cBorderBtnSecondaryFocused);
 }
 .btn-small_type_only-icon {
-  padding: 8px;
-  width: 28px;
+  padding: 0 8px;
 }
 .btn-small_type_only-text {
-  padding: 8px 13px;
+  padding: 0 13px;
 }
 .btn-small_type_icon-text {
-  padding: 8px 13px 8px 8px;
+  padding: 0 13px 0 8px;
 }
 @media only screen and (max-width: 400px) {
   .btn-small_type_icon-text {
-    padding: 8px;
+    padding: 0 8px;
     font-size: 0;
   }
 }
