@@ -239,6 +239,74 @@ table {
 .icon_wait-before::before {
   content: '';
 }
+.text {
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+}
+.text_input-plh {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+}
+.text_primary {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+}
+.text_label,
+.form_description {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--cTextTitle);
+}
+.text_btn-small {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 28px;
+}
+.text_btn-big,
+.btn-big {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 36px;
+  color: var(--cTextPrimary);
+}
+.text_title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  color: var(--cTextPrimary);
+}
+.text_title-desktop_dark {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--cTextTitle);
+}
+.text_subtitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+.text_task-num {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+.text_subtitle {
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--cTextSubtitle);
+}
+.text_log {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 20px;
+  color: var(--cTextPrimary);
+}
 .page {
   font-family: 'YS Text', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -296,11 +364,35 @@ table {
   margin: 32px 0 24px;
   text-align: center;
 }
+.form {
+  margin-top: 8px;
+}
+.form_description {
+  margin-top: 8px;
+  color: var(--cTextTitle);
+}
 .form__field {
   padding: 8px 0;
 }
-.form__btn-group__btn:not(:first-child) {
+@media only screen and (max-width: 400px) {
+  .form__btn-group {
+    padding: 8px 0;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .form__btn {
+    display: block;
+    width: 100%;
+  }
+}
+.form__btn:not(:first-child) {
   margin-left: 8px;
+}
+@media only screen and (max-width: 400px) {
+  .form__btn:not(:first-child) {
+    margin-left: 0;
+    margin-top: 12px;
+  }
 }
 .label_type_block {
   display: block;
@@ -309,32 +401,51 @@ table {
 .label_type_inline {
   display: inline-block;
 }
+.label__required {
+  color: var(--cTaskFail);
+}
 .input {
+  position: relative;
+}
+.input__field {
   height: 36px;
   padding: 11px 13px 10px;
   border: 2px solid var(--cBorder);
+  border-radius: 4px;
   color: var(--cTextPrimary);
   background: var(--cWhite);
 }
-.input::-ms-input-placeholder {
+.input__field:not(:empty) + .input__field__clear {
+  display: block;
+}
+.input__field::-ms-input-placeholder {
   color: var(--cInputPlh);
 }
-.input::placeholder {
+.input__field::placeholder {
   color: var(--cInputPlh);
 }
-.input:focus {
+.input__field:focus {
   border: 2px solid var(--cBorderFocused);
   outline: none;
 }
-.input_type_block {
+.input__field_type_block {
   display: block;
   width: 100%;
   max-width: 474px;
   margin-top: 6px;
 }
-.input_type_inline {
+.input__field_type_inline {
   display: inline-block;
+  width: 52px;
   margin: 4px 8px;
+  text-align: right;
+}
+.input__clear {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: none;
+  cursor: pointer;
 }
 .icon-text {
   display: flex;
@@ -384,7 +495,7 @@ table {
   display: flex;
   justify-content: space-between;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__info {
     flex-direction: column;
   }
@@ -394,7 +505,7 @@ table {
   flex-direction: row;
   margin-bottom: 8px;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__task {
     flex-direction: column;
     margin-bottom: 0;
@@ -404,19 +515,19 @@ table {
   display: inline-block;
   margin-right: 4px;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__task-num {
     margin-bottom: 8px;
   }
 }
-.card__task-text {
+.card__subtitle {
   display: inline-block;
 }
 .card__meta {
   flex-shrink: 0;
   display: flex;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__meta {
     padding: 8px 0;
   }
@@ -424,7 +535,7 @@ table {
 .card__meta_vertical {
   flex-direction: column;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__meta_vertical {
     flex-direction: row;
     border-top: 1px solid var(--bgContainerMobile);
@@ -433,7 +544,7 @@ table {
 .card__meta_vertical .card__icon-text:not(:first-child) {
   margin-top: 12px;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__meta_vertical .card__icon-text:not(:first-child) {
     margin-top: 0;
     margin-left: 10px;
@@ -442,7 +553,7 @@ table {
 .card__meta_horizontal {
   flex-direction: row;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__meta_horizontal {
     flex-direction: column;
   }
@@ -450,13 +561,13 @@ table {
 .card__meta_horizontal .card__icon-text:not(:first-child) {
   margin-left: 10px;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card__meta_horizontal .card__icon-text:not(:first-child) {
     margin-left: 0;
     margin-top: 8px;
   }
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .card-list__show-more {
     width: 100%;
   }
@@ -467,7 +578,7 @@ table {
   overflow-x: auto;
   width: 100%;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .log {
     border-radius: 0;
   }
@@ -489,7 +600,7 @@ table {
   padding: 8px 0;
   margin: auto;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .footer__container {
     flex-direction: column;
     justify-content: flex-start;
@@ -497,77 +608,13 @@ table {
     padding: 12px 0;
   }
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .footer__copyright {
     margin-top: 8px;
   }
 }
 .menu__link:not(:first-child) {
   margin-left: 12px;
-}
-.text {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  letter-spacing: 0.06px;
-}
-.text_input-plh {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
-}
-.text_primary {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
-}
-.text_label {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 18px;
-  color: var(--cTextTitle);
-}
-.text_btn-small {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 28px;
-}
-.text_btn-big {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 36px;
-}
-.text_title {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
-  color: var(--cTextPrimary);
-}
-.text_title2 {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-  color: var(--cTextTitle);
-}
-.text_subtitle {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-}
-.text_task-num {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 20px;
-}
-.text_task-text {
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 20px;
-}
-.text_log {
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 20px;
-  color: var(--cTextPrimary);
 }
 .btn-group {
   flex-shrink: 0;
@@ -587,7 +634,6 @@ table {
   padding: 0 20px;
   border-radius: 4px;
   border: none;
-  color: var(--cTextPrimary);
   cursor: pointer;
   outline: none;
 }
@@ -636,7 +682,7 @@ table {
 .btn-small_type_icon-text {
   padding: 8px 13px 8px 8px;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .btn-small_type_icon-text {
     padding: 8px;
     font-size: 0;
@@ -647,7 +693,7 @@ table {
   display: block;
   margin-right: 8px;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 400px) {
   .btn-small_type_icon-text::before {
     margin: auto;
   }

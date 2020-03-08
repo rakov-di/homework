@@ -1,10 +1,28 @@
 .form
+  margin-top: 8px
+
+  &_description
+    margin-top: 8px
+    @extend .text_label
+    color: var(--cTextTitle)
 
   &__field
     padding: 8px 0
 
   &__btn-group
 
-    &__btn:not(:first-child)
-      margin-left: 8px
+    @media only screen and (max-width: $bpMobile)
+      padding: 8px 0
 
+  &__btn
+
+    @media only screen and (max-width: $bpMobile)
+      display: block
+      width: 100%
+
+  &__btn:not(:first-child)
+    margin-left: 8px
+
+    @media only screen and (max-width: $bpMobile)
+      margin-left: 0
+      margin-top: 12px

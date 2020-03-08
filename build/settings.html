@@ -17,25 +17,33 @@
   <main class="main">
     <div class="main__container">
       <div class="form">
-        <div class="form__title">
-          <div class="text_title2">Settings</div>
-          <div class="text_label">Configure repository connection and synchronization settings.</div>
-        </div>
+        <div class="form__title text_subtitle">Settings</div>
+        <div class="form__description text_label">Configure repository connection and synchronization settings.</div>
         <div class="form__field">
-          <label class="label label_type_block text_label" for="repo">GitHub repository</label>
-          <input class="input input_type_block" id="repo" type="text" type="text" placeholder="user-name/repo-name">
+          <label class="label label_type_block text_label" for="repo">GitHub repository <span class="label__required">*</span></label>
+          <div class="input">
+            <input class="input__field input__field_type_block icon icon_settings-before" id="repo" type="text" type="text" placeholder="user-name/repo-name" required>
+          </div>
         </div>
         <div class="form__field">
           <label class="label label_type_block text_label" for="command">Build command</label>
-          <input class="input input_type_block" id="command" type="text" type="text" placeholder="">
+          <div class="input">
+            <input class="input__field input__field_type_block" id="command" type="text" type="text" placeholder="">
+            <div class="input__clear icon icon_clear"></div>
+          </div>
         </div>
         <div class="form__field">
           <label class="label label_type_block text_label" for="branch">Main branch</label>
-          <input class="input input_type_block" id="branch" type="text" type="text" placeholder="">
+          <div class="input">
+            <input class="input__field input__field_type_block" id="branch" type="text" type="text" placeholder="">
+            <div class="input__clear icon icon_clear"></div>
+          </div>
         </div>
         <div class="form__field">
           <label class="label label_type_input text_label" for="minutes">Synchronize every</label>
-          <input class="input input_type_inline text_label" id="minutes" type="text" type="text" placeholder="">
+          <div class="input">
+            <input class="input__field input__field_type_inline text_label" id="minutes" type="text" type="text" placeholder="">
+          </div>
           <label class="label label_type_input text_label" for="minutes">minutes</label>
         </div>
         <div class="form__btn-group">

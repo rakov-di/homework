@@ -1,24 +1,39 @@
 .input
-  height: 36px
-  padding: 11px 13px 10px
-  border: 2px solid var(--cBorder)
-  color: var(--cTextPrimary)
-  background: var(--cWhite)
+  position: relative
 
-  &::placeholder
-    color: var(--cInputPlh)
+  &__field
+    height: 36px
+    padding: 11px 13px 10px
+    border: 2px solid var(--cBorder)
+    border-radius: 4px
+    color: var(--cTextPrimary)
+    background: var(--cWhite)
 
-  &:focus
-    border: 2px solid var(--cBorderFocused)
-    outline: none
+    &:not(:empty) + &__clear
+      display: block
 
-  &_type_block
-    display: block
-    width: 100%
-    max-width: 474px
-    margin-top: 6px
+    &::placeholder
+      color: var(--cInputPlh)
 
-  &_type_inline
-    display: inline-block
-    margin: 4px 8px
+    &:focus
+      border: 2px solid var(--cBorderFocused)
+      outline: none
 
+    &_type_block
+      display: block
+      width: 100%
+      max-width: 474px
+      margin-top: 6px
+
+    &_type_inline
+      display: inline-block
+      width: 52px
+      margin: 4px 8px
+      text-align: right
+
+  &__clear
+    position: absolute
+    right: 10px
+    top: 10px
+    display: none
+    cursor: pointer
