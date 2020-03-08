@@ -314,7 +314,7 @@ table {
   background-color: var(--bgBtnSecondaryHovered);
 }
 .btn-big_type_secondary:focus {
-  box-shadow: inset 0 0 0 2px var(--cBorderInputFocused);
+  box-shadow: inset 0 0 0 2px var(--cBorderBtnSecondaryFocused);
 }
 .btn-small {
   flex-shrink: 0;
@@ -329,6 +329,12 @@ table {
   background-color: var(--bgBtnSecondary);
   cursor: pointer;
   outline: none;
+}
+.btn-small:hover {
+  background-color: var(--bgBtnSecondaryHovered);
+}
+.btn-small:focus {
+  box-shadow: inset 0 0 0 2px var(--cBorderBtnSecondaryFocused);
 }
 .btn-small_type_only-icon {
   padding: 8px;
