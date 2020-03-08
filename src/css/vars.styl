@@ -113,151 +113,6 @@ $bpMobile = 400px
 
 
 
-  // ======
-  // ШРИФТЫ
-  // ======
-
-  // ПСД
-  // font-950 (страницы start-screen и settings)
-  // font-900 (страницы build-history и build-details)
-  // отличаются лишь line-height - нужно ли 2 разных шрифта, если это все равно все в Header?
-  $font-950
-    font-weight: 500
-    font-size: 24px
-    line-height: 30px
-
-  $font-900
-    font-weight: 500
-    font-size: 24px
-    line-height: 28px
-
-  $font-850
-    font-weight: 500
-    font-size: 18px
-    line-height: 22px
-
-  $font-800
-    font-weight: 500
-    font-size: 18px
-    line-height: 20px
-
-  $font-750
-    font-weight: normal
-    font-size: 15px
-    line-height: 20px
-
-  $font-700
-    font-weight: normal
-    font-size: 13px
-    line-height: 36px
-
-  $font-650
-    font-weight: normal
-    font-size: 13px
-    line-height: 28px
-
-  $font-600
-    font-weight: normal
-    font-size: 13px
-    line-height: 18px
-
-  $font-550
-    font-weight: normal
-    font-size: 13px
-    line-height: 125%
-
-  $font-500
-    font-weight: normal
-    font-size: 13px
-    line-height: 16px
-
-  $font-450
-    font-weight: normal
-    font-size: 13px
-    line-height: 15px
-
-  $font-400
-    font-weight: normal
-    font-size: 10px
-    line-height: 20px
-
-
-
-  $title_desktop
-    @extend $font-900
-    color: var(--cTextTitle)
-
-  $title_mobile
-    @extend $font-850
-    color: var(--cTextTitle)
-
-  $title-repo_desktop
-    @extend $font-950
-    color: var(--cTextTitleRepo)
-
-  $title-repo_mobile
-    @extend $font-850
-    color: var(--cTextTitleRepo)
-
-  $subtitle
-    @extend $font-750
-    color: var(--cTextSubtitle)
-
-  $subtitle-description
-    @extend $font-600
-    color: var(--cTextSubtitleDescription)
-
-  $label
-    @extend $font-600
-    color: var(--cTextLabel)
-
-  $label-value
-    @extend $font-600
-    color: var(--cTextLabelValue)
-
-  $input-plh
-    @extend $font-450
-    color: var(--cTextInputPlh)
-
-  $input-main
-    @extend $font-450
-    color: var(--cTextInputMain)
-
-  $text_btn-big
-    @extend $font-700
-    color: var(--cTextBtnBig)
-
-  $text_btn-small
-    @extend $font-650
-    color: var(--cTextBtnSmall)
-
-  $text_task-num
-    @extend $font-800
-    // цвет может быть разный
-
-  $text_task-title
-    @extend $font-750
-    color: var(--cTextTaskTitle)
-
-  $text_task-meta-primary
-    @extend $font-500
-    color: var(--cTextTaskMetaPrimary)
-
-  $text_task-meta-secondary
-    @extend $font-500
-    color: var(--cTextTaskMetaSecondary)
-
-  $text_task-meta-secondary
-    @extend $font-400
-    color: var(--cTextLog)
-
-  $text_footer
-    @extend $font-600
-    color: var(--cTextBtnSmall)
-
-  $text_greeting
-    @extend $font-550
-    color: var(--cTextGreeting)
 
   // ==========
   // СКРУГЛЕНИЯ
@@ -270,4 +125,176 @@ $bpMobile = 400px
   --wMinContent: 220px
   --hHeader: 48px
   --hFooter: 32px
+
+
+
+// ======
+// ШРИФТЫ
+// ======
+
+$font()
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-style: normal
+  letter-spacing: 0.06px
+
+// ПСД
+// font-950 (страницы start-screen и settings)
+// font-900 (страницы build-history и build-details)
+// отличаются лишь line-height - нужно ли 2 разных шрифта, если это все равно все в Header?
+$font-950()
+  font-weight: 500
+  font-size: 24px
+  line-height: 30px
+
+$font-900()
+  font-weight: 500
+  font-size: 24px
+  line-height: 28px
+
+$font-850()
+  font-weight: 500
+  font-size: 18px
+  line-height: 22px
+
+$font-800()
+  font-weight: 500
+  font-size: 18px
+  line-height: 20px
+
+$font-750()
+  font-weight: normal
+  font-size: 15px
+  line-height: 20px
+
+$font-700()
+  font-weight: normal
+  font-size: 13px
+  line-height: 36px
+
+$font-650()
+  font-weight: normal
+  font-size: 13px
+  line-height: 28px
+
+$font-600()
+  font-weight: normal
+  font-size: 13px
+  line-height: 18px
+
+$font-550()
+  font-weight: normal
+  font-size: 13px
+  line-height: 125%
+
+$font-500()
+  font-weight: normal
+  font-size: 13px
+  line-height: 16px
+
+$font-450()
+  font-weight: normal
+  font-size: 13px
+  line-height: 15px
+
+$font-400()
+  font-weight: normal
+  font-size: 10px
+  line-height: 20px
+
+
+
+$title_desktop()
+  $font()
+  $font-900()
+  color: var(--cTextTitle)
+
+$title_mobile()
+  $font()
+  $font-850()
+  color: var(--cTextTitle)
+
+$title-repo_desktop()
+  $font()
+  $font-950()
+  color: var(--cTextTitleRepo)
+
+$title-repo_mobile()
+  $font()
+  $font-850()
+  color: var(--cTextTitleRepo)
+
+$subtitle()
+  $font()
+  $font-750()
+  color: var(--cTextSubtitle)
+
+$subtitle-description()
+  $font()
+  $font-600()
+  color: var(--cTextSubtitleDescription)
+
+$label()
+  $font()
+  $font-600()
+  color: var(--cTextLabel)
+
+$label-value()
+  $font()
+  $font-600()
+  color: var(--cTextLabelValue)
+
+$input-plh()
+  $font()
+  $font-450()
+  color: var(--cTextInputPlh)
+
+$input-main()
+  $font()
+  $font-450()
+  color: var(--cTextInputMain)
+
+$text_btn-big()
+  $font()
+  $font-700()
+  color: var(--cTextBtnBig)
+
+$text_btn-small()
+  $font()
+  $font-650()
+  color: var(--cTextBtnSmall)
+
+$text_task-num()
+  $font()
+  $font-800()
+// цвет может быть разный
+
+$text_task-title()
+  $font()
+  $font-750()
+  color: var(--cTextTaskTitle)
+
+$text_task-meta-primary()
+  $font()
+  $font-500()
+  color: var(--cTextTaskMetaPrimary)
+
+$text_task-meta-secondary()
+  $font()
+  $font-500()
+  color: var(--cTextTaskMetaSecondary)
+
+$text_task-meta-secondary()
+  $font()
+  $font-400()
+  color: var(--cTextLog)
+
+$text_footer()
+  $font()
+  $font-600()
+  color: var(--cTextBtnSmall)
+
+$text_greeting()
+  $font()
+  $font-550()
+  color: var(--cTextGreeting)
 

@@ -10,3 +10,10 @@
     min-width: var(--wMinContent)
     margin: auto
 
+  &__title
+    $title_desktop()
+
+    @media only screen and (max-width: $bpMobile)
+      $title_mobile()
+
+

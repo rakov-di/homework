@@ -130,73 +130,6 @@ table {
   --hHeader: 48px;
   --hFooter: 32px;
 }
-:root $title-repo_desktop {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
-}
-:root $title_desktop {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-}
-:root $title_mobile,
-:root $title-repo_mobile {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-}
-:root $text_task-num {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 20px;
-}
-:root $subtitle,
-:root $text_task-title {
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 20px;
-}
-:root $text_btn-big {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 36px;
-}
-:root $text_btn-small {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 28px;
-}
-:root $subtitle-description,
-:root $label,
-:root $label-value,
-:root $text_footer {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 18px;
-}
-:root $text_greeting {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 125%;
-}
-:root $text_task-meta-primary,
-:root $text_task-meta-secondary {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
-}
-:root $input-plh,
-:root $input-main {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
-}
-:root $text_task-meta-secondary {
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 20px;
-}
 .icon_calendar,
 .icon_calendar-before::before,
 .icon_clear,
@@ -338,74 +271,6 @@ table {
 .icon_wait-before::before {
   content: '';
 }
-.text {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  letter-spacing: 0.06px;
-}
-.text_input-plh {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
-}
-.text_primary {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
-}
-.text_label,
-.form_description {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 18px;
-  color: var(--cTextTitle);
-}
-.text_btn-small {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 28px;
-}
-.text_btn-big,
-.btn-big {
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 36px;
-  color: var(--cTextPrimary);
-}
-.text_title {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
-  color: var(--cTextPrimary);
-}
-.text_title-desktop_dark {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
-  color: var(--cTextTitle);
-}
-.text_subtitle {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-}
-.text_task-num {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 20px;
-}
-.text_subtitle {
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 20px;
-  color: var(--cTextSubtitle);
-}
-.text_log {
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 20px;
-  color: var(--cTextPrimary);
-}
 .page {
   font-family: 'YS Text', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -428,6 +293,26 @@ table {
   max-width: var(--wMaxContent);
   min-width: var(--wMinContent);
   margin: auto;
+}
+.header__title {
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--cTextTitle);
+}
+@media only screen and (max-width: 400px) {
+  .header__title {
+    font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    letter-spacing: 0.06px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--cTextTitle);
+  }
 }
 .main {
   width: 100%;
