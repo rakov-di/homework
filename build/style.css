@@ -94,7 +94,8 @@ table {
   --cTextBtnBig: var(--black-100);
   --cTextBtnBigDisabled: var(--gray-400);
   --cTextBtnSmall: var(--black-100);
-  --cTextFooter: var(--gray-550);
+  --cTextMenu: var(--gray-550);
+  --cTextFooterCopyright: var(--gray-550);
   --cTextGreeting: var(--black-100);
   --cTextSubtitle: var(--black-100);
   --cTextSubtitleDescription: var(--gray-550);
@@ -286,13 +287,23 @@ table {
   width: 100%;
   padding: 10px 16px;
 }
+@media only screen and (max-width: 400px) {
+  .header {
+    padding: 12px 16px;
+  }
+}
 .header__container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   max-width: var(--wMaxContent);
   min-width: var(--wMinContent);
   margin: auto;
+}
+.header__container_valign_top {
+  align-items: flex-start;
+}
+.header__container_valign_center {
+  align-items: center;
 }
 .header__title {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -346,6 +357,13 @@ table {
 }
 .greeting__description {
   margin: 32px 0 24px;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 125%;
+  color: var(--cTextGreeting);
   text-align: center;
 }
 .form {
@@ -592,9 +610,42 @@ table {
     padding: 12px 0;
   }
 }
+.footer__copyright {
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--cTextFooterCopyright);
+}
 @media only screen and (max-width: 400px) {
   .footer__copyright {
     margin-top: 8px;
+  }
+}
+.menu__link {
+  text-decoration: none;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--cTextMenu);
+}
+.menu__link:hover {
+  color: var(--cLinkHovered);
+}
+@media only screen and (max-width: 400px) {
+  .menu__link {
+    font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    letter-spacing: 0.06px;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--cTextMenu);
   }
 }
 .menu__link:not(:first-child) {
@@ -681,11 +732,4 @@ table {
   .btn-small_type_icon-text::before {
     margin: auto;
   }
-}
-.link {
-  text-decoration: none;
-  color: var(--cTextTitle);
-}
-.link:hover {
-  color: var(--cLinkHovered);
 }

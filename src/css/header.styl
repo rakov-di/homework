@@ -2,13 +2,21 @@
   width: 100%
   padding: 10px 16px
 
+  @media only screen and (max-width: $bpMobile)
+    padding: 12px 16px
+
   &__container
     display: flex
     justify-content: space-between
-    align-items: flex-start
     max-width: var(--wMaxContent)
     min-width: var(--wMinContent)
     margin: auto
+
+    &_valign_top
+      align-items: flex-start
+
+    &_valign_center
+      align-items: center
 
   &__title
     $title_desktop()
