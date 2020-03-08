@@ -20,11 +20,14 @@
 $bpMobile = 400px
 
 :root
-  // Цвета
+  // =====
+  // ЦВЕТА
+  // =====
 
   // Black
   --black-100: #000000
   --black-200: #434445
+  --black-300: #181818
 
   // Gray
   --gray-100: #F0F2F3
@@ -35,12 +38,19 @@ $bpMobile = 400px
   --gray-350: #CCCCCC
   --gray-400: #B9B9B9
   --gray-450: #B3B3B3
-  --gray-500: #939393
+  //--gray-500: #939393
   --gray-550: #7F8285
+  --gray-600: #595959
 
-  // Неиспользуемые?? ПСД
-  // #E5E5E5 - весь макет
-  // #444444 - название задачи
+  // ПСД. Следующие цвета есть на странице компонентов,
+  // но на реальных страницах вместо них используются другие цвета:
+  // #E5E5E5 - весь макет???
+  // #444444 - название задачи (используется #000000)
+  // #939393 - secondary у текста с мета-инфой (используется #595959)
+  // на макете это вообще:
+  // color: #000000;
+  // opacity: 0.65;
+  // Но почему-то он по разному определяется пипеткой на стр Компонентов и Реальной | ДДД
 
   // Orange
   --orange-100: #FFCC00
@@ -58,36 +68,195 @@ $bpMobile = 400px
 
 
   // Цвета текстов
-  --cTextPrimary: var(--black-100)
-  --cTextSecondary: var(--gray-500)
   --cTextTitle: var(--gray-550)
+  --cTextTitleRepo: var(--black-100)
+  --cTextBtnBig: var(--black-100)
+  --cTextBtnBigDisabled: var(--gray-400)
+  --cTextBtnSmall: var(--black-100)
+  --cTextFooter: var(--gray-550)
+  --cTextGreeting: var(--black-100)
+  --cTextSubtitle: var(--black-100)
+  --cTextSubtitleDescription: var(--gray-550)
+  --cTextLabel: var(--black-100)
+  --cTextLabelValue: var(--black-200)
+  --cTextInputPlh: var(--gray-350)
+  --cTextInputMain: var(--black-100)
+  --cTextTaskTitle: var(--black-100)
+  --cTextTaskMetaPrimary: var(--black-100)
+  --cTextTaskMetaSecondary: var(--gray-600)
   --cTextValue: var(--black-200)
-  --cInputPlh: var(--gray-350)
-  --cBtnDisabled: var(--gray-400) //
+  --cTextBtnBigDisabled: var(--gray-400)
+  --cTextLog: var(--black-300)
 
   // Доп. цвета текстов для Задач
   --cTaskWait: var(--orange-400)
   --cTaskFail: var(--red-100)
   --cTaskDone: var(--green-100)
 
-
   --cLinkHovered: var(--red-200)
 
-  // Рамки
-  --cBorder: var(--gray-300)
-  --cBorderFocused: var(--gray-450)
+  // Цвета рамок
+  --cBorderInput: var(--gray-300)
+  --cBorderInputFocused: var(--gray-450)
+  --cBorderBtnSecondaryFocused: var(--gray-450)
   --cBorderBtnPrimaryFocused: var(--orange-300)
 
-  // Фоны
-  --bgBtnPrimary: var(--orange-100)
-  --bgBtnPrimaryHovered: var(--orange-200)
+  // Цвета фонов
   --bgBtnSecondary: var(--gray-200)
   --bgBtnSecondaryHovered: var(--gray-250)
   --bgContainerDesktop: var(--gray-100)
-  --bgBtnDisabled: var(--gray-150)
+  --bgBtnBigDisabled: var(--gray-150)
+  --bgLog: var(--gray-100)
+  --bgBtnPrimary: var(--orange-100)
+  --bgBtnPrimaryHovered: var(--orange-200)
 
 
 
+  // ======
+  // ШРИФТЫ
+  // ======
+
+  // ПСД
+  // font-950 (страницы start-screen и settings)
+  // font-900 (страницы build-history и build-details)
+  // отличаются лишь line-height - нужно ли 2 разных шрифта, если это все равно все в Header?
+  $font-950
+    font-weight: 500
+    font-size: 24px
+    line-height: 30px
+
+  $font-900
+    font-weight: 500
+    font-size: 24px
+    line-height: 28px
+
+  $font-850
+    font-weight: 500
+    font-size: 18px
+    line-height: 22px
+
+  $font-800
+    font-weight: 500
+    font-size: 18px
+    line-height: 20px
+
+  $font-750
+    font-weight: normal
+    font-size: 15px
+    line-height: 20px
+
+  $font-700
+    font-weight: normal
+    font-size: 13px
+    line-height: 36px
+
+  $font-650
+    font-weight: normal
+    font-size: 13px
+    line-height: 28px
+
+  $font-600
+    font-weight: normal
+    font-size: 13px
+    line-height: 18px
+
+  $font-550
+    font-weight: normal
+    font-size: 13px
+    line-height: 125%
+
+  $font-500
+    font-weight: normal
+    font-size: 13px
+    line-height: 16px
+
+  $font-450
+    font-weight: normal
+    font-size: 13px
+    line-height: 15px
+
+  $font-400
+    font-weight: normal
+    font-size: 10px
+    line-height: 20px
+
+
+
+  $title_desktop
+    @extend $font-900
+    color: var(--cTextTitle)
+
+  $title_mobile
+    @extend $font-850
+    color: var(--cTextTitle)
+
+  $title-repo_desktop
+    @extend $font-950
+    color: var(--cTextTitleRepo)
+
+  $title-repo_mobile
+    @extend $font-850
+    color: var(--cTextTitleRepo)
+
+  $subtitle
+    @extend $font-750
+    color: var(--cTextSubtitle)
+
+  $subtitle-description
+    @extend $font-600
+    color: var(--cTextSubtitleDescription)
+
+  $label
+    @extend $font-600
+    color: var(--cTextLabel)
+
+  $label-value
+    @extend $font-600
+    color: var(--cTextLabelValue)
+
+  $input-plh
+    @extend $font-450
+    color: var(--cTextInputPlh)
+
+  $input-main
+    @extend $font-450
+    color: var(--cTextInputMain)
+
+  $text_btn-big
+    @extend $font-700
+    color: var(--cTextBtnBig)
+
+  $text_btn-small
+    @extend $font-650
+    color: var(--cTextBtnSmall)
+
+  $text_task-num
+    @extend $font-800
+    // цвет может быть разный
+
+  $text_task-title
+    @extend $font-750
+    color: var(--cTextTaskTitle)
+
+  $text_task-meta-primary
+    @extend $font-500
+    color: var(--cTextTaskMetaPrimary)
+
+  $text_task-meta-secondary
+    @extend $font-500
+    color: var(--cTextTaskMetaSecondary)
+
+  $text_task-meta-secondary
+    @extend $font-400
+    color: var(--cTextLog)
+
+  $text_footer
+    @extend $font-600
+    color: var(--cTextBtnSmall)
+
+  $text_greeting
+    @extend $font-550
+    color: var(--cTextGreeting)
 
 
 

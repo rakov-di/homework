@@ -71,6 +71,7 @@ table {
 :root {
   --black-100: #000;
   --black-200: #434445;
+  --black-300: #181818;
   --gray-100: #f0f2f3;
   --gray-150: #f2f2f2;
   --gray-200: #e6e6e6;
@@ -79,8 +80,8 @@ table {
   --gray-350: #ccc;
   --gray-400: #b9b9b9;
   --gray-450: #b3b3b3;
-  --gray-500: #939393;
   --gray-550: #7f8285;
+  --gray-600: #595959;
   --orange-100: #fc0;
   --orange-200: #f2c200;
   --orange-300: #b38f00;
@@ -88,29 +89,111 @@ table {
   --red-100: #f33;
   --red-200: #e00000;
   --green-100: #00b341;
-  --cTextPrimary: var(--black-100);
-  --cTextSecondary: var(--gray-500);
   --cTextTitle: var(--gray-550);
+  --cTextTitleRepo: var(--black-100);
+  --cTextBtnBig: var(--black-100);
+  --cTextBtnBigDisabled: var(--gray-400);
+  --cTextBtnSmall: var(--black-100);
+  --cTextFooter: var(--gray-550);
+  --cTextGreeting: var(--black-100);
+  --cTextSubtitle: var(--black-100);
+  --cTextSubtitleDescription: var(--gray-550);
+  --cTextLabel: var(--black-100);
+  --cTextLabelValue: var(--black-200);
+  --cTextInputPlh: var(--gray-350);
+  --cTextInputMain: var(--black-100);
+  --cTextTaskTitle: var(--black-100);
+  --cTextTaskMetaPrimary: var(--black-100);
+  --cTextTaskMetaSecondary: var(--gray-600);
   --cTextValue: var(--black-200);
-  --cInputPlh: var(--gray-350);
-  --cBtnDisabled: var(--gray-400);
+  --cTextBtnBigDisabled: var(--gray-400);
+  --cTextLog: var(--black-300);
   --cTaskWait: var(--orange-400);
   --cTaskFail: var(--red-100);
   --cTaskDone: var(--green-100);
   --cLinkHovered: var(--red-200);
-  --cBorder: var(--gray-300);
-  --cBorderFocused: var(--gray-450);
+  --cBorderInput: var(--gray-300);
+  --cBorderInputFocused: var(--gray-450);
+  --cBorderBtnSecondaryFocused: var(--gray-450);
   --cBorderBtnPrimaryFocused: var(--orange-300);
-  --bgBtnPrimary: var(--orange-100);
-  --bgBtnPrimaryHovered: var(--orange-200);
   --bgBtnSecondary: var(--gray-200);
   --bgBtnSecondaryHovered: var(--gray-250);
   --bgContainerDesktop: var(--gray-100);
-  --bgBtnDisabled: var(--gray-150);
+  --bgBtnBigDisabled: var(--gray-150);
+  --bgLog: var(--gray-100);
+  --bgBtnPrimary: var(--orange-100);
+  --bgBtnPrimaryHovered: var(--orange-200);
   --wMaxContent: 800px;
   --wMinContent: 220px;
   --hHeader: 48px;
   --hFooter: 32px;
+}
+:root $title-repo_desktop {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+}
+:root $title_desktop {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+}
+:root $title_mobile,
+:root $title-repo_mobile {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+:root $text_task-num {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+:root $subtitle,
+:root $text_task-title {
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+}
+:root $text_btn-big {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 36px;
+}
+:root $text_btn-small {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 28px;
+}
+:root $subtitle-description,
+:root $label,
+:root $label-value,
+:root $text_footer {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+}
+:root $text_greeting {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 125%;
+}
+:root $text_task-meta-primary,
+:root $text_task-meta-secondary {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+}
+:root $input-plh,
+:root $input-main {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+}
+:root $text_task-meta-secondary {
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 20px;
 }
 .icon_calendar,
 .icon_calendar-before::before,
@@ -433,13 +516,13 @@ table {
   display: block;
 }
 .input__field::-ms-input-placeholder {
-  color: var(--cInputPlh);
+  color: var(--cTextInputPlh);
 }
 .input__field::placeholder {
-  color: var(--cInputPlh);
+  color: var(--cTextInputPlh);
 }
 .input__field:focus {
-  border: 2px solid var(--cBorderFocused);
+  border: 2px solid var(--cBorderInputFocused);
   outline: none;
 }
 .input__field_type_block {
@@ -587,7 +670,7 @@ table {
   }
 }
 .log {
-  background-color: var(--bgBtnDisabled);
+  background-color: var(--bgBtnBifDisabled);
   padding: 8px 12px;
   overflow-x: auto;
   width: 100%;
@@ -652,8 +735,8 @@ table {
   outline: none;
 }
 .btn-big:disabled {
-  background-color: var(--bgBtnDisabled);
-  color: var(--cBtnDisabled);
+  background-color: var(--bgBtnBifDisabled);
+  color: var(--cTextBtnBigDisabled);
 }
 .btn-big_type_primary {
   background-color: var(--bgBtnPrimary);
@@ -671,7 +754,7 @@ table {
   background-color: var(--bgBtnSecondaryHovered);
 }
 .btn-big_type_secondary:focus {
-  box-shadow: inset 0 0 0 2px var(--cBorderFocused);
+  box-shadow: inset 0 0 0 2px var(--cBorderInputFocused);
 }
 .btn-small {
   flex-shrink: 0;
