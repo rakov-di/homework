@@ -1,39 +1,40 @@
 .input
   position: relative
 
+  &_type_block
+    display: block
+    width: 100%
+    max-width: 474px
+    margin-top: 6px
+
+  &_type_inline
+    display: inline-block
+    width: 52px
+    margin: 4px 8px
+    text-align: right
+
   &__field
+    width: 100%
     height: 36px
     padding: 11px 13px 10px
-    border: 2px solid var(--cBorder)
+    border: 2px solid var(--cBorderInput)
     border-radius: var(--br-s)
-    color: var(--cTextPrimary)
-    background: var(--cWhite)
+    $input-main()
 
-    &:not(:empty) + &__clear
-      display: block
+    &[value=""] + &__clear
+      //display: none
+      background: red
 
     &::placeholder
-      color: var(--cTextInputPlh)
+      $input-plh()
 
     &:focus
       border: 2px solid var(--cBorderInputFocused)
       outline: none
 
-    &_type_block
-      display: block
-      width: 100%
-      max-width: 474px
-      margin-top: 6px
-
-    &_type_inline
-      display: inline-block
-      width: 52px
-      margin: 4px 8px
-      text-align: right
-
   &__clear
     position: absolute
     right: 10px
     top: 10px
-    display: none
+    display: block
     cursor: pointer

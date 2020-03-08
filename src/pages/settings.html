@@ -10,41 +10,42 @@
 </head>
 <body class="page grid">
   <header class="header">
-    <div class="header__container">
-      <div class="text_title2">School CI server</div>
+    <div class="header__container header__container_valign_center">
+      <div class="header__title">School CI server</div>
     </div>
   </header>
   <main class="main">
     <div class="main__container">
       <div class="form">
-        <div class="form__title text_subtitle">Settings</div>
-        <div class="form__description text_label">Configure repository connection and synchronization settings.</div>
+        <div class="form__title">Settings</div>
+        <div class="form__subtitle">Configure repository connection and synchronization settings.</div>
         <div class="form__field">
-          <label class="label label_type_block text_label" for="repo">GitHub repository <span class="label__required">*</span></label>
-          <div class="input">
-            <input class="input__field input__field_type_block icon icon_settings-before" id="repo" type="text" type="text" placeholder="user-name/repo-name" required>
-          </div>
-        </div>
-        <div class="form__field">
-          <label class="label label_type_block text_label" for="command">Build command</label>
-          <div class="input">
-            <input class="input__field input__field_type_block" id="command" type="text" type="text" placeholder="">
+          <label class="label label_default label_type_block" for="repo">GitHub repository <span class="label__required">*</span></label>
+          <div class="input input_type_block">
+            <input class="input__field icon icon_settings-before" id="repo" type="text" type="text" placeholder="user-name/repo-name" required>
             <div class="input__clear icon icon_clear"></div>
           </div>
         </div>
         <div class="form__field">
-          <label class="label label_type_block text_label" for="branch">Main branch</label>
-          <div class="input">
-            <input class="input__field input__field_type_block" id="branch" type="text" type="text" placeholder="">
+          <label class="label label_default label_type_block" for="command">Build command</label>
+          <div class="input input_type_block">
+            <input class="input__field" id="command" type="text" type="text" placeholder="type command">
             <div class="input__clear icon icon_clear"></div>
           </div>
         </div>
         <div class="form__field">
-          <label class="label label_type_input text_label" for="minutes">Synchronize every</label>
-          <div class="input">
-            <input class="input__field input__field_type_inline text_label" id="minutes" type="text" type="text" placeholder="">
+          <label class="label label_default label_type_block" for="branch">Main branch</label>
+          <div class="input input_type_block">
+            <input class="input__field" id="branch" type="text" type="text" placeholder="type branch">
+            <div class="input__clear icon icon_clear"></div>
           </div>
-          <label class="label label_type_input text_label" for="minutes">minutes</label>
+        </div>
+        <div class="form__field">
+          <label class="label label_default label_type_inline" for="minutes">Synchronize every</label>
+          <div class="input input_type_inline">
+            <input class="input__field" id="minutes" type="text" type="text" placeholder="" maxlength="3">
+          </div>
+          <label class="label label_value label_type_inline" for="minutes">minutes</label>
         </div>
         <div class="form__btn-group">
           <button class="form__btn btn-big btn-big_type_primary">Save</button>
@@ -56,10 +57,10 @@
   <footer class="footer">
     <div class="footer__container">
       <ul class="menu">
-        <a href="/" class="menu__link text_label link">Support</a>
-        <a href="/" class="menu__link text_label link">Learning</a>
+        <a href="/" class="menu__link">Support</a>
+        <a href="/" class="menu__link">Learning</a>
       </ul>
-      <div class="footer__copyright text_label">© 2020 Dmitry Rakov</div>
+      <div class="footer__copyright">© 2020 Dmitry Rakov</div>
     </div>
   </footer>
 </body>

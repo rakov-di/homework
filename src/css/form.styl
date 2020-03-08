@@ -1,10 +1,12 @@
 .form
   margin-top: 8px
 
-  &_description
+  &__title
+    $form-title()
+
+  &__subtitle
     margin-top: 8px
-    //@extend .text_label
-    color: var(--cTextTitle)
+    $form-subtitle()
 
   &__field
     padding: 8px 0
