@@ -42,8 +42,15 @@
     display: flex
     justify-content: space-between
 
-    @media only screen and (max-width: $bpMobilePageBuild)
+    &_direction_row
+      flex-direction: row
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        flex-direction: column
+
+    &_direction_column
       flex-direction: column
+
 
   &__task
     display: flex
@@ -64,37 +71,68 @@
   &__subtitle
     display: inline-block
 
+    @media only screen and (max-width: $bpMobilePageBuild)
+      margin-bottom: 8px
+
   &__meta
     flex-shrink: 0
     display: flex
 
-    @media only screen and (max-width: $bpMobilePageBuild)
-      padding: 8px 0
+    //@media only screen and (max-width: $bpMobilePageBuild)
+    //  padding: 8px 0
+
+    //&_vertical
+    //  flex-direction: column
+    //
+    //  @media only screen and (max-width: $bpMobilePageBuild)
+    //    flex-direction: row
+    //    border-top: 1px solid var(--cBorderCardMeta)
+    //
+    //  & ^[0]__icon-text:not(:first-child)
+    //    margin-top: 12px
+    //
+    //    @media only screen and (max-width: $bpMobilePageBuild)
+    //      margin-top: 0
+    //      margin-left: 10px
+
+    &_horizontal
+      flex-direction: row
+      margin-bottom: 8px
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        flex-direction: column
+
+      & ^[0]__icon-text:not(:first-child)
+        margin-left: 8px
+
+        @media only screen and (max-width: $bpMobilePageBuild)
+          margin-left: 0
+          margin-top: 8px
+
+  &__time
+    flex-shrink: 0
+    display: flex
 
     &_vertical
       flex-direction: column
 
       @media only screen and (max-width: $bpMobilePageBuild)
         flex-direction: row
+        padding-top: 8px
         border-top: 1px solid var(--cBorderCardMeta)
 
       & ^[0]__icon-text:not(:first-child)
         margin-top: 12px
 
         @media only screen and (max-width: $bpMobilePageBuild)
+          margin-left: 8px
           margin-top: 0
-          margin-left: 10px
 
     &_horizontal
       flex-direction: row
-
-      @media only screen and (max-width: $bpMobilePageBuild)
-        flex-direction: column
+      padding-top: 8px
+      border-top: 1px solid var(--cBorderCardMeta)
 
       & ^[0]__icon-text:not(:first-child)
-        margin-left: 10px
-
-        @media only screen and (max-width: $bpMobilePageBuild)
-          margin-left: 0
-          margin-top: 8px
+        margin-left: 8px
 

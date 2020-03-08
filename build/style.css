@@ -403,9 +403,6 @@ table {
   line-height: 15px;
   color: var(--cTextInputMain);
 }
-.input__field[value=""] + .input__field__clear {
-  background: #f00;
-}
 .input__field::-ms-input-placeholder {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
@@ -683,10 +680,16 @@ table {
   display: flex;
   justify-content: space-between;
 }
+.card__info_direction_row {
+  flex-direction: row;
+}
 @media only screen and (max-width: 560px) {
-  .card__info {
+  .card__info_direction_row {
     flex-direction: column;
   }
+}
+.card__info_direction_column {
+  flex-direction: column;
 }
 .card__task {
   display: flex;
@@ -711,35 +714,18 @@ table {
 .card__subtitle {
   display: inline-block;
 }
+@media only screen and (max-width: 560px) {
+  .card__subtitle {
+    margin-bottom: 8px;
+  }
+}
 .card__meta {
   flex-shrink: 0;
   display: flex;
 }
-@media only screen and (max-width: 560px) {
-  .card__meta {
-    padding: 8px 0;
-  }
-}
-.card__meta_vertical {
-  flex-direction: column;
-}
-@media only screen and (max-width: 560px) {
-  .card__meta_vertical {
-    flex-direction: row;
-    border-top: 1px solid var(--cBorderCardMeta);
-  }
-}
-.card__meta_vertical .card__icon-text:not(:first-child) {
-  margin-top: 12px;
-}
-@media only screen and (max-width: 560px) {
-  .card__meta_vertical .card__icon-text:not(:first-child) {
-    margin-top: 0;
-    margin-left: 10px;
-  }
-}
 .card__meta_horizontal {
   flex-direction: row;
+  margin-bottom: 8px;
 }
 @media only screen and (max-width: 560px) {
   .card__meta_horizontal {
@@ -747,13 +733,44 @@ table {
   }
 }
 .card__meta_horizontal .card__icon-text:not(:first-child) {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 @media only screen and (max-width: 560px) {
   .card__meta_horizontal .card__icon-text:not(:first-child) {
     margin-left: 0;
     margin-top: 8px;
   }
+}
+.card__time {
+  flex-shrink: 0;
+  display: flex;
+}
+.card__time_vertical {
+  flex-direction: column;
+}
+@media only screen and (max-width: 560px) {
+  .card__time_vertical {
+    flex-direction: row;
+    padding-top: 8px;
+    border-top: 1px solid var(--cBorderCardMeta);
+  }
+}
+.card__time_vertical .card__icon-text:not(:first-child) {
+  margin-top: 12px;
+}
+@media only screen and (max-width: 560px) {
+  .card__time_vertical .card__icon-text:not(:first-child) {
+    margin-left: 8px;
+    margin-top: 0;
+  }
+}
+.card__time_horizontal {
+  flex-direction: row;
+  padding-top: 8px;
+  border-top: 1px solid var(--cBorderCardMeta);
+}
+.card__time_horizontal .card__icon-text:not(:first-child) {
+  margin-left: 8px;
 }
 .card-list {
   width: 100%;

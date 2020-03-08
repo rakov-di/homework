@@ -21,9 +21,17 @@
     border-radius: var(--br-s)
     $input-main()
 
-    &[value=""] + &__clear
-      //display: none
-      background: red
+    //&[value=""] + ^[0]__clear
+    //  //display: none
+    //  background: red
+    //
+    //&:invalid + ^[0]__clear
+    //  //background: hsla(0, 90%, 70%, 1);
+    //  background: blue
+    ////
+    //&:valid + ^[0]__clear
+    //  //background: hsla(100, 90%, 70%, 1);
+    //  background: blue
 
     &::placeholder
       $input-plh()
@@ -38,3 +46,7 @@
     top: 10px
     display: block
     cursor: pointer
+
+
+
+
