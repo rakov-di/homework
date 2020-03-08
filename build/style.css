@@ -118,6 +118,7 @@ table {
   --cBorderInputFocused: var(--gray-450);
   --cBorderBtnSecondaryFocused: var(--gray-450);
   --cBorderBtnPrimaryFocused: var(--orange-300);
+  --cBorderCardMeta: var(--gray-100);
   --bgBtnSecondary: var(--gray-200);
   --bgBtnSecondaryHovered: var(--gray-250);
   --bgContainerDesktop: var(--gray-100);
@@ -127,10 +128,9 @@ table {
   --bgBtnPrimaryHovered: var(--orange-200);
   --br-s: 4px;
   --br-m: 6px;
+  --bs-50: 0 1px 1px rgba(67,68,69,0.3), 0 0 1px rgba(67,68,69,0.3);
   --wMaxContent: 800px;
   --wMinContent: 220px;
-  --hHeader: 48px;
-  --hFooter: 32px;
 }
 .icon_calendar,
 .icon_calendar-before::before,
@@ -326,6 +326,26 @@ table {
     color: var(--cTextTitle);
   }
 }
+.header__repo-title {
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  color: var(--cTextTitleRepo);
+}
+@media only screen and (max-width: 400px) {
+  .header__repo-title {
+    font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    letter-spacing: 0.06px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: var(--cTextTitleRepo);
+  }
+}
 .main {
   width: 100%;
   padding: 8px 16px 16px;
@@ -512,20 +532,33 @@ table {
 }
 .icon-text__icon {
   color: var(--cTextSecondary);
-  margin-right: 5px;
 }
 .icon-text__primary {
-  color: var(--cTextPrimary);
+  margin-left: 5px;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--cTextTaskMetaPrimary);
 }
 .icon-text__secondary {
-  color: var(--cTextSecondary);
+  margin-left: 5px;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0.06px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--cTextTaskMetaSecondary);
 }
 .card {
   display: flex;
   width: 100%;
   margin-bottom: 8px;
   padding: 12px 24px;
-  box-shadow: 0 1px 1px rgba(67,68,69,0.3), 0 0 1px rgba(67,68,69,0.3);
+  box-shadow: var(--bs-50);
   border-radius: var(--br-m);
 }
 .card_status_done .card__task-num {
@@ -549,7 +582,7 @@ table {
   display: flex;
   justify-content: space-between;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__info {
     flex-direction: column;
   }
@@ -559,7 +592,7 @@ table {
   flex-direction: row;
   margin-bottom: 8px;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__task {
     flex-direction: column;
     margin-bottom: 0;
@@ -569,7 +602,7 @@ table {
   display: inline-block;
   margin-right: 4px;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__task-num {
     margin-bottom: 8px;
   }
@@ -581,7 +614,7 @@ table {
   flex-shrink: 0;
   display: flex;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__meta {
     padding: 8px 0;
   }
@@ -589,16 +622,16 @@ table {
 .card__meta_vertical {
   flex-direction: column;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__meta_vertical {
     flex-direction: row;
-    border-top: 1px solid var(--bgContainerMobile);
+    border-top: 1px solid var(--cBorderCardMeta);
   }
 }
 .card__meta_vertical .card__icon-text:not(:first-child) {
   margin-top: 12px;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__meta_vertical .card__icon-text:not(:first-child) {
     margin-top: 0;
     margin-left: 10px;
@@ -607,7 +640,7 @@ table {
 .card__meta_horizontal {
   flex-direction: row;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__meta_horizontal {
     flex-direction: column;
   }
@@ -615,11 +648,14 @@ table {
 .card__meta_horizontal .card__icon-text:not(:first-child) {
   margin-left: 10px;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 560px) {
   .card__meta_horizontal .card__icon-text:not(:first-child) {
     margin-left: 0;
     margin-top: 8px;
   }
+}
+.card-list {
+  width: 100%;
 }
 @media only screen and (max-width: 400px) {
   .card-list__show-more {
@@ -749,6 +785,7 @@ table {
 .btn-small {
   flex-shrink: 0;
   display: flex;
+  justify-content: center;
   align-items: center;
   height: 28px;
   min-width: 28px;

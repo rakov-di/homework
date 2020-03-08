@@ -18,7 +18,8 @@
 // Breakpoints
 // CSS переменные не срабатывают в media query,
 // поэтому вместо них использую переменную препроцессора
-$bpMobile = 400px
+$bpMobileDefault = 400px
+$bpMobilePageBuild = 560px
 
 :root
   // =====
@@ -103,6 +104,7 @@ $bpMobile = 400px
   --cBorderInputFocused: var(--gray-450)
   --cBorderBtnSecondaryFocused: var(--gray-450)
   --cBorderBtnPrimaryFocused: var(--orange-300)
+  --cBorderCardMeta: var(--gray-100)
 
   // Цвета фонов
   --bgBtnSecondary: var(--gray-200)
@@ -113,9 +115,6 @@ $bpMobile = 400px
   --bgBtnPrimary: var(--orange-100)
   --bgBtnPrimaryHovered: var(--orange-200)
 
-
-
-
   // ==========
   // СКРУГЛЕНИЯ
   // ==========
@@ -123,10 +122,17 @@ $bpMobile = 400px
   --br-s: 4px
   --br-m: 6px
 
+  // ====
+  // ТЕНИ
+  // ====
+  --bs-50: 0 1px 1px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3)
+
+  // =================
+  // ОСТАЛЬНЫЕ РАЗМЕРЫ
+  // =================
   --wMaxContent: 800px
   --wMinContent: 220px
-  --hHeader: 48px
-  --hFooter: 32px
+
 
 
 
@@ -285,7 +291,7 @@ $text_task-meta-secondary()
   $font-500()
   color: var(--cTextTaskMetaSecondary)
 
-$text_task-meta-secondary()
+$text_log()
   $font()
   $font-400()
   color: var(--cTextLog)

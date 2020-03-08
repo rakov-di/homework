@@ -1,6 +1,7 @@
 .btn-small
   flex-shrink: 0
   display: flex
+  justify-content: center
   align-items: center
   height: 28px
   min-width: 28px
@@ -13,7 +14,7 @@
 
   &_type_only-icon
     padding: 8px
-    width: 28px // ДДД
+    width: 28px // ДДД надо ли?
 
   &_type_only-text
     padding: 8px 13px
@@ -21,7 +22,7 @@
   &_type_icon-text
     padding: 8px 13px 8px 8px
 
-    @media only screen and (max-width: $bpMobile)
+    @media only screen and (max-width: $bpMobileDefault)
       padding: 8px
       font-size: 0
 
@@ -32,5 +33,5 @@
       //height: 12px
       margin-right: 8px
 
-      @media only screen and (max-width: $bpMobile)
+      @media only screen and (max-width: $bpMobileDefault)
         margin: auto
