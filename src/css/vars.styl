@@ -20,39 +20,76 @@
 $bpMobile = 400px
 
 :root
+  // Цвета
+
+  // Black
+  --black-100: #000000
+  --black-200: #434445
+
+  // Gray
+  --gray-100: #F0F2F3
+  --gray-150: #F2F2F2
+  --gray-200: #E6E6E6
+  --gray-250: #DBDBDB
+  --gray-300: #D9D9D9
+  --gray-350: #CCCCCC
+  --gray-400: #B9B9B9
+  --gray-450: #B3B3B3
+  --gray-500: #939393
+  --gray-550: #7F8285
+
+  // Неиспользуемые?? ПСД
+  // #E5E5E5 - весь макет
+  // #444444 - название задачи
+
+  // Orange
+  --orange-100: #FFCC00
+  --orange-200: #F2C200
+  --orange-300: #B38F00
+  --orange-400: #FF9A00
+
+  // Red
+  --red-100: #FF3333
+  --red-200: #E00000
+
+  // Green
+  --green-100: #00B341
+
+
+
   // Цвета текстов
-  --cTextPrimary: #000000
-  --cTextSecondary: rgba(0, 0, 0, 0.65)
-  --cTextSecondary: rgba(0, 0, 0, 0.3) // ПСД. Цвет встречается в описании компонентов, но отсутсвует на макетах страниц
-  --cTextTitle: #7F8285
-  --cTextValue: #434445
-  --cInputPlh: rgba(0, 0, 0, 0.2)
-  --cBtnDisabled: rgba(127, 127, 127, 0.5) //
+  --cTextPrimary: var(--black-100)
+  --cTextSecondary: var(--gray-500)
+  --cTextTitle: var(--gray-550)
+  --cTextValue: var(--black-200)
+  --cInputPlh: var(--gray-350)
+  --cBtnDisabled: var(--gray-400) //
 
   // Доп. цвета текстов для Задач
-  --cTaskWait: #FF9A00
-  --cTaskFail: #FF3333
-  --cTaskDone: #00B341
-  --cTaskDescription: #44444
-  --cLinkHovered: #E00000
+  --cTaskWait: var(--orange-400)
+  --cTaskFail: var(--red-100)
+  --cTaskDone: var(--green-100)
+
+
+  --cLinkHovered: var(--red-200)
 
   // Рамки
-  --cBorder: #D9D9D9
-  --cBorderFocused: #B3B3B3
-  --cBorderBtnPrimaryFocused: #B38F00
+  --cBorder: var(--gray-300)
+  --cBorderFocused: var(--gray-450)
+  --cBorderBtnPrimaryFocused: var(--orange-300)
 
   // Фоны
-  --bgMain: #E5E5E5
-  --bgBtnPrimary: #FFCC00
-  --bgBtnPrimaryHovered: #F2C200
-  --bgBtnSecondary: #E6E6E6
-  --bgBtnSecondaryHovered: #DBDBDB
-  --bgContainerDesktop: #F0F2F3
-  --bgBtnDisabled: #F2F2F2
+  --bgBtnPrimary: var(--orange-100)
+  --bgBtnPrimaryHovered: var(--orange-200)
+  --bgBtnSecondary: var(--gray-200)
+  --bgBtnSecondaryHovered: var(--gray-250)
+  --bgContainerDesktop: var(--gray-100)
+  --bgBtnDisabled: var(--gray-150)
 
-  // Доп. цвета иконок
-  --cIconPlay: #111111 // ПСД. Все иконки, кроме этой - #000. Кажется, что разница нет.
-  --cIconLogo: rgba(0, 0, 0, 0.1)
+
+
+
+
 
   --wMaxContent: 800px
   --wMinContent: 220px
