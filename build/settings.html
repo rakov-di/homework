@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Демо - Все блоки</title>
+</head>
+<body class="page grid">
+  <header class="header">
+    <div class="header__container">
+      <div class="text_title2">School CI server</div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="main__container">
+      <div class="form">
+        <div class="form__title text_subtitle">Settings</div>
+        <div class="form__description text_label">Configure repository connection and synchronization settings.</div>
+        <div class="form__field">
+          <label class="label label_type_block text_label" for="repo">GitHub repository <span class="label__required">*</span></label>
+          <div class="input">
+            <input class="input__field input__field_type_block icon icon_settings-before" id="repo" type="text" type="text" placeholder="user-name/repo-name" required>
+          </div>
+        </div>
+        <div class="form__field">
+          <label class="label label_type_block text_label" for="command">Build command</label>
+          <div class="input">
+            <input class="input__field input__field_type_block" id="command" type="text" type="text" placeholder="">
+            <div class="input__clear icon icon_clear"></div>
+          </div>
+        </div>
+        <div class="form__field">
+          <label class="label label_type_block text_label" for="branch">Main branch</label>
+          <div class="input">
+            <input class="input__field input__field_type_block" id="branch" type="text" type="text" placeholder="">
+            <div class="input__clear icon icon_clear"></div>
+          </div>
+        </div>
+        <div class="form__field">
+          <label class="label label_type_input text_label" for="minutes">Synchronize every</label>
+          <div class="input">
+            <input class="input__field input__field_type_inline text_label" id="minutes" type="text" type="text" placeholder="">
+          </div>
+          <label class="label label_type_input text_label" for="minutes">minutes</label>
+        </div>
+        <div class="form__btn-group">
+          <button class="form__btn btn-big btn-big_type_primary">Save</button>
+          <button class="form__btn btn-big btn-big_type_secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer__container">
+      <ul class="menu">
+        <a href="/" class="menu__link text_label link">Support</a>
+        <a href="/" class="menu__link text_label link">Learning</a>
+      </ul>
+      <div class="footer__copyright text_label">© 2020 Dmitry Rakov</div>
+    </div>
+  </footer>
+</body>
+</html>
