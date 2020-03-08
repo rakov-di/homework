@@ -1,12 +1,13 @@
 // Условные обозначения
-// c - color
 // bg - background
-// btn - button
-// plh - placeholder
-// num - number
-// w - width
-// h - height
 // bp - breakpoint
+// br - border-radius
+// btn - button
+// c - color
+// h - height
+// num - number
+// plh - placeholder
+// w - width
 
 // ПСД - повод спросить дизайнера
 // ДДД - Думай, Дмитрий, думай
@@ -48,8 +49,8 @@ $bpMobile = 400px
   // #444444 - название задачи (используется #000000)
   // #939393 - secondary у текста с мета-инфой (используется #595959)
   // на макете это вообще:
-  // color: #000000;
-  // opacity: 0.65;
+  // color: #000000
+  // opacity: 0.65
   // Но почему-то он по разному определяется пипеткой на стр Компонентов и Реальной | ДДД
 
   // Orange
@@ -258,7 +259,12 @@ $bpMobile = 400px
     @extend $font-550
     color: var(--cTextGreeting)
 
+  // ==========
+  // СКРУГЛЕНИЯ
+  // ==========
 
+  --br-s: 4px
+  --br-m: 6px
 
   --wMaxContent: 800px
   --wMinContent: 220px
