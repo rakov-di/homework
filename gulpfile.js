@@ -103,7 +103,7 @@ gulp.task('serve', () => {
   browserSync.init({
     server: {
       baseDir: 'build',
-      index: 'build-details.html'
+      index: 'build-history.html'
     }
   });
 
