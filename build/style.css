@@ -407,19 +407,17 @@ table {
 .input_type_block {
   display: block;
   width: 100%;
-  max-width: 474px;
-  margin-top: 6px;
 }
 .input_type_inline {
   display: inline-block;
   width: 52px;
-  margin: 4px 8px;
+  margin: 0 var(--p-xxs);
   text-align: right;
 }
 .input__field {
   width: 100%;
   height: 36px;
-  padding: 11px 13px 10px;
+  padding: var(--p-s) var(--p-l) var(--p-xs);
   border: 2px solid var(--cBorderInput);
   border-radius: var(--br-s);
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -560,6 +558,15 @@ table {
     color: var(--cTitleRepo);
   }
 }
+.header__btn-group {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__btn:not(:last-child) {
+  margin-right: var(--p-xxs);
+}
 .main {
   flex-grow: 1;
   padding: var(--p-xxs) var(--p-xl) var(--p-xxxl);
@@ -611,7 +618,7 @@ table {
   text-align: center;
 }
 .form {
-  margin-top: 8px;
+  max-width: 474px;
 }
 .form__title {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -623,7 +630,7 @@ table {
   color: var(--cFormTitle);
 }
 .form__subtitle {
-  margin-top: 8px;
+  margin-top: var(--p-xxs);
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
@@ -632,12 +639,29 @@ table {
   line-height: var(--lh-m);
   color: var(--cFormSubtitle);
 }
+.form__fields {
+  padding: var(--p-m) 0;
+}
+@media only screen and (max-width: 400px) {
+  .form__fields {
+    padding: var(--p-xxxxxs) 0;
+  }
+}
 .form__field {
-  padding: 8px 0;
+  display: flex;
+}
+.form__field_direction_row {
+  flex-direction: row;
+  align-items: center;
+  padding: var(--p-m) 0;
+}
+.form__field_direction_column {
+  flex-direction: column;
+  padding: var(--p-xxs) 0;
 }
 @media only screen and (max-width: 400px) {
   .form__btn-group {
-    padding: 8px 0;
+    padding: var(--p-xxs) 0;
   }
 }
 @media only screen and (max-width: 400px) {
@@ -647,12 +671,12 @@ table {
   }
 }
 .form__btn:not(:first-child) {
-  margin-left: 8px;
+  margin-left: var(--p-xxs);
 }
 @media only screen and (max-width: 400px) {
   .form__btn:not(:first-child) {
     margin-left: 0;
-    margin-top: 12px;
+    margin-top: var(--p-m);
   }
 }
 .label_default {
@@ -675,13 +699,14 @@ table {
 }
 .label_type_block {
   display: block;
-  margin-top: 2px;
+  margin-bottom: var(--p-xxxxxs);
 }
 .label_type_inline {
   display: inline-block;
 }
 .label__required {
   color: var(--cLabelRequired);
+  margin-left: var(--p-xxxxxxs);
 }
 .card {
   display: flex;

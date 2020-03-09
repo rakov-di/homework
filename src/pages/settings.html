@@ -17,35 +17,39 @@
   <main class="main">
     <div class="main__container">
       <div class="form">
-        <div class="form__title">Settings</div>
-        <div class="form__subtitle">Configure repository connection and synchronization settings.</div>
-        <div class="form__field">
-          <label class="label label_default label_type_block" for="repo">GitHub repository <span class="label__required">*</span></label>
-          <div class="input input_type_block">
-            <input class="input__field icon icon_settings-before" id="repo" type="text" type="text" placeholder="user-name/repo-name" value="" required>
-            <div class="input__clear icon icon_clear"></div>
-          </div>
+        <div class="form__header">
+          <div class="form__title">Settings</div>
+          <div class="form__subtitle">Configure repository connection and synchronization settings.</div>
         </div>
-        <div class="form__field">
-          <label class="label label_default label_type_block" for="command">Build command</label>
-          <div class="input input_type_block">
-            <input class="input__field" id="command" type="text" placeholder="type command" value="">
-            <div class="input__clear icon icon_clear"></div>
+        <div class="form__fields">
+          <div class="form__field form__field_direction_column">
+            <label class="label label_default label_type_block" for="repo">GitHub repository<span class="label__required">*</span></label>
+            <div class="input input_type_block">
+              <input class="input__field icon icon_settings-before" id="repo" type="text" type="text" placeholder="user-name/repo-name" value="" required>
+              <div class="input__clear icon icon_clear"></div>
+            </div>
           </div>
-        </div>
-        <div class="form__field">
-          <label class="label label_default label_type_block" for="branch">Main branch</label>
-          <div class="input input_type_block">
-            <input class="input__field" id="branch" type="text" placeholder="type branch" value="">
-            <div class="input__clear icon icon_clear"></div>
+          <div class="form__field form__field_direction_column">
+            <label class="label label_default label_type_block" for="command">Build command</label>
+            <div class="input input_type_block">
+              <input class="input__field" id="command" type="text" placeholder="type command" value="">
+              <div class="input__clear icon icon_clear"></div>
+            </div>
           </div>
-        </div>
-        <div class="form__field">
-          <label class="label label_default label_type_inline" for="minutes">Synchronize every</label>
-          <div class="input input_type_inline">
-            <input class="input__field" id="minutes" type="text" type="text" placeholder="" maxlength="3">
+          <div class="form__field form__field_direction_column">
+            <label class="label label_default label_type_block" for="branch">Main branch</label>
+            <div class="input input_type_block">
+              <input class="input__field" id="branch" type="text" placeholder="type branch" value="">
+              <div class="input__clear icon icon_clear"></div>
+            </div>
           </div>
-          <label class="label label_value label_type_inline" for="minutes">minutes</label>
+          <div class="form__field form__field_direction_row">
+            <label class="label label_default label_type_inline" for="minutes">Synchronize every</label>
+            <div class="input input_type_inline">
+              <input class="input__field" id="minutes" type="text" type="text" placeholder="" maxlength="3">
+            </div>
+            <label class="label label_value label_type_inline" for="minutes">minutes</label>
+          </div>
         </div>
         <div class="form__btn-group">
           <button class="form__btn btn-big btn-big_type_primary">Save</button>
