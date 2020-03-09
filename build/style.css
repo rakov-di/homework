@@ -312,9 +312,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 36px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xxxxl);
   color: var(--cBtnBig);
 }
 .btn-big:disabled {
@@ -353,9 +353,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 28px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xxl);
   color: var(--cBtnSmall);
   background-color: var(--bgBtnSecondary);
 }
@@ -414,27 +414,27 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xs);
   color: var(--cInputMain);
 }
 .input__field::-ms-input-placeholder {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xs);
   color: var(--cInputPlh);
 }
 .input__field::placeholder {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 15px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xs);
   color: var(--cInputPlh);
 }
 .input__field:focus {
@@ -465,9 +465,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-s);
   color: var(--cTaskMetaPrimary);
 }
 .icon-text__secondary {
@@ -475,9 +475,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-s);
   color: var(--cTaskMetaSecondary);
 }
 .page {
@@ -513,9 +513,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-xxl);
+  line-height: var(--lh-xxl);
   color: var(--cTitle);
 }
 @media only screen and (max-width: 400px) {
@@ -523,9 +523,9 @@ table {
     font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     letter-spacing: 0.06px;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
+    font-weight: var(--fw-medium);
+    font-size: var(--fsz-xl);
+    line-height: var(--lh-xl);
     color: var(--cTitle);
   }
 }
@@ -533,9 +533,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-xxl);
+  line-height: var(--lh-xxxl);
   color: var(--cTitleRepo);
 }
 @media only screen and (max-width: 400px) {
@@ -543,9 +543,9 @@ table {
     font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     letter-spacing: 0.06px;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
+    font-weight: var(--fw-medium);
+    font-size: var(--fsz-xl);
+    line-height: var(--lh-xl);
     color: var(--cTitleRepo);
   }
 }
@@ -588,9 +588,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 125%;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lhp-l);
   color: var(--cGreeting);
   text-align: center;
 }
@@ -601,9 +601,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 20px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-l);
+  line-height: var(--lh-l);
   color: var(--cFormTitle);
 }
 .form__subtitle {
@@ -611,9 +611,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 125%;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-m);
   color: var(--cFormSubtitle);
 }
 .form__field {
@@ -643,18 +643,18 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 125%;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-m);
   color: var(--cLabel);
 }
 .label_value {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 125%;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-m);
   color: var(--cLabelValue);
 }
 .label_type_block {
@@ -805,9 +805,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 20px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-s);
+  line-height: var(--lh-l);
   color: var(--cLog);
   background-color: var(--bgLog);
 }
@@ -844,9 +844,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 125%;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-m);
   color: var(--cFooterCopyright);
 }
 @media only screen and (max-width: 400px) {
@@ -859,9 +859,9 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-s);
   color: var(--cMenu);
 }
 .menu__link:hover {
@@ -872,9 +872,9 @@ table {
     font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     letter-spacing: 0.06px;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 125%;
+    font-weight: var(--fw-medium);
+    font-size: var(--fsz-m);
+    line-height: var(--lh-m);
     color: var(--cMenu);
   }
 }

@@ -160,16 +160,17 @@ $bpMobilePageBuild = 560px
   --lh-s: 16px
   --lh-xs: 15px
 
-  --lhp-l: 125% // ПСД - действительно нужен отступ в процентах?
+  // ПСД - действительно нужен отступ в процентах или можно заменить на абсолютное значение?
+  --lhp-l: 125%
 
   // Толщина текста
   --fw-normal: 400
   --fw-medium: 500
   //--fw-bold: 700
 
-  // ==============================
-  // ШРИФТЫ -базовые миксины
-  // ==============================
+// ==============================
+// ШРИФТЫ - базовые миксины
+// ==============================
 
 $font()
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif
@@ -181,64 +182,64 @@ $font()
 // font-900 (страницы build-history и build-details)
 // отличаются лишь line-height - нужно ли 2 разных шрифта, если это все равно все в Header?
 $font-950()
-  font-weight: 500
-  font-size: 24px
-  line-height: 30px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xxl)
+  line-height: var(--lh-xxxl)
 
 $font-900()
-  font-weight: 500
-  font-size: 24px
-  line-height: 28px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xxl)
+  line-height: var(--lh-xxl)
 
 $font-850()
-  font-weight: 500
-  font-size: 18px
-  line-height: 22px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xl)
+  line-height: var(--lh-xl)
 
 $font-800()
-  font-weight: 500
-  font-size: 18px
-  line-height: 20px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xl)
+  line-height: var(--lh-l)
 
 $font-750()
-  font-weight: normal
-  font-size: 15px
-  line-height: 20px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-l)
+  line-height: var(--lh-l)
 
 $font-700()
-  font-weight: normal
-  font-size: 13px
-  line-height: 36px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-xxxxl)
 
 $font-650()
-  font-weight: normal
-  font-size: 13px
-  line-height: 28px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-xxl)
 
 $font-550()
-  font-weight: normal
-  font-size: 13px
-  line-height: 18px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-m)
 
-$font-550()
-  font-weight: normal
-  font-size: 13px
-  line-height: 125%
+$font-520()
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  line-height: var(--lhp-l)
 
 $font-500()
-  font-weight: normal
-  font-size: 13px
-  line-height: 16px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-s)
 
 $font-450()
-  font-weight: normal
-  font-size: 13px
-  line-height: 15px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-xs)
 
 $font-400()
-  font-weight: normal
-  font-size: 10px
-  line-height: 20px
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-s)
+  line-height: var(--lh-l)
 
 
 
@@ -344,6 +345,6 @@ $text_copyright()
 
 $text_greeting()
   $font()
-  $font-550()
+  $font-520()
   color: var(--cGreeting)
 
