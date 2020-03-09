@@ -131,6 +131,22 @@ table {
   --bs-50: 0 1px 1px rgba(67,68,69,0.3), 0 0 1px rgba(67,68,69,0.3);
   --wMaxContent: 800px;
   --wMinContent: 220px;
+  --fsz-xxl: 24px;
+  --fsz-xl: 18px;
+  --fsz-l: 15px;
+  --fsz-m: 13px;
+  --fsz-s: 10px;
+  --lh-xxxxl: 36px;
+  --lh-xxxl: 30px;
+  --lh-xxl: 28px;
+  --lh-xl: 22px;
+  --lh-l: 20px;
+  --lh-m: 18px;
+  --lh-s: 16px;
+  --lh-xs: 15px;
+  --lhp-l: 125%;
+  --fw-normal: 400;
+  --fw-medium: 500;
 }
 .icon_calendar,
 .icon_calendar-before::before,

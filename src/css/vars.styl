@@ -1,10 +1,14 @@
-// Условные обозначения
+// Условные обозначения:
 // bg - background
 // bp - breakpoint
 // br - border-radius
 // btn - button
 // c - color
+// fsz - font-size
+// fw - font-weight
 // h - height
+// lh - line-height
+// lhp - line-height в процентах
 // num - number
 // plh - placeholder
 // w - width
@@ -135,12 +139,37 @@ $bpMobilePageBuild = 560px
   --wMaxContent: 800px
   --wMinContent: 220px
 
+  // ==============================
+  // ШРИФТЫ - базовые константы
+  // ==============================
 
+  // Размер шрифта
+  --fsz-xxl: 24px
+  --fsz-xl: 18px
+  --fsz-l: 15px
+  --fsz-m: 13px
+  --fsz-s: 10px
 
+  // Межстрочный интервал
+  --lh-xxxxl: 36px
+  --lh-xxxl: 30px
+  --lh-xxl: 28px
+  --lh-xl: 22px
+  --lh-l: 20px
+  --lh-m: 18px
+  --lh-s: 16px
+  --lh-xs: 15px
 
-// ======
-// ШРИФТЫ
-// ======
+  --lhp-l: 125% // ПСД - действительно нужен отступ в процентах?
+
+  // Толщина текста
+  --fw-normal: 400
+  --fw-medium: 500
+  //--fw-bold: 700
+
+  // ==============================
+  // ШРИФТЫ -базовые миксины
+  // ==============================
 
 $font()
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif
