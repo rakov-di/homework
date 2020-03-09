@@ -428,6 +428,9 @@ table {
   line-height: var(--lh-xs);
   color: var(--cInputMain);
 }
+.input__field:not(:placeholder-shown) + .input__clear {
+  display: block;
+}
 .input__field::-ms-input-placeholder {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
@@ -454,7 +457,7 @@ table {
   position: absolute;
   right: 10px;
   top: 10px;
-  display: block;
+  display: none;
   cursor: pointer;
 }
 .icon-text {
