@@ -23,7 +23,7 @@ const isDevelopment = (mode === 'development');
 
 // Clean Build-directory
 gulp.task('clean', () => {
-  return del('./build/');
+  return del('./build/**/*');
 });
 
 
@@ -57,8 +57,8 @@ const configSprite = {
       dest: 'src',
       render: {
         styl: {
-          dest: 'css/icon.styl',
-          template: 'src/css/icon-tmpl.styl'
+          dest: 'css/base.blocks/icon.styl',
+          template: 'src/css/base.blocks/icon-tmpl.styl'
         }
       },
       sprite: 'img/icons.svg',
@@ -103,7 +103,7 @@ gulp.task('serve', () => {
   browserSync.init({
     server: {
       baseDir: 'build',
-      index: 'settings.html'
+      index: 'build-history.html'
     }
   });
 
