@@ -9,6 +9,7 @@
 // h - height
 // lh - line-height
 // lhp - line-height в процентах
+// ls -letter-spacing
 // num - number
 // p - padding (любые отступы)
 // plh - placeholder
@@ -186,6 +187,11 @@ $bpMobilePageBuild = 560px
   --fw-medium: 500
   //--fw-bold: 700
 
+  // Межсимвольные интервалы
+  --ls-s: 0.06px
+  --ls-m: 0.25px
+
+
 // ==============================
 // ШРИФТЫ - базовые миксины
 // ==============================
@@ -193,7 +199,6 @@ $bpMobilePageBuild = 560px
 $font()
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif
   font-style: normal
-  letter-spacing: 0.06px
 
 // ПСД
 // font-950 (страницы start-screen и settings)
@@ -203,6 +208,7 @@ $font-950()
   font-weight: var(--fw-medium)
   font-size: var(--fsz-xxl)
   line-height: var(--lh-xxxl)
+  letter-spacing: var(--ls-m)
 
 $font-900()
   font-weight: var(--fw-medium)
@@ -213,6 +219,7 @@ $font-850()
   font-weight: var(--fw-medium)
   font-size: var(--fsz-xl)
   line-height: var(--lh-xl)
+  letter-spacing: var(--ls-m)
 
 $font-800()
   font-weight: var(--fw-medium)
@@ -238,6 +245,7 @@ $font-550()
   font-weight: var(--fw-medium)
   font-size: var(--fsz-m)
   line-height: var(--lh-m)
+  letter-spacing: var(--ls-s)
 
 $font-520()
   font-weight: var(--fw-medium)
@@ -248,6 +256,7 @@ $font-500()
   font-weight: var(--fw-medium)
   font-size: var(--fsz-m)
   line-height: var(--lh-s)
+  letter-spacing: var(--ls-s)
 
 $font-450()
   font-weight: var(--fw-medium)
