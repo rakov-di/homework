@@ -70,8 +70,7 @@ table {
 }
 :root {
   --black-100: #000;
-  --black-200: #434445;
-  --black-300: #181818;
+  --black-200: #181818;
   --gray-100: #f0f2f3;
   --gray-150: #f2f2f2;
   --gray-200: #e6e6e6;
@@ -80,8 +79,9 @@ table {
   --gray-350: #ccc;
   --gray-400: #b9b9b9;
   --gray-450: #b3b3b3;
-  --gray-550: #7f8285;
-  --gray-600: #595959;
+  --gray-500: #7f8285;
+  --gray-550: #595959;
+  --gray-600: #434445;
   --orange-100: #fc0;
   --orange-200: #f2c200;
   --orange-300: #b38f00;
@@ -89,27 +89,27 @@ table {
   --red-100: #f33;
   --red-200: #e00000;
   --green-100: #00b341;
-  --cTextTitle: var(--gray-550);
-  --cTextTitleRepo: var(--black-100);
-  --cTextBtnBig: var(--black-100);
-  --cTextBtnBigDisabled: var(--gray-400);
-  --cTextBtnSmall: var(--black-100);
-  --cTextMenu: var(--gray-550);
-  --cTextFooterCopyright: var(--gray-550);
-  --cTextGreeting: var(--black-100);
-  --cTextFormTitle: var(--black-100);
-  --cTextFormSubtitle: var(--gray-550);
-  --cTextLabel: var(--black-100);
-  --cTextLabelValue: var(--black-200);
-  --cTextLabelRequired: var(--red-100);
-  --cTextInputPlh: var(--gray-350);
-  --cTextInputMain: var(--black-100);
-  --cTextTaskTitle: var(--black-100);
-  --cTextTaskMetaPrimary: var(--black-100);
-  --cTextTaskMetaSecondary: var(--gray-600);
-  --cTextValue: var(--black-200);
-  --cTextBtnBigDisabled: var(--gray-400);
-  --cTextLog: var(--black-300);
+  --cTitle: var(--gray-500);
+  --cTitleRepo: var(--black-100);
+  --cBtnBig: var(--black-100);
+  --cBtnBigDisabled: var(--gray-400);
+  --cBtnSmall: var(--black-100);
+  --cMenu: var(--gray-500);
+  --cFooterCopyright: var(--gray-500);
+  --cGreeting: var(--black-100);
+  --cFormTitle: var(--black-100);
+  --cFormSubtitle: var(--gray-500);
+  --cLabel: var(--black-100);
+  --cLabelValue: var(--gray-600);
+  --cLabelRequired: var(--red-100);
+  --cInputPlh: var(--gray-350);
+  --cInputMain: var(--black-100);
+  --cTaskTitle: var(--black-100);
+  --cTaskMetaPrimary: var(--black-100);
+  --cTaskMetaSecondary: var(--gray-550);
+  --cValue: var(--gray-600);
+  --cBtnBigDisabled: var(--gray-400);
+  --cLog: var(--black-200);
   --cTaskWait: var(--orange-400);
   --cTaskFail: var(--red-100);
   --cTaskDone: var(--green-100);
@@ -299,11 +299,11 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 36px;
-  color: var(--cTextBtnBig);
+  color: var(--cBtnBig);
 }
 .btn-big:disabled {
   background-color: var(--bgBtnBifDisabled);
-  color: var(--cTextBtnBigDisabled);
+  color: var(--cBtnBigDisabled);
 }
 .btn-big_type_primary {
   background-color: var(--bgBtnPrimary);
@@ -340,7 +340,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 28px;
-  color: var(--cTextBtnSmall);
+  color: var(--cBtnSmall);
   background-color: var(--bgBtnSecondary);
 }
 .btn-small:hover {
@@ -401,7 +401,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 15px;
-  color: var(--cTextInputMain);
+  color: var(--cInputMain);
 }
 .input__field::-ms-input-placeholder {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -410,7 +410,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 15px;
-  color: var(--cTextInputPlh);
+  color: var(--cInputPlh);
 }
 .input__field::placeholder {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -419,7 +419,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 15px;
-  color: var(--cTextInputPlh);
+  color: var(--cInputPlh);
 }
 .input__field:focus {
   border: 2px solid var(--cBorderInputFocused);
@@ -442,7 +442,7 @@ table {
   letter-spacing: 0.06px;
 }
 .icon-text__icon {
-  color: var(--cTextSecondary);
+  color: var(--cSecondary);
 }
 .icon-text__primary {
   margin-left: 5px;
@@ -452,7 +452,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
-  color: var(--cTextTaskMetaPrimary);
+  color: var(--cTaskMetaPrimary);
 }
 .icon-text__secondary {
   margin-left: 5px;
@@ -462,7 +462,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
-  color: var(--cTextTaskMetaSecondary);
+  color: var(--cTaskMetaSecondary);
 }
 .page {
   font-family: 'YS Text', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -500,7 +500,7 @@ table {
   font-weight: 500;
   font-size: 24px;
   line-height: 28px;
-  color: var(--cTextTitle);
+  color: var(--cTitle);
 }
 @media only screen and (max-width: 400px) {
   .header__title {
@@ -510,7 +510,7 @@ table {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
-    color: var(--cTextTitle);
+    color: var(--cTitle);
   }
 }
 .header__repo-title {
@@ -520,7 +520,7 @@ table {
   font-weight: 500;
   font-size: 24px;
   line-height: 30px;
-  color: var(--cTextTitleRepo);
+  color: var(--cTitleRepo);
 }
 @media only screen and (max-width: 400px) {
   .header__repo-title {
@@ -530,7 +530,7 @@ table {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
-    color: var(--cTextTitleRepo);
+    color: var(--cTitleRepo);
   }
 }
 .main {
@@ -575,7 +575,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 125%;
-  color: var(--cTextGreeting);
+  color: var(--cGreeting);
   text-align: center;
 }
 .form {
@@ -588,7 +588,7 @@ table {
   font-weight: normal;
   font-size: 15px;
   line-height: 20px;
-  color: var(--cTextFormTitle);
+  color: var(--cFormTitle);
 }
 .form__subtitle {
   margin-top: 8px;
@@ -597,8 +597,8 @@ table {
   letter-spacing: 0.06px;
   font-weight: normal;
   font-size: 13px;
-  line-height: 18px;
-  color: var(--cTextFormSubtitle);
+  line-height: 125%;
+  color: var(--cFormSubtitle);
 }
 .form__field {
   padding: 8px 0;
@@ -629,8 +629,8 @@ table {
   letter-spacing: 0.06px;
   font-weight: normal;
   font-size: 13px;
-  line-height: 18px;
-  color: var(--cTextLabel);
+  line-height: 125%;
+  color: var(--cLabel);
 }
 .label_value {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -638,8 +638,8 @@ table {
   letter-spacing: 0.06px;
   font-weight: normal;
   font-size: 13px;
-  line-height: 18px;
-  color: var(--cTextLabelValue);
+  line-height: 125%;
+  color: var(--cLabelValue);
 }
 .label_type_block {
   display: block;
@@ -649,7 +649,7 @@ table {
   display: inline-block;
 }
 .label__required {
-  color: var(--cTextLabelRequired);
+  color: var(--cLabelRequired);
 }
 .card {
   display: flex;
@@ -792,7 +792,7 @@ table {
   font-weight: normal;
   font-size: 10px;
   line-height: 20px;
-  color: var(--cTextLog);
+  color: var(--cLog);
   background-color: var(--bgLog);
 }
 @media only screen and (max-width: 400px) {
@@ -830,8 +830,8 @@ table {
   letter-spacing: 0.06px;
   font-weight: normal;
   font-size: 13px;
-  line-height: 18px;
-  color: var(--cTextFooterCopyright);
+  line-height: 125%;
+  color: var(--cFooterCopyright);
 }
 @media only screen and (max-width: 400px) {
   .footer__copyright {
@@ -846,7 +846,7 @@ table {
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
-  color: var(--cTextMenu);
+  color: var(--cMenu);
 }
 .menu__link:hover {
   color: var(--cLinkHovered);
@@ -858,8 +858,8 @@ table {
     letter-spacing: 0.06px;
     font-weight: normal;
     font-size: 13px;
-    line-height: 18px;
-    color: var(--cTextMenu);
+    line-height: 125%;
+    color: var(--cMenu);
   }
 }
 .menu__link:not(:first-child) {

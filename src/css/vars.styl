@@ -22,14 +22,13 @@ $bpMobileDefault = 400px
 $bpMobilePageBuild = 560px
 
 :root
-  // =====
-  // ЦВЕТА
-  // =====
+  // =========================
+  // ЦВЕТА - базовые константы
+  // =========================
 
   // Black
   --black-100: #000000
-  --black-200: #434445
-  --black-300: #181818
+  --black-200: #181818
 
   // Gray
   --gray-100: #F0F2F3
@@ -40,9 +39,9 @@ $bpMobilePageBuild = 560px
   --gray-350: #CCCCCC
   --gray-400: #B9B9B9
   --gray-450: #B3B3B3
-  //--gray-500: #939393
-  --gray-550: #7F8285
-  --gray-600: #595959
+  --gray-500: #7F8285
+  --gray-550: #595959
+  --gray-600: #434445
 
   // ПСД. Следующие цвета есть на странице компонентов,
   // но на реальных страницах вместо них используются другие цвета:
@@ -67,36 +66,39 @@ $bpMobilePageBuild = 560px
   // Green
   --green-100: #00B341
 
-
+  // =========================
+  // ЦВЕТА - семмантические константы
+  // =========================
 
   // Цвета текстов
-  --cTextTitle: var(--gray-550)
-  --cTextTitleRepo: var(--black-100)
-  --cTextBtnBig: var(--black-100)
-  --cTextBtnBigDisabled: var(--gray-400)
-  --cTextBtnSmall: var(--black-100)
-  --cTextMenu: var(--gray-550)
-  --cTextFooterCopyright: var(--gray-550)
-  --cTextGreeting: var(--black-100)
-  --cTextFormTitle: var(--black-100)
-  --cTextFormSubtitle: var(--gray-550)
-  --cTextLabel: var(--black-100)
-  --cTextLabelValue: var(--black-200)
-  --cTextLabelRequired: var(--red-100)
-  --cTextInputPlh: var(--gray-350)
-  --cTextInputMain: var(--black-100)
-  --cTextTaskTitle: var(--black-100)
-  --cTextTaskMetaPrimary: var(--black-100)
-  --cTextTaskMetaSecondary: var(--gray-600)
-  --cTextValue: var(--black-200)
-  --cTextBtnBigDisabled: var(--gray-400)
-  --cTextLog: var(--black-300)
+  --cTitle: var(--gray-500)
+  --cTitleRepo: var(--black-100)
+  --cBtnBig: var(--black-100)
+  --cBtnBigDisabled: var(--gray-400)
+  --cBtnSmall: var(--black-100)
+  --cMenu: var(--gray-500)
+  --cFooterCopyright: var(--gray-500)
+  --cGreeting: var(--black-100)
+  --cFormTitle: var(--black-100)
+  --cFormSubtitle: var(--gray-500)
+  --cLabel: var(--black-100)
+  --cLabelValue: var(--gray-600)
+  --cLabelRequired: var(--red-100)
+  --cInputPlh: var(--gray-350)
+  --cInputMain: var(--black-100)
+  --cTaskTitle: var(--black-100)
+  --cTaskMetaPrimary: var(--black-100)
+  --cTaskMetaSecondary: var(--gray-550)
+  --cValue: var(--gray-600)
+  --cBtnBigDisabled: var(--gray-400)
+  --cLog: var(--black-200)
 
   // Доп. цвета текстов для Задач
   --cTaskWait: var(--orange-400)
   --cTaskFail: var(--red-100)
   --cTaskDone: var(--green-100)
 
+  // Ссылки
   --cLinkHovered: var(--red-200)
 
   // Цвета рамок
@@ -184,7 +186,7 @@ $font-650()
   font-size: 13px
   line-height: 28px
 
-$font-600()
+$font-550()
   font-weight: normal
   font-size: 13px
   line-height: 18px
@@ -214,62 +216,62 @@ $font-400()
 $title_desktop()
   $font()
   $font-900()
-  color: var(--cTextTitle)
+  color: var(--cTitle)
 
 $title_mobile()
   $font()
   $font-850()
-  color: var(--cTextTitle)
+  color: var(--cTitle)
 
 $title-repo_desktop()
   $font()
   $font-950()
-  color: var(--cTextTitleRepo)
+  color: var(--cTitleRepo)
 
 $title-repo_mobile()
   $font()
   $font-850()
-  color: var(--cTextTitleRepo)
+  color: var(--cTitleRepo)
 
 $form-title()
   $font()
   $font-750()
-  color: var(--cTextFormTitle)
+  color: var(--cFormTitle)
 
 $form-subtitle()
   $font()
-  $font-600()
-  color: var(--cTextFormSubtitle)
+  $font-550()
+  color: var(--cFormSubtitle)
 
 $label()
   $font()
-  $font-600()
-  color: var(--cTextLabel)
+  $font-550()
+  color: var(--cLabel)
 
 $label-value()
   $font()
-  $font-600()
-  color: var(--cTextLabelValue)
+  $font-550()
+  color: var(--cLabelValue)
 
 $input-plh()
   $font()
   $font-450()
-  color: var(--cTextInputPlh)
+  color: var(--cInputPlh)
 
 $input-main()
   $font()
   $font-450()
-  color: var(--cTextInputMain)
+  color: var(--cInputMain)
 
 $text_btn-big()
   $font()
   $font-700()
-  color: var(--cTextBtnBig)
+  color: var(--cBtnBig)
 
 $text_btn-small()
   $font()
   $font-650()
-  color: var(--cTextBtnSmall)
+  color: var(--cBtnSmall)
 
 $text_task-num()
   $font()
@@ -279,40 +281,40 @@ $text_task-num()
 $text_task-title()
   $font()
   $font-750()
-  color: var(--cTextTaskTitle)
+  color: var(--cTaskTitle)
 
 $text_task-meta-primary()
   $font()
   $font-500()
-  color: var(--cTextTaskMetaPrimary)
+  color: var(--cTaskMetaPrimary)
 
 $text_task-meta-secondary()
   $font()
   $font-500()
-  color: var(--cTextTaskMetaSecondary)
+  color: var(--cTaskMetaSecondary)
 
 $text_log()
   $font()
   $font-400()
-  color: var(--cTextLog)
+  color: var(--cLog)
 
 $text_menu-desktop()
   $font()
   $font-500()
-  color: var(--cTextMenu)
+  color: var(--cMenu)
 
 $text_menu-mobile()
   $font()
-  $font-600()
-  color: var(--cTextMenu)
+  $font-550()
+  color: var(--cMenu)
 
 $text_copyright()
   $font()
-  $font-600()
-  color: var(--cTextFooterCopyright)
+  $font-550()
+  color: var(--cFooterCopyright)
 
 $text_greeting()
   $font()
   $font-550()
-  color: var(--cTextGreeting)
+  color: var(--cGreeting)
 
