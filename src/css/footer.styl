@@ -2,7 +2,7 @@
   flex-shrink: 0
   width: 100%
   background-color: var(--bgContainerDesktop)
-  padding: 0 16px
+  padding: 0 var(--p-xl)
 
   &__container
     display: flex
@@ -10,20 +10,29 @@
     align-items: center
     max-width: var(--wMaxContent)
     min-width: var(--wMinContent)
-    //height: var(--hFooter)
-    padding: 8px 0
     margin: auto
 
-    @media only screen and (max-width: $bpMobileDefault)
+  &__menu
+    padding: var(--p-xxs) 0
+
+
+  &__copyright
+    padding: var(--p-xxxs) 0
+    $text_copyright()
+
+
+@media only screen and (max-width: $bpMobileDefault)
+  .footer
+    &__container
       flex-direction: column
       justify-content: flex-start
       align-items: flex-start
-      padding: 12px 0
+      padding: var(--p-m) 0
 
-  &__copyright
-    $text_copyright()
+    &__menu
+      padding: 0
 
-    @media only screen and (max-width: $bpMobileDefault)
-      margin-top: 8px
-
+    &__copyright
+      margin-top: var(--p-xxs)
+      padding: 0
 
