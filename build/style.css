@@ -308,15 +308,12 @@ table {
   align-items: center;
   font-style: normal;
   font-weight: normal;
-  font-size: 13px;
-  line-height: 16px;
-  letter-spacing: 0.06px;
 }
 .icon-text__icon {
   color: var(--cSecondary);
 }
 .icon-text__primary {
-  margin-left: 4px;
+  margin-left: var(--p-xxxxxs);
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
@@ -326,7 +323,7 @@ table {
   color: var(--cTaskMetaPrimary);
 }
 .icon-text__secondary {
-  margin-left: 4px;
+  margin-left: var(--p-xxxxxs);
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
@@ -515,8 +512,8 @@ table {
 .card {
   display: flex;
   width: 100%;
-  margin-bottom: 8px;
-  padding: 12px 24px;
+  margin-bottom: var(--p-xxs);
+  padding: var(--p-m) var(--p-xxxxl);
   box-shadow: var(--bs-50);
   border-radius: var(--br-m);
 }
@@ -534,7 +531,7 @@ table {
 }
 .card__icon {
   flex-shrink: 0;
-  margin-right: 10px;
+  margin-right: var(--p-xs);
 }
 .card__info {
   flex-grow: 1;
@@ -555,7 +552,7 @@ table {
 .card__task {
   display: flex;
   flex-direction: row;
-  margin-bottom: 8px;
+  margin-bottom: var(--p-xxs);
 }
 @media only screen and (max-width: 560px) {
   .card__task {
@@ -569,7 +566,7 @@ table {
 }
 @media only screen and (max-width: 560px) {
   .card__task-num {
-    margin-bottom: 8px;
+    margin-bottom: var(--p-xxs);
   }
 }
 .card__subtitle {
@@ -577,7 +574,7 @@ table {
 }
 @media only screen and (max-width: 560px) {
   .card__subtitle {
-    margin-bottom: 8px;
+    margin-bottom: var(--p-xxs);
   }
 }
 .card__meta {
@@ -586,7 +583,7 @@ table {
 }
 .card__meta_horizontal {
   flex-direction: row;
-  margin-bottom: 8px;
+  margin-bottom: var(--p-xxs);
 }
 @media only screen and (max-width: 560px) {
   .card__meta_horizontal {
@@ -594,12 +591,12 @@ table {
   }
 }
 .card__meta_horizontal .card__icon-text:not(:first-child) {
-  margin-left: 8px;
+  margin-left: var(--p-xxs);
 }
 @media only screen and (max-width: 560px) {
   .card__meta_horizontal .card__icon-text:not(:first-child) {
     margin-left: 0;
-    margin-top: 8px;
+    margin-top: var(--p-xxs);
   }
 }
 .card__time {
@@ -612,26 +609,26 @@ table {
 @media only screen and (max-width: 560px) {
   .card__time_vertical {
     flex-direction: row;
-    padding-top: 8px;
+    padding-top: var(--p-xxs);
     border-top: 1px solid var(--cBorderCardMeta);
   }
 }
 .card__time_vertical .card__icon-text:not(:first-child) {
-  margin-top: 12px;
+  margin-top: var(--p-m);
 }
 @media only screen and (max-width: 560px) {
   .card__time_vertical .card__icon-text:not(:first-child) {
-    margin-left: 8px;
+    margin-left: var(--p-xxs);
     margin-top: 0;
   }
 }
 .card__time_horizontal {
   flex-direction: row;
-  padding-top: 8px;
+  padding-top: var(--p-xxs);
   border-top: 1px solid var(--cBorderCardMeta);
 }
 .card__time_horizontal .card__icon-text:not(:first-child) {
-  margin-left: 8px;
+  margin-left: var(--p-xxs);
 }
 .menu__link {
   text-decoration: none;
@@ -859,7 +856,7 @@ table {
   }
 }
 .log {
-  padding: 8px 12px;
+  padding: var(--p-xxs) var(--p-m);
   border-radius: var(--br-m);
   overflow-x: auto;
   white-space: pre;
@@ -874,8 +871,9 @@ table {
 }
 @media only screen and (max-width: 400px) {
   .log {
+    padding: var(--p-xxxxxs) var(--p-l);
     border-radius: 0;
-    margin: 0 -16px;
+    margin: 0 calc(0px - var(--p-xl));
   }
 }
 .footer {

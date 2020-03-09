@@ -1,8 +1,8 @@
 .card
   display: flex
   width: 100%
-  margin-bottom: 8px
-  padding: 12px 24px
+  margin-bottom: var(--p-xxs)
+  padding: var(--p-m) var(--p-xxxxl)
   box-shadow: var(--bs-50)
   border-radius: var(--br-m)
 
@@ -35,7 +35,7 @@
 
   &__icon
     flex-shrink: 0
-    margin-right: 10px
+    margin-right: var(--p-xs)
 
   &__info
     flex-grow: 1
@@ -55,7 +55,7 @@
   &__task
     display: flex
     flex-direction: row
-    margin-bottom: 8px
+    margin-bottom: var(--p-xxs)
 
     @media only screen and (max-width: $bpMobilePageBuild)
       flex-direction: column
@@ -66,20 +66,20 @@
     margin-right: 4px
 
     @media only screen and (max-width: $bpMobilePageBuild)
-      margin-bottom: 8px
+      margin-bottom: var(--p-xxs)
 
   &__subtitle
     display: inline-block
 
     @media only screen and (max-width: $bpMobilePageBuild)
-      margin-bottom: 8px
+      margin-bottom: var(--p-xxs)
 
   &__meta
     flex-shrink: 0
     display: flex
 
     //@media only screen and (max-width: $bpMobilePageBuild)
-    //  padding: 8px 0
+    //  padding: var(--p-xxs) 0
 
     //&_vertical
     //  flex-direction: column
@@ -89,25 +89,25 @@
     //    border-top: 1px solid var(--cBorderCardMeta)
     //
     //  & ^[0]__icon-text:not(:first-child)
-    //    margin-top: 12px
+    //    margin-top: var(--p-m)
     //
     //    @media only screen and (max-width: $bpMobilePageBuild)
     //      margin-top: 0
-    //      margin-left: 10px
+    //      margin-left: var(--p-xs)
 
     &_horizontal
       flex-direction: row
-      margin-bottom: 8px
+      margin-bottom: var(--p-xxs)
 
       @media only screen and (max-width: $bpMobilePageBuild)
         flex-direction: column
 
       & ^[0]__icon-text:not(:first-child)
-        margin-left: 8px
+        margin-left: var(--p-xxs)
 
         @media only screen and (max-width: $bpMobilePageBuild)
           margin-left: 0
-          margin-top: 8px
+          margin-top: var(--p-xxs)
 
   &__time
     flex-shrink: 0
@@ -118,21 +118,21 @@
 
       @media only screen and (max-width: $bpMobilePageBuild)
         flex-direction: row
-        padding-top: 8px
+        padding-top: var(--p-xxs)
         border-top: 1px solid var(--cBorderCardMeta)
 
       & ^[0]__icon-text:not(:first-child)
-        margin-top: 12px
+        margin-top: var(--p-m)
 
         @media only screen and (max-width: $bpMobilePageBuild)
-          margin-left: 8px
+          margin-left: var(--p-xxs)
           margin-top: 0
 
     &_horizontal
       flex-direction: row
-      padding-top: 8px
+      padding-top: var(--p-xxs)
       border-top: 1px solid var(--cBorderCardMeta)
 
       & ^[0]__icon-text:not(:first-child)
-        margin-left: 8px
+        margin-left: var(--p-xxs)
 
