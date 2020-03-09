@@ -560,17 +560,28 @@ table {
 .card__task-num {
   display: inline-block;
   margin-right: 4px;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
 }
 @media only screen and (max-width: 560px) {
   .card__task-num {
     margin-bottom: var(--p-xxs);
   }
 }
-.card__subtitle {
+.card__title {
   display: inline-block;
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-l);
+  line-height: var(--lh-l);
+  color: var(--cTaskTitle);
 }
 @media only screen and (max-width: 560px) {
-  .card__subtitle {
+  .card__title {
     margin-bottom: var(--p-xxs);
   }
 }

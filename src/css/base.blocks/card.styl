@@ -64,12 +64,14 @@
   &__task-num
     display: inline-block
     margin-right: 4px
+    $text_task-num()
 
     @media only screen and (max-width: $bpMobilePageBuild)
       margin-bottom: var(--p-xxs)
 
-  &__subtitle
+  &__title
     display: inline-block
+    $text_task-title()
 
     @media only screen and (max-width: $bpMobilePageBuild)
       margin-bottom: var(--p-xxs)
