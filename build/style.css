@@ -129,6 +129,19 @@ table {
   --br-s: 4px;
   --br-m: 6px;
   --bs-50: 0 1px 1px rgba(67,68,69,0.3), 0 0 1px rgba(67,68,69,0.3);
+  --p-xxxxxs: 2px;
+  --p-xxxxs: 4px;
+  --p-xxxs: 6px;
+  --p-xxs: 8px;
+  --p-xs: 10px;
+  --p-s: 11px;
+  --p-m: 12px;
+  --p-l: 13px;
+  --p-xl: 16px;
+  --p-xxl: 18px;
+  --p-xxxl: 20px;
+  --p-xxxxl: 24px;
+  --p-xxxxxl: 32px;
   --wMaxContent: 800px;
   --wMinContent: 220px;
   --fsz-xxl: 24px;
@@ -461,7 +474,7 @@ table {
   color: var(--cSecondary);
 }
 .icon-text__primary {
-  margin-left: 5px;
+  margin-left: 4px;
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
@@ -471,7 +484,7 @@ table {
   color: var(--cTaskMetaPrimary);
 }
 .icon-text__secondary {
-  margin-left: 5px;
+  margin-left: 4px;
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
