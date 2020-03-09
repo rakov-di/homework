@@ -1,6 +1,9 @@
 .main
   flex-grow: 1
-  padding: 8px 16px 16px
+  padding: var(--p-xxs) var(--p-xl) var(--p-xxxl)
+
+  @media only screen and (max-width: $bpMobileDefault)
+    padding-bottom: var(--p-xl)
 
   &_center
     display: flex

@@ -309,16 +309,13 @@ table {
   justify-content: space-between;
   align-items: center;
 }
-.btn-group__btn:not(:first-child) {
-  margin-left: 4px;
-}
 .btn-group__btn:not(:last-child) {
-  margin-right: 4px;
+  margin-right: var(--p-xxs);
 }
 .btn-big {
   flex-shrink: 0;
   height: 36px;
-  padding: 0 20px;
+  padding: 0 var(--p-xxxl);
   border-radius: var(--br-s);
   border: none;
   outline: none;
@@ -380,24 +377,24 @@ table {
   box-shadow: inset 0 0 0 2px var(--cBorderBtnSecondaryFocused);
 }
 .btn-small_type_only-icon {
-  padding: 0 8px;
+  padding: 0 var(--p-xxs);
 }
 .btn-small_type_only-text {
-  padding: 0 13px;
+  padding: 0 var(--p-l);
 }
 .btn-small_type_icon-text {
-  padding: 0 13px 0 8px;
+  padding: 0 var(--p-l) 0 var(--p-xxs);
 }
 @media only screen and (max-width: 400px) {
   .btn-small_type_icon-text {
-    padding: 0 8px;
+    padding: 0 var(--p-xxs);
     font-size: 0;
   }
 }
 .btn-small_type_icon-text::before {
   content: '';
   display: block;
-  margin-right: 8px;
+  margin-right: var(--p-xxs);
 }
 @media only screen and (max-width: 400px) {
   .btn-small_type_icon-text::before {
@@ -565,7 +562,12 @@ table {
 }
 .main {
   flex-grow: 1;
-  padding: 8px 16px 16px;
+  padding: var(--p-xxs) var(--p-xl) var(--p-xxxl);
+}
+@media only screen and (max-width: 400px) {
+  .main {
+    padding-bottom: var(--p-xl);
+  }
 }
 .main_center {
   display: flex;
@@ -598,7 +600,7 @@ table {
   width: 264px;
 }
 .greeting__description {
-  margin: 32px 0 24px;
+  margin: var(--p-xxxxxl) 0 var(--p-xxxxl);
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   letter-spacing: 0.06px;
