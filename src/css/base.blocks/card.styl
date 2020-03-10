@@ -12,7 +12,11 @@
       color: var(--cTaskDone)
 
     & ^[0]__icon
-      @extend $icon_done
+      @extend $icon_done-24
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        @extend $icon_done-16
+
 
   &_status_wait
 
@@ -20,7 +24,10 @@
       color: var(--cTaskWait)
 
     & ^[0]__icon
-      @extend $icon_wait
+      @extend $icon_wait-24
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        @extend $icon_wait-16
 
   &_status_fail
 
@@ -28,14 +35,17 @@
       color: var(--cTaskFail)
 
     & ^[0]__icon
-      @extend $icon_fail
+      @extend $icon_fail-24
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        @extend $icon_fail-16
 
   &__content
     display: flex
 
   &__icon
     flex-shrink: 0
-    margin-right: var(--p-xs)
+    margin-right: var(--p-xxs)
 
   &__info
     flex-grow: 1
@@ -51,22 +61,24 @@
     &_direction_column
       flex-direction: column
 
-
   &__task
     display: flex
     flex-direction: row
+    align-items: center
     margin-bottom: var(--p-xxs)
 
     @media only screen and (max-width: $bpMobilePageBuild)
       flex-direction: column
+      align-items: flex-start
       margin-bottom: 0
 
   &__task-num
     display: inline-block
     margin-right: 4px
-    $text_task-num()
+    $text_task-num-desktop()
 
     @media only screen and (max-width: $bpMobilePageBuild)
+      $text_task-num-mobile()
       margin-bottom: var(--p-xxs)
 
   &__title
