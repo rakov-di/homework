@@ -1,7 +1,7 @@
 
 $svg-common
   display inline-block
-  background url("img/icons-97e3f4f5.svg") no-repeat
+  background url("img/icons-8a67240e.svg") no-repeat
 
 
 // миксин для конкретной иконки
@@ -62,78 +62,78 @@ $icon_code-commit
 
 
 // миксин для конкретной иконки
-$icon_done-16
-  @extend $svg-common
-  background-position: (-20px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
-  width 16px
-  height 16px
-
-// класс для иконки без использования before
-.icon_done-16
-  @extend $icon_done-16
-
-// класс для иконки через before
-.icon_done-16-before
-  &::before
-    content ''
-    @extend $icon_done-16
-
-
-
-// миксин для конкретной иконки
-$icon_done-24
+$icon_done-desktop
   @extend $svg-common
   background-position: (-128px - (26px - 22px)/2) (0px - (26px - 22px)/2)
   width 22px
   height 22px
 
 // класс для иконки без использования before
-.icon_done-24
-  @extend $icon_done-24
+.icon_done-desktop
+  @extend $icon_done-desktop
 
 // класс для иконки через before
-.icon_done-24-before
+.icon_done-desktop-before
   &::before
     content ''
-    @extend $icon_done-24
+    @extend $icon_done-desktop
 
 
 
 // миксин для конкретной иконки
-$icon_fail-16
+$icon_done-mobile
   @extend $svg-common
-  background-position: (-40px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
+  background-position: (-20px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
   width 16px
   height 16px
 
 // класс для иконки без использования before
-.icon_fail-16
-  @extend $icon_fail-16
+.icon_done-mobile
+  @extend $icon_done-mobile
 
 // класс для иконки через before
-.icon_fail-16-before
+.icon_done-mobile-before
   &::before
     content ''
-    @extend $icon_fail-16
+    @extend $icon_done-mobile
 
 
 
 // миксин для конкретной иконки
-$icon_fail-24
+$icon_fail-desktop
   @extend $svg-common
   background-position: (-128px - (26px - 22px)/2) (-26px - (26px - 22px)/2)
   width 22px
   height 22px
 
 // класс для иконки без использования before
-.icon_fail-24
-  @extend $icon_fail-24
+.icon_fail-desktop
+  @extend $icon_fail-desktop
 
 // класс для иконки через before
-.icon_fail-24-before
+.icon_fail-desktop-before
   &::before
     content ''
-    @extend $icon_fail-24
+    @extend $icon_fail-desktop
+
+
+
+// миксин для конкретной иконки
+$icon_fail-mobile
+  @extend $svg-common
+  background-position: (-40px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
+  width 16px
+  height 16px
+
+// класс для иконки без использования before
+.icon_fail-mobile
+  @extend $icon_fail-mobile
+
+// класс для иконки через before
+.icon_fail-mobile-before
+  &::before
+    content ''
+    @extend $icon_fail-mobile
 
 
 
@@ -252,39 +252,39 @@ $icon_user
 
 
 // миксин для конкретной иконки
-$icon_wait-16
-  @extend $svg-common
-  background-position: (-100px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
-  width 16px
-  height 16px
-
-// класс для иконки без использования before
-.icon_wait-16
-  @extend $icon_wait-16
-
-// класс для иконки через before
-.icon_wait-16-before
-  &::before
-    content ''
-    @extend $icon_wait-16
-
-
-
-// миксин для конкретной иконки
-$icon_wait-24
+$icon_wait-desktop
   @extend $svg-common
   background-position: (-128px - (26px - 22px)/2) (-52px - (26px - 22px)/2)
   width 22px
   height 22px
 
 // класс для иконки без использования before
-.icon_wait-24
-  @extend $icon_wait-24
+.icon_wait-desktop
+  @extend $icon_wait-desktop
 
 // класс для иконки через before
-.icon_wait-24-before
+.icon_wait-desktop-before
   &::before
     content ''
-    @extend $icon_wait-24
+    @extend $icon_wait-desktop
+
+
+
+// миксин для конкретной иконки
+$icon_wait-mobile
+  @extend $svg-common
+  background-position: (-100px - (20px - 16px)/2) (-128px - (20px - 16px)/2)
+  width 16px
+  height 16px
+
+// класс для иконки без использования before
+.icon_wait-mobile
+  @extend $icon_wait-mobile
+
+// класс для иконки через before
+.icon_wait-mobile-before
+  &::before
+    content ''
+    @extend $icon_wait-mobile
 
 

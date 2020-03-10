@@ -171,14 +171,14 @@ table {
 .icon_clear-before::before,
 .icon_code-commit,
 .icon_code-commit-before::before,
-.icon_done-16,
-.icon_done-16-before::before,
-.icon_done-24,
-.icon_done-24-before::before,
-.icon_fail-16,
-.icon_fail-16-before::before,
-.icon_fail-24,
-.icon_fail-24-before::before,
+.icon_done-desktop,
+.icon_done-desktop-before::before,
+.icon_done-mobile,
+.icon_done-mobile-before::before,
+.icon_fail-desktop,
+.icon_fail-desktop-before::before,
+.icon_fail-mobile,
+.icon_fail-mobile-before::before,
 .icon_logo,
 .icon_logo-before::before,
 .icon_rebuild,
@@ -191,15 +191,15 @@ table {
 .icon_stopwatch-before::before,
 .icon_user,
 .icon_user-before::before,
-.icon_wait-16,
-.icon_wait-16-before::before,
-.icon_wait-24,
-.icon_wait-24-before::before,
+.icon_wait-desktop,
+.icon_wait-desktop-before::before,
+.icon_wait-mobile,
+.icon_wait-mobile-before::before,
 .card_status_done .card__icon,
 .card_status_wait .card__icon,
 .card_status_fail .card__icon {
   display: inline-block;
-  background: url("img/icons-97e3f4f5.svg") no-repeat;
+  background: url("img/icons-8a67240e.svg") no-repeat;
 }
 .icon_calendar,
 .icon_calendar-before::before {
@@ -228,44 +228,44 @@ table {
 .icon_code-commit-before::before {
   content: '';
 }
-.icon_done-16,
-.icon_done-16-before::before,
-.card_status_done .card__icon {
-  background-position: -22px -130px;
-  width: 16px;
-  height: 16px;
-}
-.icon_done-16-before::before {
-  content: '';
-}
-.icon_done-24,
-.icon_done-24-before::before,
+.icon_done-desktop,
+.icon_done-desktop-before::before,
 .card_status_done .card__icon {
   background-position: -130px -2px;
   width: 22px;
   height: 22px;
 }
-.icon_done-24-before::before {
+.icon_done-desktop-before::before {
   content: '';
 }
-.icon_fail-16,
-.icon_fail-16-before::before,
-.card_status_fail .card__icon {
-  background-position: -42px -130px;
+.icon_done-mobile,
+.icon_done-mobile-before::before,
+.card_status_done .card__icon {
+  background-position: -22px -130px;
   width: 16px;
   height: 16px;
 }
-.icon_fail-16-before::before {
+.icon_done-mobile-before::before {
   content: '';
 }
-.icon_fail-24,
-.icon_fail-24-before::before,
+.icon_fail-desktop,
+.icon_fail-desktop-before::before,
 .card_status_fail .card__icon {
   background-position: -130px -28px;
   width: 22px;
   height: 22px;
 }
-.icon_fail-24-before::before {
+.icon_fail-desktop-before::before {
+  content: '';
+}
+.icon_fail-mobile,
+.icon_fail-mobile-before::before,
+.card_status_fail .card__icon {
+  background-position: -42px -130px;
+  width: 16px;
+  height: 16px;
+}
+.icon_fail-mobile-before::before {
   content: '';
 }
 .icon_logo,
@@ -322,24 +322,24 @@ table {
 .icon_user-before::before {
   content: '';
 }
-.icon_wait-16,
-.icon_wait-16-before::before,
-.card_status_wait .card__icon {
-  background-position: -102px -130px;
-  width: 16px;
-  height: 16px;
-}
-.icon_wait-16-before::before {
-  content: '';
-}
-.icon_wait-24,
-.icon_wait-24-before::before,
+.icon_wait-desktop,
+.icon_wait-desktop-before::before,
 .card_status_wait .card__icon {
   background-position: -130px -54px;
   width: 22px;
   height: 22px;
 }
-.icon_wait-24-before::before {
+.icon_wait-desktop-before::before {
+  content: '';
+}
+.icon_wait-mobile,
+.icon_wait-mobile-before::before,
+.card_status_wait .card__icon {
+  background-position: -102px -130px;
+  width: 16px;
+  height: 16px;
+}
+.icon_wait-mobile-before::before {
   content: '';
 }
 .icon-text {

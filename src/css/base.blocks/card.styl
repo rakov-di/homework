@@ -29,10 +29,10 @@
       color: var(--cTaskDone)
 
     & ^[0]__icon
-      @extend $icon_done-24
+      @extend $icon_done-desktop
 
       @media only screen and (max-width: $bpMobilePageBuild)
-        @extend $icon_done-16
+        @extend $icon_done-mobile
 
   &_status_wait
 
@@ -40,10 +40,10 @@
       color: var(--cTaskWait)
 
     & ^[0]__icon
-      @extend $icon_wait-24
+      @extend $icon_wait-desktop
 
       @media only screen and (max-width: $bpMobilePageBuild)
-        @extend $icon_wait-16
+        @extend $icon_wait-mobile
 
   &_status_fail
 
@@ -51,10 +51,10 @@
       color: var(--cTaskFail)
 
     & ^[0]__icon
-      @extend $icon_fail-24
+      @extend $icon_fail-desktop
 
       @media only screen and (max-width: $bpMobilePageBuild)
-        @extend $icon_fail-16
+        @extend $icon_fail-mobile
 
   &__content
     display: flex
