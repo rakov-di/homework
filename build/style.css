@@ -555,6 +555,17 @@ table {
 .card:hover {
   box-shadow: var(--bs-100);
 }
+.card_type_common .card__separator {
+  display: none;
+}
+@media only screen and (max-width: 560px) {
+  .card_type_common .card__separator {
+    display: block;
+  }
+}
+.card_type_detailed .card__separator {
+  display: block;
+}
 .card_status_done .card__task-num {
   color: var(--cTaskDone);
 }
@@ -639,7 +650,6 @@ table {
 }
 .card__meta_horizontal {
   flex-direction: row;
-  margin-bottom: var(--p-xxs);
 }
 @media only screen and (max-width: 560px) {
   .card__meta_horizontal {
@@ -665,8 +675,6 @@ table {
 @media only screen and (max-width: 560px) {
   .card__time_vertical {
     flex-direction: row;
-    padding-top: var(--p-xxs);
-    border-top: 1px solid var(--cBorderCardMeta);
   }
 }
 .card__time_vertical .card__icon-text:not(:first-child) {
@@ -680,11 +688,15 @@ table {
 }
 .card__time_horizontal {
   flex-direction: row;
-  padding-top: var(--p-xxs);
-  border-top: 1px solid var(--cBorderCardMeta);
 }
 .card__time_horizontal .card__icon-text:not(:first-child) {
   margin-left: var(--p-xxs);
+}
+.card__separator {
+  box-sizing: content-box;
+  margin-top: 8px;
+  border-top: 1px solid var(--cBorderCardMeta);
+  padding-top: 8px;
 }
 .menu__link {
   text-decoration: none;

@@ -10,6 +10,19 @@
   &:hover
     box-shadow: var(--bs-100)
 
+  &_type_common
+
+    & ^[0]__separator
+      display: none
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        display: block
+
+  &_type_detailed
+
+    & ^[0]__separator
+      display: block
+
   &_status_done
 
     & ^[0]__task-num
@@ -20,7 +33,6 @@
 
       @media only screen and (max-width: $bpMobilePageBuild)
         @extend $icon_done-16
-
 
   &_status_wait
 
@@ -96,26 +108,8 @@
     flex-shrink: 0
     display: flex
 
-    //@media only screen and (max-width: $bpMobilePageBuild)
-    //  padding: var(--p-xxs) 0
-
-    //&_vertical
-    //  flex-direction: column
-    //
-    //  @media only screen and (max-width: $bpMobilePageBuild)
-    //    flex-direction: row
-    //    border-top: 1px solid var(--cBorderCardMeta)
-    //
-    //  & ^[0]__icon-text:not(:first-child)
-    //    margin-top: var(--p-m)
-    //
-    //    @media only screen and (max-width: $bpMobilePageBuild)
-    //      margin-top: 0
-    //      margin-left: var(--p-xs)
-
     &_horizontal
       flex-direction: row
-      margin-bottom: var(--p-xxs)
 
       @media only screen and (max-width: $bpMobilePageBuild)
         flex-direction: column
@@ -136,8 +130,6 @@
 
       @media only screen and (max-width: $bpMobilePageBuild)
         flex-direction: row
-        padding-top: var(--p-xxs)
-        border-top: 1px solid var(--cBorderCardMeta)
 
       & ^[0]__icon-text:not(:first-child)
         margin-top: var(--p-m)
@@ -148,9 +140,14 @@
 
     &_horizontal
       flex-direction: row
-      padding-top: var(--p-xxs)
-      border-top: 1px solid var(--cBorderCardMeta)
 
       & ^[0]__icon-text:not(:first-child)
         margin-left: var(--p-xxs)
+
+
+  &__separator
+    box-sizing: content-box
+    margin-top: 8px
+    border-top: 1px solid var(--cBorderCardMeta)
+    padding-top: 8px
 
