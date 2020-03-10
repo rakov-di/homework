@@ -169,6 +169,7 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
 }
+.text,
 .icon-text__primary,
 .icon-text__secondary,
 .btn-big,
@@ -190,17 +191,20 @@ table {
   font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
 }
+.text_type_font-950,
 .header__repo-title {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-xxl);
   line-height: var(--lh-xxxl);
   letter-spacing: var(--ls-m);
 }
+.text_type_font-900,
 .header__title {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-xxl);
   line-height: var(--lh-xxl);
 }
+.text_type_font-850,
 .header__title,
 .header__repo-title {
   font-weight: var(--fw-medium);
@@ -208,27 +212,32 @@ table {
   line-height: var(--lh-xl);
   letter-spacing: var(--ls-m);
 }
+.text_type_font-800,
 .card__task-num {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-xl);
   line-height: var(--lh-l);
 }
+.text_type_font-750,
 .card__title,
 .form__title {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-l);
   line-height: var(--lh-l);
 }
+.text_type_font-700,
 .btn-big {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-m);
   line-height: var(--lh-xxxxl);
 }
+.text_type_font-650,
 .btn-small {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-m);
   line-height: var(--lh-xxl);
 }
+.text_type_font-550,
 .label_default,
 .label_value,
 .menu__link,
@@ -239,11 +248,13 @@ table {
   line-height: var(--lh-m);
   letter-spacing: var(--ls-s);
 }
+.text_type_font-520,
 .greeting__description {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-m);
   line-height: var(--lhp-l);
 }
+.text_type_font-500,
 .icon-text__primary,
 .icon-text__secondary,
 .menu__link {
@@ -257,12 +268,14 @@ table {
   font-size: var(--fsz-m);
   line-height: var(--lh-xs);
 }
+.text_type_font-450,
 .input__field,
 .input__field::placeholder {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-m);
   line-height: var(--lh-xs);
 }
+.text_type_font-400,
 .log {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-s);
