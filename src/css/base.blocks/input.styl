@@ -17,13 +17,13 @@
     padding: var(--p-s) var(--p-l) var(--p-xs)
     border: 2px solid var(--cBorderInput)
     border-radius: var(--br-s)
-    $input-main()
+    @extend $input-main
 
     &:not(:placeholder-shown) + ^[0]__clear
       display: block
 
     &::placeholder
-      $input-plh()
+      @extend $input-plh
 
     &:focus
       border: 2px solid var(--cBorderInputFocused)

@@ -2,13 +2,13 @@
 
   &__link
     text-decoration: none
-    $text_menu-desktop()
+    @extend $text_menu-desktop
 
     &:hover
       color: var(--cLinkHovered)
 
     @media only screen and (max-width: $bpMobileDefault)
-      $text_menu-mobile()
+      @extend $text_menu-mobile
 
   &__link:not(:first-child)
     margin-left: 12px

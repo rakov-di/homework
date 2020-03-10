@@ -165,6 +165,177 @@ table {
   --ls-s: 0.06px;
   --ls-m: 0.25px;
 }
+.input__field::-ms-input-placeholder {
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+}
+.icon-text__primary,
+.icon-text__secondary,
+.btn-big,
+.btn-small,
+.label_default,
+.label_value,
+.input__field,
+.input__field::placeholder,
+.card__task-num,
+.card__title,
+.menu__link,
+.header__title,
+.header__repo-title,
+.greeting__description,
+.form__title,
+.form__subtitle,
+.log,
+.footer__copyright {
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+}
+.header__repo-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-xxl);
+  line-height: var(--lh-xxxl);
+  letter-spacing: var(--ls-m);
+}
+.header__title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-xxl);
+  line-height: var(--lh-xxl);
+}
+.header__title,
+.header__repo-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-xl);
+  line-height: var(--lh-xl);
+  letter-spacing: var(--ls-m);
+}
+.card__task-num {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-xl);
+  line-height: var(--lh-l);
+}
+.card__title,
+.form__title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-l);
+  line-height: var(--lh-l);
+}
+.btn-big {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xxxxl);
+}
+.btn-small {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xxl);
+}
+.label_default,
+.label_value,
+.menu__link,
+.form__subtitle,
+.footer__copyright {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-m);
+  letter-spacing: var(--ls-s);
+}
+.greeting__description {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lhp-l);
+}
+.icon-text__primary,
+.icon-text__secondary,
+.menu__link {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-s);
+  letter-spacing: var(--ls-s);
+}
+.input__field::-ms-input-placeholder {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xs);
+}
+.input__field,
+.input__field::placeholder {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-m);
+  line-height: var(--lh-xs);
+}
+.log {
+  font-weight: var(--fw-medium);
+  font-size: var(--fsz-s);
+  line-height: var(--lh-l);
+}
+.header__title {
+  color: var(--cTitle);
+}
+.header__title {
+  color: var(--cTitle);
+}
+.header__repo-title {
+  color: var(--cTitleRepo);
+}
+.header__repo-title {
+  color: var(--cTitleRepo);
+}
+.form__title {
+  color: var(--cFormTitle);
+}
+.form__subtitle {
+  color: var(--cFormSubtitle);
+}
+.label_default {
+  color: var(--cLabel);
+}
+.label_value {
+  color: var(--cLabelValue);
+}
+.input__field::-ms-input-placeholder {
+  color: var(--cInputPlh);
+}
+.input__field::placeholder {
+  color: var(--cInputPlh);
+}
+.input__field {
+  color: var(--cInputMain);
+}
+.btn-big {
+  color: var(--cBtnBig);
+}
+.btn-small {
+  color: var(--cBtnSmall);
+}
+.card__task-num {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+}
+.card__title {
+  color: var(--cTaskTitle);
+}
+.icon-text__primary {
+  color: var(--cTaskMetaPrimary);
+}
+.icon-text__secondary {
+  color: var(--cTaskMetaSecondary);
+}
+.log {
+  color: var(--cLog);
+}
+.menu__link {
+  color: var(--cMenu);
+}
+.menu__link {
+  color: var(--cMenu);
+}
+.footer__copyright {
+  color: var(--cFooterCopyright);
+}
+.greeting__description {
+  color: var(--cGreeting);
+}
 .icon_calendar,
 .icon_calendar-before::before,
 .icon_clear,
@@ -353,23 +524,9 @@ table {
 }
 .icon-text__primary {
   margin-left: var(--p-xxxxxs);
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-s);
-  letter-spacing: var(--ls-s);
-  color: var(--cTaskMetaPrimary);
 }
 .icon-text__secondary {
   margin-left: var(--p-xxxxxs);
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-s);
-  letter-spacing: var(--ls-s);
-  color: var(--cTaskMetaSecondary);
 }
 .btn-big {
   flex-shrink: 0;
@@ -379,12 +536,6 @@ table {
   border: none;
   outline: none;
   cursor: pointer;
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-xxxxl);
-  color: var(--cBtnBig);
 }
 .btn-big:disabled {
   background-color: var(--bgBtnBifDisabled);
@@ -419,12 +570,6 @@ table {
   border: none;
   cursor: pointer;
   outline: none;
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-xxl);
-  color: var(--cBtnSmall);
   background-color: var(--bgBtnSecondary);
 }
 .btn-small:hover {
@@ -458,24 +603,6 @@ table {
     margin: auto;
   }
 }
-.label_default {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-m);
-  letter-spacing: var(--ls-s);
-  color: var(--cLabel);
-}
-.label_value {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-m);
-  letter-spacing: var(--ls-s);
-  color: var(--cLabelValue);
-}
 .label_type_block {
   display: block;
   margin-bottom: var(--p-xxxxxs);
@@ -506,31 +633,9 @@ table {
   padding: var(--p-s) var(--p-l) var(--p-xs);
   border: 2px solid var(--cBorderInput);
   border-radius: var(--br-s);
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-xs);
-  color: var(--cInputMain);
 }
 .input__field:not(:placeholder-shown) + .input__clear {
   display: block;
-}
-.input__field::-ms-input-placeholder {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-xs);
-  color: var(--cInputPlh);
-}
-.input__field::placeholder {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-xs);
-  color: var(--cInputPlh);
 }
 .input__field:focus {
   border: 2px solid var(--cBorderInputFocused);
@@ -614,30 +719,14 @@ table {
 .card__task-num {
   display: inline-block;
   margin-right: 4px;
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-xl);
-  line-height: var(--lh-l);
 }
 @media only screen and (max-width: 560px) {
   .card__task-num {
-    font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 16px;
     margin-bottom: var(--p-xxs);
   }
 }
 .card__title {
   display: inline-block;
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-l);
-  line-height: var(--lh-l);
-  color: var(--cTaskTitle);
 }
 @media only screen and (max-width: 560px) {
   .card__title {
@@ -700,27 +789,9 @@ table {
 }
 .menu__link {
   text-decoration: none;
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-s);
-  letter-spacing: var(--ls-s);
-  color: var(--cMenu);
 }
 .menu__link:hover {
   color: var(--cLinkHovered);
-}
-@media only screen and (max-width: 400px) {
-  .menu__link {
-    font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: normal;
-    font-weight: var(--fw-medium);
-    font-size: var(--fsz-m);
-    line-height: var(--lh-m);
-    letter-spacing: var(--ls-s);
-    color: var(--cMenu);
-  }
 }
 .menu__link:not(:first-child) {
   margin-left: 12px;
@@ -752,45 +823,6 @@ table {
 }
 .header__container_valign_center {
   align-items: center;
-}
-.header__title {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-xxl);
-  line-height: var(--lh-xxl);
-  color: var(--cTitle);
-}
-@media only screen and (max-width: 400px) {
-  .header__title {
-    font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: normal;
-    font-weight: var(--fw-medium);
-    font-size: var(--fsz-xl);
-    line-height: var(--lh-xl);
-    letter-spacing: var(--ls-m);
-    color: var(--cTitle);
-  }
-}
-.header__repo-title {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-xxl);
-  line-height: var(--lh-xxxl);
-  letter-spacing: var(--ls-m);
-  color: var(--cTitleRepo);
-}
-@media only screen and (max-width: 400px) {
-  .header__repo-title {
-    font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: normal;
-    font-weight: var(--fw-medium);
-    font-size: var(--fsz-xl);
-    line-height: var(--lh-xl);
-    letter-spacing: var(--ls-m);
-    color: var(--cTitleRepo);
-  }
 }
 .header__btn-group {
   flex-shrink: 0;
@@ -842,34 +874,13 @@ table {
 }
 .greeting__description {
   margin: var(--p-xxxxxl) 0 var(--p-xxxxl);
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lhp-l);
-  color: var(--cGreeting);
   text-align: center;
 }
 .form {
   max-width: 474px;
 }
-.form__title {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-l);
-  line-height: var(--lh-l);
-  color: var(--cFormTitle);
-}
 .form__subtitle {
   margin-top: var(--p-xxs);
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-m);
-  letter-spacing: var(--ls-s);
-  color: var(--cFormSubtitle);
 }
 .form__fields {
   padding: var(--p-m) 0;
@@ -925,12 +936,6 @@ table {
   border-radius: var(--br-m);
   overflow-x: auto;
   white-space: pre;
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-s);
-  line-height: var(--lh-l);
-  color: var(--cLog);
   background-color: var(--bgLog);
 }
 @media only screen and (max-width: 400px) {
@@ -972,13 +977,6 @@ table {
 }
 .footer__copyright {
   padding: var(--p-xxxs) 0;
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-  line-height: var(--lh-m);
-  letter-spacing: var(--ls-s);
-  color: var(--cFooterCopyright);
 }
 @media only screen and (max-width: 400px) {
   .footer__copyright {

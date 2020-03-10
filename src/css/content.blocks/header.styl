@@ -20,16 +20,16 @@
       align-items: center
 
   &__title
-    $title_desktop()
+    @extend $title_desktop
 
     @media only screen and (max-width: $bpMobileDefault)
-      $title_mobile()
+      @extend $title_mobile
 
   &__repo-title
-    $title-repo_desktop()
+    @extend $title-repo_desktop
 
     @media only screen and (max-width: $bpMobileDefault)
-      $title-repo_mobile()
+      @extend $title-repo_mobile
 
   &__btn-group
     flex-shrink: 0

@@ -91,15 +91,15 @@
   &__task-num
     display: inline-block
     margin-right: 4px
-    $text_task-num-desktop()
+    @extend $text_task-num-desktop
 
     @media only screen and (max-width: $bpMobilePageBuild)
-      $text_task-num-mobile()
+      @extend $text_task-num-mobile
       margin-bottom: var(--p-xxs)
 
   &__title
     display: inline-block
-    $text_task-title()
+    @extend $text_task-title
 
     @media only screen and (max-width: $bpMobilePageBuild)
       margin-bottom: var(--p-xxs)
