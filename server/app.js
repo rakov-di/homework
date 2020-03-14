@@ -17,7 +17,7 @@ function getToken() {
 
 const api = axios.create({
   baseURL: 'https://hw.shri.yandex/api/',
-  timeout: 1000,
+  timeout: 10000,
   headers: {
     Authorization: "Bearer " + authorizationToken
   },
@@ -35,7 +35,7 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 app.get('/api/settings', (req, res) => {
   api.get('/conf')
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.json(response.data);
     })
     .catch((error) => {
@@ -51,7 +51,7 @@ app.post('/api/settings', (req, res) => {
     "period": 20
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       res.json('Settings have been updated');
     })
     .catch((error) => {
@@ -60,9 +60,11 @@ app.post('/api/settings', (req, res) => {
 });
 
 app.get('/api/builds', (req, res) => {
+  console.log(req.params.buildId + '1');
+
   api.get('/build/list')
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.json(response.data);
     })
     .catch((error) => {
@@ -70,11 +72,40 @@ app.get('/api/builds', (req, res) => {
     });
 });
 
+// app.post('/api/builds/:commitHash', (req, res) => {
+//   api.post('/build/request', {
+//       "commitMessage": "[+] Добавляет простейший nodejs сервер",
+//       "commitHash": "c8637cd",
+//       "branchName": "nodejs",
+//       "authorName": "Dmitry Rakov"
+//     })
+//     .then((response) => {
+//       console.log(response.data);
+//       res.json(response.data);
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//     });
+// });
+
 app.get('/api/builds/:buildId', (req, res) => {
+  console.log(req.params.buildId + '2');
   api.get('/build/details?buildId=' + req.params.buildId)
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.json(response.data);
+    })
+    .catch((error) => {
+      console.error(error)
+    });
+});
+
+app.get('/api/builds/:buildId/logs', (req, res) => {
+  console.log(req.params.buildId + '3');
+  api.get('/build/log?buildId=' + req.params.buildId)
+    .then((response) => {
+      // console.log(response);
+      res.send(response.data);
     })
     .catch((error) => {
       console.error(error)
