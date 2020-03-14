@@ -43,6 +43,7 @@ app.get('/api/settings', (req, res) => {
     });
 });
 
+// Проверялось с get
 app.post('/api/settings', (req, res) => {
   api.post('/conf', {
     "repoName": "homework",
@@ -72,21 +73,23 @@ app.get('/api/builds', (req, res) => {
     });
 });
 
-// app.post('/api/builds/:commitHash', (req, res) => {
-//   api.post('/build/request', {
-//       "commitMessage": "[+] Добавляет простейший nodejs сервер",
-//       "commitHash": "c8637cd",
-//       "branchName": "nodejs",
-//       "authorName": "Dmitry Rakov"
-//     })
-//     .then((response) => {
-//       console.log(response.data);
-//       res.json(response.data);
-//     })
-//     .catch((error) => {
-//       console.error(error)
-//     });
-// });
+// Проверялось с get
+app.post('/api/builds1/:commitHash', (req, res) => {
+  console.log('request' + req.params.commitHash);
+  api.post('/build/request', {
+      "commitMessage": "[+] Тест",
+      "commitHash": req.params.commitHash,
+      "branchName": "nodejs",
+      "authorName": "Dmitry Rakov"
+    })
+    .then((response) => {
+      console.log(response.data);
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error(error)
+    });
+});
 
 app.get('/api/builds/:buildId', (req, res) => {
   console.log(req.params.buildId + '2');
