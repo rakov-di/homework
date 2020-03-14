@@ -5,14 +5,13 @@ const express = require('express');
 
 const axios = require('axios');
 
-const app = express();ª
+const app = express();
 
 let authorizationToken = getToken();
 
-console.log(authorizationToken);
 function getToken() {
-  return fs.readFileSync(path.resolve(__dirname, '../../_access/token.txt'), 'utf8', (err, html) => {
-    return html;
+  return fs.readFileSync(path.resolve(__dirname, '../../_access/token.txt'), 'utf8', (err, token) => {
+    return token;
   });
 }
 
@@ -62,6 +61,17 @@ app.post('/api/settings', (req, res) => {
 
 app.get('/api/builds', (req, res) => {
   api.get('/build/list')
+    .then((response) => {
+      console.log(response.data);
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error(error)
+    });
+});
+
+app.get('/api/builds/:buildId', (req, res) => {
+  api.get('/build/details?buildId=' + req.params.buildId)
     .then((response) => {
       console.log(response.data);
       res.json(response.data);
