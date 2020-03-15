@@ -2,9 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const express = require('express');
-const { spawn } = require('child_process');
-
 const axios = require('axios');
+
+
+const { spawn } = require('child_process');
 
 const app = express();
 
@@ -60,6 +61,20 @@ app.post('/api/settings', (req, res, next) => {
     "period": +req.body.period
   })
     .then((response) => {
+      const gitClone = spawn('git', ['clone', req.body.repoName, './local_repo']);
+
+      gitClone.stdout.on('data', (data) => {
+        next(error);
+        console.log(`stdout: ${data}`);
+      });
+
+      gitClone.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+      });
+//
+// ls.on('close', (code) => {
+//   console.log(`child process exited with code ${code}`);
+// });
       res.json('Settings have been updated');
     })
     .catch((error) => {
@@ -123,17 +138,4 @@ app.listen(3000);
 
 
 
-// const { spawn } = require('child_process');
-// const ls = spawn('git', ['hist', '-2']);
-//
-// ls.stdout.on('data', (data) => {
-//   console.log(`stdout: ${data}`);
-// });
-//
-// ls.stderr.on('data', (data) => {
-//   console.error(`stderr: ${data}`);
-// });
-//
-// ls.on('close', (code) => {
-//   console.log(`child process exited with code ${code}`);
-// });
+
