@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const express = require('express');
+const { spawn } = require('child_process');
 
 const axios = require('axios');
 
@@ -29,52 +30,57 @@ const api = axios.create({
 // Функции промежуточной обработки (middleware)
 
 app.use(express.json());
-
+app.use(express.urlencoded());
 app.use(express.static(path.resolve(__dirname, '../build')));
+app.use(function(err, req, res, next) {
+  console.error(err);
+});
 
-app.get('/api/settings', (req, res) => {
+app.get('/api/settings', (req, res, next) => {
   api.get('/conf')
     .then((response) => {
-      // console.log(response.data);
       res.json(response.data);
     })
     .catch((error) => {
-      console.error(error)
+      next(error);
     });
 });
 
 // Проверялось с get
-app.post('/api/settings', (req, res) => {
+app.post('/api/settings', (req, res, next) => {
+  console.log('Содержимое' + req.body);
+  console.log('repoName' + req.body.repoName);
+  console.log('repoName' + req.body.buildCommand);
+  console.log('repoName' + req.body.mainBranch);
+  console.log('repoName' + req.body.period);
   api.post('/conf', {
-    "repoName": "homework",
-    "buildCommand": "npm run build",
-    "mainBranch": "master",
-    "period": 20
+    "repoName": req.body.repoName,
+    "buildCommand": req.body.buildCommand,
+    "mainBranch": req.body.mainBranch,
+    "period": +req.body.period
   })
     .then((response) => {
-      // console.log(response);
       res.json('Settings have been updated');
     })
     .catch((error) => {
-      console.error(error)
+      next(error);
     });
 });
 
-app.get('/api/builds', (req, res) => {
+app.get('/api/builds', (req, res, next) => {
   console.log(req.params.buildId + '1');
 
   api.get('/build/list')
     .then((response) => {
-      // console.log(response.data);
       res.json(response.data);
     })
     .catch((error) => {
-      console.error(error)
+      next(error);
     });
 });
 
 // Проверялось с get
-app.post('/api/builds1/:commitHash', (req, res) => {
+app.post('/api/builds1/:commitHash', (req, res, next) => {
   console.log('request' + req.params.commitHash);
   api.post('/build/request', {
       "commitMessage": "[+] Тест",
@@ -83,35 +89,32 @@ app.post('/api/builds1/:commitHash', (req, res) => {
       "authorName": "Dmitry Rakov"
     })
     .then((response) => {
-      console.log(response.data);
       res.json(response.data);
     })
     .catch((error) => {
-      console.error(error)
+      next(error);
     });
 });
 
-app.get('/api/builds/:buildId', (req, res) => {
+app.get('/api/builds/:buildId', (req, res, next) => {
   console.log(req.params.buildId + '2');
   api.get('/build/details?buildId=' + req.params.buildId)
     .then((response) => {
-      // console.log(response.data);
       res.json(response.data);
     })
     .catch((error) => {
-      console.error(error)
+      next(error);
     });
 });
 
-app.get('/api/builds/:buildId/logs', (req, res) => {
+app.get('/api/builds/:buildId/logs', (req, res, next) => {
   console.log(req.params.buildId + '3');
   api.get('/build/log?buildId=' + req.params.buildId)
     .then((response) => {
-      // console.log(response);
       res.send(response.data);
     })
     .catch((error) => {
-      console.error(error)
+      next(error);
     });
 });
 
