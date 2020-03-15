@@ -2,3 +2,4 @@
 .idea/
 node_modules
 server/local_repo
+server/.env

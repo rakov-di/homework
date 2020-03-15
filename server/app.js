@@ -1,3 +1,4 @@
+require('dotenv').config()
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
@@ -12,12 +13,6 @@ const app = express();
 let isRepoExist = false;
 const localRepoName = 'local_repo';
 let mainBranch;
-
-getToken = () => {
-  return fs.readFileSync(path.resolve(__dirname, '../../_access/token.txt'), 'utf8', (err, token) => {
-    return token;
-  });
-};
 
 
 // const log = spawn(`git show -s --format='%s===%an' 2cd1deef703e8071946608f140ee1091fe89da5d`, {shell: true});
@@ -80,7 +75,7 @@ const api = axios.create({
   baseURL: 'https://hw.shri.yandex/api/',
   timeout: 10000,
   headers: {
-    Authorization: "Bearer " + getToken()
+    Authorization: "Bearer " + process.env.SHRI_API_KEY
   },
   httpsAgent: new https.Agent({
     rejectUnauthorized: false
