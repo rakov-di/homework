@@ -5,7 +5,7 @@ const express = require('express');
 const axios = require('axios');
 const { spawn } = require('child_process');
 
-const { cloneRepo, updateRepoStory } = require('./repo');
+const { cloneRepo, updateRepoStory, getCommitInfo } = require('./repo');
 
 const app = express();
 
@@ -76,29 +76,27 @@ app.get('/api/builds', (req, res, next) => {
 // Добавление сборки в очередь для конкретного коммита
 // По полному хэшу коммита определяется полное сообщение, автор. Ветка пока берется по умолчанию
 app.post('/api/builds/:commitHash', (req, res, next) => {
-  const log = spawn(`git show -s --format='%s===%an' ${req.params.commitHash}`, {shell: true});
+  getCommitInfo(req.params.commitHash)
+    .then((data) => {
+      const [message, author] = data.toString().trim().split("===");
 
-  log.stdout.on('data', (data) => {
-    const [message, author] = data.toString().trim().split("===");
-
-    api.post('/build/request', {
+      api.post('/build/request', {
         "commitMessage": message,
         "commitHash": req.params.commitHash,
         "branchName": "master",
         "authorName": author
       })
-      .then(() => {
-        res.json({message: message, author: author});
-      })
-      .catch((error) => {
-        next(error);
-      });
-  });
-
-  log.stderr.on('data', (data) => {
-    next(error);
-    console.error(`stderr: ${data}`);
-  });
+        .then(() => {
+          res.json({message: message, author: author});
+        })
+        .catch((error) => {
+          next(error);
+        });
+    })
+    .catch((error) => {
+      next(error);
+      console.error(error);
+    });
 });
 
 // Получение информации о конкретной сборке
