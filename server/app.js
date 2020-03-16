@@ -22,7 +22,7 @@ const api = axios.create({
 
 // Функции промежуточной обработки (middleware)
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded()); // TODO Разобраться, почему из postman не отправляется обычный json
 app.use(express.static(path.resolve(__dirname, '../build')));
 // Error handler
 app.use((err, req, res, next) => {
@@ -46,6 +46,8 @@ app.get('/api/settings', (req, res, next) => {
 // и создается такая же папка, но уже с новым репозиторием
 // При этом возникает ошибка - надо разбираться
 app.post('/api/settings', (req, res, next) => {
+  console.log(req.body);
+  console.log(req.params);
   api.post('/conf', {
     "repoName": req.body.repoName,
     "buildCommand": req.body.buildCommand,
