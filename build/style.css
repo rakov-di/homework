@@ -227,13 +227,13 @@ table {
 }
 .text_type_font-700,
 .btn-big {
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
   font-size: var(--fsz-m);
   line-height: var(--lh-xxxxl);
 }
 .text_type_font-650,
 .btn-small {
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-normal);
   font-size: var(--fsz-m);
   line-height: var(--lh-xxl);
 }
@@ -241,9 +241,8 @@ table {
 .label_default,
 .label_value,
 .menu__link,
-.form__subtitle,
-.footer__copyright {
-  font-weight: var(--fw-medium);
+.form__subtitle {
+  font-weight: var(--fw-normal);
   font-size: var(--fsz-m);
   line-height: var(--lh-m);
   letter-spacing: var(--ls-s);
@@ -257,8 +256,9 @@ table {
 .text_type_font-500,
 .icon-text__primary,
 .icon-text__secondary,
-.menu__link {
-  font-weight: var(--fw-medium);
+.menu__link,
+.footer__copyright {
+  font-weight: var(--fw-normal);
   font-size: var(--fsz-m);
   line-height: var(--lh-s);
   letter-spacing: var(--ls-s);
@@ -266,14 +266,12 @@ table {
 .input__field::-ms-input-placeholder {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-m);
-  line-height: var(--lh-xs);
 }
 .text_type_font-450,
 .input__field,
 .input__field::placeholder {
   font-weight: var(--fw-medium);
   font-size: var(--fsz-m);
-  line-height: var(--lh-xs);
 }
 .text_type_font-400,
 .log {
@@ -638,6 +636,8 @@ table {
   display: inline-block;
   width: 52px;
   margin: 0 var(--p-xxs);
+}
+.input_type_inline .input__field {
   text-align: right;
 }
 .input__field {
@@ -883,9 +883,9 @@ table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 264px;
 }
 .greeting__description {
+  width: 264px;
   margin: var(--p-xxxxxl) 0 var(--p-xxxxl);
   text-align: center;
 }
