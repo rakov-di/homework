@@ -1,83 +1,13 @@
-require('dotenv').config()
-const fs = require('fs');
+require('dotenv').config();
 const path = require('path');
 const https = require('https');
 const express = require('express');
 const axios = require('axios');
 const { spawn } = require('child_process');
 
+const { cloneRepo, updateRepoStory } = require('./repo');
+
 const app = express();
-
-const localRepoName = 'local_repo';
-let mainBranch;
-
-cloneRepo = (repoName) => {
-  return new Promise((resolve, reject) => {
-    fs.access(path.resolve(__dirname, localRepoName), (err) => {
-      console.log(2);
-      if (err && err.code === 'ENOENT') {
-        console.log("There is no such folder. You can do git clone");
-        const gitClone = spawn(`git clone ${repoName} local_repo`, {shell: true});
-        gitClone.stdout.on('data', (data) => {
-          console.log(3 + 'a');
-          console.log(`stdout: ${data}`);
-          resolve();
-        });
-
-        gitClone.stderr.on('data', (data) => {
-          console.log(3 + ' a error');
-          // next(error);
-          console.error(`stderr: ${data}`);
-          resolve();
-        });
-
-        gitClone.on('close', (data) => {
-          resolve();
-        });
-      }
-      else {
-        console.log('Please, clear folder before git clone');
-        console.log(`rm -rf ${localRepoName} && git clone ${repoName} local_repo`);
-        const gitRmClone = spawn(`rm -rf ${localRepoName} && git clone ${repoName} local_repo`, {shell: true});
-        gitRmClone.stdout.on('data', (data) => {
-          console.log(3 + 'b');
-          console.log(`stdout: ${data}`);
-          resolve();
-        });
-
-        gitRmClone.stderr.on('data', (data) => {
-          console.log(3 + ' b error');
-          // next(error);
-          console.error(`stderr: ${data}`);
-          resolve();
-        });
-
-        gitRmClone.on('close', (data) => {
-          resolve();
-        });
-      }
-    })
-  });
-
-};
-
-// gitFetch = (branchName) => {
-//   const changeDir = spawn('cd', ['local_repo']);
-//   const gitCheckout = spawn('git', ['checkout', branchName]);
-//   const gitFetch = spawn('git', ['pull']);
-//
-//   changeDir.stdout.pipe(gitCheckout.stdin);
-//   gitCheckout.stdout.pipe(gitFetch.stdin);
-//
-//   gitFetch.stdout.on('data', (data) => {
-//     console.log(`stdout: ${data}`);
-//   });
-//
-//   gitFetch.stderr.on('data', (data) => {
-//     // next(error);
-//     console.error(`stderr: ${data}`);
-//   });
-// };
 
 const api = axios.create({
   baseURL: 'https://hw.shri.yandex/api/',
@@ -121,12 +51,11 @@ app.post('/api/settings', (req, res, next) => {
     "mainBranch": req.body.mainBranch,
     "period": +req.body.period
   })
-    .then((response) => {
-      console.log(1);
-      cloneRepo(req.body.repoName).then(() => {
-        console.log(4);
-        res.json('Settings have been updated');
-      });
+    .then(() => {
+      return cloneRepo(req.body.repoName)
+    })
+    .then((repoName) => {
+      res.json(String(`Настройки сохранены. Репозиторий ${repoName} склонирован.`));
     })
     .catch((error) => {
       next(error);
@@ -208,33 +137,17 @@ app.get('/api/builds/:buildId/logs', (req, res, next) => {
 // changeDir.stdout.pipe(gitCheckout.stdin);
 // gitCheckout.stdout.pipe(gitFetch.stdin);
 
-const unpdateRepoStory = async (repo) => {
-  return new Promise((resolve, reject) => {
-    const updateRepo = spawn(`cd ${localRepoName} && git checkout ${repo.mainBranch} && git pull`,{shell: true});
-    // const changeDir = spawn('cd', ['local_repo']);
-    // const gitCheckout = spawn('git', ['checkout', branchName]);
-    // const gitFetch = spawn('git', ['pull']);
-    //
-    // changeDir.stdout.pipe(gitCheckout.stdin);
-    // gitCheckout.stdout.pipe(gitFetch.stdin);
 
-    updateRepo.stdout.on('data', data => console.log(`stdout: ${data}`));
-
-    updateRepo.stderr.on('data', data => console.error(`stderr: ${data}`));
-
-    updateRepo.on('close', () => resolve(repo));
-  });
-};
 
 // Тестовая ручка для обновления локального репозитория (подтягивание последних изменений)
 // Пока не работает
 app.get('/api/test', (req, res, next) => {
   api.get('/conf')
     .then(response => {
-      return unpdateRepoStory(response.data.data)
+      return updateRepoStory(response.data.data)
     })
     .then(repo => {
-      res.send(String(`История ветки ${repo.mainBranch} репозитория ${repo.repoName} обновлена.`));
+      res.send(String(`История ветки ${repo.mainBranch} репозитория ${repo.repoName} обновлена`));
     })
     .catch(err => {
       console.error(err);
