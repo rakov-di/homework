@@ -3,9 +3,9 @@ const path = require('path');
 const https = require('https');
 const express = require('express');
 const axios = require('axios');
-const { spawn } = require('child_process');
 
 const { cloneRepo, updateRepoStory, getCommitInfo } = require('./repo');
+const buildLogs = require('./buildLogs');
 
 const app = express();
 
@@ -24,7 +24,8 @@ const api = axios.create({
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(path.resolve(__dirname, '../build')));
-app.use(function(err, req, res, next) {
+// Error handler
+app.use((err, req, res, next) => {
   console.error(err);
 });
 
@@ -112,31 +113,29 @@ app.get('/api/builds/:buildId', (req, res, next) => {
 
 // Получение логов конкретной сборки
 app.get('/api/builds/:buildId/logs', (req, res, next) => {
-  api.get('/build/log?buildId=' + req.params.buildId)
-    .then((response) => {
-      if (!response.data) {
-        res.send(String('Лога для этой сборки нет'))
-      }
-      else {
-        res.send(response.data);
-      }
-    })
-    .catch((error) => {
-      next(error);
-    });
+  if (buildLogs.isExist(req.params.buildId)) res.send(buildLogs.get(req.params.buildId));
+  else {
+    api.get('/build/log?buildId=' + req.params.buildId)
+      .then((response) => {
+        if (!response.data) {
+          res.send(String(`Лога для сборки ${req.params.buildId} нет`))
+        }
+        else {
+          buildLogs.set(req.params.buildId, response.data);
+          res.send(response.data);
+        }
+      })
+      .catch((error) => {
+        console.error('=====' + error);
+        if (error.response.status === 500) {
+          res.send('Что-то пошло не так. Ошибка 500.');
+        }
+        else next(error);
+      });
+  }
 });
 
-
-// const updateRepo = spawn(`cd ${localRepoName} && git checkout ${response.data.data.mainBranch} && git pull`,{shell: true})
-// const changeDir = spawn('cd', ['local_repo']);
-// const gitCheckout = spawn('git', ['checkout', branchName]);
-// const gitFetch = spawn('git', ['pull']);
-//
-// changeDir.stdout.pipe(gitCheckout.stdin);
-// gitCheckout.stdout.pipe(gitFetch.stdin);
-
-
-
+// ========================================
 // Тестовая ручка для обновления локального репозитория (подтягивание последних изменений)
 // Пока не работает
 app.get('/api/test', (req, res, next) => {
