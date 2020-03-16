@@ -199,36 +199,46 @@ app.get('/api/builds/:buildId/logs', (req, res, next) => {
     });
 });
 
+
+// const updateRepo = spawn(`cd ${localRepoName} && git checkout ${response.data.data.mainBranch} && git pull`,{shell: true})
+// const changeDir = spawn('cd', ['local_repo']);
+// const gitCheckout = spawn('git', ['checkout', branchName]);
+// const gitFetch = spawn('git', ['pull']);
+//
+// changeDir.stdout.pipe(gitCheckout.stdin);
+// gitCheckout.stdout.pipe(gitFetch.stdin);
+
+const unpdateRepoStory = async (repo) => {
+  return new Promise((resolve, reject) => {
+    const updateRepo = spawn(`cd ${localRepoName} && git checkout ${repo.mainBranch} && git pull`,{shell: true});
+    // const changeDir = spawn('cd', ['local_repo']);
+    // const gitCheckout = spawn('git', ['checkout', branchName]);
+    // const gitFetch = spawn('git', ['pull']);
+    //
+    // changeDir.stdout.pipe(gitCheckout.stdin);
+    // gitCheckout.stdout.pipe(gitFetch.stdin);
+
+    updateRepo.stdout.on('data', data => console.log(`stdout: ${data}`));
+
+    updateRepo.stderr.on('data', data => console.error(`stderr: ${data}`));
+
+    updateRepo.on('close', () => resolve(repo));
+  });
+};
+
 // Тестовая ручка для обновления локального репозитория (подтягивание последних изменений)
 // Пока не работает
 app.get('/api/test', (req, res, next) => {
   api.get('/conf')
-    .then((response) => {
-      const updateRepo = spawn(`cd ${localRepoName} && git checkout ${response.data.data.mainBranch} && git pull`,{shell: true})
-      // const changeDir = spawn('cd', ['local_repo']);
-      // const gitCheckout = spawn('git', ['checkout', branchName]);
-      // const gitFetch = spawn('git', ['pull']);
-      //
-      // changeDir.stdout.pipe(gitCheckout.stdin);
-      // gitCheckout.stdout.pipe(gitFetch.stdin);
-
-      updateRepo.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-        // res.send(`Репозиторий ${response.data.data.repoName} обновлен`);
-      });
-
-      updateRepo.stderr.on('data', (data) => {
-        // next(error);
-        console.error(`stderr: ${data}`);
-      });
-
-      updateRepo.on('close', (data) => {
-        console.log('child process exited with data ' + data);
-        res.send(String(`Репозиторий ${response.data.data.repoName} обновлен`));
-      });
+    .then(response => {
+      return unpdateRepoStory(response.data.data)
     })
-    .catch((error) => {
-      next(error);
+    .then(repo => {
+      res.send(String(`История ветки ${repo.mainBranch} репозитория ${repo.repoName} обновлена.`));
+    })
+    .catch(err => {
+      console.error(err);
+      next(err);
     });
 });
 
