@@ -27,18 +27,11 @@ const cloneRepo = (repoName) => {
       }
     })
   });
-
 };
 
 const updateRepoStory = (repo) => {
   return new Promise((resolve, reject) => {
     const updateRepo = spawn(`cd ${localRepoName} && git checkout ${repo.mainBranch} && git pull`,{shell: true});
-    // const changeDir = spawn('cd', ['local_repo']);
-    // const gitCheckout = spawn('git', ['checkout', branchName]);
-    // const gitFetch = spawn('git', ['pull']);
-    //
-    // changeDir.stdout.pipe(gitCheckout.stdin);
-    // gitCheckout.stdout.pipe(gitFetch.stdin);
 
     updateRepo.stdout.on('data', data => console.log(`stdout: ${data}`));
 
@@ -61,45 +54,7 @@ const getCommitInfo = (commitHash) => {
 
     log.on('close', (data) => resolve(data));
 
-    // log.stdout.on('data', (data) => {
-    //   const [message, author] = data.toString().trim().split("===");
-    //
-    //   api.post('/build/request', {
-    //     "commitMessage": message,
-    //     "commitHash": req.params.commitHash,
-    //     "branchName": "master",
-    //     "authorName": author
-    //   })
-    //     .then(() => {
-    //       res.json({message: message, author: author});
-    //     })
-    //     .catch((error) => {
-    //       next(error);
-    //     });
-    // });
-    //
-    // log.stderr.on('data', (data) => {
-    //   next(error);
-    //   console.error(`stderr: ${data}`);
-    // });
   });
 };
-// gitFetch = (branchName) => {
-//   const changeDir = spawn('cd', ['local_repo']);
-//   const gitCheckout = spawn('git', ['checkout', branchName]);
-//   const gitFetch = spawn('git', ['pull']);
-//
-//   changeDir.stdout.pipe(gitCheckout.stdin);
-//   gitCheckout.stdout.pipe(gitFetch.stdin);
-//
-//   gitFetch.stdout.on('data', (data) => {
-//     console.log(`stdout: ${data}`);
-//   });
-//
-//   gitFetch.stderr.on('data', (data) => {
-//     // next(error);
-//     console.error(`stderr: ${data}`);
-//   });
-// };
 
 module.exports = { cloneRepo, updateRepoStory, getCommitInfo };
