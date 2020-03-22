@@ -43,7 +43,7 @@ const updateRepoStory = (repo) => {
 
 const getCommitInfo = (commitHash) => {
   return new Promise((resolve, reject) => {
-    const log = spawn(`git show -s --format='%s===%an' ${commitHash}`, {shell: true});
+    const log = spawn(`cd local_repo && git show -s --format='%s===%an' ${commitHash}`, {shell: true});
 
     log.stdout.on('data', data => {
       resolve(data);
