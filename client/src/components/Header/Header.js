@@ -76,14 +76,16 @@ class Header extends Component {
     }
 
     return (
-      <div className={`header__container header__container_valign_${titleValign}`}>
-        <div className={`header__${titleType}`}>{titleText}</div>
-        <div className="header__btn-group">
-          {btns.map((btn) =>
-            <BtnSmall btnType={btn.btnType} btnIcon={btn.btnIcon} btnText={btn.btnText}/>
-          )}
+      <header className="header">
+        <div className={`header__container header__container_valign_${titleValign}`}>
+          <div className={`header__${titleType}`}>{titleText}</div>
+          <div className="header__btn-group">
+            {btns.map((btn) =>
+              <BtnSmall btnType={btn.btnType} btnIcon={btn.btnIcon} btnText={btn.btnText}/>
+            )}
+          </div>
         </div>
-      </div>
+      </header>
     );
   }
 }
