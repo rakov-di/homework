@@ -1,0 +1,43 @@
+.btn-small
+  flex-shrink: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 28px
+  min-width: 28px
+  border-radius: var(--br-s)
+  border: none
+  cursor: pointer
+  outline: none
+  @extend $text_btn-small
+  background-color: var(--bgBtnSecondary)
+
+  // 2 следующих стиля отсутствуют на макете
+  // добавил для улучшения user experience и accessibility
+  // ПСД
+  &:hover
+    background-color: var(--bgBtnSecondaryHovered)
+
+  &:focus
+    box-shadow: inset 0 0 0 2px var(--cBorderBtnSecondaryFocused) // это border
+
+  &_type_only-icon
+    padding: 0 var(--p-xxs)
+
+  &_type_only-text
+    padding: 0 var(--p-l)
+
+  &_type_icon-text
+    padding: 0 var(--p-l) 0 var(--p-xxs)
+
+    @media only screen and (max-width: $bpMobileDefault)
+      padding: 0 var(--p-xxs)
+      font-size: 0
+
+    &::before
+      content: ''
+      display: block
+      margin-right: var(--p-xxs)
+
+      @media only screen and (max-width: $bpMobileDefault)
+        margin: auto

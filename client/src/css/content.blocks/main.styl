@@ -1,0 +1,30 @@
+.main
+  flex-grow: 1
+  padding: var(--p-xxs) var(--p-xl) var(--p-xxxl)
+
+  @media only screen and (max-width: $bpMobileDefault)
+    padding-bottom: var(--p-xl)
+
+  &_center
+    display: flex
+
+  &__container
+    display: flex
+    flex-direction: column
+    max-width: var(--wMaxContent)
+    min-width: var(--wMinContent)
+    height: 100%
+    margin: auto
+
+    &_align_center
+      justify-content: center
+
+    &_align_left
+      justify-content: flex-start
+
+    &_valign_center
+      align-items: center
+
+    &_valign_top
+      align-items: flex-start
+
