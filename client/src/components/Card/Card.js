@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Icon from '../Icon/Icon';
 import IconText from '../IconText/IconText';
 
 class Card extends Component {

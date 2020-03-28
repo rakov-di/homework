@@ -1,0 +1,25 @@
+// TODO Выяснить, нормально ли это
+@import "../../css/vars.styl";
+
+.modal
+  position: fixed
+  left: 50%
+  top: 50%
+  width: 100%
+  max-width: 485px
+  padding: 20px
+  border-radius: var(--br-s)
+  background-color: var(--white-100)
+  transform: translate(-50%, -50%)
+  box-shadow: var(--bs-150)
+
+  &__title
+    @extend $title_modal
+
+  // TODO Переделать этот костыль, чтоб было по БЭМ
+  & .form__field
+    padding: 0
+
+  & .label
+    margin-bottom: var(--p-m)
+

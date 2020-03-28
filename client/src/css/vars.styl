@@ -36,6 +36,9 @@ $bpMobilePageBuild = 560px
   --black-100: #000000
   --black-200: #181818
 
+  // White
+  --white-100: #FFFFFF
+
   // Gray
   --gray-100: #F0F2F3
   --gray-150: #F2F2F2
@@ -79,6 +82,7 @@ $bpMobilePageBuild = 560px
   // Цвета текстов
   --cTitle: var(--gray-500)
   --cTitleRepo: var(--black-100)
+  --cModalTitle: var(--black-100)
   --cBtnBig: var(--black-100)
   --cBtnBigDisabled: var(--gray-400)
   --cBtnSmall: var(--black-100)
@@ -134,6 +138,7 @@ $bpMobilePageBuild = 560px
   // ====
   --bs-50: 0 1px 1px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3)
   --bs-100: 0px 2px 8px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
+  --bs-150: 0px 6px 16px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
   // =======
   // ОТСТУПЫ
   // =======
@@ -289,6 +294,11 @@ $title-repo_mobile
   @extend $font
   @extend $font-850
   color: var(--cTitleRepo)
+
+$title_modal
+  @extend $font
+  @extend $font-850
+  color: var(--cModalTitle)
 
 $form-title
   @extend $font
