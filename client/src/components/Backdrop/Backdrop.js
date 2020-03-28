@@ -8,7 +8,7 @@ class Backdrop extends Component {
   render() {
     return (
       <div className='backdrop'>
-        <Modal />
+        <Modal toggleBackdropVisibility={this.props.toggleBackdropVisibility}/>
       </div>
     );
   }

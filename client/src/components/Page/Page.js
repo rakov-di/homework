@@ -5,14 +5,24 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 
 class Page extends Component {
+  state = {
+    isBackdropShown: false
+
+  };
   render() {
     return (
       <div className="page">
-        <Header />
-        <Main />
+        <Header toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)} />
+        <Main isBackdropShown = {this.state.isBackdropShown} toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)} />
         <Footer />
       </div>
     );
+  }
+
+  toggleBackdropVisibility = (e) => {
+    this.setState({
+      isBackdropShown: !this.state.isBackdropShown
+    });
   }
 }
 

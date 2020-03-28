@@ -17,6 +17,7 @@ class Header extends Component {
   render() {
     let titleValign, titleType, titleText, btns;
     let location = window.location.pathname;
+    const { toggleBackdropVisibility } = this.props;
 
     switch (location) {
       case '/':
@@ -46,7 +47,8 @@ class Header extends Component {
           {
             type: 'icon-text',
             icon: 'run-before',
-            text: 'Run build'
+            text: 'Run build',
+            onClick: toggleBackdropVisibility
           },
           {
             type: 'only-icon',
@@ -82,7 +84,13 @@ class Header extends Component {
           <div className={`header__${titleType}`}>{titleText}</div>
           <div className="header__btn-group">
             {btns.map((btn, idx) =>
-              <BtnSmall key={idx} type={btn.type} icon={btn.icon} text={btn.text} mixClass='header__btn' />
+              <BtnSmall key={idx}
+                        type={btn.type}
+                        icon={btn.icon}
+                        text={btn.text}
+                        mixClass='header__btn'
+                        onClick={btn.onClick}
+              />
             )}
           </div>
         </div>

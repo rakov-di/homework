@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 class BtnBig extends Component {
   render() {
+    const { type, mixClass, text, onClick } = this.props;
     return (
-      <button className={`btn-big btn-big_type_${this.props.type} ${this.props.mixClass || ''}`}>{this.props.text}</button>
+      <button className={`btn-big btn-big_type_${type} ${mixClass || ''}`} onClick={onClick}>{text}</button>
     );
   }
 }

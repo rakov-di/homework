@@ -19,7 +19,8 @@ class Main extends Component {
                 <Route exact path='/' component={StartScreen} />
                 <Route path='/start-screen' component={StartScreen} />
                 <Route path='/settings' component={Settings} />
-                <Route path='/build-history' component={BuildHistory} />
+                <Route path='/build-history'
+                       render={(props) => <BuildHistory {...props} toggleBackdropVisibility={this.props.toggleBackdropVisibility} isBackdropShown={this.props.isBackdropShown} />}/>
                 <Route path='/build-details' component={BuildDetails} />
               </Switch>
             </Router>

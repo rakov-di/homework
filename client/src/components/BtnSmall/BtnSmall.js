@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 class BtnSmall extends Component {
   render() {
+    const { type, icon, mixClass, text, onClick} = this.props;
     return (
-      <button className={`btn-small btn-small_type_${this.props.type} icon icon_${this.props.icon} ${this.props.mixClass || ''}`}>{this.props.text}</button>
+      <button className={`btn-small btn-small_type_${type} icon icon_${icon} ${mixClass || ''}`} onClick={onClick}>{text}</button>
     );
   }
 }

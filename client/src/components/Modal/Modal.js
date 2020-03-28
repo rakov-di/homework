@@ -18,7 +18,8 @@ class Modal extends Component {
 
     const btns = {
       textPrimary: 'Run build',
-      textSecondary: 'Cancel'
+      textSecondary: 'Cancel',
+      clickSecondary: this.props.toggleBackdropVisibility
     };
 
     return (

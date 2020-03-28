@@ -49,7 +49,7 @@ class CardList extends Component {
     return (
       <div className="card-list">
         {cards.map(card =>
-          <Card data={card} />
+          <Card key={card.id} data={card} />
         )}
         <BtnSmall type='only-text' text='Show more' mixClass='card-list__show-more'/>
       </div>
