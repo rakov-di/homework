@@ -28,7 +28,7 @@ class Header extends Component {
           {
             type: 'icon-text',
             icon: 'settings-before',
-            text: 'settings'
+            text: 'Settings'
           }
         ];
         break;
@@ -81,8 +81,8 @@ class Header extends Component {
         <div className={`header__container header__container_valign_${titleValign}`}>
           <div className={`header__${titleType}`}>{titleText}</div>
           <div className="header__btn-group">
-            {btns.map(btn =>
-              <BtnSmall btnType={btn.type} btnIcon={btn.icon} btnText={btn.text} mixClass='header__btn'/>
+            {btns.map((btn, idx) =>
+              <BtnSmall key={idx} type={btn.type} icon={btn.icon} text={btn.text} mixClass='header__btn' />
             )}
           </div>
         </div>
