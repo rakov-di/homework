@@ -16,9 +16,10 @@ class Header extends Component {
 
   render() {
     let titleValign, titleType, titleText, btns;
-    let location = '/build-details';
+    let location = window.location.pathname;
 
     switch (location) {
+      case '/':
       case '/start-screen':
         titleValign = 'center';
         titleType = 'title';
