@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class BtnSmall extends Component {
   render() {
     return (
-      <button className={`header__btn btn-small btn-small_type_${this.props.btnType} icon icon_${this.props.btnIcon}`}>{this.props.btnText}</button>
+      <button className={`btn-small btn-small_type_${this.props.type} icon icon_${this.props.icon} ${this.props.mixClass || ''}`}>{this.props.text}</button>
     );
   }
 }

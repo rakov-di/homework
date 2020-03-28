@@ -6,9 +6,9 @@ class Greeting extends Component {
   render() {
     return (
       <div className="greeting">
-        <Icon iconType='logo'/>
+        <Icon type='logo'/>
         <p className="greeting__description">Configure repository connection and synchronization settings</p>
-        <BtnBig btnType='primary' btnText='Open settings'/>
+        <BtnBig type='primary' text='Open settings'/>
       </div>
     );
   }

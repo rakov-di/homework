@@ -3,6 +3,7 @@ import React from 'react';
 // import './App.css';
 import Header from './components/Header/Header';
 import Greeting from './components/Greeting/Greeting';
+import Form from './components/Form/Form';
 import Footer from './components/Footer/Footer';
 import './css/style.styl';
 
@@ -13,6 +14,7 @@ function App() {
       <main className="main main_center">
         <div className="main__container">
           <Greeting />
+          <Form />
         </div>
       </main>
       <Footer />

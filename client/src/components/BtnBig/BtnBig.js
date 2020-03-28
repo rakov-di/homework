@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class BtnBig extends Component {
   render() {
     return (
-      <button className={`header__btn btn-big btn-big_type_${this.props.btnType}`}>{this.props.btnText}</button>
+      <button className={`btn-big btn-big_type_${this.props.type} ${this.props.mixClass || ''}`}>{this.props.text}</button>
     );
   }
 }

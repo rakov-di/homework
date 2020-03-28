@@ -25,9 +25,9 @@ class Header extends Component {
         titleText = 'School CI server';
         btns = [
           {
-            btnType: 'icon-text',
-            btnIcon: 'settings-before',
-            btnText: 'settings'
+            type: 'icon-text',
+            icon: 'settings-before',
+            text: 'settings'
           }
         ];
         break;
@@ -43,14 +43,14 @@ class Header extends Component {
         titleText = 'philip1967/my-awesome-repo';
         btns = [
           {
-            btnType: 'icon-text',
-            btnIcon: 'run-before',
-            btnText: 'Run build'
+            type: 'icon-text',
+            icon: 'run-before',
+            text: 'Run build'
           },
           {
-            btnType: 'only-icon',
-            btnIcon: 'settings-before',
-            btnText: ''
+            type: 'only-icon',
+            icon: 'settings-before',
+            text: ''
           }
         ];
         break;
@@ -60,14 +60,14 @@ class Header extends Component {
         titleText = 'philip1967/my-awesome-repo';
         btns = [
           {
-            btnType: 'icon-text',
-            btnIcon: 'rebuild-before',
-            btnText: 'Rebuild'
+            type: 'icon-text',
+            icon: 'rebuild-before',
+            text: 'Rebuild'
           },
           {
-            btnType: 'only-icon',
-            btnIcon: 'settings-before',
-            btnText: ''
+            type: 'only-icon',
+            icon: 'settings-before',
+            text: ''
           }
         ];
         break;
@@ -80,8 +80,8 @@ class Header extends Component {
         <div className={`header__container header__container_valign_${titleValign}`}>
           <div className={`header__${titleType}`}>{titleText}</div>
           <div className="header__btn-group">
-            {btns.map((btn) =>
-              <BtnSmall btnType={btn.btnType} btnIcon={btn.btnIcon} btnText={btn.btnText}/>
+            {btns.map(btn =>
+              <BtnSmall btnType={btn.type} btnIcon={btn.icon} btnText={btn.text} mixClass='header__btn'/>
             )}
           </div>
         </div>
