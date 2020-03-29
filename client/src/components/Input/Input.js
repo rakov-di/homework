@@ -3,16 +3,17 @@ import Icon from '../Icon/Icon';
 
 class Input extends Component {
   render() {
+    const { display, id, type, plh, isRequired, pattern } = this.props;
     return (
-      <div className={`input input_type_${this.props.display}`}>
+      <div className={`input input_type_${display}`}>
         <input className="input__field"
-               id={this.props.id}
-               type="text"
-               placeholder={this.props.plh}
-               required={this.props.isRequired}
-               maxLength={this.props.maxLength}
+               id={id}
+               type={type || "text"}
+               placeholder={plh}
+               required={isRequired}
+               pattern={pattern}
         />
-        {this.props.display === 'block' && <Icon type='clear' mixClass='input__clear'/>}
+        {display === 'block' && <Icon type='clear' mixClass='input__clear'/>}
       </div>
     );
   }

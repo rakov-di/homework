@@ -17,7 +17,7 @@ class Form extends Component {
           {this.props.inputs.map((input, idx) =>
             <div key={idx} className={`form__field form__field_direction_${input.direction}`}>
               <Label htmlFor={input.id} type='default' display={input.display} text={input.labelText} isRequired={input.isRequired} />
-              <Input id={input.id} display={input.display} plh={input.inputPlh} isRequired={input.isRequired} maxLength={input.maxLength} />
+              <Input id={input.id} display={input.display} plh={input.inputPlh} isRequired={input.isRequired} type={input.type} pattern={input.pattern}/>
               {input.labelValueText && <Label htmlFor={input.id} type='value' display={input.display} text={input.labelValueText} />}
 
             </div>

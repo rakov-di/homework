@@ -27,6 +27,7 @@ class Settings extends Component {
         id: 'command',
         display: 'block',
         labelText: 'Build command',
+        isRequired: true,
         inputPlh: 'type command'
       },
       {
@@ -42,9 +43,11 @@ class Settings extends Component {
         display: 'inline',
         labelText: 'Synchronize every',
         labelValueText: 'minutes',
-        maxLength: 3
+        type: 'number',
+        pattern: '[0-9]{,3}'
       }
     ];
+    //TODO Сделать нормальную валидацию в input
 
     const btns = {
       textPrimary: 'Save',
