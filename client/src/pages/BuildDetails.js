@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
+
+import Header from '../components/Header/Header';
 import Card from '../components/Card/Card';
 import Log from '../components/Log/Log';
+import Footer from '../components/Footer/Footer';
 
 class BuildDetails extends Component {
   render() {
+    const headerData = {
+      titleValign: 'top',
+      titleType: 'repo-title',
+      titleText: 'philip1967/my-awesome-repo',
+      btns: [
+        {
+          type: 'icon-text',
+          icon: 'rebuild-before',
+          text: 'Rebuild'
+        },
+        {
+          type: 'only-icon',
+          icon: 'settings-before',
+          text: ''
+        }
+      ]
+    };
     const data = {
       id: 1368,
         title: 'add documentation for postgres scaler',
@@ -125,10 +145,16 @@ class BuildDetails extends Component {
         + 1 hidden module
     `;
     return (
-      <>
-        <Card data={data} />
-        <Log log={log} />
-      </>
+      <div className='page'>
+        <Header data={headerData} />
+        <div className='main'>
+          <div className='main__container'>
+            <Card data={data} />
+            <Log log={log} />
+          </div>
+        </div>
+        <Footer />
+      </div>
     )
   }
 }

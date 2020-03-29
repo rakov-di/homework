@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+
+import Header from '../components/Header/Header';
 import Form from '../components/Form/Form';
+import Footer from '../components/Footer/Footer';
 
 class Settings extends Component {
   render() {
+    const headerData = {
+      titleValign: 'center',
+      titleType: 'title',
+      titleText: 'School CI server',
+      btns: []
+    };
+
     const inputs = [
       {
         direction: 'column',
@@ -42,7 +52,15 @@ class Settings extends Component {
     };
 
     return (
-      <Form inputs={inputs} btns={btns} isHeader={true} />
+      <div className='page'>
+        <Header data={headerData} />
+        <div className='main'>
+          <div className='main__container'>
+            <Form inputs={inputs} btns={btns} isHeader={true} />
+          </div>
+        </div>
+        <Footer />
+      </div>
     )
   }
 }

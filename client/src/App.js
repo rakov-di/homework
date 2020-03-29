@@ -1,13 +1,26 @@
+import './css/style.styl';
+
 import React from 'react';
 
-import Page from './components/Page/Page';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
 
-//TODO Разбить на компоненты
-import './css/style.styl';
+import StartScreen from './pages/StartScreen';
+import Settings from './pages/Settings';
+import BuildHistory from './pages/BuildHistory';
+import BuildDetails from './pages/BuildDetails';
 
 function App() {
   return (
-    <Page />
+    <Router history={history}>
+      <Switch>
+        <Route exact path='/' component={StartScreen} />
+        <Route path='/start-screen' component={StartScreen} />
+        <Route path='/settings' component={Settings} />
+        <Route path='/build-history' component={BuildHistory} />
+        <Route path='/build-details' component={BuildDetails} />
+      </Switch>
+    </Router>
   );
 }
 
