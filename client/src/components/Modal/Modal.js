@@ -6,7 +6,7 @@ import './Modal.styl';
 
 class Modal extends Component {
   render() {
-    const { handleInputChange, handlePrimaryClick, toggleBackdropVisibility } = this.props.callbacks;
+    const { handleInputChange, handlePrimaryClick, toggleBackdropVisibility } = this.props;
     const inputs = [
       {
         direction: 'column',
@@ -32,8 +32,10 @@ class Modal extends Component {
 
     return (
       <div className='modal'>
-        <div className='modal__title'>New build</div>
-        <Form inputs={inputs} btns={btns} />
+        <div className='modal__content'>
+          <div className='modal__title'>New build</div>
+          <Form inputs={inputs} btns={btns} />
+        </div>
       </div>
     );
   }

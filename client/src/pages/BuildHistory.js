@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from '../components/Header/Header';
 import CardList from '../components/CardList/CardList';
-import Backdrop from '../components/Backdrop/Backdrop';
+import Modal from '../components/Modal/Modal';
 import Footer from '../components/Footer/Footer';
 
 import { api } from '../api.js'
@@ -40,10 +40,10 @@ class BuildHistory extends Component {
         <div className='main'>
           <div className='main__container'>
             <CardList />
-            {/*TODO Возможно, по клику стоит создавать Бэкдроп с нуля, а не показывать заранее созданный*/}
-            {this.state.isBackdropShown && <Backdrop handleInputChange={this.handleInputChange.bind(this)}
-                                                     handlePrimaryClick={this.handlePrimaryClick.bind(this)}
-                                                     toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}
+            {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
+            {this.state.isBackdropShown && <Modal handleInputChange={this.handleInputChange.bind(this)}
+                                                  handlePrimaryClick={this.handlePrimaryClick.bind(this)}
+                                                  toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}
             />}
           </div>
         </div>
