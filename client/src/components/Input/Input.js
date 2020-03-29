@@ -1,3 +1,5 @@
+import './Input.styl';
+
 import React, { Component } from 'react';
 import Icon from '../Icon/Icon';
 

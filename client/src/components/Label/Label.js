@@ -1,3 +1,5 @@
+import './Label.styl';
+
 import React, { Component } from 'react';
 
 class Label extends Component {

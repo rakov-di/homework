@@ -1,4 +1,7 @@
+import './BtnBig.styl';
+
 import React, { Component } from 'react';
+
 
 class BtnBig extends Component {
   render() {

@@ -1,3 +1,5 @@
+import './Header.styl';
+
 import React, { Component } from 'react';
 import BtnSmall from '../BtnSmall/BtnSmall';
 

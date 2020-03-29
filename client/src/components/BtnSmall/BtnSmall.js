@@ -1,3 +1,5 @@
+import './BtnSmall.styl';
+
 import React, { Component } from 'react';
 
 class BtnSmall extends Component {

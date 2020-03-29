@@ -1,3 +1,5 @@
+import './CardList.styl';
+
 import React, { Component } from 'react';
 import Card from '../Card/Card';
 import BtnSmall from '../BtnSmall/BtnSmall';

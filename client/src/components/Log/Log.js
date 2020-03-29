@@ -1,3 +1,5 @@
+import './Log.styl';
+
 import React, { Component } from 'react';
 
 class Log extends Component {

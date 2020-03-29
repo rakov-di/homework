@@ -1,3 +1,5 @@
+import './IconText.styl';
+
 import React, { Component } from 'react';
 
 class IconText extends Component {

@@ -1,3 +1,5 @@
+import './Form.styl';
+
 import React, { Component } from 'react';
 import BtnBig from '../BtnBig/BtnBig';
 import Input from '../Input/Input';
