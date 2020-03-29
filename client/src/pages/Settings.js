@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
+import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
 import Form from '../components/Form/Form';
 import Footer from '../components/Footer/Footer';
+
 import { api } from '../api.js'
 
 class Settings extends Component {
@@ -75,7 +77,7 @@ class Settings extends Component {
     };
 
     return (
-      <div className='page'>
+      <Page>
         <Header data={headerData} />
         <div className='main'>
           <div className='main__container'>
@@ -83,7 +85,7 @@ class Settings extends Component {
           </div>
         </div>
         <Footer />
-      </div>
+      </Page>
     )
   }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
 import CardList from '../components/CardList/CardList';
 import Modal from '../components/Modal/Modal';
@@ -35,7 +36,7 @@ class BuildHistory extends Component {
     };
 
     return (
-      <div className='page'>
+      <Page>
         <Header data={headerData} isBackdropShown = {this.state.isBackdropShown} />
         <div className='main'>
           <div className='main__container'>
@@ -48,7 +49,7 @@ class BuildHistory extends Component {
           </div>
         </div>
         <Footer />
-      </div>
+      </Page>
     )
   }
 

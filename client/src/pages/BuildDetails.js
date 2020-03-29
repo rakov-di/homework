@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
 import Card from '../components/Card/Card';
 import Log from '../components/Log/Log';
@@ -145,7 +146,7 @@ class BuildDetails extends Component {
         + 1 hidden module
     `;
     return (
-      <div className='page'>
+      <Page>
         <Header data={headerData} />
         <div className='main'>
           <div className='main__container'>
@@ -154,7 +155,7 @@ class BuildDetails extends Component {
           </div>
         </div>
         <Footer />
-      </div>
+      </Page>
     )
   }
 }
