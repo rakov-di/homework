@@ -27,7 +27,17 @@ export const api = {
         return res;
       })
       .catch(err => console.log(err));
-  }
+  },
+
+  addCommitToQueue(commitHash, cb) {
+    debugger
+    return axiosAPI.post(`/builds/${commitHash}`)
+      .then(res => {
+        cb();
+        return res;
+      })
+      .catch(err => err);
+  },
 
   // getBuildsList(data) {
   //   return axiosAPI.get('/builds', {
@@ -45,15 +55,7 @@ export const api = {
   //     .catch(err => console.log(err));
   // },
   //
-  // postAddQueue(data) {
-  //   return axiosAPI.post(`/builds/${data.commitHash}`, {
-  //     commitMessage: data.commitMessage,
-  //     branchName: data.branchName,
-  //     authorName: data.authorName
-  //   })
-  //     .then(res => res)
-  //     .catch(err => err);
-  // },
+
   //
   // getLogs(buildId) {
   //   return axiosAPI.get(`/builds/${buildId}/logs`)

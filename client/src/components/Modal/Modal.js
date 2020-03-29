@@ -6,27 +6,29 @@ import './Modal.styl';
 
 class Modal extends Component {
   render() {
+    const { handleInputChange, handlePrimaryClick, toggleBackdropVisibility } = this.props.callbacks;
     const inputs = [
       {
         direction: 'column',
+        name: 'commitHash',
         id: 'commitHash',
         display: 'block',
         labelText: 'Enter the commit hash which you want to build.',
-        inputPlh: 'Commit hash'
+        inputPlh: 'Commit hash',
+        onChange: handleInputChange
       }
     ];
 
     const btns = {
       primary: {
         text: 'Run build',
-        cb: () => {}
+        cb: handlePrimaryClick
       },
       secondary: {
         text: 'Cancel',
-        cb: this.props.toggleBackdropVisibility
+        cb: toggleBackdropVisibility
       }
     };
-
 
     return (
       <div className='modal'>

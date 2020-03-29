@@ -5,9 +5,13 @@ import CardList from '../components/CardList/CardList';
 import Backdrop from '../components/Backdrop/Backdrop';
 import Footer from '../components/Footer/Footer';
 
+import { api } from '../api.js'
+
 class BuildHistory extends Component {
   state = {
-    isBackdropShown: false
+    isFetching: false,
+    isBackdropShown: false,
+    commitHash: ''
   };
 
   render() {
@@ -37,7 +41,10 @@ class BuildHistory extends Component {
           <div className='main__container'>
             <CardList />
             {/*TODO Возможно, по клику стоит создавать Бэкдроп с нуля, а не показывать заранее созданный*/}
-            {this.state.isBackdropShown && <Backdrop toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}/>}
+            {this.state.isBackdropShown && <Backdrop handleInputChange={this.handleInputChange.bind(this)}
+                                                     handlePrimaryClick={this.handlePrimaryClick.bind(this)}
+                                                     toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}
+            />}
           </div>
         </div>
         <Footer />
@@ -49,7 +56,31 @@ class BuildHistory extends Component {
     window.history.pushState(null, document.title, `${window.location.origin}/build-history`);
   }
 
-  toggleBackdropVisibility = (e) => {
+  handleInputChange(e) {
+    debugger
+    const { target } = e;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handlePrimaryClick() {
+    this.setState({
+      isFetching: true
+    });
+
+    api.addCommitToQueue(this.state.commitHash, () => {
+      this.setState({
+        isFetching: false
+      });
+      document.location.href = '/build-details/';
+    });
+  }
+
+  toggleBackdropVisibility() {
     this.setState({
       isBackdropShown: !this.state.isBackdropShown
     });
