@@ -44,22 +44,6 @@ class App extends Component {
         settings: data.data
       })
     });
-    // fetch('http://localhost:5000/api/settings', {
-    //   method: 'get',
-    //   credentials: 'same-origin',
-    // })
-    //   .then(response => {
-    //     if (response.ok) return response.json();
-    //   })
-    //   .then(data => {
-    //     this.setState({
-    //       fetchEnded: true,
-    //       settings: data.data
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.message);
-    //   });
   }
 }
 

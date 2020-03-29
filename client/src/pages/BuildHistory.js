@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
+import Main from '../components/Main/Main';
 import CardList from '../components/CardList/CardList';
 import Modal from '../components/Modal/Modal';
 import Footer from '../components/Footer/Footer';
@@ -38,16 +39,14 @@ class BuildHistory extends Component {
     return (
       <Page>
         <Header data={headerData} isBackdropShown = {this.state.isBackdropShown} />
-        <div className='main'>
-          <div className='main__container'>
-            <CardList />
-            {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
-            {this.state.isBackdropShown && <Modal handleInputChange={this.handleInputChange.bind(this)}
-                                                  handlePrimaryClick={this.handlePrimaryClick.bind(this)}
-                                                  toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}
-            />}
-          </div>
-        </div>
+        <Main>
+          <CardList />
+          {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
+          {this.state.isBackdropShown && <Modal handleInputChange={this.handleInputChange.bind(this)}
+                                                handlePrimaryClick={this.handlePrimaryClick.bind(this)}
+                                                toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}
+          />}
+        </Main>
         <Footer />
       </Page>
     )

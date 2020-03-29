@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
+import Main from '../components/Main/Main';
 import Greeting from '../components/Greeting/Greeting';
 import Footer from '../components/Footer/Footer';
 
@@ -24,11 +25,9 @@ class StartScreen extends Component {
     return (
       <Page>
         <Header data={headerData} />
-        <div className='main main_center'>
-          <div className='main__container'>
-            <Greeting />
-          </div>
-        </div>
+        <Main position='main_center'>
+          <Greeting />
+        </Main>
         <Footer />
       </Page>
     )

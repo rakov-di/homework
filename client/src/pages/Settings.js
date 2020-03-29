@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
+import Main from '../components/Main/Main';
 import Form from '../components/Form/Form';
 import Footer from '../components/Footer/Footer';
 
@@ -79,11 +80,9 @@ class Settings extends Component {
     return (
       <Page>
         <Header data={headerData} />
-        <div className='main'>
-          <div className='main__container'>
-            <Form isHeader={true} inputs={inputs} btns={btns} isFetching={this.state.isFetching} />
-          </div>
-        </div>
+        <Main>
+          <Form isHeader={true} inputs={inputs} btns={btns} isFetching={this.state.isFetching} />
+        </Main>
         <Footer />
       </Page>
     )

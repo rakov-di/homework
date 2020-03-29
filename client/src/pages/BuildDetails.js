@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
+import Main from '../components/Main/Main';
 import Card from '../components/Card/Card';
 import Log from '../components/Log/Log';
 import Footer from '../components/Footer/Footer';
@@ -148,12 +149,10 @@ class BuildDetails extends Component {
     return (
       <Page>
         <Header data={headerData} />
-        <div className='main'>
-          <div className='main__container'>
-            <Card data={data} />
-            <Log log={log} />
-          </div>
-        </div>
+        <Main>
+          <Card data={data} />
+          <Log log={log} />
+        </Main>
         <Footer />
       </Page>
     )
