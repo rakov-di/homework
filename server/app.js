@@ -28,6 +28,12 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 app.use((err, req, res, next) => {
   console.error(err);
 });
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 // Получение сохраненных настроек репозитория
 app.get('/api/settings', (req, res, next) => {
@@ -154,7 +160,7 @@ app.get('/api/test', (req, res, next) => {
     });
 });
 
-app.listen(3000);
+app.listen(5000);
 
 
 
