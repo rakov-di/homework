@@ -1,0 +1,23 @@
+.loader
+  width: 100%
+
+  &::before
+    position: absolute
+    left: 50%
+    top: 50%
+    content: ''
+    display: block
+    width: 24px
+    height: 24px
+    margin-left: -12px
+    margin-top: -12px
+    border: 3px solid var(--cLoader)
+    border-left-color: transparent
+    border-radius: 50%
+    animation: rotating 1s linear infinite
+
+@keyframes rotating
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
