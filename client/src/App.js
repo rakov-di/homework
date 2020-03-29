@@ -11,6 +11,8 @@ import BuildHistory from './pages/BuildHistory';
 import BuildDetails from './pages/BuildDetails';
 import Loader from './components/Loader/Loader';
 
+import { api } from './api.js';
+
 class App extends Component {
   state = {
     fetchEnded: false,
@@ -36,23 +38,28 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/settings', {
-      method: 'get',
-      credentials: 'same-origin',
-    })
-      .then(response => {
-        if (response.ok) {
-          response.json().then(data => {
-            this.setState({
-              fetchEnded: true,
-              settings: data.data
-            })
-          });
-        }
+    api.getSettings((data) => {
+      this.setState({
+        fetchEnded: true,
+        settings: data.data
       })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    });
+    // fetch('http://localhost:5000/api/settings', {
+    //   method: 'get',
+    //   credentials: 'same-origin',
+    // })
+    //   .then(response => {
+    //     if (response.ok) return response.json();
+    //   })
+    //   .then(data => {
+    //     this.setState({
+    //       fetchEnded: true,
+    //       settings: data.data
+    //     })
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //   });
   }
 }
 

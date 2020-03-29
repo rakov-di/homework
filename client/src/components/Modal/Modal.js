@@ -17,15 +17,21 @@ class Modal extends Component {
     ];
 
     const btns = {
-      textPrimary: 'Run build',
-      textSecondary: 'Cancel',
-      clickSecondary: this.props.toggleBackdropVisibility
+      primary: {
+        text: 'Run build',
+        cb: () => {}
+      },
+      secondary: {
+        text: 'Cancel',
+        cb: this.props.toggleBackdropVisibility
+      }
     };
+
 
     return (
       <div className='modal'>
         <div className='modal__title'>New build</div>
-        <Form inputs={inputs} btns={btns}/>
+        <Form inputs={inputs} btns={btns} />
       </div>
     );
   }

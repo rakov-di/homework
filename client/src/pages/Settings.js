@@ -3,8 +3,14 @@ import React, { Component } from 'react';
 import Header from '../components/Header/Header';
 import Form from '../components/Form/Form';
 import Footer from '../components/Footer/Footer';
+import { api } from '../api.js'
 
 class Settings extends Component {
+  state = {
+    isFetching: false,
+    settings: {}
+  };
+
   render() {
     const headerData = {
       titleValign: 'center',
@@ -16,42 +22,56 @@ class Settings extends Component {
     const inputs = [
       {
         direction: 'column',
+        name: 'repoName',
         id: 'repo',
         display: 'block',
         labelText: 'GitHub repository',
         isRequired: true,
-        inputPlh: 'user-name/repo-name'
+        inputPlh: 'user-name/repo-name',
+        onChange: this.handleInputChange.bind(this)
       },
       {
         direction: 'column',
+        name: 'buildCommand',
         id: 'command',
         display: 'block',
         labelText: 'Build command',
         isRequired: true,
-        inputPlh: 'type command'
+        inputPlh: 'type command',
+        onChange: this.handleInputChange.bind(this)
       },
       {
         direction: 'column',
+        name: 'mainBranch',
         id: 'branch',
         display: 'block',
         labelText: 'Main branch',
-        inputPlh: 'type branch'
+        inputPlh: 'type branch',
+        onChange: this.handleInputChange.bind(this)
       },
       {
         direction: 'row',
+        name: 'period',
         id: 'minutes',
         display: 'inline',
         labelText: 'Synchronize every',
         labelValueText: 'minutes',
         type: 'number',
-        pattern: '[0-9]{,3}'
+        pattern: '[0-9]{,3}',
+        onChange: this.handleInputChange.bind(this)
       }
     ];
     //TODO Сделать нормальную валидацию в input
 
     const btns = {
-      textPrimary: 'Save',
-      textSecondary: 'Cancel'
+      primary: {
+        text: 'Save',
+        cb: this.handlePrimaryClick.bind(this)
+      },
+      secondary: {
+        text: 'Cancel',
+        cb: this.handleSecondaryClick.bind(this)
+      }
     };
 
     return (
@@ -59,12 +79,41 @@ class Settings extends Component {
         <Header data={headerData} />
         <div className='main'>
           <div className='main__container'>
-            <Form inputs={inputs} btns={btns} isHeader={true} />
+            <Form isHeader={true} inputs={inputs} btns={btns} isFetching={this.state.isFetching} />
           </div>
         </div>
         <Footer />
       </div>
     )
+  }
+
+  handleInputChange(e) {
+    const { target } = e;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      settings: {
+        ...this.state.settings,
+        [name]: value
+      }
+    });
+  }
+
+  handlePrimaryClick() {
+    this.setState({
+      isFetching: true
+    });
+
+    api.updateSettings(this.state.settings, () => {
+      this.setState({
+        isFetching: false
+      });
+    });
+  }
+
+  handleSecondaryClick() {
+    document.location.href = '/start-screen';
   }
 }
 

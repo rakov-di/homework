@@ -52,12 +52,22 @@ app.get('/api/settings', (req, res, next) => {
 // и создается такая же папка, но уже с новым репозиторием
 // При этом возникает ошибка - надо разбираться
 app.post('/api/settings', (req, res, next) => {
-  console.log(req.body);
-  console.log(req.params);
+  // console.log(req.body + 'crab1');
+  // console.log(JSON.parse(req.body) + 'crab1');
+  // console.log(req.body.repoName + 'crab');
+  // console.log(req.body.buildCommand + 'crab');
+  // console.log(req.body.mainBranch + 'crab');
+  // console.log(req.body.period + 'crab');
+  // console.log(req.params + 'crab');
+  // // console.log(JSON.parse(req.params) + 'crab');
+  // console.log(req.params.repoName + 'crab');
+  // console.log(req.params.buildCommand + 'crab');
+  // console.log(req.params.mainBranch + 'crab');
+  // console.log(req.params.period + 'crab');
   api.post('/conf', {
     "repoName": req.body.repoName,
     "buildCommand": req.body.buildCommand,
-    "mainBranch": req.body.mainBranch,
+    "mainBranch": req.body.mainBranch || 'master',
     "period": +req.body.period
   })
     .then(() => {
