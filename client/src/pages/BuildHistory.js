@@ -45,6 +45,10 @@ class BuildHistory extends Component {
     )
   }
 
+  componentDidMount() {
+    window.history.pushState(null, document.title, `${window.location.origin}/build-history`);
+  }
+
   toggleBackdropVisibility = (e) => {
     this.setState({
       isBackdropShown: !this.state.isBackdropShown
