@@ -8,9 +8,14 @@ class Greeting extends Component {
       <div className="greeting">
         <Icon type='logo'/>
         <p className="greeting__description">Configure repository connection and synchronization settings</p>
-        <BtnBig type='primary' text='Open settings'/>
+        <BtnBig type='primary' text='Open settings' onClick={this.goToSettings.bind(this)}/>
       </div>
     );
+  }
+
+  // TODO Может, расширить компонет BtnBig и сделать переход через css-ссылку
+  goToSettings() {
+    document.location.href = '/settings';
   }
 }
 
