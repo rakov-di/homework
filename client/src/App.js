@@ -28,7 +28,7 @@ class App extends Component {
             <Route path='/start-screen' component={this.state.settings ? BuildHistory : StartScreen} />
             <Route path='/settings' component={Settings} />
             <Route path='/build-history' component={BuildHistory} />
-            <Route path='/build-details' component={BuildDetails} />
+            <Route path='/build/:buildId' component={BuildDetails} />
           </Switch>
         ) : (
           <Loader />

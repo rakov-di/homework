@@ -6,8 +6,8 @@ class Card extends Component {
     let { buildNumber, commitMessage, branchName, commitHash, authorName, status, date, time } = this.props.build;
     date = date || '--.--.--';
     time = time || '--:--';
-    status = status.toLowerCase();
-    commitHash = commitHash.slice(0, 7);
+    status = status && status.toLowerCase();
+    commitHash = commitHash && commitHash.slice(0, 7);
     return (
       <div className={`card card_type_common card_status_${status}`}>
         <div className="card__icon"></div>

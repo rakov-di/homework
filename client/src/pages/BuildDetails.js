@@ -7,7 +7,22 @@ import Card from '../components/Card/Card';
 import Log from '../components/Log/Log';
 import Footer from '../components/Footer/Footer';
 
+import { api } from '../api.js'
+
 class BuildDetails extends Component {
+  state = {
+    curBuild: {
+      buildNumber: null,
+      commitMessage: null,
+      branchName: null,
+      commitHash: null,
+      authorName: null,
+      status: null,
+      date: null,
+      time: null
+    }
+  };
+
   render() {
     const headerData = {
       titleValign: 'top',
@@ -26,16 +41,16 @@ class BuildDetails extends Component {
         }
       ]
     };
-    const data = {
-      id: 1368,
-        title: 'add documentation for postgres scaler',
-      status: 'done',
-      branch: 'master',
-      commitHash: '9c9f0b9',
-      author: 'Philip Kirkorov',
-      date: '21 янв, 03:06',
-      time: '1 ч 20 мин'
-    };
+    // const data = {
+    //   id: 1368,
+    //     title: 'add documentation for postgres scaler',
+    //   status: 'done',
+    //   branch: 'master',
+    //   commitHash: '9c9f0b9',
+    //   author: 'Philip Kirkorov',
+    //   date: '21 янв, 03:06',
+    //   time: '1 ч 20 мин'
+    // };
     const log = `
 > webpack --env=development --watch
 
@@ -150,12 +165,22 @@ class BuildDetails extends Component {
       <Page>
         <Header data={headerData} />
         <Main>
-          <Card data={data} />
+          <Card build={this.state.curBuild} />
           <Log log={log} />
         </Main>
         <Footer />
       </Page>
     )
+  }
+
+  componentDidMount() {
+    const buildId = window.location.pathname.split('/').reverse()[0];
+    api.getBuildDetails(buildId, (data) => {
+      debugger
+      this.setState({
+        curBuild: data
+      })
+    });
   }
 }
 

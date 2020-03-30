@@ -30,7 +30,6 @@ export const api = {
   },
 
   addCommitToQueue(commitHash, cb) {
-    debugger
     return axiosAPI.post(`/builds/${commitHash}`)
       .then(res => {
         cb();
@@ -47,12 +46,15 @@ export const api = {
       })
       .catch(err => console.log(err));
   },
-  //
-  // getDetailsBuild(buildId) {
-  //   return axiosAPI.get(`/builds/${buildId}`)
-  //     .then(res => res)
-  //     .catch(err => console.log(err));
-  // },
+
+  getBuildDetails(buildId, cb) {
+    return axiosAPI.get(`/builds/${buildId}`)
+      .then(res => {
+        cb(res.data.data);
+        return res;
+      })
+      .catch(err => console.log(err));
+  },
   //
 
   //
