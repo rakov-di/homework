@@ -23,7 +23,7 @@
     & ^[0]__separator
       display: block
 
-  &_status_done
+  &_status_success
 
     & ^[0]__task-num
       color: var(--cTaskDone)
@@ -34,7 +34,8 @@
       @media only screen and (max-width: $bpMobilePageBuild)
         @extend $icon_done-mobile
 
-  &_status_wait
+  &_status_waiting
+  &_status_inprogress
 
     & ^[0]__task-num
       color: var(--cTaskWait)
@@ -46,6 +47,7 @@
         @extend $icon_wait-mobile
 
   &_status_fail
+  &_status_canceled
 
     & ^[0]__task-num
       color: var(--cTaskFail)
@@ -100,6 +102,9 @@
   &__title
     display: inline-block
     @extend $text_task-title
+    //text-overflow: ellipsis;
+    //white-space: nowrap; /* Отменяем перенос текста */
+    //overflow: hidden
 
     @media only screen and (max-width: $bpMobilePageBuild)
       margin-bottom: var(--p-xxs)

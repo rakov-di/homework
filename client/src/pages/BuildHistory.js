@@ -13,7 +13,8 @@ class BuildHistory extends Component {
   state = {
     isFetching: false,
     isBackdropShown: false,
-    commitHash: ''
+    commitHash: '',
+    builds: []
   };
 
   render() {
@@ -40,7 +41,7 @@ class BuildHistory extends Component {
       <Page>
         <Header data={headerData} isBackdropShown = {this.state.isBackdropShown} />
         <Main>
-          <CardList />
+          <CardList builds={this.state.builds}/>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
           {this.state.isBackdropShown && <Modal handleInputChange={this.handleInputChange.bind(this)}
                                                 handlePrimaryClick={this.handlePrimaryClick.bind(this)}
@@ -54,10 +55,17 @@ class BuildHistory extends Component {
 
   componentDidMount() {
     window.history.pushState(null, document.title, `${window.location.origin}/build-history`);
+
+    api.getBuildsList((builds) => {
+      this.setState({
+        builds: builds
+      })
+    });
   }
 
+
+
   handleInputChange(e) {
-    debugger
     const { target } = e;
     const value = target.value;
     const name = target.name;

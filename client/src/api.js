@@ -39,15 +39,14 @@ export const api = {
       .catch(err => err);
   },
 
-  // getBuildsList(data) {
-  //   return axiosAPI.get('/builds', {
-  //     params: {
-  //       limit: data
-  //     }
-  //   })
-  //     .then(res => res)
-  //     .catch(err => console.log(err));
-  // },
+  getBuildsList(cb) {
+    return axiosAPI.get('/builds')
+      .then(res => {
+        cb(res.data.data);
+        return res;
+      })
+      .catch(err => console.log(err));
+  },
   //
   // getDetailsBuild(buildId) {
   //   return axiosAPI.get(`/builds/${buildId}`)
