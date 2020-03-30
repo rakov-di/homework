@@ -1,0 +1,26 @@
+
+> shri2020_task2@1.0.0 build_prod /Users/notebook/Documents/Projects/shri_hometask1/server/local_repo
+> NODE_ENV=production ./node_modules/.bin/webpack
+
+Hash: ae536e09519466679ce7
+Version: webpack 4.41.5
+Time: 7424ms
+Built at: 03/30/2020 10:39:42 PM
+             Asset       Size  Chunks             Chunk Names
+    checkReduce.js   35.3 KiB       0  [emitted]  checkReduce
+checkReduceSync.js   11.1 KiB       1  [emitted]  checkReduceSync
+        index.html  497 bytes          [emitted]  
+         reduce.js     41 KiB       2  [emitted]  reduce
+     reduceSync.js   1.28 KiB       3  [emitted]  reduceSync
+  shri-async-hw.js   17.7 KiB       4  [emitted]  shri-async-hw
+Entrypoint reduce = reduce.js
+Entrypoint checkReduce = checkReduce.js
+Entrypoint reduceSync = reduceSync.js
+Entrypoint checkReduceSync = checkReduceSync.js
+Entrypoint shri-async-hw = shri-async-hw.js
+[110] ./js/reduce.js 10.2 KiB {2} [built]
+[117] ./js/checkReduce.js 7.78 KiB {0} [built]
+[120] ./js/reduceSync.js 1.46 KiB {3} [built]
+[121] ./js/checkReduceSync.js 1.88 KiB {1} [built]
+[122] ./js/shri-async-hw.js 2.45 KiB {4} [built]
+    + 122 hidden modules

@@ -4,6 +4,8 @@ const https = require('https');
 const express = require('express');
 const axios = require('axios');
 
+const fs = require('fs');
+
 const { cloneRepo, updateRepoStory, getCommitInfo } = require('./repo');
 const buildLogs = require('./buildLogs');
 
@@ -135,13 +137,16 @@ app.get('/api/builds/:buildId/logs', (req, res, next) => {
   else {
     api.get('/build/log?buildId=' + req.params.buildId)
       .then((response) => {
-        if (!response.data) {
-          res.send(String(`Лога для сборки ${req.params.buildId} нет`))
-        }
-        else {
-          buildLogs.set(req.params.buildId, response.data);
-          res.send(response.data);
-        }
+        fs.readFile('testBuildLog.txt', null, (err, contents) => {
+          buildLogs.set(req.params.buildId, contents);
+          res.send(contents);
+        });
+        // TODO Заменить вышестоящую заглушка на реальные логи
+        // if (!response.data) {
+        //   res.send(String(`Лога для сборки ${req.params.buildId} нет`))
+        // }
+        // else {
+        // }
       })
       .catch((error) => {
         console.error('=====' + error);

@@ -47,21 +47,16 @@ export const api = {
       .catch(err => console.log(err));
   },
 
-  getBuildDetails(buildId, cb) {
+  getBuildDetails(buildId) {
     return axiosAPI.get(`/builds/${buildId}`)
-      .then(res => {
-        cb(res.data.data);
-        return res;
-      })
+      .then(res => res)
       .catch(err => console.log(err));
   },
-  //
 
-  //
-  // getLogs(buildId) {
-  //   return axiosAPI.get(`/builds/${buildId}/logs`)
-  //     .then(res => res)
-  //     .catch(err => console.log(err));
-  // },
+  getBuildLog(buildId) {
+    return axiosAPI.get(`/builds/${buildId}/logs`)
+      .then(res => res)
+      .catch(err => console.log(err));
+  },
 
 };
