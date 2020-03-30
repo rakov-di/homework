@@ -10,14 +10,14 @@ class Card extends Component {
     // TODO вынести это из рендера
     let { status, buildNumber, commitMessage, branchName, commitHash, authorName, start, duration } = this.props.build;
 
-    start = start ? format(Date.parse(start), 'd MMM HH:s', {locale: ru}) : '--.--.--';
+    start = start ? format(Date.parse(start), 'd MMM HH:s', {locale: ru}) : '––––––––––';
 
     if (duration) {
       const hours = Math.floor(duration / 3600000);
       duration = `${hours} ч ${Math.floor((duration - (hours * 3600000)) / 60000)} мин`
     }
     else {
-      duration = '--:--';
+      duration = '––––––––––';
     }
     status = status && status.toLowerCase();
     commitHash = commitHash && commitHash.slice(0, 7);
