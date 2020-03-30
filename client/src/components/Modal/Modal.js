@@ -31,13 +31,19 @@ class Modal extends Component {
     };
 
     return (
-      <div className='modal'>
+      <div className='modal' onClick={this.handleClickModal.bind(this)}>
         <div className='modal__content'>
           <div className='modal__title'>New build</div>
           <Form inputs={inputs} btns={btns} />
         </div>
       </div>
     );
+  }
+
+  handleClickModal(e) {
+    if (e.target.classList.contains('modal')) {
+      this.props.toggleBackdropVisibility()
+    }
   }
 }
 
