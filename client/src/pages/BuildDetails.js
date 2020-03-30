@@ -18,8 +18,8 @@ class BuildDetails extends Component {
       commitHash: null,
       authorName: null,
       status: null,
-      date: null,
-      time: null
+      start: null,
+      duration: null
     }
   };
 
@@ -41,16 +41,7 @@ class BuildDetails extends Component {
         }
       ]
     };
-    // const data = {
-    //   id: 1368,
-    //     title: 'add documentation for postgres scaler',
-    //   status: 'done',
-    //   branch: 'master',
-    //   commitHash: '9c9f0b9',
-    //   author: 'Philip Kirkorov',
-    //   date: '21 янв, 03:06',
-    //   time: '1 ч 20 мин'
-    // };
+
     const log = `
 > webpack --env=development --watch
 
@@ -176,7 +167,6 @@ class BuildDetails extends Component {
   componentDidMount() {
     const buildId = window.location.pathname.split('/').reverse()[0];
     api.getBuildDetails(buildId, (data) => {
-      debugger
       this.setState({
         curBuild: data
       })

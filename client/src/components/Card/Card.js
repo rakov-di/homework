@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import IconText from '../IconText/IconText';
 
+import { format } from 'date-fns'
+import { ru } from 'date-fns/locale'
+
 class Card extends Component {
+
   render() {
-    let { buildNumber, commitMessage, branchName, commitHash, authorName, status, date, time } = this.props.build;
-    date = date || '--.--.--';
-    time = time || '--:--';
+    // TODO вынести это из рендера
+    let { status, buildNumber, commitMessage, branchName, commitHash, authorName, start, duration } = this.props.build;
+
+    start = start ? format(Date.parse(start), 'd MMM HH:s', {locale: ru}) : '--.--.--';
+
+    if (duration) {
+      const hours = Math.floor(duration / 3600000);
+      duration = `${hours} ч ${Math.floor((duration - (hours * 3600000)) / 60000)} мин`
+    }
+    else {
+      duration = '--:--';
+    }
     status = status && status.toLowerCase();
     commitHash = commitHash && commitHash.slice(0, 7);
+
+
     return (
       <div className={`card card_type_common card_status_${status}`}>
         <div className="card__icon"></div>
@@ -24,8 +39,8 @@ class Card extends Component {
           </div>
           <div className="card__separator"></div>
           <div className="card__time card__time_vertical">
-            <IconText icon='calendar' textPrimary={date} mixClass='card__icon-text' />
-            <IconText icon='stopwatch' textPrimary={time} mixClass='card__icon-text' />
+            <IconText icon='calendar' textPrimary={start} mixClass='card__icon-text' />
+            <IconText icon='stopwatch' textPrimary={duration} mixClass='card__icon-text' />
           </div>
         </div>
       </div>
