@@ -85,7 +85,6 @@ class BuildHistory extends Component {
         isFetching: false
       });
 
-      debugger
       const build = this.state.builds.find(build => build.commitHash === this.state.commitHash);
       document.location.href = `/build/${build.id}`;
     });

@@ -12,6 +12,7 @@ import { api } from '../api.js'
 class BuildDetails extends Component {
   state = {
     curBuild: {
+      id: null,
       buildNumber: null,
       commitMessage: null,
       branchName: null,
@@ -20,7 +21,8 @@ class BuildDetails extends Component {
       status: null,
       start: null,
       duration: null
-    }
+    },
+    curBuildLog: ''
   };
 
   render() {
@@ -32,7 +34,8 @@ class BuildDetails extends Component {
         {
           type: 'icon-text',
           icon: 'rebuild-before',
-          text: 'Rebuild'
+          text: 'Rebuild',
+          onClick: this.handleRebuildClick.bind(this)
         },
         {
           type: 'only-icon',
@@ -157,7 +160,7 @@ class BuildDetails extends Component {
         <Header data={headerData} />
         <Main>
           <Card build={this.state.curBuild} />
-          <Log log={log} />
+          {this.state.curBuildLog && <Log log={log} />}
         </Main>
         <Footer />
       </Page>
@@ -170,6 +173,13 @@ class BuildDetails extends Component {
       this.setState({
         curBuild: data
       })
+    });
+  }
+
+  // TODO унифицировать с аналогичной функцией в BuildHistory
+  handleRebuildClick() {
+    api.addCommitToQueue(this.state.curBuild.commitHash, () => {
+      document.location.href = `/build/${this.state.curBuild.id}`;
     });
   }
 }
