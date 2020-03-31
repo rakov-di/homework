@@ -47,7 +47,8 @@ class BuildDetails extends Component {
         {
           type: 'only-icon',
           icon: 'settings-before',
-          text: ''
+          text: '',
+          onClick: this.goToPageSettings.bind(this)
         }
       ]
     };
@@ -88,6 +89,10 @@ class BuildDetails extends Component {
     api.addCommitToQueue(this.state.curBuild.commitHash, () => {
       document.location.href = `/build/${this.state.curBuild.id}`;
     });
+  }
+
+  goToPageSettings() {
+    document.location.href = '/settings'
   }
 }
 

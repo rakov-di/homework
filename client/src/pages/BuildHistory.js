@@ -36,7 +36,8 @@ class BuildHistory extends Component {
         {
           type: 'only-icon',
           icon: 'settings-before',
-          text: ''
+          text: '',
+          onClick: this.goToPageSettings.bind(this)
         }
       ]
     };
@@ -93,11 +94,6 @@ class BuildHistory extends Component {
     });
   }
 
-  // handlePrimarySubmit(e) {
-  //   e.preventDefault();
-  //   this.handlePrimaryClick()
-  // }
-
   handlePrimaryClick() {
     this.setState({
       isFetching: true
@@ -124,6 +120,10 @@ class BuildHistory extends Component {
       isBackdropShown: !this.state.isBackdropShown,
       isErrorOnFormSubmit: false
     });
+  }
+
+  goToPageSettings() {
+    document.location.href = '/settings'
   }
 }
 
