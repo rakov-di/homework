@@ -13,12 +13,13 @@ class Header extends Component {
           <div className={`header__${data.title.type}`}>{data.title.text}</div>
           <div className="header__btn-group">
             {data.btns.map((btn, idx) =>
-              <BtnSmall key={idx}
-                        type={btn.type}
-                        icon={btn.icon}
-                        text={btn.text}
-                        mixClass='header__btn'
-                        onClick={btn.onClick}
+              <BtnSmall
+                key={idx}
+                type={btn.type}
+                icon={btn.icon}
+                text={btn.text}
+                mixClass='header__btn'
+                onClick={btn.onClick}
               />
             )}
           </div>

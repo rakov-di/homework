@@ -6,7 +6,6 @@ import './Modal.styl';
 
 class Modal extends Component {
   render() {
-
     return (
       <div className='modal' onClick={this.handleClickModal.bind(this)}>
         <div className='modal__content'>

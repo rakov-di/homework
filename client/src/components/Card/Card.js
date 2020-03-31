@@ -22,7 +22,6 @@ class Card extends Component {
     status = status && status.toLowerCase();
     commitHash = commitHash && commitHash.slice(0, 7);
 
-
     return (
       <div className={`card card_type_common card_status_${status}`}>
         <div className="card__icon"></div>

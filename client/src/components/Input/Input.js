@@ -4,11 +4,12 @@ import React, { Component } from 'react';
 import Icon from '../Icon/Icon';
 
 class Input extends Component {
-  state = {
-    value: this.props.value
-  };
   render() {
-    const { display, name, id, type, plh, isRequired, isInvalid, pattern, onInput, onChange, onFocus, errorMsg, clearInput } = this.props;
+    const {
+      display, name, id, type, plh, isRequired, isInvalid, pattern,
+      onInput, onChange, onFocus, errorMsg, clearInput
+    } = this.props;
+
     return (
       <div className={`input input_type_${display} ${isInvalid && 'input_invalid'}`}>
         <input

@@ -15,7 +15,6 @@ class Greeting extends Component {
     );
   }
 
-  // TODO Может, расширить компонет BtnBig и сделать переход через css-ссылку
   goToSettings() {
     document.location.href = '/settings';
   }
