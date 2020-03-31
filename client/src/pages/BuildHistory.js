@@ -15,14 +15,17 @@ class BuildHistory extends Component {
     isBackdropShown: false,
     commitHash: '',
     builds: [],
+    settings: {},
     isErrorOnFormSubmit: false
   };
 
   render() {
     const headerData = {
-      titleValign: 'top',
-      titleType: 'repo-title',
-      titleText: 'philip1967/my-awesome-repo',
+      title: {
+        valign: 'top',
+        type: 'repo-title',
+        text: this.state.settings.repoName || ''
+      },
       btns: [
         {
           type: 'icon-text',
@@ -59,11 +62,19 @@ class BuildHistory extends Component {
   componentDidMount() {
     window.history.pushState(null, document.title, `${window.location.origin}/build-history`);
 
-    api.getBuildsList((builds) => {
-      this.setState({
-        builds: builds
+    // Запрашиваем getSettings, чтобы получить имя репозитория (для вывода в Header)
+    Promise.all([
+      api.getSettings(),
+      api.getBuildsList()
+    ])
+      .then(([settings, builds]) => {
+        this.setState({
+          settings: settings.data.data,
+          builds: builds.data.data
+        })
       })
-    });
+      .catch(err => console.error(err));
+
   }
 
   handleInputFocus(e) {

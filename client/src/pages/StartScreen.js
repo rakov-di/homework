@@ -10,9 +10,11 @@ class StartScreen extends Component {
 
   render() {
     const headerData = {
-      titleValign: 'center',
-      titleType: 'title',
-      titleText: 'School CI server',
+      title: {
+        valign: 'center',
+        type: 'title',
+        text: 'School CI server',
+      },
       btns: [
         {
           type: 'icon-text',

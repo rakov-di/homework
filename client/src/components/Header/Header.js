@@ -9,8 +9,8 @@ class Header extends Component {
 
     return (
       <header className="header">
-        <div className={`header__container header__container_valign_${data.titleValign}`}>
-          <div className={`header__${data.titleType}`}>{data.titleText}</div>
+        <div className={`header__container header__container_valign_${data.title.valign}`}>
+          <div className={`header__${data.title.type}`}>{data.title.text}</div>
           <div className="header__btn-group">
             {data.btns.map((btn, idx) =>
               <BtnSmall key={idx}

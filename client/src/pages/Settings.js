@@ -20,9 +20,11 @@ class Settings extends Component {
 
   render() {
     const headerData = {
-      titleValign: 'center',
-      titleType: 'title',
-      titleText: 'School CI server',
+      title: {
+        valign: 'center',
+        type: 'title',
+        text: 'School CI server',
+      },
       btns: []
     };
 
@@ -128,7 +130,6 @@ class Settings extends Component {
 
   // handlePrimarySubmit(e) {
   //   // e.preventDefault();
-  //   debugger
   //   this.handlePrimaryClick(e);
   // }
 

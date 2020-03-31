@@ -9,7 +9,7 @@ export const api = {
   getSettings(cb) {
     return axiosAPI.get('/settings')
       .then(res => {
-        cb(res);
+        cb && cb(res);
         return res;
       })
       .catch(err => console.error(err.message));
@@ -23,7 +23,7 @@ export const api = {
       period: Number(data.period)
     })
       .then(res => {
-        cb();
+        cb && cb();
         return res;
       })
       .catch(err => console.error(err.message));
@@ -32,13 +32,14 @@ export const api = {
   addCommitToQueue(commitHash, cb) {
     return axiosAPI.post(`/builds/${commitHash}`)
       .then(res => {
-        cb({
+        cb && cb({
           status: 'ok',
-          res: res});
+          res: res
+        });
         return res;
       })
       .catch(err => {
-        cb({
+        cb && cb({
           status: 'error',
           err: err
         });
@@ -49,7 +50,7 @@ export const api = {
   getBuildsList(cb) {
     return axiosAPI.get('/builds')
       .then(res => {
-        cb(res.data.data);
+        cb && cb(res.data.data);
         return res;
       })
       .catch(err => console.error(err.message));

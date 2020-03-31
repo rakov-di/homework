@@ -26,14 +26,17 @@ class BuildDetails extends Component {
       start: null,
       duration: null
     },
-    curBuildLog: ''
+    curBuildLog: '',
+    settings: {}
   };
 
   render() {
     const headerData = {
-      titleValign: 'top',
-      titleType: 'repo-title',
-      titleText: 'philip1967/my-awesome-repo',
+      title: {
+        valign: 'top',
+        type: 'repo-title',
+        text: this.state.settings.repoName || ''
+      },
       btns: [
         {
           type: 'icon-text',
@@ -63,15 +66,21 @@ class BuildDetails extends Component {
 
   componentDidMount() {
     const buildId = window.location.pathname.split('/').reverse()[0];
+
+    // Запрашиваем getSettings, чтобы получить имя репозитория (для вывода в Header)
     Promise.all([
+      api.getSettings(),
       api.getBuildDetails(buildId),
       api.getBuildLog(buildId)
-    ]).then(([build, log]) => {
-      this.setState({
-        curBuild: build.data.data,
-        curBuildLog: convert.toHtml(log.data)
-    })
-    });
+    ])
+      .then(([settings, build, log]) => {
+        this.setState({
+          settings: settings.data.data,
+          curBuild: build.data.data,
+          curBuildLog: convert.toHtml(log.data)
+        })
+      })
+      .catch(err => console.error(err));
   }
 
   // TODO унифицировать с аналогичной функцией в BuildHistory
