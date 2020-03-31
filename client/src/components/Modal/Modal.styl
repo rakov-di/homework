@@ -10,13 +10,13 @@
   z-index: 235
   animation: 0.3s ease-out 0s 1 normal none running backdropAnimation
   background-color: rgba(0, 0, 0, 0.6)
-  // backdrop-filter: blur(3px)
+  backdrop-filter: blur(3px)
 
   &__content
     position: fixed
     left: 50%
     top: 50%
-    width: 100%
+    width: 90%
     max-width: 485px
     padding: 20px
     border-radius: var(--br-s)
@@ -27,7 +27,8 @@
   &__title
     @extend $title_modal
 
-  // TODO Переделать этот костыль, чтоб было по БЭМ
+  // TODO Переделать этот костыль, а то не по БЭМ получается
+  // (но вообще-то лучше переделать дизайн)
   & .form__field
     padding: 0
 
