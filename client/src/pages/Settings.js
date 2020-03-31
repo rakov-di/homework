@@ -128,16 +128,11 @@ class Settings extends Component {
     });
   }
 
-  // handlePrimarySubmit(e) {
-  //   // e.preventDefault();
-  //   this.handlePrimaryClick(e);
-  // }
-
   handlePrimaryClick(e) {
     if (!this.state.settings.repoName) {
       this.setState({
         isInputsInvalid: {
-          ...this.state.inputs,
+          ...this.state.isInputsInvalid,
           repoName: true
         }
       });
@@ -146,7 +141,7 @@ class Settings extends Component {
     if (!this.state.settings.buildCommand) {
       this.setState({
         isInputsInvalid: {
-          ...this.state.inputs,
+          ...this.state.isInputsInvalid,
           buildCommand: true
         }
       });

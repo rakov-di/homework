@@ -10,8 +10,8 @@ class Input extends Component {
   render() {
     const { display, name, id, type, plh, isRequired, isInvalid, pattern, onInput, onChange, onFocus } = this.props;
     return (
-      <div className={`input input_type_${display}`}>
-        <input className={`input__field ${isInvalid && 'input__field_invalid'}`}
+      <div className={`input input_type_${display} ${isInvalid && 'input_invalid'}`}>
+        <input className={`input__field`}
                name={name}
                id={id}
                type={type || "text"}
