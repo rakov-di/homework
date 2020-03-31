@@ -3,9 +3,14 @@ import './Log.styl';
 import React, { Component } from 'react';
 
 class Log extends Component {
+  componentDidMount() {
+    // TODO Как-то перенести это в render
+    document.querySelector('.log').innerHTML = this.props.log
+  }
+
   render() {
     return (
-      <pre className='log'>{this.props.log}</pre>
+      <div className='log'>{}</div>
     );
   }
 }

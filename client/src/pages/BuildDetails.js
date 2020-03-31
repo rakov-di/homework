@@ -11,7 +11,7 @@ import { api } from '../api.js'
 
 import Convert from 'ansi-to-html';
 
-const convert = new Convert();
+const convert = new Convert({fg: '#000', bg: '#000'});
 
 class BuildDetails extends Component {
   state = {
