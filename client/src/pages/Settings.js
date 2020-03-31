@@ -40,7 +40,8 @@ class Settings extends Component {
         inputPlh: 'user-name/repo-name',
         onChange: this.handleInputChange.bind(this),
         onFocus: this.handleInputFocus.bind(this),
-        errorMsg: 'This field can\'t be empty'
+        errorMsg: 'This field can\'t be empty',
+        clearInput: this.clearInput.bind(this)
       },
       {
         direction: 'column',
@@ -53,7 +54,8 @@ class Settings extends Component {
         inputPlh: 'type command',
         onChange: this.handleInputChange.bind(this),
         onFocus: this.handleInputFocus.bind(this),
-        errorMsg: 'This field can\'t be empty'
+        errorMsg: 'This field can\'t be empty',
+        clearInput: this.clearInput.bind(this)
       },
       {
         direction: 'column',
@@ -62,7 +64,8 @@ class Settings extends Component {
         display: 'block',
         labelText: 'Main branch',
         inputPlh: 'type branch',
-        onChange: this.handleInputChange.bind(this)
+        onChange: this.handleInputChange.bind(this),
+        clearInput: this.clearInput.bind(this)
       },
       {
         direction: 'row',
@@ -130,7 +133,7 @@ class Settings extends Component {
     });
   }
 
-  handlePrimaryClick(e) {
+  handlePrimaryClick() {
     if (!this.state.settings.repoName) {
       this.setState({
         isInputsInvalid: {
@@ -163,6 +166,19 @@ class Settings extends Component {
 
   handleSecondaryClick() {
     document.location.href = '/start-screen';
+  }
+
+  clearInput(e) {
+    const target = e.target.closest('.input').querySelector('.input__field');
+    const name = target.name;
+    target.value = '';
+
+    this.setState({
+      settings: {
+        ...this.state.settings,
+        [name]: ''
+      }
+    })
   }
 }
 

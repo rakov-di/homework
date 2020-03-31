@@ -53,7 +53,8 @@ class BuildHistory extends Component {
         onChange: this.handleInputChange.bind(this),
         onFocus: this.handleInputFocus.bind(this),
         isInvalid: this.state.isErrorOnFormSubmit,
-        errorMsg: 'There is no commit with such hash'
+        errorMsg: 'There is no commit with such hash',
+        clearInput: this.clearInput.bind(this)
       }
     ];
 
@@ -145,6 +146,15 @@ class BuildHistory extends Component {
 
   goToPageSettings() {
     document.location.href = '/settings'
+  }
+
+  clearInput(e) {
+    const target = e.target.closest('.input').querySelector('.input__field');
+    target.value = '';
+
+    this.setState({
+      commitHash: ''
+    })
   }
 }
 

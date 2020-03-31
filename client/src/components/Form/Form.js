@@ -38,6 +38,7 @@ class Form extends Component {
                      onChange={input.onChange}
                      onFocus={input.onFocus || null}
                      errorMsg={input.errorMsg}
+                     clearInput={input.clearInput}
               />
               {input.labelValueText && <Label htmlFor={input.id}
                                               type='value'
