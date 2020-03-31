@@ -9,8 +9,10 @@ export const api = {
   getSettings(cb) {
     return axiosAPI.get('/settings')
       .then(res => {
-        cb && cb(res);
-        return res;
+        // TODO Разобраться, почему вложеноость data.data (поправить на сервере)
+        const data = res.data.data || res.data;
+        cb && cb(data);
+        return data;
       })
       .catch(err => console.error(err.message));
   },

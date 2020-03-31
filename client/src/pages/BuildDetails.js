@@ -76,7 +76,7 @@ class BuildDetails extends Component {
     ])
       .then(([settings, build, log]) => {
         this.setState({
-          settings: settings.data.data,
+          settings: settings,
           curBuild: build.data.data,
           curBuildLog: convert.toHtml(log.data)
         })

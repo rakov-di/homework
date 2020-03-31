@@ -16,7 +16,7 @@ import { api } from './api.js';
 class App extends Component {
   state = {
     fetchEnded: false,
-    settings: null
+    settings: {}
   };
 
   render() {
@@ -24,8 +24,8 @@ class App extends Component {
       <Router history={history}>
         {(this.state.fetchEnded) ? (
           <Switch>
-            <Route exact path='/' component={this.state.settings ? BuildHistory : StartScreen} />
-            <Route path='/start-screen' component={this.state.settings ? BuildHistory : StartScreen} />
+            <Route exact path='/' component={this.state.settings.repoName ? BuildHistory : StartScreen} />
+            <Route path='/start-screen' component={this.state.settings.repoName ? BuildHistory : StartScreen} />
             <Route path='/settings' component={Settings} />
             <Route path='/build-history' component={BuildHistory} />
             <Route path='/build/:buildId' component={BuildDetails} />
@@ -41,7 +41,7 @@ class App extends Component {
     api.getSettings((data) => {
       this.setState({
         fetchEnded: true,
-        settings: data.data
+        settings: data
       })
     });
   }

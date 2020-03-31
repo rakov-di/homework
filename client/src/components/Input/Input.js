@@ -6,7 +6,7 @@ import Icon from '../Icon/Icon';
 class Input extends Component {
   render() {
     const {
-      display, name, id, type, plh, isRequired, isInvalid, pattern,
+      display, name, id, value, type, plh, isRequired, isInvalid, pattern,
       onInput, onChange, onFocus, errorMsg, clearInput
     } = this.props;
 
@@ -16,9 +16,10 @@ class Input extends Component {
           className={`input__field`}
           name={name}
           id={id}
+          value={value || ''}
           type={type || "text"}
           placeholder={plh}
-          required={isRequired}
+          required={isRequired || false}
           pattern={pattern}
           onChange={onChange}
           onInput={onInput}

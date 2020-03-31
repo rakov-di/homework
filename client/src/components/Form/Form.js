@@ -32,8 +32,9 @@ class Form extends Component {
                 name={input.name}
                 id={input.id}
                 display={input.display}
+                value={input.value}
                 plh={input.inputPlh}
-                isRequired={input.isRequired || null}
+                isRequired={input.isRequired}
                 isInvalid={input.isInvalid || null}
                 type={input.type}
                 pattern={input.pattern || null}

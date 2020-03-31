@@ -48,6 +48,7 @@ class BuildHistory extends Component {
         name: 'commitHash',
         id: 'commitHash',
         display: 'block',
+        value: this.state.commitHash,
         labelText: 'Enter the commit hash which you want to build.',
         inputPlh: 'Commit hash',
         onChange: this.handleInputChange.bind(this),
@@ -92,7 +93,7 @@ class BuildHistory extends Component {
     ])
       .then(([settings, builds]) => {
         this.setState({
-          settings: settings.data.data,
+          settings: settings,
           builds: builds.data.data
         })
       })
@@ -109,10 +110,8 @@ class BuildHistory extends Component {
   handleInputChange(e) {
     const { target } = e;
     const value = target.value;
-    const name = target.name;
-
     this.setState({
-      [name]: value
+      commitHash: value
     });
   }
 
@@ -140,7 +139,8 @@ class BuildHistory extends Component {
   toggleBackdropVisibility() {
     this.setState({
       isBackdropShown: !this.state.isBackdropShown,
-      isErrorOnFormSubmit: false
+      isErrorOnFormSubmit: false,
+      commitHash: ''
     });
   }
 
@@ -149,9 +149,6 @@ class BuildHistory extends Component {
   }
 
   clearInput(e) {
-    const target = e.target.closest('.input').querySelector('.input__field');
-    target.value = '';
-
     this.setState({
       commitHash: ''
     })

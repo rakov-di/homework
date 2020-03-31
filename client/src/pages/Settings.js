@@ -34,6 +34,7 @@ class Settings extends Component {
         name: 'repoName',
         id: 'repo',
         display: 'block',
+        value: this.state.settings.repoName,
         labelText: 'GitHub repository',
         isRequired: true,
         isInvalid: this.state.isInputsInvalid.repoName,
@@ -48,6 +49,7 @@ class Settings extends Component {
         name: 'buildCommand',
         id: 'command',
         display: 'block',
+        value: this.state.settings.buildCommand,
         labelText: 'Build command',
         isRequired: true,
         isInvalid: this.state.isInputsInvalid.buildCommand,
@@ -62,6 +64,7 @@ class Settings extends Component {
         name: 'mainBranch',
         id: 'branch',
         display: 'block',
+        value: this.state.settings.mainBranch,
         labelText: 'Main branch',
         inputPlh: 'type branch',
         onChange: this.handleInputChange.bind(this),
@@ -72,6 +75,7 @@ class Settings extends Component {
         name: 'period',
         id: 'minutes',
         display: 'inline',
+        value: this.state.settings.period,
         labelText: 'Synchronize every',
         labelValueText: 'minutes',
         pattern: '^[0-9]*$',
@@ -100,6 +104,15 @@ class Settings extends Component {
         <Footer />
       </Page>
     )
+  }
+
+  componentDidMount() {
+    // TODO Запрашивать настройки один ращ, а не какждый раз заново для каждой страницы
+    api.getSettings((data) => {
+      this.setState({
+        settings: data
+      })
+    });
   }
 
   checkIsNum(e) {
