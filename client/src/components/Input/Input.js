@@ -8,7 +8,7 @@ class Input extends Component {
     value: this.props.value
   };
   render() {
-    const { display, name, id, type, plh, isRequired, pattern, onChange } = this.props;
+    const { display, name, id, type, plh, isRequired, pattern, onInput, onChange } = this.props;
     return (
       <div className={`input input_type_${display}`}>
         <input className="input__field"
@@ -19,6 +19,7 @@ class Input extends Component {
                required={isRequired}
                pattern={pattern}
                onChange={onChange}
+               onInput={onInput}
         />
         {display === 'block' && <Icon type='clear' mixClass='input__clear' onClick={this.clearInput.bind(this)}/>}
       </div>

@@ -33,6 +33,7 @@ class Form extends Component {
                      isRequired={input.isRequired}
                      type={input.type}
                      pattern={input.pattern}
+                     onInput={input.onInput || null}
                      onChange={input.onChange}
               />
               {input.labelValueText && <Label htmlFor={input.id}

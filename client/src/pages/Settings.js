@@ -59,8 +59,9 @@ class Settings extends Component {
         display: 'inline',
         labelText: 'Synchronize every',
         labelValueText: 'minutes',
-        pattern: '[0-9]',
-        onChange: this.handleInputChange.bind(this)
+        pattern: '^[0-9]*$',
+        onChange: this.handleInputChange.bind(this),
+        onInput: this.checkIsNum.bind(this)
       }
     ];
 
@@ -84,6 +85,12 @@ class Settings extends Component {
         <Footer />
       </Page>
     )
+  }
+
+  checkIsNum(e) {
+    let val = e.target.value;
+    const isNum = /^[0-9]*$/.test(val)
+    if (!isNum) e.target.value = val.slice(0, -1);
   }
 
   handleInputChange(e) {
