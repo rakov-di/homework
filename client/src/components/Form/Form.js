@@ -8,7 +8,7 @@ import Label from '../Label/Label';
 
 class Form extends Component {
   render() {
-    const { isHeader, inputs, btns, isFetching, isErrorOnFormSubmit} = this.props;
+    const { isHeader, inputs, btns, isFetching } = this.props;
     return (
       <form className="form">
         {/*TODO Переписать header послойно, а не целиком*/}

@@ -42,18 +42,39 @@ class BuildHistory extends Component {
       ]
     };
 
+    const inputs = [
+      {
+        direction: 'column',
+        name: 'commitHash',
+        id: 'commitHash',
+        display: 'block',
+        labelText: 'Enter the commit hash which you want to build.',
+        inputPlh: 'Commit hash',
+        onChange: this.handleInputChange.bind(this),
+        onFocus: this.handleInputFocus.bind(this),
+        isInvalid: this.state.isErrorOnFormSubmit,
+        errorMsg: 'There is no commit with such hash'
+      }
+    ];
+
+    const btns = {
+      primary: {
+        text: 'Run build',
+        onClick: this.handlePrimaryClick.bind(this)
+      },
+      secondary: {
+        text: 'Cancel',
+        onClick: this.toggleBackdropVisibility.bind(this)
+      }
+    };
+
     return (
       <Page>
         <Header data={headerData} isBackdropShown = {this.state.isBackdropShown} />
         <Main>
           <CardList builds={this.state.builds}/>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
-          {this.state.isBackdropShown && <Modal handleInputChange={this.handleInputChange.bind(this)}
-                                                handleInputFocus={this.handleInputFocus.bind(this)}
-                                                isErrorOnFormSubmit={this.state.isErrorOnFormSubmit}
-                                                handlePrimaryClick={this.handlePrimaryClick.bind(this)}
-                                                toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}
-          />}
+          {this.state.isBackdropShown && <Modal inputs={inputs} btns={btns} isFetching={this.state.isFetching} toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}/>}
         </Main>
         <Footer />
       </Page>
