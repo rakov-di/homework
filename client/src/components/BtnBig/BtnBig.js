@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 
 class BtnBig extends Component {
   render() {
-    const { type, mixClass, text, onClick, disabled } = this.props;
+    const { type, action, mixClass, text, onClick, onSubmit, disabled } = this.props;
     return (
-      <button className={`btn-big btn-big_type_${type} ${mixClass || ''}`} onClick={onClick} disabled={disabled}>{text}</button>
+      <button type={type || "button"} className={`btn-big btn-big_action_${action} ${mixClass || ''}`} onClick={onClick} onSubmit={onSubmit} disabled={disabled}>{text}</button>
     );
   }
 }

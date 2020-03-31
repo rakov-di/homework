@@ -59,12 +59,10 @@ class Settings extends Component {
         display: 'inline',
         labelText: 'Synchronize every',
         labelValueText: 'minutes',
-        type: 'number',
-        pattern: '[0-9]{,3}',
+        pattern: '[0-9]',
         onChange: this.handleInputChange.bind(this)
       }
     ];
-    //TODO Сделать нормальную валидацию в input
 
     const btns = {
       primary: {

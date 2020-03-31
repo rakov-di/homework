@@ -10,7 +10,7 @@ class Greeting extends Component {
       <div className="greeting">
         <Icon type='logo'/>
         <p className="greeting__description">Configure repository connection and synchronization settings</p>
-        <BtnBig type='primary' text='Open settings' onClick={this.goToSettings.bind(this)}/>
+        <BtnBig action='primary' text='Open settings' onClick={this.goToSettings.bind(this)}/>
       </div>
     );
   }
