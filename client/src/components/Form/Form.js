@@ -37,6 +37,7 @@ class Form extends Component {
                      onInput={input.onInput || null}
                      onChange={input.onChange}
                      onFocus={input.onFocus || null}
+                     errorMsg={input.errorMsg}
               />
               {input.labelValueText && <Label htmlFor={input.id}
                                               type='value'
@@ -57,7 +58,6 @@ class Form extends Component {
                   mixClass='form__btn'
                   onClick={btns.secondary.onClick}
                   disabled={isFetching} />
-          {isErrorOnFormSubmit && <div className='form__error-msg'>There is no commit with such hash.</div>}
         </div>
       </form>
     );

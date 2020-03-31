@@ -16,7 +16,9 @@ class Modal extends Component {
         labelText: 'Enter the commit hash which you want to build.',
         inputPlh: 'Commit hash',
         onChange: handleInputChange,
-        onFocus: handleInputFocus
+        onFocus: handleInputFocus,
+        isInvalid: isErrorOnFormSubmit,
+        errorMsg: 'There is no commit with such hash'
       }
     ];
 

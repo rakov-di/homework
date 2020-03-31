@@ -39,7 +39,8 @@ class Settings extends Component {
         isInvalid: this.state.isInputsInvalid.repoName,
         inputPlh: 'user-name/repo-name',
         onChange: this.handleInputChange.bind(this),
-        onFocus: this.handleInputFocus.bind(this)
+        onFocus: this.handleInputFocus.bind(this),
+        errorMsg: 'This field can\'t be empty'
       },
       {
         direction: 'column',
@@ -51,7 +52,8 @@ class Settings extends Component {
         isInvalid: this.state.isInputsInvalid.buildCommand,
         inputPlh: 'type command',
         onChange: this.handleInputChange.bind(this),
-        onFocus: this.handleInputFocus.bind(this)
+        onFocus: this.handleInputFocus.bind(this),
+        errorMsg: 'This field can\'t be empty'
       },
       {
         direction: 'column',

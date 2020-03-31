@@ -18,12 +18,8 @@
   &_invalid
     position: relative
 
-    &::after
-      content: "This field can't be empty"
-      position: absolute
-      right: 20px
-      top: -20px
-      @extend $form_error-msg
+    & ^[0]__error-msg
+      display: block
 
     & ^[0]__field
       border: 2px solid var(--cError)
@@ -45,6 +41,13 @@
     &:focus
       border: 2px solid var(--cBorderInputFocused)
       outline: none
+
+  &__error-msg
+    display: none
+    position: absolute
+    right: 0
+    bottom: -18px
+    @extend $form_error-msg
 
   &__clear
     position: absolute

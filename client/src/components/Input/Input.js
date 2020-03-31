@@ -8,7 +8,7 @@ class Input extends Component {
     value: this.props.value
   };
   render() {
-    const { display, name, id, type, plh, isRequired, isInvalid, pattern, onInput, onChange, onFocus } = this.props;
+    const { display, name, id, type, plh, isRequired, isInvalid, pattern, onInput, onChange, onFocus, errorMsg } = this.props;
     return (
       <div className={`input input_type_${display} ${isInvalid && 'input_invalid'}`}>
         <input className={`input__field`}
@@ -23,6 +23,7 @@ class Input extends Component {
                onFocus={onFocus}
         />
         {display === 'block' && <Icon type='clear' mixClass='input__clear' onClick={this.clearInput.bind(this)}/>}
+        <div className='input__error-msg'>{errorMsg}</div>
       </div>
     );
   }
