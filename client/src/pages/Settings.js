@@ -11,7 +11,11 @@ import { api } from '../api.js'
 class Settings extends Component {
   state = {
     isFetching: false,
-    settings: {}
+    settings: {},
+    isInputsInvalid: {
+      repoName: false,
+      buildCommand: false,
+    }
   };
 
   render() {
@@ -30,8 +34,10 @@ class Settings extends Component {
         display: 'block',
         labelText: 'GitHub repository',
         isRequired: true,
+        isInvalid: this.state.isInputsInvalid.repoName,
         inputPlh: 'user-name/repo-name',
-        onChange: this.handleInputChange.bind(this)
+        onChange: this.handleInputChange.bind(this),
+        onFocus: this.handleInputFocus.bind(this)
       },
       {
         direction: 'column',
@@ -40,8 +46,10 @@ class Settings extends Component {
         display: 'block',
         labelText: 'Build command',
         isRequired: true,
+        isInvalid: this.state.isInputsInvalid.buildCommand,
         inputPlh: 'type command',
-        onChange: this.handleInputChange.bind(this)
+        onChange: this.handleInputChange.bind(this),
+        onFocus: this.handleInputFocus.bind(this)
       },
       {
         direction: 'column',
@@ -68,11 +76,11 @@ class Settings extends Component {
     const btns = {
       primary: {
         text: 'Save',
-        cb: this.handlePrimaryClick.bind(this)
+        onClick: this.handlePrimaryClick.bind(this)
       },
       secondary: {
         text: 'Cancel',
-        cb: this.handleSecondaryClick.bind(this)
+        onClick: this.handleSecondaryClick.bind(this)
       }
     };
 
@@ -89,8 +97,20 @@ class Settings extends Component {
 
   checkIsNum(e) {
     let val = e.target.value;
-    const isNum = /^[0-9]*$/.test(val)
+    const isNum = /^[0-9]*$/.test(val);
     if (!isNum) e.target.value = val.slice(0, -1);
+  }
+
+  handleInputFocus(e) {
+    const { target } = e;
+    const name = target.name;
+
+    this.setState({
+      isInputsInvalid: {
+        ...this.state.isInputsInvalid,
+        [name]: false
+      }
+    });
   }
 
   handleInputChange(e) {
@@ -106,7 +126,32 @@ class Settings extends Component {
     });
   }
 
-  handlePrimaryClick() {
+  // handlePrimarySubmit(e) {
+  //   // e.preventDefault();
+  //   debugger
+  //   this.handlePrimaryClick(e);
+  // }
+
+  handlePrimaryClick(e) {
+    if (!this.state.settings.repoName) {
+      this.setState({
+        isInputsInvalid: {
+          ...this.state.inputs,
+          repoName: true
+        }
+      });
+      return;
+    }
+    if (!this.state.settings.buildCommand) {
+      this.setState({
+        isInputsInvalid: {
+          ...this.state.inputs,
+          buildCommand: true
+        }
+      });
+      return;
+    }
+
     this.setState({
       isFetching: true
     });

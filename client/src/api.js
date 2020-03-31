@@ -12,7 +12,7 @@ export const api = {
         cb(res);
         return res;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err.message));
   },
 
   updateSettings(data, cb) {
@@ -26,16 +26,24 @@ export const api = {
         cb();
         return res;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err.message));
   },
 
   addCommitToQueue(commitHash, cb) {
     return axiosAPI.post(`/builds/${commitHash}`)
       .then(res => {
-        cb();
+        cb({
+          status: 'ok',
+          res: res});
         return res;
       })
-      .catch(err => err);
+      .catch(err => {
+        cb({
+          status: 'error',
+          err: err
+        });
+        console.error(err.message);
+      });
   },
 
   getBuildsList(cb) {
@@ -44,19 +52,19 @@ export const api = {
         cb(res.data.data);
         return res;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err.message));
   },
 
   getBuildDetails(buildId) {
     return axiosAPI.get(`/builds/${buildId}`)
       .then(res => res)
-      .catch(err => console.log(err));
+      .catch(err => console.error(err.message));
   },
 
   getBuildLog(buildId) {
     return axiosAPI.get(`/builds/${buildId}/logs`)
       .then(res => res)
-      .catch(err => console.log(err));
+      .catch(err => console.error(err.message));
   },
 
 };

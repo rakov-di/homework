@@ -6,7 +6,7 @@ import './Modal.styl';
 
 class Modal extends Component {
   render() {
-    const { handleInputChange, handlePrimaryClick, toggleBackdropVisibility } = this.props;
+    const { handleInputChange, handleInputFocus, isErrorOnFormSubmit, handlePrimaryClick, toggleBackdropVisibility } = this.props;
     const inputs = [
       {
         direction: 'column',
@@ -15,18 +15,19 @@ class Modal extends Component {
         display: 'block',
         labelText: 'Enter the commit hash which you want to build.',
         inputPlh: 'Commit hash',
-        onChange: handleInputChange
+        onChange: handleInputChange,
+        onFocus: handleInputFocus
       }
     ];
 
     const btns = {
       primary: {
         text: 'Run build',
-        cb: handlePrimaryClick
+        onClick: handlePrimaryClick
       },
       secondary: {
         text: 'Cancel',
-        cb: toggleBackdropVisibility
+        onClick: toggleBackdropVisibility
       }
     };
 
@@ -34,7 +35,7 @@ class Modal extends Component {
       <div className='modal' onClick={this.handleClickModal.bind(this)}>
         <div className='modal__content'>
           <div className='modal__title'>New build</div>
-          <Form inputs={inputs} btns={btns} />
+          <Form inputs={inputs} btns={btns} isErrorOnFormSubmit={isErrorOnFormSubmit} />
         </div>
       </div>
     );

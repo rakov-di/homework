@@ -14,7 +14,8 @@ class BuildHistory extends Component {
     isFetching: false,
     isBackdropShown: false,
     commitHash: '',
-    builds: []
+    builds: [],
+    isErrorOnFormSubmit: false
   };
 
   render() {
@@ -44,6 +45,8 @@ class BuildHistory extends Component {
           <CardList builds={this.state.builds}/>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
           {this.state.isBackdropShown && <Modal handleInputChange={this.handleInputChange.bind(this)}
+                                                handleInputFocus={this.handleInputFocus.bind(this)}
+                                                isErrorOnFormSubmit={this.state.isErrorOnFormSubmit}
                                                 handlePrimaryClick={this.handlePrimaryClick.bind(this)}
                                                 toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}
           />}
@@ -63,7 +66,11 @@ class BuildHistory extends Component {
     });
   }
 
-
+  handleInputFocus(e) {
+    this.setState({
+      isErrorOnFormSubmit: false
+    });
+  }
 
   handleInputChange(e) {
     const { target } = e;
@@ -75,24 +82,36 @@ class BuildHistory extends Component {
     });
   }
 
+  // handlePrimarySubmit(e) {
+  //   e.preventDefault();
+  //   this.handlePrimaryClick()
+  // }
+
   handlePrimaryClick() {
     this.setState({
       isFetching: true
     });
 
-    api.addCommitToQueue(this.state.commitHash, () => {
+    api.addCommitToQueue(this.state.commitHash, (result) => {
       this.setState({
         isFetching: false
       });
-
-      const build = this.state.builds.find(build => build.commitHash === this.state.commitHash);
-      document.location.href = `/build/${build.id}`;
+      if (result.status === 'ok') {
+        const build = this.state.builds.find(build => build.commitHash === this.state.commitHash);
+        document.location.href = `/build/${build.id}`;
+      }
+      else if (result.status === 'error') {
+        this.setState({
+          isErrorOnFormSubmit: true
+        });
+      }
     });
   }
 
   toggleBackdropVisibility() {
     this.setState({
-      isBackdropShown: !this.state.isBackdropShown
+      isBackdropShown: !this.state.isBackdropShown,
+      isErrorOnFormSubmit: false
     });
   }
 }

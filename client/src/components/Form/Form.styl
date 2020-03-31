@@ -1,6 +1,7 @@
 @import "../../css/vars.styl";
 
 .form
+  position: relative
   max-width: 474px
 
   &__title
@@ -45,3 +46,9 @@
       @media only screen and (max-width: $bpMobileDefault)
         margin-left: 0
         margin-top: var(--p-m)
+
+  &__error-msg
+    position: absolute
+    right: 10px
+    bottom: 10px
+    @extend $form_error-msg

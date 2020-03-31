@@ -8,7 +8,7 @@ import Label from '../Label/Label';
 
 class Form extends Component {
   render() {
-    const { isHeader, inputs, btns, isFetching } = this.props;
+    const { isHeader, inputs, btns, isFetching, isErrorOnFormSubmit} = this.props;
     return (
       <form className="form">
         {/*TODO Переписать header послойно, а не целиком*/}
@@ -30,11 +30,13 @@ class Form extends Component {
                      id={input.id}
                      display={input.display}
                      plh={input.inputPlh}
-                     isRequired={input.isRequired}
+                     isRequired={input.isRequired || null}
+                     isInvalid={input.isInvalid || null}
                      type={input.type}
-                     pattern={input.pattern}
+                     pattern={input.pattern || null}
                      onInput={input.onInput || null}
                      onChange={input.onChange}
+                     onFocus={input.onFocus || null}
               />
               {input.labelValueText && <Label htmlFor={input.id}
                                               type='value'
@@ -45,17 +47,17 @@ class Form extends Component {
           )}
         </div>
         <div className="form__btn-group">
-          <BtnBig type='submit'
-                  action='primary'
+          <BtnBig action='primary'
                   text={btns.primary.text}
                   mixClass='form__btn'
-                  onSubmit={btns.primary.cb}
+                  onClick={btns.primary.onClick}
                   disabled={isFetching} />
           <BtnBig action='secondary'
                   text={btns.secondary.text}
                   mixClass='form__btn'
-                  onClick={btns.secondary.cb}
+                  onClick={btns.secondary.onClick}
                   disabled={isFetching} />
+          {isErrorOnFormSubmit && <div className='form__error-msg'>There is no commit with such hash.</div>}
         </div>
       </form>
     );
