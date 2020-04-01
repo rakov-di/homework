@@ -12,7 +12,7 @@ import { api } from '../api.js'
 class BuildHistory extends Component {
   state = {
     isFetching: false,
-    isBackdropShown: false,
+    isModalShown: false,
     commitHash: '',
     builds: [],
     settings: {},
@@ -31,7 +31,7 @@ class BuildHistory extends Component {
           type: 'icon-text',
           icon: 'run-before',
           text: 'Run build',
-          onClick: this.toggleBackdropVisibility.bind(this)
+          onClick: this.toggleModalVisibility.bind(this)
         },
         {
           type: 'only-icon',
@@ -66,17 +66,17 @@ class BuildHistory extends Component {
       },
       secondary: {
         text: 'Cancel',
-        onClick: this.toggleBackdropVisibility.bind(this)
+        onClick: this.toggleModalVisibility.bind(this)
       }
     };
 
     return (
       <Page>
-        <Header data={headerData} isBackdropShown = {this.state.isBackdropShown} />
+        <Header data={headerData} isModalShown = {this.state.isModalShown} />
         <Main>
           <CardList builds={this.state.builds}/>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
-          {this.state.isBackdropShown && <Modal inputs={inputs} btns={btns} isFetching={this.state.isFetching} toggleBackdropVisibility={this.toggleBackdropVisibility.bind(this)}/>}
+          {this.state.isModalShown && <Modal inputs={inputs} btns={btns} isFetching={this.state.isFetching} toggleModalVisibility={this.toggleModalVisibility.bind(this)}/>}
         </Main>
         <Footer />
       </Page>
@@ -136,9 +136,9 @@ class BuildHistory extends Component {
       })
   }
 
-  toggleBackdropVisibility() {
+  toggleModalVisibility() {
     this.setState({
-      isBackdropShown: !this.state.isBackdropShown,
+      isModalShown: !this.state.isModalShown,
       isErrorOnFormSubmit: false,
       commitHash: ''
     });
