@@ -16,7 +16,8 @@ class BuildHistory extends Component {
     commitHash: '',
     builds: [],
     settings: {},
-    isErrorOnFormSubmit: false
+    isErrorOnFormSubmit: false,
+    errorMsg: ''
   };
 
   render() {
@@ -54,7 +55,7 @@ class BuildHistory extends Component {
         onChange: this.handleInputChange.bind(this),
         onFocus: this.handleInputFocus.bind(this),
         isInvalid: this.state.isErrorOnFormSubmit,
-        errorMsg: 'There is no commit with such hash',
+        errorMsg:  this.state.errorMsg,
         clearInput: this.clearInput.bind(this)
       }
     ];
@@ -118,15 +119,14 @@ class BuildHistory extends Component {
     this.setState({
       isFetching: true
     });
-
     api.addCommitToQueue(this.state.commitHash)
       .then(res => {
-        const build = this.state.builds.find(build => build.commitHash === this.state.commitHash);
-        document.location.href = `/build/${build.id}`;
+        document.location.href = `/build/${res.data.payload.id}`;
       })
       .catch(err => {
         this.setState({
-          isErrorOnFormSubmit: true
+          isErrorOnFormSubmit: true,
+          errorMsg: err.message
         });
       })
       .finally(() => {

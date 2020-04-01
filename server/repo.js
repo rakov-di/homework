@@ -66,10 +66,16 @@ const runCommandInLocalRepo = async (command, dir = process.cwd()) => {
 };
 
 const getCommitInfo = async (commitHash) => {
-  return await runCommandInLocalRepo(`cd local_repo && git show -s --format='%s===%an' ${commitHash}`);
+  try {
+    return await runCommandInLocalRepo(`cd local_repo && git show -s --format='%s===%an' ${commitHash}`);
+  }
+  catch(e) {
+    throw new Error(`Can't find commit with hash ${commitHash}`);
+  }
 };
 
-const updateRepoStory = (repo) => {
+// Функция для тестовой ручки - пока не работает
+const updateRepoStory = async (repo) => {
   return new Promise((resolve, reject) => {
     const updateRepo = spawn(`cd ${localRepoName} && git checkout ${repo.mainBranch} && git pull`,{shell: true});
 

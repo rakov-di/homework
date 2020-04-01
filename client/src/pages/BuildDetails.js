@@ -86,8 +86,8 @@ class BuildDetails extends Component {
 
   handleRebuildClick() {
     api.addCommitToQueue(this.state.curBuild.commitHash)
-      .then(() => {
-        document.location.href = `/build/${this.state.curBuild.id}`;
+      .then(res => {
+        document.location.href = `/build/${res.data.payload.id}`;
       })
       .catch(error => console.error(error.message));
   }

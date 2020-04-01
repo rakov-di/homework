@@ -20,11 +20,11 @@ export const api = {
   },
 
   async addCommitToQueue(commitHash) {
-    return axiosAPI.post(`/builds/${commitHash}`)
+    return await axiosAPI.post(`/builds/${commitHash}`)
   },
 
   async getBuildsList() {
-    return axiosAPI.get('/builds')
+    return await axiosAPI.get('/builds')
   },
 
   async getBuildDetails(buildId) {

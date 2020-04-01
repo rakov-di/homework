@@ -117,11 +117,12 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
         "branchName": "master",
         "authorName": author
       })
-        .then(() => {
+        .then((data) => {
+          //TODO  разобраться с data.data.data - что за ад
           res.json({
             status: 'success',
-            message: message,
-            author: author
+            message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
+            payload: data.data.data
           });
         })
         .catch((error) => {
