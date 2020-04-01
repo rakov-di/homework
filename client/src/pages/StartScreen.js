@@ -19,7 +19,8 @@ class StartScreen extends Component {
         {
           type: 'icon-text',
           icon: 'settings-before',
-          text: 'Settings'
+          text: 'Settings',
+          onClick: this.goToPageSettings.bind(this)
         }
       ]
     };
@@ -33,6 +34,10 @@ class StartScreen extends Component {
         <Footer />
       </Page>
     )
+  }
+
+  goToPageSettings() {
+    document.location.href = '/settings'
   }
 }
 
