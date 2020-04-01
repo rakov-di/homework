@@ -54,35 +54,44 @@ app.get('/api/settings', (req, res, next) => {
 // и создается такая же папка, но уже с новым репозиторием
 // При этом возникает ошибка - надо разбираться
 app.post('/api/settings', (req, res, next) => {
-  // console.log(req.body + 'crab1');
-  // console.log(JSON.parse(req.body) + 'crab1');
-  // console.log(req.body.repoName + 'crab');
-  // console.log(req.body.buildCommand + 'crab');
-  // console.log(req.body.mainBranch + 'crab');
-  // console.log(req.body.period + 'crab');
-  // console.log(req.params + 'crab');
-  // // console.log(JSON.parse(req.params) + 'crab');
-  // console.log(req.params.repoName + 'crab');
-  // console.log(req.params.buildCommand + 'crab');
-  // console.log(req.params.mainBranch + 'crab');
-  // console.log(req.params.period + 'crab');
-  api.post('/conf', {
-    "repoName": req.body.repoName,
-    "buildCommand": req.body.buildCommand,
-    "mainBranch": req.body.mainBranch || 'master',
-    "period": +req.body.period
-  })
-    .then(() => {
-      return cloneRepo(req.body.repoName)
-    })
-    .then((repoName) => {
-      console.log('crab1' + repoNam);
-      res.json(String(`Настройки сохранены. Репозиторий ${repoName} склонирован.`));
+  cloneRepo(req.body.repoName)
+    .then((data) => {
+      console.log(`Repo ${req.body.repoName} successfully cloned`);
+      console.log(data);
+
+      api.post('/conf', {
+        "repoName": req.body.repoName,
+        "buildCommand": req.body.buildCommand,
+        "mainBranch": req.body.mainBranch || 'master',
+        "period": +req.body.period
+      })
+        .then((repoName) => {
+          console.log(`Settings for repo ${req.body.repoName} successfully saved`);
+          res.json({
+            status: 'success',
+            message: `Settings for repo ${req.body.repoName} successfully saved`
+          });
+        })
+        .catch((error) => {
+          console.log(`Saving settings for repo ${req.body.repoName} has failed`);
+          console.log(error.message);
+          res.json({
+            status: 'error',
+            message: `Saving settings for repo ${req.body.repoName} has failed`
+          });
+          // next(error);
+        });
     })
     .catch((error) => {
-      console.log('crab2' + error.message);
-      next(error);
-    });
+      console.log(`Cloning repo ${req.body.repoName} hase faild`);
+      console.log(error);
+      res.json({
+        status: 'error',
+        message: `Cloning repo ${req.body.repoName} hase faild`
+      });
+      // res.json(String(`Настройки сохранены. Репозиторий склонирован.`));
+      // next(error);
+    })
 });
 
 // Получения списка сборок

@@ -176,7 +176,7 @@ class Settings extends Component {
         isFetching: false
       });
 
-      if (res.status === 'ok') {
+      if (res.status === 'success') {
         this.setState({
           formStatus: {
             value: res.status,

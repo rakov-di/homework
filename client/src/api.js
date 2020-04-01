@@ -26,7 +26,7 @@ export const api = {
     })
       .then(res => {
         cb && cb({
-          status: 'ok',
+          status: 'success',
           res: res
         });
         return res;
