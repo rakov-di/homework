@@ -108,7 +108,7 @@ class Settings extends Component {
   }
 
   componentDidMount() {
-    // TODO Запрашивать настройки один ращ, а не какждый раз заново для каждой страницы
+    // TODO Запрашивать настройки один раз, а не какждый раз заново для каждой страницы
     api.getSettings((data) => {
       this.setState({
         settings: data
@@ -168,7 +168,8 @@ class Settings extends Component {
     }
 
     this.setState({
-      isFetching: true
+      isFetching: true,
+      formStatus: {}
     });
 
     api.updateSettings(this.state.settings, (res) => {
