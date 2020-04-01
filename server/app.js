@@ -30,8 +30,8 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 app.use((err, req, res, next) => {
   console.error(err);
 });
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -41,10 +41,18 @@ app.use(function(req, res, next) {
 app.get('/api/settings', (req, res, next) => {
   api.get('/conf')
     .then((response) => {
-      res.json(response.data);
+      res.json({
+        status: 'success',
+        message: `Getting settings for current repo ${req.body.repoName} successfully finished`,
+        data: response.data.data || response.data
+      });
     })
-    .catch((error) => {
-      next(error);
+    .catch(() => {
+      res.json({
+        status: 'error',
+        message: `Getting settings for current repo has failed`
+      });
+      // next(error);
     });
 });
 
@@ -55,26 +63,20 @@ app.get('/api/settings', (req, res, next) => {
 // При этом возникает ошибка - надо разбираться
 app.post('/api/settings', (req, res, next) => {
   cloneRepo(req.body.repoName)
-    .then((data) => {
-      console.log(`Repo ${req.body.repoName} successfully cloned`);
-      console.log(data);
-
+    .then(() => {
       api.post('/conf', {
         "repoName": req.body.repoName,
         "buildCommand": req.body.buildCommand,
         "mainBranch": req.body.mainBranch || 'master',
         "period": +req.body.period
       })
-        .then((repoName) => {
-          console.log(`Settings for repo ${req.body.repoName} successfully saved`);
+        .then(() => {
           res.json({
             status: 'success',
             message: `Settings for repo ${req.body.repoName} successfully saved`
           });
         })
-        .catch((error) => {
-          console.log(`Saving settings for repo ${req.body.repoName} has failed`);
-          console.log(error.message);
+        .catch(() => {
           res.json({
             status: 'error',
             message: `Saving settings for repo ${req.body.repoName} has failed`
@@ -83,13 +85,10 @@ app.post('/api/settings', (req, res, next) => {
         });
     })
     .catch((error) => {
-      console.log(`Cloning repo ${req.body.repoName} hase faild`);
-      console.log(error);
       res.json({
         status: 'error',
-        message: `Cloning repo ${req.body.repoName} hase faild`
+        message: error.message
       });
-      // res.json(String(`Настройки сохранены. Репозиторий склонирован.`));
       // next(error);
     })
 });
@@ -119,15 +118,26 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
         "authorName": author
       })
         .then(() => {
-          res.json({message: message, author: author});
+          res.json({
+            status: 'success',
+            message: message,
+            author: author
+          });
         })
         .catch((error) => {
-          next(error);
+          res.json({
+            status: 'error',
+            message: error.message
+          });
+          // next(error);
         });
     })
     .catch((error) => {
-      next(error);
-      console.error(error);
+      res.json({
+        status: 'error',
+        message: error.message
+      });
+      // next(error);
     });
 });
 

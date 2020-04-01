@@ -93,12 +93,11 @@ class BuildHistory extends Component {
     ])
       .then(([settings, builds]) => {
         this.setState({
-          settings: settings,
+          settings: settings.data.data,
           builds: builds.data.data
         })
       })
-      .catch(err => console.error(err));
-
+      .catch(err => console.error(err.message));
   }
 
   handleInputFocus(e) {
@@ -120,20 +119,21 @@ class BuildHistory extends Component {
       isFetching: true
     });
 
-    api.addCommitToQueue(this.state.commitHash, (result) => {
-      this.setState({
-        isFetching: false
-      });
-      if (result.status === 'ok') {
+    api.addCommitToQueue(this.state.commitHash)
+      .then(res => {
         const build = this.state.builds.find(build => build.commitHash === this.state.commitHash);
         document.location.href = `/build/${build.id}`;
-      }
-      else if (result.status === 'error') {
+      })
+      .catch(err => {
         this.setState({
           isErrorOnFormSubmit: true
         });
-      }
-    });
+      })
+      .finally(() => {
+        this.setState({
+          isFetching: false
+        });
+      })
   }
 
   toggleBackdropVisibility() {

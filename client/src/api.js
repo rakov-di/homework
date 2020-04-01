@@ -2,81 +2,37 @@ import axios from 'axios';
 
 const axiosAPI = axios.create({
   baseURL: 'http://localhost:5000/api',
-  timeout: 5000
+  timeout: 50000
 });
 
 export const api = {
-  getSettings(cb) {
-    return axiosAPI.get('/settings')
-      .then(res => {
-        // TODO Разобраться, почему вложеноость data.data (поправить на сервере)
-        const data = res.data.data || res.data;
-        cb && cb(data);
-        return data;
-      })
-      .catch(err => console.error(err.message));
+  async getSettings() {
+    return await axiosAPI.get('/settings')
   },
 
-  updateSettings(data, cb) {
-    return axiosAPI.post('/settings', {
+  async updateSettings(data) {
+    return await axiosAPI.post('/settings', {
       repoName: data.repoName,
       buildCommand: data.buildCommand,
       mainBranch: data.mainBranch,
       period: Number(data.period)
     })
-      .then(res => {
-        cb && cb({
-          status: 'success',
-          res: res
-        });
-        return res;
-      })
-      .catch(err => {
-        cb && cb({
-          status: 'error',
-          err: err
-        });
-        console.error(err.message);
-      });
   },
 
-  addCommitToQueue(commitHash, cb) {
+  async addCommitToQueue(commitHash) {
     return axiosAPI.post(`/builds/${commitHash}`)
-      .then(res => {
-        cb && cb({
-          status: 'ok',
-          res: res
-        });
-        return res;
-      })
-      .catch(err => {
-        cb && cb({
-          status: 'error',
-          err: err
-        });
-        console.error(err.message);
-      });
   },
 
-  getBuildsList(cb) {
+  async getBuildsList() {
     return axiosAPI.get('/builds')
-      .then(res => {
-        cb && cb(res.data.data);
-        return res;
-      })
-      .catch(err => console.error(err.message));
   },
 
-  getBuildDetails(buildId) {
-    return axiosAPI.get(`/builds/${buildId}`)
-      .then(res => res)
-      .catch(err => console.error(err.message));
+  async getBuildDetails(buildId) {
+    return await axiosAPI.get(`/builds/${buildId}`)
   },
 
-  getBuildLog(buildId) {
-    return axiosAPI.get(`/builds/${buildId}/logs`)
-      .then(res => res)
-      .catch(err => console.error(err.message));
+  async getBuildLog(buildId) {
+    return await axiosAPI.get(`/builds/${buildId}/logs`)
   },
 
 };

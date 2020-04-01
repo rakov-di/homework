@@ -109,11 +109,13 @@ class Settings extends Component {
 
   componentDidMount() {
     // TODO Запрашивать настройки один раз, а не какждый раз заново для каждой страницы
-    api.getSettings((data) => {
-      this.setState({
-        settings: data
+    api.getSettings()
+      .then(res => {
+        this.setState({
+          settings: res.data.data
+        })
       })
-    });
+      .catch(error => console.error(error.message))
   }
 
   checkIsNum(e) {
@@ -172,28 +174,28 @@ class Settings extends Component {
       formStatus: {}
     });
 
-    api.updateSettings(this.state.settings, (res) => {
-      this.setState({
-        isFetching: false
-      });
-
-      if (res.status === 'success') {
+    api.updateSettings(this.state.settings)
+      .then(res => {
         this.setState({
           formStatus: {
-            value: res.status,
-            text: 'Settings have been successfully saved.'
+            value: res.data.status,
+            text: res.data.message
           }
-        });
-      }
-      else if (res.status === 'error') {
+        })
+      })
+      .catch(error => {
         this.setState({
           formStatus: {
-            value: res.status,
-            text: 'Can\'t clone this repository.'
+            value: 'error',
+            text: error.message
           }
+        })
+      })
+      .finally(() => {
+        this.setState({
+          isFetching: false
         });
-      }
-    });
+      })
   }
 
   handleSecondaryClick() {

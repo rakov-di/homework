@@ -76,19 +76,20 @@ class BuildDetails extends Component {
     ])
       .then(([settings, build, log]) => {
         this.setState({
-          settings: settings,
+          settings: settings.data.data,
           curBuild: build.data.data,
           curBuildLog: convert.toHtml(log.data)
         })
       })
-      .catch(err => console.error(err));
+      .catch(error => console.error(error.message))
   }
 
-  // TODO унифицировать с аналогичной функцией в BuildHistory
   handleRebuildClick() {
-    api.addCommitToQueue(this.state.curBuild.commitHash, () => {
-      document.location.href = `/build/${this.state.curBuild.id}`;
-    });
+    api.addCommitToQueue(this.state.curBuild.commitHash)
+      .then(() => {
+        document.location.href = `/build/${this.state.curBuild.id}`;
+      })
+      .catch(error => console.error(error.message));
   }
 
   goToPageSettings() {

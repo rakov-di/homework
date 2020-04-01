@@ -38,12 +38,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    api.getSettings((data) => {
-      this.setState({
-        fetchEnded: true,
-        settings: data
+    api.getSettings()
+      .then(res => {
+        this.setState({
+          settings: res.data.data
+        })
       })
-    });
+      .catch(error => console.error(error.message))
+      .finally(() => {
+        this.setState({
+          fetchEnded: true,
+        })
+      })
   }
 }
 
