@@ -8,7 +8,7 @@ import Label from '../Label/Label';
 
 class Form extends Component {
   render() {
-    const { isHeader, inputs, btns, isFetching } = this.props;
+    const { isHeader, inputs, btns, isFetching, status } = this.props;
 
     return (
       <form className="form">
@@ -67,6 +67,7 @@ class Form extends Component {
             onClick={btns.secondary.onClick}
             disabled={isFetching} />
         </div>
+        {status && <div className={`form__${status.value}-msg`}>{status.text}</div>}
       </form>
     );
   }

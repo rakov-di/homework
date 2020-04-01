@@ -15,7 +15,8 @@ class Settings extends Component {
     isInputsInvalid: {
       repoName: false,
       buildCommand: false,
-    }
+    },
+    formStatus: null
   };
 
   render() {
@@ -99,7 +100,7 @@ class Settings extends Component {
       <Page>
         <Header data={headerData} />
         <Main>
-          <Form isHeader={true} inputs={inputs} btns={btns} isFetching={this.state.isFetching} />
+          <Form isHeader={true} inputs={inputs} btns={btns} isFetching={this.state.isFetching} status={this.state.formStatus}/>
         </Main>
         <Footer />
       </Page>
@@ -170,10 +171,27 @@ class Settings extends Component {
       isFetching: true
     });
 
-    api.updateSettings(this.state.settings, () => {
+    api.updateSettings(this.state.settings, (res) => {
       this.setState({
         isFetching: false
       });
+
+      if (res.status === 'ok') {
+        this.setState({
+          formStatus: {
+            value: res.status,
+            text: 'Settings have been successfully saved.'
+          }
+        });
+      }
+      else if (res.status === 'error') {
+        this.setState({
+          formStatus: {
+            value: res.status,
+            text: 'Can\'t clone this repository.'
+          }
+        });
+      }
     });
   }
 

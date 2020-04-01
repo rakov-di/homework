@@ -10,20 +10,32 @@ const cloneRepo = (repoName) => {
       if (err && err.code === 'ENOENT') {
         const gitClone = spawn(`git clone ${repoName} local_repo`, {shell: true});
 
-        gitClone.stdout.on('data', data => console.log(`stdout: ${data}`));
+        gitClone.stdout.on('data', data => {
+          console.log(`stdout: ${data}`);
+          resolve(repoName);
+        });
 
-        gitClone.stderr.on('data', data => console.error(`stderr: ${data}`));
+        gitClone.stderr.on('data', data => {
+          console.error(`stderr: ${data}`);
+          resolve(data);
+        });
 
-        gitClone.on('close', () => resolve(repoName));
+        // gitClone.on('close', () => resolve(repoName));
       }
       else {
         const gitRmClone = spawn(`rm -rf ${localRepoName} && git clone ${repoName} local_repo`, {shell: true});
 
-        gitRmClone.stdout.on('data', data => console.log(`stdout: ${data}`));
+        gitRmClone.stdout.on('data', data => {
+          console.log(`stdout: ${data}`);
+          resolve(repoName);
+        });
 
-        gitRmClone.stderr.on('data', data => console.error(`stderr: ${data}`));
+        gitRmClone.stderr.on('data', data => {
+          console.error(`stderr: ${data}`);
+          resolve(data);
+        });
 
-        gitRmClone.on('close', () => resolve(repoName));
+        // gitRmClone.on('close', () => resolve(repoName));
       }
     })
   });

@@ -25,10 +25,19 @@ export const api = {
       period: Number(data.period)
     })
       .then(res => {
-        cb && cb();
+        cb && cb({
+          status: 'ok',
+          res: res
+        });
         return res;
       })
-      .catch(err => console.error(err.message));
+      .catch(err => {
+        cb && cb({
+          status: 'error',
+          err: err
+        });
+        console.error(err.message);
+      });
   },
 
   addCommitToQueue(commitHash, cb) {

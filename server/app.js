@@ -76,9 +76,11 @@ app.post('/api/settings', (req, res, next) => {
       return cloneRepo(req.body.repoName)
     })
     .then((repoName) => {
+      console.log('crab1' + repoNam);
       res.json(String(`Настройки сохранены. Репозиторий ${repoName} склонирован.`));
     })
     .catch((error) => {
+      console.log('crab2' + error.message);
       next(error);
     });
 });

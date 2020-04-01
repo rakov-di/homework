@@ -95,7 +95,6 @@ $bpMobilePageBuild = 560px
   --cLabelRequired: var(--red-100)
   --cInputPlh: var(--gray-350)
   --cInputMain: var(--black-100)
-  --cError: var(--red-200)
   --cTaskTitle: var(--black-100)
   --cTaskMetaPrimary: var(--black-100)
   --cTaskMetaSecondary: var(--gray-550)
@@ -104,10 +103,10 @@ $bpMobilePageBuild = 560px
   --cLog: var(--black-200)
   --cLoader: var(--gray-550)
 
-  // Доп. цвета текстов для Задач
+  // Доп. цвета для статусов
   --cTaskWait: var(--orange-400)
-  --cTaskFail: var(--red-100)
-  --cTaskDone: var(--green-100)
+  --cError: var(--red-100)
+  --cSuccess: var(--green-100)
 
   // Ссылки
   --cLinkHovered: var(--red-200)
@@ -398,5 +397,10 @@ $form_error-msg
   @extend $font
   @extend $font-400
   color: var(--cError)
+
+$form_success-msg
+  @extend $font
+  @extend $font-400
+  color: var(--cSuccess)
 
 
