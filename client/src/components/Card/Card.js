@@ -8,7 +8,7 @@ class Card extends Component {
 
   render() {
     // TODO вынести это из рендера
-    let { status, buildNumber, commitMessage, branchName, commitHash, authorName, start, duration } = this.props.build;
+    let { id, status, buildNumber, commitMessage, branchName, commitHash, authorName, start, duration } = this.props.build;
 
     start = start ? format(Date.parse(start), 'd MMM HH:s', {locale: ru}) : '––––––––––';
 
@@ -23,7 +23,7 @@ class Card extends Component {
     commitHash = commitHash && commitHash.slice(0, 7);
 
     return (
-      <div className={`card card_type_common card_status_${status}`}>
+      <div className={`card card_type_common card_status_${status}`} onClick={this.handleCardClick.bind(this)} data-id={id}>
         <div className="card__icon"></div>
         <div className="card__info card__info_direction_row">
           <div className="card__main">
@@ -44,6 +44,10 @@ class Card extends Component {
         </div>
       </div>
     );
+  }
+
+  handleCardClick = (e) => {
+    document.location.href = `/build/${e.currentTarget.dataset.id}`
   }
 }
 
