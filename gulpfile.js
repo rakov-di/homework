@@ -45,7 +45,7 @@ gulp.task('html', () => {
     .pipe(gulp.dest('./build'));
 });
 
-// Create sprite
+// Create sprite (OLD)
 const configSprite = {
   shape: {
     spacing: { // Add padding
@@ -68,11 +68,72 @@ const configSprite = {
   }
 };
 
-gulp.task('sprite', () => {
+gulp.task('sprite-old', () => {
   return gulp.src('./src/svg/*.svg')
     .pipe(svgSprite(configSprite))
     .pipe(gulp.dest('.'));
 });
+
+// Create mixins for sprite
+const configSpriteMixins = {
+  shape: {
+    spacing: { // Add padding
+      padding: 2
+    }
+  },
+  mode: {
+    css: {
+      dest: 'src',
+      render: {
+        styl: {
+          dest: 'css/icon-mixins.styl',
+          template: 'src/css/base.blocks/icon-tmpl-mixins.styl'
+        }
+      },
+      sprite: 'img/icons.svg',
+      prefix: '',
+      dimensions: true
+    }
+  }
+};
+
+gulp.task('sprite-mixins', () => {
+  return gulp.src('./src/svg/*.svg')
+    .pipe(svgSprite(configSpriteMixins))
+    .pipe(gulp.dest('.'));
+});
+
+// Create classes for sprite
+const configSpriteClasses = {
+  shape: {
+    spacing: { // Add padding
+      padding: 2
+    }
+  },
+  mode: {
+    css: {
+      dest: 'src',
+      render: {
+        styl: {
+          dest: 'css/base.blocks/icons.styl',
+          template: 'src/css/base.blocks/icon-tmpl-classes.styl'
+        }
+      },
+      sprite: 'img/icons.svg',
+      prefix: '',
+      dimensions: true
+    }
+  }
+};
+
+gulp.task('sprite-classes', () => {
+  return gulp.src('./src/svg/*.svg')
+    .pipe(svgSprite(configSpriteClasses))
+    .pipe(gulp.dest('.'));
+});
+
+gulp.task('sprite', gulp.series('sprite-mixins', 'sprite-classes'));
+
 
 // Copy img
 gulp.task('img', () => {
