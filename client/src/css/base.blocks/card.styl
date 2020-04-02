@@ -69,6 +69,7 @@
     flex-grow: 1
     display: flex
     justify-content: space-between
+    overflow: hidden
 
     &_direction_row
       flex-direction: row
@@ -78,6 +79,9 @@
 
     &_direction_column
       flex-direction: column
+
+  &__main
+    min-width: 0
 
   &__task
     display: flex
@@ -101,13 +105,14 @@
 
   &__title
     display: inline-block
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
     @extend $text_task-title
-    //text-overflow: ellipsis;
-    //white-space: nowrap; /* Отменяем перенос текста */
-    //overflow: hidden
 
     @media only screen and (max-width: $bpMobilePageBuild)
       margin-bottom: var(--p-xxs)
+      white-space: normal
 
   &__meta
     flex-shrink: 0
