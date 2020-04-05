@@ -1,6 +1,8 @@
 import './css/style.styl';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getCurSettings } from './redux/actions/actions';
 
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
@@ -11,21 +13,17 @@ import BuildHistory from './pages/BuildHistory';
 import BuildDetails from './pages/BuildDetails';
 import Loader from './components/Loader/Loader';
 
-import { api } from './api.js';
 
 class App extends Component {
-  state = {
-    fetchEnded: false,
-    settings: {}
-  };
-
   render() {
+    const { fetchEnded, settings } = this.props.app;
+
     return (
       <Router history={history}>
-        {(this.state.fetchEnded) ? (
+        {(fetchEnded) ? (
           <Switch>
-            <Route exact path='/' component={this.state.settings.repoName ? BuildHistory : StartScreen} />
-            <Route path='/start-screen' component={this.state.settings.repoName ? BuildHistory : StartScreen} />
+            {/*<Route exact path='/' component={settings.repoName ? BuildHistory : StartScreen} />*/}
+            {/*<Route path='/start-screen' component={settings.repoName ? BuildHistory : StartScreen} />*/}
             <Route path='/settings' component={Settings} />
             <Route path='/build-history' component={BuildHistory} />
             <Route path='/build/:buildId' component={BuildDetails} />
@@ -38,19 +36,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    api.getSettings()
-      .then(res => {
-        this.setState({
-          settings: res.data.data
-        })
-      })
-      .catch(error => console.error(error.message))
-      .finally(() => {
-        this.setState({
-          fetchEnded: true,
-        })
-      })
+    this.props.getCurSettings();
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  app: state.app
+});
+
+const mapDispatchToProps = dispatch => ({
+  getCurSettings: () => dispatch(getCurSettings())
+});
+
+export const AppConnected = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

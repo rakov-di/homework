@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redux/actions/actions';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
@@ -6,20 +8,10 @@ import Main from '../components/Main/Main';
 import Form from '../components/Form/Form';
 import Footer from '../components/Footer/Footer';
 
-import { api } from '../api.js'
 
-class Settings extends Component {
-  state = {
-    isFetching: false,
-    settings: {},
-    isInputsInvalid: {
-      repoName: false,
-      buildCommand: false,
-    },
-    formStatus: null
-  };
-
+class SettingsClass extends Component {
   render() {
+    const { inputs } = this.props.settings;
     const headerData = {
       title: {
         valign: 'center',
@@ -29,70 +21,65 @@ class Settings extends Component {
       btns: []
     };
 
-    const inputs = [
-      {
-        direction: 'column',
-        name: 'repoName',
-        id: 'repo',
-        display: 'block',
-        value: this.state.settings.repoName,
-        labelText: 'GitHub repository',
-        isRequired: true,
-        isInvalid: this.state.isInputsInvalid.repoName,
-        inputPlh: 'user-name/repo-name',
-        onChange: this.handleInputChange.bind(this),
-        onFocus: this.handleInputFocus.bind(this),
-        errorMsg: 'This field can\'t be empty',
-        clearInput: this.clearInput.bind(this)
-      },
-      {
-        direction: 'column',
-        name: 'buildCommand',
-        id: 'command',
-        display: 'block',
-        value: this.state.settings.buildCommand,
-        labelText: 'Build command',
-        isRequired: true,
-        isInvalid: this.state.isInputsInvalid.buildCommand,
-        inputPlh: 'type command',
-        onChange: this.handleInputChange.bind(this),
-        onFocus: this.handleInputFocus.bind(this),
-        errorMsg: 'This field can\'t be empty',
-        clearInput: this.clearInput.bind(this)
-      },
-      {
-        direction: 'column',
-        name: 'mainBranch',
-        id: 'branch',
-        display: 'block',
-        value: this.state.settings.mainBranch,
-        labelText: 'Main branch',
-        inputPlh: 'type branch',
-        onChange: this.handleInputChange.bind(this),
-        clearInput: this.clearInput.bind(this)
-      },
-      {
-        direction: 'row',
-        name: 'period',
-        id: 'minutes',
-        display: 'inline',
-        value: this.state.settings.period,
-        labelText: 'Synchronize every',
-        labelValueText: 'minutes',
-        pattern: '^[0-9]*$',
-        onChange: this.handleInputChange.bind(this),
-        onInput: this.checkIsNum.bind(this)
-      }
-    ];
-
-    const btns = {
-      primary: {
-        text: 'Save',
-        onClick: this.handlePrimaryClick.bind(this)
-      },
-      secondary: {
-        text: 'Cancel',
-        onClick: this.handleSecondaryClick.bind(this)
+    const formData = {
+      isHeader: true,
+      inputs: [
+        {
+          direction: 'column',
+          name: 'repoName',
+          id: 'repo',
+          display: 'block',
+          value: inputs.repoName.value,
+          labelText: 'GitHub repository',
+          isRequired: true,
+          isValid: inputs.repoName.isValid,
+          inputPlh: 'user-name/repo-name',
+          errorMsg: 'This field can\'t be empty',
+        },
+        {
+          direction: 'column',
+          name: 'buildCommand',
+          id: 'command',
+          display: 'block',
+          value: inputs.buildCommand.value,
+          labelText: 'Build command',
+          isRequired: true,
+          isValid: inputs.buildCommand.isValid,
+          inputPlh: 'type command',
+          errorMsg: 'This field can\'t be empty',
+        },
+        {
+          direction: 'column',
+          name: 'mainBranch',
+          id: 'branch',
+          display: 'block',
+          value: inputs.mainBranch.value,
+          labelText: 'Main branch',
+          inputPlh: 'type branch',
+          isValid: inputs.mainBranch.isValid,
+        },
+        {
+          direction: 'row',
+          name: 'period',
+          id: 'minutes',
+          display: 'inline',
+          value: inputs.period.value,
+          labelText: 'Synchronize every',
+          labelValueText: 'minutes',
+          pattern: '^[0-9]*$',
+          isValid: inputs.period.isValid,
+          needCheckOnNum: true
+        }
+      ],
+      btns: {
+        primary: {
+          text: 'Save',
+          onClick: this.handlePrimaryClick.bind(this)
+        },
+        secondary: {
+          text: 'Cancel',
+          onClick: this.handleSecondaryClick.bind(this)
+        }
       }
     };
 
@@ -100,7 +87,7 @@ class Settings extends Component {
       <Page>
         <Header data={headerData} />
         <Main>
-          <Form isHeader={true} inputs={inputs} btns={btns} isFetching={this.state.isFetching} status={this.state.formStatus}/>
+          <Form formData={formData} />
         </Main>
         <Footer />
       </Page>
@@ -108,112 +95,52 @@ class Settings extends Component {
   }
 
   componentDidMount() {
-    // TODO Запрашивать настройки один раз, а не какждый раз заново для каждой страницы
-    api.getSettings()
-      .then(res => {
-        this.setState({
-          settings: res.data.data
-        })
-      })
-      .catch(error => console.error(error.message))
-  }
-
-  checkIsNum(e) {
-    let val = e.target.value;
-    const isNum = /^[0-9]*$/.test(val);
-    if (!isNum) e.target.value = val.slice(0, -1);
-  }
-
-  handleInputFocus(e) {
-    const { target } = e;
-    const name = target.name;
-
-    this.setState({
-      isInputsInvalid: {
-        ...this.state.isInputsInvalid,
-        [name]: false
-      }
-    });
-  }
-
-  handleInputChange(e) {
-    const { target } = e;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      settings: {
-        ...this.state.settings,
-        [name]: value
-      }
-    });
+    const { inputs } = this.props.settings;
+    const { settings } = this.props.app;
+    Object.keys(inputs).map((name) => {
+      this.props.inputSetValue(name, settings[name]);
+    })
   }
 
   handlePrimaryClick() {
-    if (!this.state.settings.repoName) {
-      this.setState({
-        isInputsInvalid: {
-          ...this.state.isInputsInvalid,
-          repoName: true
-        }
-      });
+    const { inputs } = this.props.settings;
+
+    if (!inputs.repoName.value) {
+      this.props.inputSetValidationStatus('repoName', false);
       return;
     }
-    if (!this.state.settings.buildCommand) {
-      this.setState({
-        isInputsInvalid: {
-          ...this.state.isInputsInvalid,
-          buildCommand: true
-        }
-      });
+    if (!inputs.buildCommand.value) {
+      this.props.inputSetValidationStatus('buildCommand', false);
       return;
     }
 
-    this.setState({
-      isFetching: true,
-      formStatus: {}
-    });
+    const newSettings = {
+      repoName: inputs.repoName.value,
+      buildCommand: inputs.buildCommand.value,
+      mainBranch: inputs.mainBranch.value,
+      period: inputs.period.value,
+    };
 
-    api.updateSettings(this.state.settings)
-      .then(res => {
-        this.setState({
-          formStatus: {
-            value: res.data.status,
-            text: res.data.message
-          }
-        })
-      })
-      .catch(error => {
-        this.setState({
-          formStatus: {
-            value: 'error',
-            text: error.message
-          }
-        })
-      })
-      .finally(() => {
-        this.setState({
-          isFetching: false
-        });
-      })
+    this.props.updateSettings(newSettings);
   }
 
   handleSecondaryClick() {
     document.location.href = '/start-screen';
   }
-
-  clearInput(e) {
-    const target = e.target.closest('.input').querySelector('.input__field');
-    const name = target.name;
-    target.value = '';
-
-    this.setState({
-      settings: {
-        ...this.state.settings,
-        [name]: ''
-      }
-    })
-  }
 }
 
-export default Settings;
+const mapStateToProps = state => ({
+  app: state.app,
+  settings: state.settings,
+});
+
+const mapDispatchToProps = dispatch => ({
+  inputSetValue: (name, value) => dispatch(inputSetValue(name, value)),
+  inputSetValidationStatus: (name, status) => dispatch(inputSetValidationStatus(name, status)),
+  updateSettings: (name) => dispatch(updateSettings(name)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsClass);

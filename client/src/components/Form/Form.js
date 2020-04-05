@@ -1,14 +1,16 @@
 import './Form.styl';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import BtnBig from '../BtnBig/BtnBig';
-import Input from '../Input/Input';
+import { InputConnected } from '../Input/Input';
 import Label from '../Label/Label';
 
-class Form extends Component {
+class FormClass extends Component {
   render() {
-    const { isHeader, inputs, btns, isFetching, status } = this.props;
+    const { isHeader, inputs, btns } = this.props.formData; // из родителя
+    const { isFetching, formStatus } = this.props.app; // из redux
 
     return (
       <form className="form">
@@ -28,21 +30,18 @@ class Form extends Component {
                 text={input.labelText}
                 isRequired={input.isRequired}
               />
-              <Input
+              <InputConnected
                 name={input.name}
                 id={input.id}
                 display={input.display}
                 value={input.value}
                 plh={input.inputPlh}
                 isRequired={input.isRequired}
-                isInvalid={input.isInvalid || null}
+                isValid={input.isValid || null}
                 type={input.type}
                 pattern={input.pattern || null}
-                onInput={input.onInput || null}
-                onChange={input.onChange}
-                onFocus={input.onFocus || null}
                 errorMsg={input.errorMsg}
-                clearInput={input.clearInput}
+                needCheckOnNum={input.needCheckOnNum}
               />
               {input.labelValueText && <Label
                                         htmlFor={input.id}
@@ -58,19 +57,24 @@ class Form extends Component {
             action='primary'
             text={btns.primary.text}
             mixClass='form__btn'
-            onClick={btns.primary.onClick}
-            disabled={isFetching} />
+            onClick={btns.primary.onClick} />
           <BtnBig
             action='secondary'
             text={btns.secondary.text}
             mixClass='form__btn'
-            onClick={btns.secondary.onClick}
-            disabled={isFetching} />
+            onClick={btns.secondary.onClick} />
         </div>
-        {status && <div className={`form__${status.value}-msg`}>{status.text}</div>}
+        {!isFetching && formStatus && <div className={`form__${formStatus.value}-msg`}>{formStatus.text}</div>}
       </form>
     );
   }
 }
 
-export default Form;
+
+const mapStateToProps = state => ({
+  app: state.app,
+});
+
+export default connect(
+  mapStateToProps
+)(FormClass);
