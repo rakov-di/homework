@@ -13,15 +13,11 @@ const defaultState = {
     mainBranch: null,
     period: null
   },
+  builds: []
 };
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case ACTIONS.SET_CUR_PAGE:
-      return {
-        ...state,
-        curPage: action.name
-      };
     case ACTIONS.FETCH_START:
       return {
         ...state,
@@ -44,6 +40,11 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         settings: action.payload
+      };
+    case ACTIONS.UPDATE_STORE_BUILDS_LIST:
+      return {
+        ...state,
+        builds: action.payload
       };
     case ACTIONS.UPDATE_FORM_STATUS:
       return {

@@ -40,7 +40,7 @@ class Input extends Component {
   changeInput(e) {
     let { name, value } = e.target;
     if (this.props.needCheckOnNum && !this.isNum(value)) {
-      value = this.props.inputs[name].value;
+      value = value.slice(0, -1); // TODO не работает, есди вставить букву МЕЖДУ цифрами
     }
     this.props.inputSetValue(name, value);
   }
@@ -56,9 +56,6 @@ class Input extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  inputs: state.settings.inputs
-});
 
 const mapDispatchToProps = dispatch => ({
   inputSetValue: (name, value) => dispatch(inputSetValue(name, value)),
@@ -66,7 +63,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export const InputConnected = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Input);
 

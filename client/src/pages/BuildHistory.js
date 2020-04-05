@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getBuildsList, modalVisibilityToggle, addCommitToQueue } from '../redux/actions/actions';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
@@ -7,25 +9,17 @@ import CardList from '../components/CardList/CardList';
 import Modal from '../components/Modal/Modal';
 import Footer from '../components/Footer/Footer';
 
-import { api } from '../api.js'
 
-class BuildHistory extends Component {
-  state = {
-    isFetching: false,
-    isModalShown: false,
-    commitHash: '',
-    builds: [],
-    settings: {},
-    isErrorOnFormSubmit: false,
-    errorMsg: ''
-  };
-
+class BuildHistoryClass extends Component {
   render() {
+    const { settings, builds } = this.props.app;
+    const { commitHash } = this.props.inputs;
+    const { isModalShown } = this.props.buildHistory;
     const headerData = {
       title: {
         valign: 'top',
         type: 'repo-title',
-        text: this.state.settings.repoName || ''
+        text: settings.repoName || ''
       },
       btns: [
         {
@@ -43,41 +37,43 @@ class BuildHistory extends Component {
       ]
     };
 
-    const inputs = [
-      {
-        direction: 'column',
-        name: 'commitHash',
-        id: 'commitHash',
-        display: 'block',
-        value: this.state.commitHash,
-        labelText: 'Enter the commit hash which you want to build.',
-        inputPlh: 'Commit hash',
-        onChange: this.handleInputChange.bind(this),
-        onFocus: this.handleInputFocus.bind(this),
-        isInvalid: this.state.isErrorOnFormSubmit,
-        errorMsg:  this.state.errorMsg,
-        clearInput: this.clearInput.bind(this)
-      }
-    ];
-
-    const btns = {
-      primary: {
-        text: 'Run build',
-        onClick: this.handlePrimaryClick.bind(this)
-      },
-      secondary: {
-        text: 'Cancel',
-        onClick: this.toggleModalVisibility.bind(this)
+    const formData = {
+      isHeader: false,
+      inputs: [
+        {
+          direction: 'column',
+          name: 'commitHash',
+          id: 'commitHash',
+          display: 'block',
+          value: commitHash.value,
+          labelText: 'Enter the commit hash which you want to build.',
+          inputPlh: 'Commit hash',
+          // onChange: this.handleInputChange.bind(this),
+          // onFocus: this.handleInputFocus.bind(this),
+          isValid: commitHash.isValid,
+          errorMsg:  'There is no commit with such hash',
+          // clearInput: this.clearInput.bind(this)
+        }
+      ],
+      btns: {
+        primary: {
+          text: 'Run build',
+          onClick: this.handlePrimaryClick.bind(this)
+        },
+        secondary: {
+          text: 'Cancel',
+          onClick: this.toggleModalVisibility.bind(this)
+        }
       }
     };
 
     return (
       <Page>
-        <Header data={headerData} isModalShown = {this.state.isModalShown} />
+        <Header data={headerData} />
         <Main>
-          <CardList builds={this.state.builds}/>
+          <CardList builds={builds}/>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
-          {this.state.isModalShown && <Modal inputs={inputs} btns={btns} isFetching={this.state.isFetching} toggleModalVisibility={this.toggleModalVisibility.bind(this)}/>}
+          {isModalShown && <Modal formData={formData} toggleModalVisibility={this.toggleModalVisibility.bind(this)}/>}
         </Main>
         <Footer />
       </Page>
@@ -86,73 +82,38 @@ class BuildHistory extends Component {
 
   componentDidMount() {
     window.history.pushState(null, document.title, `${window.location.origin}/build-history`);
-
-    // Запрашиваем getSettings, чтобы получить имя репозитория (для вывода в Header)
-    Promise.all([
-      api.getSettings(),
-      api.getBuildsList()
-    ])
-      .then(([settings, builds]) => {
-        this.setState({
-          settings: settings.data.data,
-          builds: builds.data.data
-        })
-      })
-      .catch(err => console.error(err.message));
-  }
-
-  handleInputFocus(e) {
-    this.setState({
-      isErrorOnFormSubmit: false
-    });
-  }
-
-  handleInputChange(e) {
-    const { target } = e;
-    const value = target.value;
-    this.setState({
-      commitHash: value
-    });
+    this.props.getBuildsList();
   }
 
   handlePrimaryClick() {
     this.setState({
       isFetching: true
     });
-    api.addCommitToQueue(this.state.commitHash)
-      .then(res => {
-        document.location.href = `/build/${res.data.payload.id}`;
-      })
-      .catch(err => {
-        this.setState({
-          isErrorOnFormSubmit: true,
-          errorMsg: err.message
-        });
-      })
-      .finally(() => {
-        this.setState({
-          isFetching: false
-        });
-      })
+    this.props.addCommitToQueue(this.props.inputs.commitHash.value);
   }
 
   toggleModalVisibility() {
-    this.setState({
-      isModalShown: !this.state.isModalShown,
-      isErrorOnFormSubmit: false,
-      commitHash: ''
-    });
+    this.props.modalVisibilityToggle(!this.props.buildHistory.isModalShown);
   }
 
   goToPageSettings() {
     document.location.href = '/settings'
   }
-
-  clearInput(e) {
-    this.setState({
-      commitHash: ''
-    })
-  }
 }
 
-export default BuildHistory;
+const mapStateToProps = state => ({
+  app: state.app,
+  inputs: state.inputs,
+  buildHistory: state.buildHistory,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getBuildsList: () => dispatch(getBuildsList()),
+  modalVisibilityToggle: (name, status) => dispatch(modalVisibilityToggle(name, status)),
+  addCommitToQueue: (commitHash) => dispatch(addCommitToQueue(commitHash)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BuildHistoryClass);

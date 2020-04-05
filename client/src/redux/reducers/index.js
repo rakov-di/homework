@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import app from './app'
-import settings from './settings'
-import startScreen from './startScreen'
+import inputs from './inputs'
+import buildHistory from './buildHistory'
+import curBuild from './curBuild'
 
 export default combineReducers({
   app,
-  settings,
-  startScreen,
+  inputs,
+  buildHistory,
+  curBuild
 })

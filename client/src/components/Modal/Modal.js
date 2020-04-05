@@ -15,7 +15,7 @@ class Modal extends Component {
       <div className='modal' onClick={this.handleClickModal.bind(this)}>
         <div className='modal__content'>
           <div className='modal__title'>New build</div>
-          <Form inputs={this.props.inputs} btns={this.props.btns} isFetching={this.props.isFetching} />
+          <Form formData={this.props.formData} />
         </div>
       </div>
     );

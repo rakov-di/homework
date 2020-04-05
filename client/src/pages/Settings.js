@@ -11,7 +11,7 @@ import Footer from '../components/Footer/Footer';
 
 class SettingsClass extends Component {
   render() {
-    const { inputs } = this.props.settings;
+    const { repoName, buildCommand, mainBranch, period } = this.props.inputs;
     const headerData = {
       title: {
         valign: 'center',
@@ -29,10 +29,10 @@ class SettingsClass extends Component {
           name: 'repoName',
           id: 'repo',
           display: 'block',
-          value: inputs.repoName.value,
+          value: repoName.value,
           labelText: 'GitHub repository',
           isRequired: true,
-          isValid: inputs.repoName.isValid,
+          isValid: repoName.isValid,
           inputPlh: 'user-name/repo-name',
           errorMsg: 'This field can\'t be empty',
         },
@@ -41,10 +41,10 @@ class SettingsClass extends Component {
           name: 'buildCommand',
           id: 'command',
           display: 'block',
-          value: inputs.buildCommand.value,
+          value: buildCommand.value,
           labelText: 'Build command',
           isRequired: true,
-          isValid: inputs.buildCommand.isValid,
+          isValid: buildCommand.isValid,
           inputPlh: 'type command',
           errorMsg: 'This field can\'t be empty',
         },
@@ -53,21 +53,21 @@ class SettingsClass extends Component {
           name: 'mainBranch',
           id: 'branch',
           display: 'block',
-          value: inputs.mainBranch.value,
+          value: mainBranch.value,
           labelText: 'Main branch',
           inputPlh: 'type branch',
-          isValid: inputs.mainBranch.isValid,
+          isValid: mainBranch.isValid,
         },
         {
           direction: 'row',
           name: 'period',
           id: 'minutes',
           display: 'inline',
-          value: inputs.period.value,
+          value: period.value,
           labelText: 'Synchronize every',
           labelValueText: 'minutes',
           pattern: '^[0-9]*$',
-          isValid: inputs.period.isValid,
+          isValid: period.isValid,
           needCheckOnNum: true
         }
       ],
@@ -95,7 +95,7 @@ class SettingsClass extends Component {
   }
 
   componentDidMount() {
-    const { inputs } = this.props.settings;
+    const inputs = this.props.inputs;
     const { settings } = this.props.app;
     Object.keys(inputs).map((name) => {
       this.props.inputSetValue(name, settings[name]);
@@ -103,22 +103,22 @@ class SettingsClass extends Component {
   }
 
   handlePrimaryClick() {
-    const { inputs } = this.props.settings;
+    const { repoName, buildCommand, mainBranch, period } = this.props.inputs;
 
-    if (!inputs.repoName.value) {
+    if (!repoName.value) {
       this.props.inputSetValidationStatus('repoName', false);
       return;
     }
-    if (!inputs.buildCommand.value) {
+    if (!buildCommand.value) {
       this.props.inputSetValidationStatus('buildCommand', false);
       return;
     }
 
     const newSettings = {
-      repoName: inputs.repoName.value,
-      buildCommand: inputs.buildCommand.value,
-      mainBranch: inputs.mainBranch.value,
-      period: inputs.period.value,
+      repoName: repoName.value,
+      buildCommand: buildCommand.value,
+      mainBranch: mainBranch.value,
+      period: period.value,
     };
 
     this.props.updateSettings(newSettings);
@@ -131,7 +131,7 @@ class SettingsClass extends Component {
 
 const mapStateToProps = state => ({
   app: state.app,
-  settings: state.settings,
+  inputs: state.inputs,
 });
 
 const mapDispatchToProps = dispatch => ({

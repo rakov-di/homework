@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
@@ -7,35 +9,15 @@ import Card from '../components/Card/Card';
 import Log from '../components/Log/Log';
 import Footer from '../components/Footer/Footer';
 
-import { api } from '../api.js'
 
-import Convert from 'ansi-to-html';
 
-const convert = new Convert({fg: '#000', bg: '#000'});
-
-class BuildDetails extends Component {
-  state = {
-    curBuild: {
-      id: null,
-      buildNumber: null,
-      commitMessage: null,
-      branchName: null,
-      commitHash: null,
-      authorName: null,
-      status: null,
-      start: null,
-      duration: null
-    },
-    curBuildLog: '',
-    settings: {}
-  };
-
+class BuildDetailsClass extends Component {
   render() {
     const headerData = {
       title: {
         valign: 'top',
         type: 'repo-title',
-        text: this.state.settings.repoName || ''
+        text: this.props.app.settings.repoName || ''
       },
       btns: [
         {
@@ -57,8 +39,8 @@ class BuildDetails extends Component {
       <Page>
         <Header data={headerData} />
         <Main>
-          <Card build={this.state.curBuild} />
-          {this.state.curBuildLog && <Log log={this.state.curBuildLog} />}
+          <Card build={this.props.curBuild} />
+          {this.props.curBuild.log && <Log log={this.props.curBuild.log} />}
         </Main>
         <Footer />
       </Page>
@@ -68,28 +50,12 @@ class BuildDetails extends Component {
   componentDidMount() {
     const buildId = window.location.pathname.split('/').reverse()[0];
 
-    // Запрашиваем getSettings, чтобы получить имя репозитория (для вывода в Header)
-    Promise.all([
-      api.getSettings(),
-      api.getBuildDetails(buildId),
-      api.getBuildLog(buildId)
-    ])
-      .then(([settings, build, log]) => {
-        this.setState({
-          settings: settings.data.data,
-          curBuild: build.data.data,
-          curBuildLog: convert.toHtml(log.data)
-        })
-      })
-      .catch(error => console.error(error.message))
+    this.props.getBuildDetails(buildId);
+    this.props.getBuildLog(buildId);
   }
 
-  handleRebuildClick() {
-    api.addCommitToQueue(this.state.curBuild.commitHash)
-      .then(res => {
-        document.location.href = `/build/${res.data.payload.id}`;
-      })
-      .catch(error => console.error(error.message));
+  handleRebuildClick(e) {
+    this.props.addCommitToQueue(this.props.curBuild.commitHash)
   }
 
   goToPageSettings() {
@@ -97,5 +63,19 @@ class BuildDetails extends Component {
   }
 }
 
-export default BuildDetails;
+const mapStateToProps = state => ({
+  app: state.app,
+  curBuild: state.curBuild
+});
+
+const mapDispatchToProps = dispatch => ({
+  getBuildDetails: (buildId) => dispatch(getBuildDetails(buildId)),
+  getBuildLog: (buildId) => dispatch(getBuildLog(buildId)),
+  addCommitToQueue: (buildId) => dispatch(addCommitToQueue(buildId)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BuildDetailsClass);
 
