@@ -86,9 +86,6 @@ class BuildHistoryClass extends Component {
   }
 
   handlePrimaryClick() {
-    this.setState({
-      isFetching: true
-    });
     this.props.addCommitToQueue(this.props.inputs.commitHash.value);
   }
 

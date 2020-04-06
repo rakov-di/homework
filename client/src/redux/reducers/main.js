@@ -1,10 +1,8 @@
 import * as ACTIONS from '../actions/_consts'
 
 const defaultState = {
-  curPage: '',
-  fetchEnded: false,
+  isFetchEnded: false,
   isFetching: false,
-  fetchErr: '',
   formStatus: null,
   settings: {
     id: null,
@@ -27,13 +25,13 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         isFetching: false,
-        fetchEnded: true,
+        isFetchEnded: true,
       };
     case ACTIONS.FETCH_FAIL:
       return {
         ...state,
         isFetching: false,
-        fetchEnded: true,
+        isFetchEnded: true,
         fetchErr: action.payload.err
       };
     case ACTIONS.UPDATE_STORE_SETTINGS:

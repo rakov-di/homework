@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class BtnBigClass extends Component {
   render() {
     const { type, action, mixClass, text, onClick, onSubmit } = this.props; // из родителя
-    const isDisabled = this.props.isFetching;
+    const isDisabled = this.props.isFetching; // из redux
     return (
       <button
         type={type || "button"}

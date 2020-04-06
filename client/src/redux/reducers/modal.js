@@ -1,7 +1,6 @@
 import * as ACTIONS from '../actions/_consts'
 
 const defaultState = {
-  isErrorOnFormSubmit: false,
   isModalShown: false,
 };
 

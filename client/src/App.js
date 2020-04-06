@@ -16,11 +16,11 @@ import Loader from './components/Loader/Loader';
 
 class AppClass extends Component {
   render() {
-    const { fetchEnded, settings } = this.props.main;
+    const { isFetchEnded, settings } = this.props.main;
 
     return (
       <Router history={history}>
-        {(fetchEnded) ? (
+        {(isFetchEnded) ? (
           <Switch>
             <Route exact path='/' component={settings.repoName ? BuildHistory : StartScreen} />
             <Route path='/start-screen' component={settings.repoName ? BuildHistory : StartScreen} />
