@@ -96,7 +96,7 @@ class SettingsClass extends Component {
 
   componentDidMount() {
     const inputs = this.props.inputs;
-    const { settings } = this.props.app;
+    const { settings } = this.props.main;
     Object.keys(inputs).map((name) => {
       this.props.inputSetValue(name, settings[name]);
     })
@@ -130,7 +130,7 @@ class SettingsClass extends Component {
 }
 
 const mapStateToProps = state => ({
-  app: state.app,
+  main: state.main,
   inputs: state.inputs,
 });
 

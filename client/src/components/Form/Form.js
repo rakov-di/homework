@@ -10,7 +10,7 @@ import Label from '../Label/Label';
 class FormClass extends Component {
   render() {
     const { isHeader, inputs, btns } = this.props.formData; // из родителя
-    const { isFetching, formStatus } = this.props.app; // из redux
+    const { isFetching, formStatus } = this.props.main; // из redux
 
     return (
       <form className="form">
@@ -72,7 +72,7 @@ class FormClass extends Component {
 
 
 const mapStateToProps = state => ({
-  app: state.app,
+  main: state.main,
 });
 
 export default connect(

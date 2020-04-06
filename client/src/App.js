@@ -16,7 +16,7 @@ import Loader from './components/Loader/Loader';
 
 class App extends Component {
   render() {
-    const { fetchEnded, settings } = this.props.app;
+    const { fetchEnded, settings } = this.props.main;
 
     return (
       <Router history={history}>
@@ -41,7 +41,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  app: state.app
+  main: state.main
 });
 
 const mapDispatchToProps = dispatch => ({

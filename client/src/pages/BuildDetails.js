@@ -17,7 +17,7 @@ class BuildDetailsClass extends Component {
       title: {
         valign: 'top',
         type: 'repo-title',
-        text: this.props.app.settings.repoName || ''
+        text: this.props.main.settings.repoName || ''
       },
       btns: [
         {
@@ -64,7 +64,7 @@ class BuildDetailsClass extends Component {
 }
 
 const mapStateToProps = state => ({
-  app: state.app,
+  main: state.main,
   curBuild: state.curBuild
 });
 

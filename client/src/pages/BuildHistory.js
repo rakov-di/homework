@@ -12,7 +12,7 @@ import Footer from '../components/Footer/Footer';
 
 class BuildHistoryClass extends Component {
   render() {
-    const { settings, builds } = this.props.app;
+    const { settings, builds } = this.props.main;
     const { commitHash } = this.props.inputs;
     const { isModalShown } = this.props.modal;
     const headerData = {
@@ -102,7 +102,7 @@ class BuildHistoryClass extends Component {
 }
 
 const mapStateToProps = state => ({
-  app: state.app,
+  main: state.main,
   inputs: state.inputs,
   modal: state.modal,
 });

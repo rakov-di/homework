@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import app from './app'
+import main from './main'
 import inputs from './inputs'
 import modal from './modal'
 import curBuild from './curBuild'
 
 export default combineReducers({
-  app,
+  main,
   inputs,
   modal,
   curBuild

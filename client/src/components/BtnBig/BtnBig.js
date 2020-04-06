@@ -19,7 +19,7 @@ class BtnBigClass extends Component {
 }
 
 const mapStateToProps = state => ({
-  isFetching: state.app.isFetching,
+  isFetching: state.main.isFetching,
 });
 
 export default connect(
