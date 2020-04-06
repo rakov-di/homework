@@ -1,5 +1,5 @@
 import * as ACTIONS from './_consts'
-import { api } from '../../api'
+import { api } from './api'
 
 import Convert from 'ansi-to-html';
 

@@ -65,8 +65,8 @@ npm start
 - [client](client) - папка с react приложением
     - [src](client/src) - исходники 
         - [index.js](client/src/index.js) - точка входа в приложение
-        - [App.js](client/src/api.js) - роутер по страницам приложения
-        - [api.js](client/src/api.js) - методы для работы с api сервера
+        - [App.js](client/src/redux/actions/api.js) - роутер по страницам приложения
+        - [api.js](client/src/redux/actions/api.js) - методы для работы с api сервера
         - [pages](client/src/pages) - все страницы приложения
         - [components](client/src/components) - основные компоненты, из которых состоят страницы
         - [css](client/src/css) - общий css для всего приложения
