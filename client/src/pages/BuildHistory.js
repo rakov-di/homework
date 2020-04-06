@@ -14,7 +14,7 @@ class BuildHistoryClass extends Component {
   render() {
     const { settings, builds } = this.props.app;
     const { commitHash } = this.props.inputs;
-    const { isModalShown } = this.props.buildHistory;
+    const { isModalShown } = this.props.modal;
     const headerData = {
       title: {
         valign: 'top',
@@ -93,7 +93,7 @@ class BuildHistoryClass extends Component {
   }
 
   toggleModalVisibility() {
-    this.props.modalVisibilityToggle(!this.props.buildHistory.isModalShown);
+    this.props.modalVisibilityToggle(!this.props.modal.isModalShown);
   }
 
   goToPageSettings() {
@@ -104,7 +104,7 @@ class BuildHistoryClass extends Component {
 const mapStateToProps = state => ({
   app: state.app,
   inputs: state.inputs,
-  buildHistory: state.buildHistory,
+  modal: state.modal,
 });
 
 const mapDispatchToProps = dispatch => ({
