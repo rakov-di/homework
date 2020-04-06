@@ -30,12 +30,12 @@ class Modal extends Component {
   }
 
   handleKeyPress(e) {
-    if (e.key === 'Escape') this.props.toggleModalVisibility();
+    if (e.key === 'Escape') this.props.closeModal();
   }
 
   handleClickModal(e) {
     if (e.target.classList.contains('modal')) {
-      this.props.toggleModalVisibility()
+      this.props.closeModal()
     }
   }
 }

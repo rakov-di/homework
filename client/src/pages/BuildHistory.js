@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getBuildsList, modalVisibilityToggle, addCommitToQueue } from '../redux/actions/actions';
+import { closeModal, openModal, getBuildsList, addCommitToQueue } from '../redux/actions/actions';
 
 import Page from '../components/Page/Page';
 import Header from '../components/Header/Header';
@@ -26,7 +26,7 @@ class BuildHistoryClass extends Component {
           type: 'icon-text',
           icon: 'run-before',
           text: 'Run build',
-          onClick: this.toggleModalVisibility.bind(this)
+          onClick: this.props.openModal
         },
         {
           type: 'only-icon',
@@ -62,7 +62,7 @@ class BuildHistoryClass extends Component {
         },
         secondary: {
           text: 'Cancel',
-          onClick: this.toggleModalVisibility.bind(this)
+          onClick: this.props.closeModal
         }
       }
     };
@@ -73,7 +73,7 @@ class BuildHistoryClass extends Component {
         <Main>
           <CardList builds={builds}/>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
-          {isModalShown && <Modal formData={formData} toggleModalVisibility={this.toggleModalVisibility.bind(this)}/>}
+          {isModalShown && <Modal formData={formData} closeModal={this.props.closeModal}/>}
         </Main>
         <Footer />
       </Page>
@@ -92,10 +92,6 @@ class BuildHistoryClass extends Component {
     this.props.addCommitToQueue(this.props.inputs.commitHash.value);
   }
 
-  toggleModalVisibility() {
-    this.props.modalVisibilityToggle(!this.props.modal.isModalShown);
-  }
-
   goToPageSettings() {
     document.location.href = '/settings'
   }
@@ -109,7 +105,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getBuildsList: () => dispatch(getBuildsList()),
-  modalVisibilityToggle: (name, status) => dispatch(modalVisibilityToggle(name, status)),
+  closeModal: () => dispatch(closeModal()),
+  openModal: () => dispatch(openModal()),
   addCommitToQueue: (commitHash) => dispatch(addCommitToQueue(commitHash)),
 });
 

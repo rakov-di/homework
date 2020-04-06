@@ -166,6 +166,20 @@ export const updateFormStatus = (payload) => {
   }
 };
 
+export const openModal = () => {
+  return dispatch => {
+    dispatch(modalVisibilityToggle(true));
+  };
+};
+
+export const closeModal = () => {
+  return dispatch => {
+    dispatch(modalVisibilityToggle(false));
+    dispatch(inputSetValue('commitHash', ''));
+    dispatch(inputSetValidationStatus('commitHash', true));
+  };
+};
+
 export const modalVisibilityToggle = (status) => {
   return {
     type: ACTIONS.MODAL_VISIBILITY_TOGGLE,
