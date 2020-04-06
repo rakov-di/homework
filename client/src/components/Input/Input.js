@@ -53,6 +53,7 @@ class Input extends Component {
     const target = e.target.closest('.input').querySelector('.input__field');
     const name = target.name;
     this.props.inputSetValue(name, '');
+    this.props.inputSetValidationStatus(name, true);
   }
 }
 
