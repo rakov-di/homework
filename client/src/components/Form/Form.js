@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import BtnBig from '../BtnBig/BtnBig';
-import { InputConnected } from '../Input/Input';
+import Input from '../Input/Input';
 import Label from '../Label/Label';
 
 class FormClass extends Component {
@@ -30,7 +30,7 @@ class FormClass extends Component {
                 text={input.labelText}
                 isRequired={input.isRequired}
               />
-              <InputConnected
+              <Input
                 name={input.name}
                 id={input.id}
                 display={input.display}

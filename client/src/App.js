@@ -14,7 +14,7 @@ import BuildDetails from './pages/BuildDetails';
 import Loader from './components/Loader/Loader';
 
 
-class App extends Component {
+class AppClass extends Component {
   render() {
     const { fetchEnded, settings } = this.props.main;
 
@@ -48,7 +48,7 @@ const mapDispatchToProps = dispatch => ({
   getCurSettings: () => dispatch(getCurSettings())
 });
 
-export const AppConnected = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(AppClass);

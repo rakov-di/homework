@@ -6,7 +6,7 @@ import { inputSetValue, inputSetValidationStatus } from '../../redux/actions/act
 
 import Icon from '../Icon/Icon';
 
-class Input extends Component {
+class InputClass extends Component {
   render() {
     const {
       display, name, id, value, type, plh,
@@ -63,8 +63,8 @@ const mapDispatchToProps = dispatch => ({
   inputSetValidationStatus: (name, value) => dispatch(inputSetValidationStatus(name, value))
 });
 
-export const InputConnected = connect(
+export default connect(
   null,
   mapDispatchToProps
-)(Input);
+)(InputClass);
 
