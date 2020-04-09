@@ -3,6 +3,10 @@ import IconText from '../IconText/IconText';
 
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import { withNaming } from '@bem-react/classname';
+
+const cn = withNaming({ e: '__', m: '_' });
+const cnCard = cn('card');
 
 class Card extends Component {
 
@@ -23,23 +27,23 @@ class Card extends Component {
     commitHash = commitHash && commitHash.slice(0, 7);
 
     return (
-      <div className={`card card_type_common card_status_${status}`} onClick={this.handleCardClick.bind(this)} data-id={id}>
-        <div className="card__icon"></div>
-        <div className="card__info card__info_direction_row">
-          <div className="card__main">
-            <div className="card__task">
-              <div className="card__task-num">#{buildNumber}</div>
-              <div className="card__title">{commitMessage}</div>
+      <div className={cnCard({ type: 'common', status, })} onClick={this.handleCardClick.bind(this)} data-id={id}>
+        <div className={cnCard('icon')}></div>
+        <div className={cnCard('info', { direction: 'row'})}>
+          <div className={cnCard('main')}>
+            <div className={cnCard('task')}>
+              <div className={cnCard('task-num')}>#{buildNumber}</div>
+              <div className={cnCard('title')}>{commitMessage}</div>
             </div>
-            <div className="card__meta card__meta_horizontal">
-              <IconText icon='code-commit' textPrimary={branchName} textSecondary={commitHash} mixClass='card__icon-text' />
-              <IconText icon='user' textPrimary={authorName} mixClass='card__icon-text' />
+            <div className={cnCard('meta', { horizontal: true})}>
+              <IconText icon='code-commit' textPrimary={branchName} textSecondary={commitHash} mixClass={cnCard('icon-text')} />
+              <IconText icon='user' textPrimary={authorName} mixClass={cnCard('icon-text')} />
             </div>
           </div>
-          <div className="card__separator"></div>
-          <div className="card__time card__time_vertical">
-            <IconText icon='calendar' textPrimary={start} mixClass='card__icon-text' />
-            <IconText icon='stopwatch' textPrimary={duration} mixClass='card__icon-text' />
+          <div className={cnCard('separator')}></div>
+          <div className={cnCard('time', { vertical: true })}>
+            <IconText icon='calendar' textPrimary={start} mixClass={cnCard('icon-text')} />
+            <IconText icon='stopwatch' textPrimary={duration} mixClass={cnCard('icon-text')} />
           </div>
         </div>
       </div>

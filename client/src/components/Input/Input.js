@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { inputSetValue, inputSetValidationStatus } from '../../redux/actions/actions';
 
 import Icon from '../Icon/Icon';
+import { withNaming } from '@bem-react/classname';
+
+const cn = withNaming({ e: '__', m: '_' });
+const cnInput = cn('input');
 
 class InputClass extends Component {
   render() {
@@ -14,9 +18,9 @@ class InputClass extends Component {
     } = this.props;
 
     return (
-      <div className={`input input_type_${display} ${!isValid && 'input_invalid'}`}>
+      <div className={`${cnInput({ type: display, })} ${!isValid && cnInput({ invalid: true })}`}>
         <input
-          className={`input__field`}
+          className={cnInput('field')}
           name={name}
           id={id}
           value={value || ''}
@@ -27,8 +31,8 @@ class InputClass extends Component {
           onChange={this.changeInput.bind(this)}
           onFocus={this.focusInput.bind(this)}
         />
-        {display === 'block' && <Icon type='clear' mixClass='input__clear' onClick={this.clearInput.bind(this)}/>}
-        <div className='input__error-msg'>{errorMsg}</div>
+        {display === 'block' && <Icon type='clear' mixClass={cnInput('clear')} onClick={this.clearInput.bind(this)}/>}
+        <div className={cnInput('error-msg')}>{errorMsg}</div>
       </div>
     );
   }

@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
-
 import './Modal.styl';
+
+import React, { Component } from 'react';
+import { withNaming } from '@bem-react/classname';
+
+const cn = withNaming({ e: '__', m: '_' });
+const cnModal = cn('modal');
 
 class Modal extends Component {
   constructor(props) {
@@ -10,9 +14,9 @@ class Modal extends Component {
   }
   render() {
     return (
-      <div className='modal' onClick={this.handleClickModal.bind(this)}>
-        <div className='modal__content'>
-          <div className='modal__title'>New build</div>
+      <div className={cnModal()} onClick={this.handleClickModal.bind(this)}>
+        <div className={cnModal('content')}>
+          <div className={cnModal('title')}>New build</div>
           {this.props.children}
         </div>
       </div>

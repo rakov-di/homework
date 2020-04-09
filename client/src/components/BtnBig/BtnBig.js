@@ -2,6 +2,10 @@ import './BtnBig.styl';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withNaming } from '@bem-react/classname';
+
+const cn = withNaming({ e: '__', m: '_' });
+const cnBtnBig = cn('btn-big');
 
 class BtnBigClass extends Component {
   render() {
@@ -10,7 +14,7 @@ class BtnBigClass extends Component {
     return (
       <button
         type={type || "button"}
-        className={`btn-big btn-big_action_${action} ${mixClass || ''}`}
+        className={`${cnBtnBig({ action })} ${mixClass || ''}`}
         onClick={onClick}
         onSubmit={onSubmit}
         disabled={isDisabled}>{text}</button>
