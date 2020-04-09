@@ -27,6 +27,7 @@ class AppClass extends Component {
             <Route path='/settings' component={Settings} />
             <Route path='/build-history' component={BuildHistory} />
             <Route path='/build/:buildId' component={BuildDetails} />
+            <Route path='/test' component={StartScreen} />
           </Switch>
         ) : (
           <Loader />

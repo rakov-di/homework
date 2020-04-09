@@ -6,17 +6,15 @@ import Icon from '../Icon/Icon';
 
 class Greeting extends Component {
   render() {
+    const { icon, btn } = this.props;
+
     return (
       <div className="greeting">
-        <Icon type='logo'/>
+        {icon}
         <p className="greeting__description">Configure repository connection and synchronization settings</p>
-        <BtnBig action='primary' text='Open settings' onClick={this.goToSettings.bind(this)}/>
+        {btn}
       </div>
     );
-  }
-
-  goToSettings() {
-    document.location.href = '/settings';
   }
 }
 
