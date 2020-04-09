@@ -114,12 +114,7 @@ const mapStateToProps = state => ({
   modal: state.modal,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getBuildsList: () => dispatch(getBuildsList()),
-  closeModal: () => dispatch(closeModal()),
-  openModal: () => dispatch(openModal()),
-  addCommitToQueue: (commitHash) => dispatch(addCommitToQueue(commitHash)),
-});
+const mapDispatchToProps = { getBuildsList, closeModal, openModal, addCommitToQueue };
 
 export default connect(
   mapStateToProps,

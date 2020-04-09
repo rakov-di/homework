@@ -62,11 +62,7 @@ const mapStateToProps = state => ({
   curBuild: state.curBuild
 });
 
-const mapDispatchToProps = dispatch => ({
-  getBuildDetails: (buildId) => dispatch(getBuildDetails(buildId)),
-  getBuildLog: (buildId) => dispatch(getBuildLog(buildId)),
-  addCommitToQueue: (buildId) => dispatch(addCommitToQueue(buildId)),
-});
+const mapDispatchToProps = { getBuildDetails,  getBuildLog,  addCommitToQueue};
 
 export default connect(
   mapStateToProps,

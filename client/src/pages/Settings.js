@@ -162,11 +162,7 @@ const mapStateToProps = state => ({
   inputs: state.inputs,
 });
 
-const mapDispatchToProps = dispatch => ({
-  inputSetValue: (name, value) => dispatch(inputSetValue(name, value)),
-  inputSetValidationStatus: (name, status) => dispatch(inputSetValidationStatus(name, status)),
-  updateSettings: (name) => dispatch(updateSettings(name)),
-});
+const mapDispatchToProps = { inputSetValue, inputSetValidationStatus, updateSettings };
 
 export default connect(
   mapStateToProps,

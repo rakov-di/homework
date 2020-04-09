@@ -44,9 +44,7 @@ const mapStateToProps = state => ({
   main: state.main
 });
 
-const mapDispatchToProps = dispatch => ({
-  getCurSettings: () => dispatch(getCurSettings())
-});
+const mapDispatchToProps = { getCurSettings };
 
 export default connect(
   mapStateToProps,

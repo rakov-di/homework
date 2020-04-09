@@ -62,10 +62,7 @@ class InputClass extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => ({
-  inputSetValue: (name, value) => dispatch(inputSetValue(name, value)),
-  inputSetValidationStatus: (name, value) => dispatch(inputSetValidationStatus(name, value))
-});
+const mapDispatchToProps = { inputSetValue, inputSetValidationStatus };
 
 export default connect(
   null,
