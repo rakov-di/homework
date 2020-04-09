@@ -1,7 +1,6 @@
 import './Header.styl';
 
 import React, { Component } from 'react';
-import BtnSmall from '../BtnSmall/BtnSmall';
 
 class Header extends Component {
   render() {
@@ -13,16 +12,6 @@ class Header extends Component {
           <div className={`header__${type}`}>{text}</div>
           <div className="header__btn-group">
             {children}
-            {/*{data.btns.map((btn, idx) =>*/}
-            {/*  <BtnSmall*/}
-            {/*    key={idx}*/}
-            {/*    type={btn.type}*/}
-            {/*    icon={btn.icon}*/}
-            {/*    text={btn.text}*/}
-            {/*    mixClass='header__btn'*/}
-            {/*    onClick={btn.onClick}*/}
-            {/*  />*/}
-            {/*)}*/}
           </div>
         </div>
       </header>

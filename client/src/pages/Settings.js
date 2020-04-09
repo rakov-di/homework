@@ -116,7 +116,7 @@ class SettingsClass extends Component {
                   action='secondary'
                   text='Cancel'
                   mixClass='form__btn'
-                  onClick={this.goToPageStartScreen}
+                  onClick={this.goToPageStartScreen.bind(this)}
                 />
               </>
             }
@@ -130,9 +130,7 @@ class SettingsClass extends Component {
   componentDidMount() {
     const inputs = this.props.inputs;
     const { settings } = this.props.main;
-    Object.keys(inputs).map((name) => {
-      this.props.inputSetValue(name, settings[name]);
-    })
+    Object.keys(inputs).map((name) => this.props.inputSetValue(name, settings[name]));
   }
 
   handlePrimaryClick() {

@@ -1,8 +1,6 @@
 import './Greeting.styl';
 
 import React, { Component } from 'react';
-import BtnBig from '../BtnBig/BtnBig';
-import Icon from '../Icon/Icon';
 
 class Greeting extends Component {
   render() {

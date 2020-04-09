@@ -3,10 +3,6 @@ import './Form.styl';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import BtnBig from '../BtnBig/BtnBig';
-import Input from '../Input/Input';
-import Label from '../Label/Label';
-
 class FormClass extends Component {
   render() {
     const { isHeader, inputs, btns } = this.props;

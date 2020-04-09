@@ -26,7 +26,7 @@ class StartScreen extends Component {
           <Main position='main_center'>
             <Greeting
               icon ={<Icon type='logo'/> }
-              btn = {<BtnBig action='primary' text='Open settings' onClick={this.goToSettings}/>}
+              btn = {<BtnBig action='primary' text='Open settings' onClick={this.goToPageSettings.bind(this)}/>}
             />
           </Main>
           <Footer />
