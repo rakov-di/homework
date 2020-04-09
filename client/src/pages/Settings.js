@@ -16,66 +16,63 @@ class SettingsClass extends Component {
   render() {
     const { repoName, buildCommand, mainBranch, period } = this.props.inputs;
 
-    const formData = {
-      isHeader: true,
-      inputs: [
-        {
-          direction: 'column',
-          name: 'repoName',
-          id: 'repo',
-          display: 'block',
-          value: repoName.value,
-          labelText: 'GitHub repository',
-          isRequired: true,
-          isValid: repoName.isValid,
-          inputPlh: 'user-name/repo-name',
-          errorMsg: 'This field can\'t be empty',
-        },
-        {
-          direction: 'column',
-          name: 'buildCommand',
-          id: 'command',
-          display: 'block',
-          value: buildCommand.value,
-          labelText: 'Build command',
-          isRequired: true,
-          isValid: buildCommand.isValid,
-          inputPlh: 'type command',
-          errorMsg: 'This field can\'t be empty',
-        },
-        {
-          direction: 'column',
-          name: 'mainBranch',
-          id: 'branch',
-          display: 'block',
-          value: mainBranch.value,
-          labelText: 'Main branch',
-          inputPlh: 'type branch',
-          isValid: mainBranch.isValid,
-        },
-        {
-          direction: 'row',
-          name: 'period',
-          id: 'minutes',
-          display: 'inline',
-          value: period.value,
-          labelText: 'Synchronize every',
-          labelValueText: 'minutes',
-          pattern: '^[0-9]*$',
-          isValid: period.isValid,
-          needCheckOnNum: true
-        }
-      ]
-    };
+    const inputs = [
+      {
+        direction: 'column',
+        name: 'repoName',
+        id: 'repo',
+        display: 'block',
+        value: repoName.value,
+        labelText: 'GitHub repository',
+        isRequired: true,
+        isValid: repoName.isValid,
+        inputPlh: 'user-name/repo-name',
+        errorMsg: 'This field can\'t be empty',
+      },
+      {
+        direction: 'column',
+        name: 'buildCommand',
+        id: 'command',
+        display: 'block',
+        value: buildCommand.value,
+        labelText: 'Build command',
+        isRequired: true,
+        isValid: buildCommand.isValid,
+        inputPlh: 'type command',
+        errorMsg: 'This field can\'t be empty',
+      },
+      {
+        direction: 'column',
+        name: 'mainBranch',
+        id: 'branch',
+        display: 'block',
+        value: mainBranch.value,
+        labelText: 'Main branch',
+        inputPlh: 'type branch',
+        isValid: mainBranch.isValid,
+      },
+      {
+        direction: 'row',
+        name: 'period',
+        id: 'minutes',
+        display: 'inline',
+        value: period.value,
+        labelText: 'Synchronize every',
+        labelValueText: 'minutes',
+        pattern: '^[0-9]*$',
+        isValid: period.isValid,
+        needCheckOnNum: true
+      }
+    ];
 
     return (
       <Page>
         <Header valign='center' type='title' text='School CI server' />
         <Main>
           <Form
-            isHeader={formData.isHeader}
-            inputs={formData.inputs.map((input, idx) =>
-                <div key={idx} className={`form__field form__field_direction_${input.direction}`}>
+            isHeader={true}
+            inputs={inputs.map((input, idx) =>
+                <div key={input.id} className={`form__field form__field_direction_${input.direction}`}>
                   <Label
                     htmlFor={input.id}
                     type='default'

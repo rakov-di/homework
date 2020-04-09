@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Form from '../Form/Form';
-
 import './Modal.styl';
 
 class Modal extends Component {
@@ -15,7 +13,7 @@ class Modal extends Component {
       <div className='modal' onClick={this.handleClickModal.bind(this)}>
         <div className='modal__content'>
           <div className='modal__title'>New build</div>
-          <Form formData={this.props.formData} />
+          {this.props.children}
         </div>
       </div>
     );
