@@ -1,0 +1,14 @@
+{{#shapes}}
+// класс для иконки без использования before
+.icon_{{#selector.shape}}{{#escape}}{{expression}}{{/escape}}{{^last}},{{/last}}
+  @extend $icon_{{#selector.shape}}{{#escape}}{{expression}}{{/escape}}{{^last}},{{/last}}{{/selector.shape}}
+{{/selector.shape}}
+
+// класс для иконки через before
+.icon_{{#selector.shape}}{{#escape}}{{expression}}{{/escape}}{{^last}},{{/last}}-before
+  &::before
+    content ''
+    @extend $icon_{{#selector.shape}}{{#escape}}{{expression}}{{/escape}}{{^last}},{{/last}}{{/selector.shape}}
+{{/selector.shape}}
+
+{{/shapes}}

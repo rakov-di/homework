@@ -1,0 +1,35 @@
+@import "../../css/vars.styl";
+
+.footer
+  flex-shrink: 0
+  width: 100%
+  background-color: var(--bgContainerDesktop)
+  padding: 0 var(--p-xl)
+
+  &__container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    max-width: var(--wMaxContent)
+    min-width: var(--wMinContent)
+    margin: auto
+
+    @media only screen and (max-width: $bpMobileDefault)
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
+      padding: var(--p-m) 0
+
+  &__menu
+    padding: var(--p-xxs) 0
+
+    @media only screen and (max-width: $bpMobileDefault)
+      padding: 0
+
+  &__copyright
+    padding: var(--p-xxxs) 0
+    @extend $text_copyright
+
+    @media only screen and (max-width: $bpMobileDefault)
+      margin-top: var(--p-xxs)
+      padding: 0

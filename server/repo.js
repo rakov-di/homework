@@ -1,35 +1,81 @@
-const path = require('path');
+const { spawn, exec } = require('child_process');
 const fs = require('fs');
-const { spawn } = require('child_process');
+const util = require('util');
+const rimraf = require("rimraf");
+
+const promisifiedSpawn = util.promisify(spawn);
+const promisifiedExec = util.promisify(exec);
+const promisifiedRimraf = util.promisify(rimraf);
+const promisifiedStat = util.promisify(fs.stat);
+
 const localRepoName = 'local_repo';
 
-const cloneRepo = (repoName) => {
-  return new Promise((resolve, reject) => {
-    fs.access(path.resolve(__dirname, localRepoName), (err) => {
-      // TODO Устранить дублирование кода
-      if (err && err.code === 'ENOENT') {
-        const gitClone = spawn(`git clone ${repoName} local_repo`, {shell: true});
 
-        gitClone.stdout.on('data', data => console.log(`stdout: ${data}`));
 
-        gitClone.stderr.on('data', data => console.error(`stderr: ${data}`));
+const cloneRepo = async (repoName) => {
+  const repoUrl = getRepoUrl(repoName);
 
-        gitClone.on('close', () => resolve(repoName));
-      }
-      else {
-        const gitRmClone = spawn(`rm -rf ${localRepoName} && git clone ${repoName} local_repo`, {shell: true});
+  // Проверяем, существует ли указанный репозиторий на GitHub
+  try {
+    await runCommandInLocalRepo(`git ls-remote ${repoUrl}`);
+  }
+  catch(e) {
+    throw new Error(`Can't find repository ${repoUrl}`);
+  }
 
-        gitRmClone.stdout.on('data', data => console.log(`stdout: ${data}`));
+  // Проверяем, есть ли на сервере локальная папка с ранее склонированным туда репозиторием
+  // Если есть - удаляем его
+  if (await isLocalRepoExist(localRepoName)) {
+    await promisifiedRimraf(localRepoName);
+  }
 
-        gitRmClone.stderr.on('data', data => console.error(`stderr: ${data}`));
-
-        gitRmClone.on('close', () => resolve(repoName));
-      }
-    })
-  });
+  // Клонируем указанный репозиторий в локальную папку на сервере
+  try {
+    return await runCommandInLocalRepo(`git clone ${repoUrl} ${localRepoName}`);
+  }
+  catch(e) {
+    throw new Error(`Can't clone repository ${repoUrl}`);
+  }
 };
 
-const updateRepoStory = (repo) => {
+const getRepoUrl = (repository) => {
+  // при обращении через https к несуществующему пользователю/репозиторию
+  // постоянно спрашивает пароль (как его ни сохраняй).
+  // При обращении к ssh не спрашивает
+  return `git@github.com:${repository}.git`;
+};
+
+const isLocalRepoExist = async (dir) => {
+  try {
+    const stat = await promisifiedStat(dir);
+    return stat.isDirectory();
+  }
+  catch (e) {
+    if (e.code === 'ENOENT') {
+      return false;
+    } else {
+      throw e;
+    }
+  }
+};
+
+const runCommandInLocalRepo = async (command, dir = process.cwd()) => {
+  // const result = await promisifiedSpawn(command, { cwd: dir, shell: true });
+  const result = await promisifiedExec(command, { cwd: dir });
+  return result.stdout.trim();
+};
+
+const getCommitInfo = async (commitHash) => {
+  try {
+    return await runCommandInLocalRepo(`cd local_repo && git show -s --format='%s===%an' ${commitHash}`);
+  }
+  catch(e) {
+    throw new Error(`Can't find commit with hash ${commitHash}`);
+  }
+};
+
+// Функция для тестовой ручки - пока не работает
+const updateRepoStory = async (repo) => {
   return new Promise((resolve, reject) => {
     const updateRepo = spawn(`cd ${localRepoName} && git checkout ${repo.mainBranch} && git pull`,{shell: true});
 
@@ -41,20 +87,6 @@ const updateRepoStory = (repo) => {
   });
 };
 
-const getCommitInfo = (commitHash) => {
-  return new Promise((resolve, reject) => {
-    const log = spawn(`cd local_repo && git show -s --format='%s===%an' ${commitHash}`, {shell: true});
 
-    log.stdout.on('data', data => {
-      resolve(data);
-      console.log(`stdout: ${data}`);
-    });
 
-    log.stderr.on('data', data => console.error(`stderr: ${data}`));
-
-    log.on('close', (data) => resolve(data));
-
-  });
-};
-
-module.exports = { cloneRepo, updateRepoStory, getCommitInfo };
+module.exports = { cloneRepo, getCommitInfo, updateRepoStory };

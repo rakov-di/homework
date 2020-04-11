@@ -1,0 +1,45 @@
+@import "../../css/vars.styl";
+
+.header
+  flex-shrink: 0
+  width: 100%
+  padding: var(--p-xs) var(--p-xl)
+
+  @media only screen and (max-width: $bpMobileDefault)
+    padding: var(--p-m) var(--p-xl)
+
+  &__container
+    display: flex
+    justify-content: space-between
+    max-width: var(--wMaxContent)
+    min-width: var(--wMinContent)
+    margin: auto
+
+    &_valign_top
+      align-items: flex-start
+
+    &_valign_center
+      align-items: center
+
+  &__title
+    @extend $title_desktop
+
+    @media only screen and (max-width: $bpMobileDefault)
+      @extend $title_mobile
+
+  &__repo-title
+    @extend $title-repo_desktop
+
+    @media only screen and (max-width: $bpMobileDefault)
+      @extend $title-repo_mobile
+
+  &__btn-group
+    flex-shrink: 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+  &__btn:not(:last-child)
+    margin-right: var(--p-xxs)
+
+

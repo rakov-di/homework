@@ -1,0 +1,16 @@
+@import "../../css/vars.styl";
+
+.log
+  padding: var(--p-xxs) var(--p-m)
+  border-radius: var(--br-m)
+  overflow-x: auto
+  white-space: pre
+  @extend $text_log
+  font-family: "Courier New", Courier, monospace
+  background-color: var(--bgLog)
+
+  @media only screen and (max-width: $bpMobileDefault)
+    padding: var(--p-xxxxxs) var(--p-l)
+    border-radius: 0
+    margin: 0 calc(0px - var(--p-xl))
+

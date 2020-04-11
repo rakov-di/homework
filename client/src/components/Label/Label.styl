@@ -1,0 +1,20 @@
+@import "../../css/vars.styl";
+
+.label
+
+  &_default
+    @extend $label
+
+  &_value
+    @extend $label-value
+
+  &_type_block
+    display: block
+    margin-bottom: var(--p-xxxxxs)
+
+  &_type_inline
+    display: inline-block
+
+  &__required
+    color: var(--cLabelRequired)
+    margin-left: var(--p-xxxxxxs)

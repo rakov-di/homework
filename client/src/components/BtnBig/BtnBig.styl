@@ -1,0 +1,35 @@
+// TODO Выяснить, нормально ли это
+@import "../../css/vars.styl";
+
+.btn-big
+  flex-shrink: 0
+  height: 36px
+  padding: 0 var(--p-xxxl)
+  border-radius: var(--br-s)
+  border: none
+  outline: none
+  cursor: pointer
+  @extend $text_btn-big
+
+  &:disabled
+    pointer-events: none
+    background-color: var(--bgBtnBigDisabled)
+    color: var(--cBtnBigDisabled)
+
+  &_action_primary
+    background-color: var(--bgBtnPrimary)
+
+    &:hover
+      background-color: var(--bgBtnPrimaryHovered)
+
+    &:focus
+      box-shadow: inset 0 0 0 2px var(--cBorderBtnPrimaryFocused) // это border
+
+  &_action_secondary
+    background-color: var(--bgBtnSecondary)
+
+    &:hover
+      background-color: var(--bgBtnSecondaryHovered)
+
+    &:focus
+      box-shadow: inset 0 0 0 2px var(--cBorderBtnSecondaryFocused) // это border

@@ -1,0 +1,61 @@
+@import "../../css/vars.styl";
+
+.input
+  position: relative
+
+  &_type_block
+    display: block
+    width: 100%
+
+  &_type_inline
+    display: inline-block
+    width: 52px
+    margin: 0 var(--p-xxs)
+
+    & ^[0]__field
+      text-align: right
+
+  &_invalid
+    position: relative
+
+    & ^[0]__error-msg
+      display: block
+
+    & ^[0]__field
+      border: 2px solid var(--cError)
+
+  &__field
+    width: 100%
+    height: 36px
+    padding: var(--p-s) var(--p-l) var(--p-xs)
+    border: 2px solid var(--cBorderInput)
+    border-radius: var(--br-s)
+    @extend $input-main
+
+    &:not(:placeholder-shown) + ^[0]__clear
+      display: block
+
+    &::placeholder
+      @extend $input-plh
+
+    &:focus
+      border: 2px solid var(--cBorderInputFocused)
+      outline: none
+
+  &__error-msg
+    display: none
+    position: absolute
+    right: 0
+    bottom: -16px
+    @extend $form_error-msg
+
+  &__clear
+    position: absolute
+    right: 10px
+    top: 10px
+    display: none
+    cursor: pointer
+
+
+
+

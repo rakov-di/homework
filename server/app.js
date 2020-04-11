@@ -4,6 +4,8 @@ const https = require('https');
 const express = require('express');
 const axios = require('axios');
 
+const fs = require('fs');
+
 const { cloneRepo, updateRepoStory, getCommitInfo } = require('./repo');
 const buildLogs = require('./buildLogs');
 
@@ -28,15 +30,29 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 app.use((err, req, res, next) => {
   console.error(err);
 });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 // Получение сохраненных настроек репозитория
 app.get('/api/settings', (req, res, next) => {
   api.get('/conf')
     .then((response) => {
-      res.json(response.data);
+      res.json({
+        status: 'success',
+        message: `Getting settings for current repo ${req.body.repoName} successfully finished`,
+        data: response.data.data || response.data
+      });
     })
-    .catch((error) => {
-      next(error);
+    .catch(() => {
+      res.json({
+        status: 'error',
+        message: `Getting settings for current repo has failed`
+      });
+      // next(error);
     });
 });
 
@@ -46,23 +62,35 @@ app.get('/api/settings', (req, res, next) => {
 // и создается такая же папка, но уже с новым репозиторием
 // При этом возникает ошибка - надо разбираться
 app.post('/api/settings', (req, res, next) => {
-  console.log(req.body);
-  console.log(req.params);
-  api.post('/conf', {
-    "repoName": req.body.repoName,
-    "buildCommand": req.body.buildCommand,
-    "mainBranch": req.body.mainBranch,
-    "period": +req.body.period
-  })
+  cloneRepo(req.body.repoName)
     .then(() => {
-      return cloneRepo(req.body.repoName)
-    })
-    .then((repoName) => {
-      res.json(String(`Настройки сохранены. Репозиторий ${repoName} склонирован.`));
+      api.post('/conf', {
+        "repoName": req.body.repoName,
+        "buildCommand": req.body.buildCommand,
+        "mainBranch": req.body.mainBranch || 'master',
+        "period": +req.body.period
+      })
+        .then(() => {
+          res.json({
+            status: 'success',
+            message: `Settings for repo ${req.body.repoName} successfully saved`
+          });
+        })
+        .catch(() => {
+          res.json({
+            status: 'error',
+            message: `Saving settings for repo ${req.body.repoName} has failed`
+          });
+          // next(error);
+        });
     })
     .catch((error) => {
-      next(error);
-    });
+      res.json({
+        status: 'error',
+        message: error.message
+      });
+      // next(error);
+    })
 });
 
 // Получения списка сборок
@@ -89,16 +117,28 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
         "branchName": "master",
         "authorName": author
       })
-        .then(() => {
-          res.json({message: message, author: author});
+        .then((data) => {
+          //TODO  разобраться с data.data.data - что за ад
+          res.json({
+            status: 'success',
+            message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
+            payload: data.data.data
+          });
         })
         .catch((error) => {
-          next(error);
+          res.json({
+            status: 'error',
+            message: error.message
+          });
+          // next(error);
         });
     })
     .catch((error) => {
-      next(error);
-      console.error(error);
+      res.json({
+        status: 'error',
+        message: error.message
+      });
+      // next(error);
     });
 });
 
@@ -119,13 +159,16 @@ app.get('/api/builds/:buildId/logs', (req, res, next) => {
   else {
     api.get('/build/log?buildId=' + req.params.buildId)
       .then((response) => {
-        if (!response.data) {
-          res.send(String(`Лога для сборки ${req.params.buildId} нет`))
-        }
-        else {
-          buildLogs.set(req.params.buildId, response.data);
-          res.send(response.data);
-        }
+        fs.readFile('testBuildLog.txt', null, (err, contents) => {
+          buildLogs.set(req.params.buildId, contents);
+          res.send(contents);
+        });
+        // TODO Заменить вышестоящую заглушка на реальные логи
+        // if (!response.data) {
+        //   res.send(String(`Лога для сборки ${req.params.buildId} нет`))
+        // }
+        // else {
+        // }
       })
       .catch((error) => {
         console.error('=====' + error);
@@ -154,7 +197,7 @@ app.get('/api/test', (req, res, next) => {
     });
 });
 
-app.listen(3000);
+app.listen(5000);
 
 
 

@@ -1,0 +1,56 @@
+@import "../../css/vars.styl";
+
+.form
+  position: relative
+  max-width: 474px
+
+  &__title
+    @extend $form-title
+
+  &__subtitle
+    margin-top: var(--p-xxs)
+    @extend $form-subtitle
+
+  &__fields
+    padding: var(--p-m) 0
+
+    @media only screen and (max-width: $bpMobileDefault)
+      padding: var(--p-xxxxxs) 0
+
+  &__field
+    display: flex
+
+    &_direction_row
+      flex-direction: row
+      align-items: center
+      padding: var(--p-m) 0
+
+    &_direction_column
+      flex-direction: column
+      padding: var(--p-xxs) 0
+
+  &__btn-group
+
+    @media only screen and (max-width: $bpMobileDefault)
+      padding: var(--p-xxs) 0
+
+  &__btn
+
+    @media only screen and (max-width: $bpMobileDefault)
+      display: block
+      width: 100%
+
+    &:not(:first-child)
+      margin-left: var(--p-xxs)
+
+      @media only screen and (max-width: $bpMobileDefault)
+        margin-left: 0
+        margin-top: var(--p-m)
+
+  &__success-msg
+    margin-top: 20px
+    @extend $form_success-msg
+
+  &__error-msg
+    margin-top: 20px
+    @extend $form_error-msg

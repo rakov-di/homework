@@ -1,0 +1,165 @@
+.card
+  display: flex
+  width: 100%
+  margin-bottom: var(--p-xxs)
+  padding: var(--p-m) var(--p-xxxxl)
+  box-shadow: var(--bs-50)
+  border-radius: var(--br-m)
+  cursor: pointer
+
+  &:hover
+    box-shadow: var(--bs-100)
+
+  &_type_common
+
+    & ^[0]__separator
+      display: none
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        display: block
+
+  &_type_detailed
+
+    & ^[0]__separator
+      display: block
+
+  &_status_success
+
+    & ^[0]__task-num
+      color: var(--cSuccess)
+
+    & ^[0]__icon
+      @extend $icon_done-desktop
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        @extend $icon_done-mobile
+
+  &_status_waiting
+  &_status_inprogress
+
+    & ^[0]__task-num
+      color: var(--cTaskWait)
+
+    & ^[0]__icon
+      @extend $icon_wait-desktop
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        @extend $icon_wait-mobile
+
+  &_status_fail
+  &_status_canceled
+
+    & ^[0]__task-num
+      color: var(--cError)
+
+    & ^[0]__icon
+      @extend $icon_fail-desktop
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        @extend $icon_fail-mobile
+
+  &__content
+    display: flex
+
+  &__icon
+    flex-shrink: 0
+    margin-right: var(--p-xxs)
+
+  &__info
+    flex-grow: 1
+    display: flex
+    justify-content: space-between
+    overflow: hidden
+
+    &_direction_row
+      flex-direction: row
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        flex-direction: column
+
+    &_direction_column
+      flex-direction: column
+
+  &__main
+    min-width: 0
+
+  &__task
+    display: flex
+    flex-direction: row
+    align-items: center
+    margin-bottom: var(--p-xxs)
+
+    @media only screen and (max-width: $bpMobilePageBuild)
+      flex-direction: column
+      align-items: flex-start
+      margin-bottom: 0
+
+  &__task-num
+    display: inline-block
+    margin-right: 4px
+    @extend $text_task-num-desktop
+
+    @media only screen and (max-width: $bpMobilePageBuild)
+      @extend $text_task-num-mobile
+      margin-bottom: var(--p-xxs)
+
+  &__title
+    display: inline-block
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+    @extend $text_task-title
+
+    @media only screen and (max-width: $bpMobilePageBuild)
+      margin-bottom: var(--p-xxs)
+      white-space: normal
+
+  &__meta
+    flex-shrink: 0
+    display: flex
+
+    &_horizontal
+      flex-direction: row
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        flex-direction: column
+
+      & ^[0]__icon-text:not(:first-child)
+        margin-left: var(--p-xxs)
+
+        @media only screen and (max-width: $bpMobilePageBuild)
+          margin-left: 0
+          margin-top: var(--p-xxs)
+
+  &__time
+    flex-shrink: 0
+    display: flex
+
+    &_vertical
+      flex-direction: column
+      min-width: 100px
+
+      @media only screen and (max-width: $bpMobilePageBuild)
+        flex-direction: row
+        min-width: auto
+
+      & ^[0]__icon-text:not(:first-child)
+        margin-top: var(--p-m)
+
+        @media only screen and (max-width: $bpMobilePageBuild)
+          margin-left: var(--p-xxs)
+          margin-top: 0
+
+    &_horizontal
+      flex-direction: row
+
+      & ^[0]__icon-text:not(:first-child)
+        margin-left: var(--p-xxs)
+
+
+  &__separator
+    box-sizing: content-box
+    margin-top: 8px
+    border-top: 1px solid var(--cBorderCardMeta)
+    padding-top: 8px
+

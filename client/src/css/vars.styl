@@ -1,0 +1,406 @@
+// Условные обозначения:
+// bg - background
+// bp - breakpoint
+// br - border-radius
+// btn - button
+// c - color
+// fsz - font-size
+// fw - font-weight
+// h - height
+// lh - line-height
+// lhp - line-height в процентах
+// ls -letter-spacing
+// num - number
+// p - padding (любые отступы)
+// plh - placeholder
+// w - width
+
+// ПСД - повод спросить дизайнера
+// ДДД - Думай, Дмитрий, думай
+
+
+
+// Breakpoints
+// CSS переменные не срабатывают в media query,
+// поэтому вместо них использую переменную препроцессора
+$bpMobileDefault = 400px
+$bpMobilePageBuild = 560px
+
+:root
+  // =========================
+  // ЦВЕТА - базовые константы
+  // =========================
+
+  // Black
+  --black-100: #000000
+  --black-200: #181818
+
+  // White
+  --white-100: #FFFFFF
+
+  // Gray
+  --gray-100: #F0F2F3
+  --gray-150: #F2F2F2
+  --gray-200: #E6E6E6
+  --gray-250: #DBDBDB
+  --gray-300: #D9D9D9
+  --gray-350: #CCCCCC
+  --gray-400: #B9B9B9
+  --gray-450: #B3B3B3
+  --gray-500: #7F8285
+  --gray-550: #595959
+  --gray-600: #434445
+
+  // ПСД. Следующие цвета есть на странице компонентов,
+  // но на реальных страницах вместо них используются другие цвета:
+  // #E5E5E5 - весь макет???
+  // #444444 - название задачи (используется #000000)
+  // #939393 - secondary у текста с мета-инфой (используется #595959)
+  // на макете это вообще:
+  // color: #000000
+  // opacity: 0.65
+  // Но почему-то он по разному определяется пипеткой на стр Компонентов и Реальной | ДДД
+
+  // Orange
+  --orange-100: #FFCC00
+  --orange-200: #F2C200
+  --orange-300: #B38F00
+  --orange-400: #FF9A00
+
+  // Red
+  --red-100: #FF3333
+  --red-200: #E00000
+
+  // Green
+  --green-100: #00B341
+
+  // =========================
+  // ЦВЕТА - семмантические константы
+  // =========================
+
+  // Цвета текстов
+  --cTitle: var(--gray-500)
+  --cTitleRepo: var(--black-100)
+  --cModalTitle: var(--black-100)
+  --cBtnBig: var(--black-100)
+  --cBtnBigDisabled: var(--gray-400)
+  --cBtnSmall: var(--black-100)
+  --cMenu: var(--gray-500)
+  --cFooterCopyright: var(--gray-500)
+  --cGreeting: var(--black-100)
+  --cFormTitle: var(--black-100)
+  --cFormSubtitle: var(--gray-500)
+  --cLabel: var(--black-100)
+  --cLabelValue: var(--gray-600)
+  --cLabelRequired: var(--red-100)
+  --cInputPlh: var(--gray-350)
+  --cInputMain: var(--black-100)
+  --cTaskTitle: var(--black-100)
+  --cTaskMetaPrimary: var(--black-100)
+  --cTaskMetaSecondary: var(--gray-550)
+  --cValue: var(--gray-600)
+  --cBtnBigDisabled: var(--gray-400)
+  --cLog: var(--black-200)
+  --cLoader: var(--gray-550)
+
+  // Доп. цвета для статусов
+  --cTaskWait: var(--orange-400)
+  --cError: var(--red-100)
+  --cSuccess: var(--green-100)
+
+  // Ссылки
+  --cLinkHovered: var(--red-200)
+
+  // Цвета рамок
+  --cBorderInput: var(--gray-300)
+  --cBorderInputFocused: var(--gray-450)
+  --cBorderBtnSecondaryFocused: var(--gray-450)
+  --cBorderBtnPrimaryFocused: var(--orange-300)
+  --cBorderCardMeta: var(--gray-100)
+
+  // Цвета фонов
+  --bgBtnSecondary: var(--gray-200)
+  --bgBtnSecondaryHovered: var(--gray-250)
+  --bgContainerDesktop: var(--gray-100)
+  --bgBtnBigDisabled: var(--gray-150)
+  --bgLog: var(--gray-100)
+  --bgBtnPrimary: var(--orange-100)
+  --bgBtnPrimaryHovered: var(--orange-200)
+
+  // ==========
+  // СКРУГЛЕНИЯ
+  // ==========
+  --br-s: 4px
+  --br-m: 6px
+
+  // ====
+  // ТЕНИ
+  // ====
+  --bs-50: 0 1px 1px rgba(67, 68, 69, 0.3), 0 0 1px rgba(67, 68, 69, 0.3)
+  --bs-100: 0px 2px 8px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
+  --bs-150: 0px 6px 16px rgba(67, 68, 69, 0.3), 0px 0px 1px rgba(67, 68, 69, 0.3);
+  // =======
+  // ОТСТУПЫ
+  // =======
+  --p-xxxxxxs: 2px
+  --p-xxxxxs: 4px
+  --p-xxxxs: 6px
+  --p-xxxs: 7px
+  --p-xxs: 8px
+  --p-xs: 10px
+  --p-s: 11px
+  --p-m: 12px
+  --p-l: 13px
+  --p-xl: 16px
+  --p-xxl: 18px
+  --p-xxxl: 20px
+  --p-xxxxl: 24px
+  --p-xxxxxl: 32px
+
+  // =================
+  // ОСТАЛЬНЫЕ РАЗМЕРЫ
+  // =================
+  --wMaxContent: 800px
+  --wMinContent: 280px
+
+  // ==============================
+  // ШРИФТЫ - базовые константы
+  // ==============================
+
+  // Размер шрифта
+  --fsz-xxl: 24px
+  --fsz-xl: 18px
+  --fsz-l: 15px
+  --fsz-m: 13px
+  --fsz-s: 10px
+
+  // Межстрочный интервал
+  --lh-xxxxl: 36px
+  --lh-xxxl: 30px
+  --lh-xxl: 28px
+  --lh-xl: 22px
+  --lh-l: 20px
+  --lh-m: 18px
+  --lh-s: 16px
+  --lh-xs: 15px
+
+  // ПСД - действительно нужен отступ в процентах или можно заменить на абсолютное значение?
+  --lhp-l: 125%
+
+  // Толщина текста
+  --fw-normal: 400
+  --fw-medium: 500
+  //--fw-bold: 700
+
+  // Межсимвольные интервалы
+  --ls-s: 0.06px
+  --ls-m: 0.25px
+
+
+// ==============================
+// ШРИФТЫ - базовые миксины
+// ==============================
+
+$font
+  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-style: normal
+
+// ПСД
+// font-950 (страницы start-screen и settings)
+// font-900 (страницы build-history и build-details)
+// отличаются лишь line-height - нужно ли 2 разных шрифта, если это все равно все в Header?
+$font-950
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xxl)
+  line-height: var(--lh-xxxl)
+  letter-spacing: var(--ls-m)
+
+$font-900
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xxl)
+  line-height: var(--lh-xxl)
+
+$font-850
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xl)
+  line-height: var(--lh-xl)
+  letter-spacing: var(--ls-m)
+
+$font-800
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-xl)
+  line-height: var(--lh-l)
+
+$font-750
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-l)
+  line-height: var(--lh-l)
+
+$font-700
+  font-weight: var(--fw-normal)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-xxxxl)
+
+$font-650
+  font-weight: var(--fw-normal)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-xxl)
+
+$font-550
+  font-weight: var(--fw-normal)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-m)
+  letter-spacing: var(--ls-s)
+
+$font-520
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  line-height: var(--lhp-l)
+
+$font-500
+  font-weight: var(--fw-normal)
+  font-size: var(--fsz-m)
+  line-height: var(--lh-s)
+  letter-spacing: var(--ls-s)
+
+$font-450
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-m)
+  //line-height: var(--lh-xs) если установить - баз в файрфоксе
+
+$font-400
+  font-weight: var(--fw-medium)
+  font-size: var(--fsz-s)
+  line-height: var(--lh-l)
+
+
+
+$title_desktop
+  @extend $font
+  @extend $font-900
+  color: var(--cTitle)
+
+$title_mobile
+  @extend $font
+  @extend $font-850
+  color: var(--cTitle)
+
+$title-repo_desktop
+  @extend $font
+  @extend $font-950
+  color: var(--cTitleRepo)
+
+$title-repo_mobile
+  @extend $font
+  @extend $font-850
+  color: var(--cTitleRepo)
+
+$title_modal
+  @extend $font
+  @extend $font-850
+  color: var(--cModalTitle)
+
+$form-title
+  @extend $font
+  @extend $font-750
+  color: var(--cFormTitle)
+
+$form-subtitle
+  @extend $font
+  @extend $font-550
+  color: var(--cFormSubtitle)
+
+$label
+  @extend $font
+  @extend $font-550
+  color: var(--cLabel)
+
+$label-value
+  @extend $font
+  @extend $font-550
+  color: var(--cLabelValue)
+
+$input-plh
+  @extend $font
+  @extend $font-450
+  color: var(--cInputPlh)
+
+$input-main
+  @extend $font
+  @extend $font-450
+  color: var(--cInputMain)
+
+$text_btn-big
+  @extend $font
+  @extend $font-700
+  color: var(--cBtnBig)
+
+$text_btn-small
+  @extend $font
+  @extend $font-650
+  color: var(--cBtnSmall)
+
+$text_task-num-desktop
+  @extend $font
+  @extend $font-800
+  // цвет может быть разный
+
+//TODO вынести в переменные
+$text_task-num-mobile
+  @extend $font
+  font-weight: 500
+  font-size: 16px
+  line-height: 16px
+  // цвет может быть разный
+  //=======
+$text_task-title
+  @extend $font
+  @extend $font-750
+  color: var(--cTaskTitle)
+
+$text_task-meta-primary
+  @extend $font
+  @extend $font-500
+  color: var(--cTaskMetaPrimary)
+
+$text_task-meta-secondary
+  @extend $font
+  @extend $font-500
+  color: var(--cTaskMetaSecondary)
+
+$text_log
+  @extend $font
+  @extend $font-400
+  color: var(--cLog)
+
+$text_menu-desktop
+  @extend $font
+  @extend $font-500
+  color: var(--cMenu)
+
+$text_menu-mobile
+  @extend $font
+  @extend $font-550
+  color: var(--cMenu)
+
+$text_copyright
+  @extend $font
+  @extend $font-500
+  color: var(--cFooterCopyright)
+
+$text_greeting
+  @extend $font
+  @extend $font-520
+  color: var(--cGreeting)
+
+$form_error-msg
+  @extend $font
+  @extend $font-400
+  color: var(--cError)
+
+$form_success-msg
+  @extend $font
+  @extend $font-400
+  color: var(--cSuccess)
+
+
