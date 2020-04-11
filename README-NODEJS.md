@@ -46,9 +46,9 @@ node app.js
 ## Структура файлов <a name = "file_tree"></a>
 
 - [server/app.js](server/app.js) - основное приложение, где происходит отправка запроса к ручкам
-- [server/repo.js](server/repo.js) - набор функций для работы с git
-- [server/buildLogs.js](server/buildLogs.js) - простейший кэш для запроса логов билда
+- [server/utils/git.js](server/utils/git.js) - набор функций для работы с git
+- [server/utils/buildLogs.js](server/utils/buildLogs.js) - простейший кэш для запроса логов билда
 - [.env](server/.env.example)``/`` - файл с ключом авторизации, для прописывания его в локальные переменные окружения (заглушка, надо переименовать в `.env` и прописать свой ключ)
-- [queries.js](server/queries.js)``/`` - файл для имитации POST-запросов с параметрами. Помимо него использовал postman.
+- [server/utils/queries.js](server/utils/queries.js)``/`` - файл для имитации POST-запросов с параметрами. Помимо него использовал postman.
  
 Вернуться на [главную](README.md)

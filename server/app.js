@@ -1,26 +1,14 @@
 require('dotenv').config();
 const path = require('path');
-const https = require('https');
 const express = require('express');
-const axios = require('axios');
 
 const fs = require('fs');
 
-const { cloneRepo, updateRepoStory, getCommitInfo } = require('./repo');
-const buildLogs = require('./buildLogs');
+const { api } = require('./routes/api');
+const { cloneRepo, updateRepoStory, getCommitInfo } = require('./utils/git');
+const buildLogs = require('./utils/buildLogs');
 
 const app = express();
-
-const api = axios.create({
-  baseURL: 'https://hw.shri.yandex/api/',
-  timeout: 10000,
-  headers: {
-    Authorization: "Bearer " + process.env.SHRI_API_KEY
-  },
-  httpsAgent: new https.Agent({
-    rejectUnauthorized: false
-  })
-});
 
 // Функции промежуточной обработки (middleware)
 app.use(express.json());
@@ -39,7 +27,7 @@ app.use((req, res, next) => {
 
 // Получение сохраненных настроек репозитория
 app.get('/api/settings', (req, res, next) => {
-  api.get('/conf')
+  api.getSettings()
     .then((response) => {
       res.json({
         status: 'success',
@@ -64,12 +52,7 @@ app.get('/api/settings', (req, res, next) => {
 app.post('/api/settings', (req, res, next) => {
   cloneRepo(req.body.repoName)
     .then(() => {
-      api.post('/conf', {
-        "repoName": req.body.repoName,
-        "buildCommand": req.body.buildCommand,
-        "mainBranch": req.body.mainBranch || 'master',
-        "period": +req.body.period
-      })
+      api.updateSettings(req.body)
         .then(() => {
           res.json({
             status: 'success',
@@ -95,7 +78,7 @@ app.post('/api/settings', (req, res, next) => {
 
 // Получения списка сборок
 app.get('/api/builds', (req, res, next) => {
-  api.get('/build/list')
+  api.getBuildsList()
     .then((response) => {
       res.json(response.data);
     })
@@ -111,12 +94,7 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
     .then((data) => {
       const [message, author] = data.toString().trim().split("===");
 
-      api.post('/build/request', {
-        "commitMessage": message,
-        "commitHash": req.params.commitHash,
-        "branchName": "master",
-        "authorName": author
-      })
+      api.addCommitToQueue(message, req.params.commitHash, author)
         .then((data) => {
           //TODO  разобраться с data.data.data - что за ад
           res.json({
@@ -144,7 +122,7 @@ app.post('/api/builds/:commitHash', (req, res, next) => {
 
 // Получение информации о конкретной сборке
 app.get('/api/builds/:buildId', (req, res, next) => {
-  api.get('/build/details?buildId=' + req.params.buildId)
+  api.getBuildDetails(req.params.buildId)
     .then((response) => {
       res.json(response.data);
     })
@@ -157,7 +135,7 @@ app.get('/api/builds/:buildId', (req, res, next) => {
 app.get('/api/builds/:buildId/logs', (req, res, next) => {
   if (buildLogs.isExist(req.params.buildId)) res.send(buildLogs.get(req.params.buildId));
   else {
-    api.get('/build/log?buildId=' + req.params.buildId)
+    api.getBuildLog(req.params.buildId)
       .then((response) => {
         fs.readFile('testBuildLog.txt', null, (err, contents) => {
           buildLogs.set(req.params.buildId, contents);
