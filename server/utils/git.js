@@ -8,7 +8,7 @@ const promisifiedExec = util.promisify(exec);
 const promisifiedRimraf = util.promisify(rimraf);
 const promisifiedStat = util.promisify(fs.stat);
 
-const localRepoName = 'local_repo';
+const localRepoName = '_localRepo';
 
 
 
@@ -67,7 +67,7 @@ const runCommandInLocalRepo = async (command, dir = process.cwd()) => {
 
 const getCommitInfo = async (commitHash) => {
   try {
-    return await runCommandInLocalRepo(`cd local_repo && git show -s --format='%s===%an' ${commitHash}`);
+    return await runCommandInLocalRepo(`cd ${localRepoName} && git show -s --format='%s===%an' ${commitHash}`);
   }
   catch(e) {
     throw new Error(`Can't find commit with hash ${commitHash}`);
