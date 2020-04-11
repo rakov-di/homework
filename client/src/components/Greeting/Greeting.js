@@ -1,22 +1,22 @@
 import './Greeting.styl';
 
 import React, { Component } from 'react';
-import BtnBig from '../BtnBig/BtnBig';
-import Icon from '../Icon/Icon';
+import { withNaming } from '@bem-react/classname';
+
+const cn = withNaming({ e: '__', m: '_' });
+const cnGreeting = cn('greeting');
 
 class Greeting extends Component {
   render() {
+    const { icon, btn } = this.props;
+
     return (
-      <div className="greeting">
-        <Icon type='logo'/>
-        <p className="greeting__description">Configure repository connection and synchronization settings</p>
-        <BtnBig action='primary' text='Open settings' onClick={this.goToSettings.bind(this)}/>
+      <div className={cnGreeting()}>
+        {icon}
+        <p className={cnGreeting('description')}>Configure repository connection and synchronization settings</p>
+        {btn}
       </div>
     );
-  }
-
-  goToSettings() {
-    document.location.href = '/settings';
   }
 }
 

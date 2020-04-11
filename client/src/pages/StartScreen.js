@@ -1,43 +1,41 @@
 import React, { Component } from 'react';
 
-import Page from '../components/Page/Page';
-import Header from '../components/Header/Header';
-import Main from '../components/Main/Main';
-import Greeting from '../components/Greeting/Greeting';
+import BtnBig from '../components/BtnBig/BtnBig';
+import BtnSmall from '../components/BtnSmall/BtnSmall';
 import Footer from '../components/Footer/Footer';
+import Greeting from '../components/Greeting/Greeting';
+import Header from '../components/Header/Header';
+import Icon from '../components/Icon/Icon';
+import Main from '../components/Main/Main';
+import Page from '../components/Page/Page';
 
 class StartScreen extends Component {
 
   render() {
-    const headerData = {
-      title: {
-        valign: 'center',
-        type: 'title',
-        text: 'School CI server',
-      },
-      btns: [
-        {
-          type: 'icon-text',
-          icon: 'settings-before',
-          text: 'Settings',
-          onClick: this.goToPageSettings.bind(this)
-        }
-      ]
-    };
-
     return (
-      <Page>
-        <Header data={headerData} />
-        <Main position='main_center'>
-          <Greeting />
-        </Main>
-        <Footer />
-      </Page>
+        <Page>
+          <Header valign='center' type='title' text='School CI server'>
+            <BtnSmall
+              type='icon-text'
+              icon='settings-before'
+              text='Settings'
+              mixClass='header_btn'
+              onClick={this.goToPageSettings}
+            />
+          </Header>
+          <Main position='main_center'>
+            <Greeting
+              icon ={<Icon type='logo'/> }
+              btn = {<BtnBig action='primary' text='Open settings' onClick={this.goToPageSettings.bind(this)}/>}
+            />
+          </Main>
+          <Footer />
+        </Page>
     )
   }
 
   goToPageSettings() {
-    document.location.href = '/settings'
+    this.props.history.push('/settings');
   }
 }
 

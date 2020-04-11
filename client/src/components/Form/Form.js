@@ -1,76 +1,40 @@
 import './Form.styl';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withNaming } from '@bem-react/classname';
 
-import BtnBig from '../BtnBig/BtnBig';
-import Input from '../Input/Input';
-import Label from '../Label/Label';
+const cn = withNaming({ e: '__', m: '_' });
+const cnForm = cn('form');
 
-class Form extends Component {
+class FormClass extends Component {
   render() {
-    const { isHeader, inputs, btns, isFetching, status } = this.props;
+    const { isHeader, inputs, btns } = this.props;
+    const { isFetching, formStatus } = this.props.main; // из redux
 
     return (
-      <form className="form">
+      <form className={cnForm()}>
         {/*TODO Переписать header послойно, а не целиком*/}
-        {isHeader && <div className="form__header">
-          <div className="form__title">Settings</div>
-          <div className="form__subtitle">Configure repository connection and synchronization settings.</div>
+        {isHeader && <div className={cnForm('header')}>
+          <div className={cnForm('title')}>Settings</div>
+          <div className={cnForm('subtitle')}>Configure repository connection and synchronization settings.</div>
         </div>
         }
-        <div className="form__fields">
-          {inputs.map((input, idx) =>
-            <div key={idx} className={`form__field form__field_direction_${input.direction}`}>
-              <Label
-                htmlFor={input.id}
-                type='default'
-                display={input.display}
-                text={input.labelText}
-                isRequired={input.isRequired}
-              />
-              <Input
-                name={input.name}
-                id={input.id}
-                display={input.display}
-                value={input.value}
-                plh={input.inputPlh}
-                isRequired={input.isRequired}
-                isInvalid={input.isInvalid || null}
-                type={input.type}
-                pattern={input.pattern || null}
-                onInput={input.onInput || null}
-                onChange={input.onChange}
-                onFocus={input.onFocus || null}
-                errorMsg={input.errorMsg}
-                clearInput={input.clearInput}
-              />
-              {input.labelValueText && <Label
-                                        htmlFor={input.id}
-                                        type='value'
-                                        display={input.display}
-                                        text={input.labelValueText}
-                                      />}
-            </div>
-          )}
+        <div className={cnForm('fields')}>
+          {inputs}
         </div>
-        <div className="form__btn-group">
-          <BtnBig
-            action='primary'
-            text={btns.primary.text}
-            mixClass='form__btn'
-            onClick={btns.primary.onClick}
-            disabled={isFetching} />
-          <BtnBig
-            action='secondary'
-            text={btns.secondary.text}
-            mixClass='form__btn'
-            onClick={btns.secondary.onClick}
-            disabled={isFetching} />
-        </div>
-        {status && <div className={`form__${status.value}-msg`}>{status.text}</div>}
+        <div className={cnForm('btn-group')}>{btns}</div>
+        {!isFetching && formStatus && <div className={cnForm(`${formStatus.value}-msg`)}>{formStatus.text}</div>}
       </form>
     );
   }
 }
 
-export default Form;
+
+const mapStateToProps = state => ({
+  main: state.main,
+});
+
+export default connect(
+  mapStateToProps
+)(FormClass);

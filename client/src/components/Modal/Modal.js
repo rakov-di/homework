@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-
-import Form from '../Form/Form';
-
 import './Modal.styl';
+
+import React, { Component } from 'react';
+import { withNaming } from '@bem-react/classname';
+
+const cn = withNaming({ e: '__', m: '_' });
+const cnModal = cn('modal');
 
 class Modal extends Component {
   constructor(props) {
@@ -12,10 +14,10 @@ class Modal extends Component {
   }
   render() {
     return (
-      <div className='modal' onClick={this.handleClickModal.bind(this)}>
-        <div className='modal__content'>
-          <div className='modal__title'>New build</div>
-          <Form inputs={this.props.inputs} btns={this.props.btns} isFetching={this.props.isFetching} />
+      <div className={cnModal()} onClick={this.handleClickModal.bind(this)}>
+        <div className={cnModal('content')}>
+          <div className={cnModal('title')}>New build</div>
+          {this.props.children}
         </div>
       </div>
     );
@@ -30,12 +32,12 @@ class Modal extends Component {
   }
 
   handleKeyPress(e) {
-    if (e.key === 'Escape') this.props.toggleModalVisibility();
+    if (e.key === 'Escape') this.props.closeModal();
   }
 
   handleClickModal(e) {
     if (e.target.classList.contains('modal')) {
-      this.props.toggleModalVisibility()
+      this.props.closeModal()
     }
   }
 }

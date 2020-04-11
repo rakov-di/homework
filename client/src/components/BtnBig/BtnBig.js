@@ -1,20 +1,32 @@
 import './BtnBig.styl';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withNaming } from '@bem-react/classname';
 
+const cn = withNaming({ e: '__', m: '_' });
+const cnBtnBig = cn('btn-big');
 
-class BtnBig extends Component {
+class BtnBigClass extends Component {
   render() {
-    const { type, action, mixClass, text, onClick, onSubmit, disabled } = this.props;
+    const { type, action, mixClass, text, onClick, onSubmit } = this.props; // из родителя
+    const isDisabled = this.props.isFetching; // из redux
     return (
       <button
         type={type || "button"}
-        className={`btn-big btn-big_action_${action} ${mixClass || ''}`}
+        className={`${cnBtnBig({ action })} ${mixClass || ''}`}
         onClick={onClick}
         onSubmit={onSubmit}
-        disabled={disabled}>{text}</button>
+        disabled={isDisabled}>{text}</button>
     );
   }
 }
 
-export default BtnBig;
+const mapStateToProps = state => ({
+  isFetching: state.main.isFetching,
+});
+
+export default connect(
+  mapStateToProps
+)(BtnBigClass);
+

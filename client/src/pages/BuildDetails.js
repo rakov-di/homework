@@ -1,64 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions';
 
-import Page from '../components/Page/Page';
-import Header from '../components/Header/Header';
-import Main from '../components/Main/Main';
+import BtnSmall from '../components/BtnSmall/BtnSmall';
 import Card from '../components/Card/Card';
-import Log from '../components/Log/Log';
 import Footer from '../components/Footer/Footer';
+import Header from '../components/Header/Header';
+import Log from '../components/Log/Log';
+import Main from '../components/Main/Main';
+import Page from '../components/Page/Page';
 
-import { api } from '../api.js'
 
-import Convert from 'ansi-to-html';
 
-const convert = new Convert({fg: '#000', bg: '#000'});
-
-class BuildDetails extends Component {
-  state = {
-    curBuild: {
-      id: null,
-      buildNumber: null,
-      commitMessage: null,
-      branchName: null,
-      commitHash: null,
-      authorName: null,
-      status: null,
-      start: null,
-      duration: null
-    },
-    curBuildLog: '',
-    settings: {}
-  };
-
+class BuildDetailsClass extends Component {
   render() {
-    const headerData = {
-      title: {
-        valign: 'top',
-        type: 'repo-title',
-        text: this.state.settings.repoName || ''
-      },
-      btns: [
-        {
-          type: 'icon-text',
-          icon: 'rebuild-before',
-          text: 'Rebuild',
-          onClick: this.handleRebuildClick.bind(this)
-        },
-        {
-          type: 'only-icon',
-          icon: 'settings-before',
-          text: '',
-          onClick: this.goToPageSettings.bind(this)
-        }
-      ]
-    };
-
     return (
       <Page>
-        <Header data={headerData} />
+        <Header valign='top' type='repo-title' text={this.props.main.settings.repoName || ''} >
+          <BtnSmall
+            type='icon-text'
+            icon='rebuild-before'
+            text='Rebuild'
+            mixClass='header__btn'
+            onClick={this.handleRebuildClick.bind(this)}
+          />
+          <BtnSmall
+            type='only-icon'
+            icon='settings-before'
+            text=''
+            mixClass='header__btn'
+            onClick={this.goToPageSettings.bind(this)}
+          />
+        </Header>
         <Main>
-          <Card build={this.state.curBuild} />
-          {this.state.curBuildLog && <Log log={this.state.curBuildLog} />}
+          <Card build={this.props.curBuild} />
+          {this.props.curBuild.log && <Log log={this.props.curBuild.log} />}
         </Main>
         <Footer />
       </Page>
@@ -68,34 +44,28 @@ class BuildDetails extends Component {
   componentDidMount() {
     const buildId = window.location.pathname.split('/').reverse()[0];
 
-    // Запрашиваем getSettings, чтобы получить имя репозитория (для вывода в Header)
-    Promise.all([
-      api.getSettings(),
-      api.getBuildDetails(buildId),
-      api.getBuildLog(buildId)
-    ])
-      .then(([settings, build, log]) => {
-        this.setState({
-          settings: settings.data.data,
-          curBuild: build.data.data,
-          curBuildLog: convert.toHtml(log.data)
-        })
-      })
-      .catch(error => console.error(error.message))
+    this.props.getBuildDetails(buildId);
+    this.props.getBuildLog(buildId);
   }
 
   handleRebuildClick() {
-    api.addCommitToQueue(this.state.curBuild.commitHash)
-      .then(res => {
-        document.location.href = `/build/${res.data.payload.id}`;
-      })
-      .catch(error => console.error(error.message));
+    this.props.addCommitToQueue(this.props.curBuild.commitHash);
   }
 
   goToPageSettings() {
-    document.location.href = '/settings'
+    this.props.history.push('/settings');
   }
 }
 
-export default BuildDetails;
+const mapStateToProps = state => ({
+  main: state.main,
+  curBuild: state.curBuild
+});
+
+const mapDispatchToProps = { getBuildDetails,  getBuildLog,  addCommitToQueue};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BuildDetailsClass);
 

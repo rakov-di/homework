@@ -1,83 +1,93 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { closeModal, openModal, getBuildsList, addCommitToQueue } from '../redux/actions/actions';
 
-import Page from '../components/Page/Page';
-import Header from '../components/Header/Header';
-import Main from '../components/Main/Main';
+import BtnBig from '../components/BtnBig/BtnBig';
+import BtnSmall from '../components/BtnSmall/BtnSmall';
 import CardList from '../components/CardList/CardList';
-import Modal from '../components/Modal/Modal';
 import Footer from '../components/Footer/Footer';
+import Header from '../components/Header/Header';
+import Form from '../components/Form/Form';
+import Input from '../components/Input/Input';
+import Label from '../components/Label/Label';
+import Main from '../components/Main/Main';
+import Modal from '../components/Modal/Modal';
+import Page from '../components/Page/Page';
+import Card from '../components/Card/Card';
 
-import { api } from '../api.js'
 
-class BuildHistory extends Component {
-  state = {
-    isFetching: false,
-    isModalShown: false,
-    commitHash: '',
-    builds: [],
-    settings: {},
-    isErrorOnFormSubmit: false,
-    errorMsg: ''
-  };
-
+class BuildHistoryClass extends Component {
   render() {
-    const headerData = {
-      title: {
-        valign: 'top',
-        type: 'repo-title',
-        text: this.state.settings.repoName || ''
-      },
-      btns: [
-        {
-          type: 'icon-text',
-          icon: 'run-before',
-          text: 'Run build',
-          onClick: this.toggleModalVisibility.bind(this)
-        },
-        {
-          type: 'only-icon',
-          icon: 'settings-before',
-          text: '',
-          onClick: this.goToPageSettings.bind(this)
-        }
-      ]
-    };
-
-    const inputs = [
-      {
-        direction: 'column',
-        name: 'commitHash',
-        id: 'commitHash',
-        display: 'block',
-        value: this.state.commitHash,
-        labelText: 'Enter the commit hash which you want to build.',
-        inputPlh: 'Commit hash',
-        onChange: this.handleInputChange.bind(this),
-        onFocus: this.handleInputFocus.bind(this),
-        isInvalid: this.state.isErrorOnFormSubmit,
-        errorMsg:  this.state.errorMsg,
-        clearInput: this.clearInput.bind(this)
-      }
-    ];
-
-    const btns = {
-      primary: {
-        text: 'Run build',
-        onClick: this.handlePrimaryClick.bind(this)
-      },
-      secondary: {
-        text: 'Cancel',
-        onClick: this.toggleModalVisibility.bind(this)
-      }
-    };
+    const { settings, builds } = this.props.main;
+    const { commitHash } = this.props.inputs;
+    const { isModalShown } = this.props.modal;
 
     return (
       <Page>
-        <Header data={headerData} isModalShown = {this.state.isModalShown} />
+        <Header valign='top' type='repo-title' text={settings.repoName || ''} >
+          <BtnSmall
+            type='icon-text'
+            icon='rebuild-before'
+            text='Rum build'
+            mixClass='header__btn'
+            onClick={this.props.openModal}
+          />
+          <BtnSmall
+            type='only-icon'
+            icon='settings-before'
+            text=''
+            mixClass='header__btn'
+            onClick={this.goToPageSettings.bind(this)}
+          />
+        </Header>
         <Main>
-          <CardList builds={this.state.builds}/>
+          <CardList>
+            {builds.map(build =>
+              <Card key={build.id} build={build} />
+            )}
+            <BtnSmall type='only-text' text='Show more' mixClass='card-list__show-more'/>
+          </CardList>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
-          {this.state.isModalShown && <Modal inputs={inputs} btns={btns} isFetching={this.state.isFetching} toggleModalVisibility={this.toggleModalVisibility.bind(this)}/>}
+          {isModalShown && <Modal closeModal={this.props.closeModal}>
+            <Form
+              isHeader={false}
+              inputs={[
+                <div key='commitHash' className={`form__field form__field_direction_column`}>
+                  <Label
+                    htmlFor='commitHash'
+                    type='default'
+                    display='block'
+                    text='Enter the commit hash which you want to build.'
+                  />
+                  <Input
+                    name='commitHash'
+                    id='commitHash'
+                    display='block'
+                    value={commitHash.value}
+                    plh='Commit hash'
+                    isValid={commitHash.isValid}
+                    errorMsg='There is no commit with such hash'
+                  />
+                </div>
+              ]}
+              btns={
+                <>
+                  <BtnBig
+                    action='primary'
+                    text='Run build'
+                    mixClass='form__btn'
+                    onClick={this.handlePrimaryClick.bind(this)}
+                  />
+                  <BtnBig
+                    action='secondary'
+                    text='Cancel'
+                    mixClass='form__btn'
+                    onClick={this.props.closeModal}
+                  />
+                </>
+              }
+            />
+          </Modal>}
         </Main>
         <Footer />
       </Page>
@@ -86,73 +96,27 @@ class BuildHistory extends Component {
 
   componentDidMount() {
     window.history.pushState(null, document.title, `${window.location.origin}/build-history`);
-
-    // Запрашиваем getSettings, чтобы получить имя репозитория (для вывода в Header)
-    Promise.all([
-      api.getSettings(),
-      api.getBuildsList()
-    ])
-      .then(([settings, builds]) => {
-        this.setState({
-          settings: settings.data.data,
-          builds: builds.data.data
-        })
-      })
-      .catch(err => console.error(err.message));
-  }
-
-  handleInputFocus(e) {
-    this.setState({
-      isErrorOnFormSubmit: false
-    });
-  }
-
-  handleInputChange(e) {
-    const { target } = e;
-    const value = target.value;
-    this.setState({
-      commitHash: value
-    });
+    this.props.getBuildsList();
   }
 
   handlePrimaryClick() {
-    this.setState({
-      isFetching: true
-    });
-    api.addCommitToQueue(this.state.commitHash)
-      .then(res => {
-        document.location.href = `/build/${res.data.payload.id}`;
-      })
-      .catch(err => {
-        this.setState({
-          isErrorOnFormSubmit: true,
-          errorMsg: err.message
-        });
-      })
-      .finally(() => {
-        this.setState({
-          isFetching: false
-        });
-      })
-  }
-
-  toggleModalVisibility() {
-    this.setState({
-      isModalShown: !this.state.isModalShown,
-      isErrorOnFormSubmit: false,
-      commitHash: ''
-    });
+    this.props.addCommitToQueue(this.props.inputs.commitHash.value);
   }
 
   goToPageSettings() {
-    document.location.href = '/settings'
-  }
-
-  clearInput(e) {
-    this.setState({
-      commitHash: ''
-    })
+    this.props.history.push('/settings');
   }
 }
 
-export default BuildHistory;
+const mapStateToProps = state => ({
+  main: state.main,
+  inputs: state.inputs,
+  modal: state.modal,
+});
+
+const mapDispatchToProps = { getBuildsList, closeModal, openModal, addCommitToQueue };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BuildHistoryClass);
