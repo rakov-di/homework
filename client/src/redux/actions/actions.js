@@ -11,11 +11,11 @@ export const getCurSettings = () => {
 
     api.getSettings()
       .then(res => {
-        dispatch(updateStoreSettings(res.data.data));
+        dispatch(updateStoreSettings(res.data.payload));
         dispatch(fetchDone());
       })
       .catch(err => {
-        dispatch(fetchFail(err.message));
+        dispatch(fetchFail(err.response.data.message));
       });
   };
 };
@@ -28,17 +28,18 @@ export const updateSettings = (settings) => {
       .then(res => {
         dispatch(updateStoreSettings(settings));
         dispatch(updateFormStatus({
-          value: res.data.status,
+          value: 'success',
           text: res.data.message
         }));
         dispatch(fetchDone());
       })
       .catch(err => {
+        debugger
         dispatch(updateFormStatus({
           value: 'error',
-          text: err.message
+          text: err.response.data.message
         }));
-        dispatch(fetchFail(err.message));
+        dispatch(fetchFail(err.response.data.message));
       });
   };
 };
@@ -57,7 +58,7 @@ export const getBuildsList = () => {
           value: 'error',
           text: err.message
         }));
-        dispatch(fetchFail(err.message));
+        dispatch(fetchFail(err.response.data.message));
       });
   };
 };
@@ -75,7 +76,7 @@ export const addCommitToQueue = (commitHash) => {
       })
       .catch(err => {
         dispatch(inputSetValidationStatus('commitHash', false))
-        dispatch(fetchFail(err.message));
+        dispatch(fetchFail(err.response.data.message));
       });
   };
 };
@@ -91,7 +92,7 @@ export const getBuildDetails = (buildId) => {
         dispatch(fetchDone());
       })
       .catch(err => {
-        dispatch(fetchFail(err.message));
+        dispatch(fetchFail(err.response.data.message));
       });
   };
 };
@@ -106,7 +107,7 @@ export const getBuildLog = (buildId) => {
         dispatch(fetchDone());
       })
       .catch(err => {
-        dispatch(fetchFail(err.message));
+        dispatch(fetchFail(err.response.data.message));
       });
   };
 };

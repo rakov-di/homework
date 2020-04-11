@@ -9,18 +9,17 @@ const controllers = {
   async getSettings(req, res, next) {
     api.getSettings()
       .then((response) => {
-        res.json({
-          status: 'success',
+        res.status(200).json({
           message: `Getting settings for current repo ${req.body.repoName} successfully finished`,
-          data: response.data.data || response.data
+          payload: response.data.data || response.data
         });
       })
-      .catch(() => {
-        res.json({
-          status: 'error',
+      .catch((error) => {
+        // next(error);
+        console.error(`Settings didn't get because of error: ${error.message}`);
+        res.status(500).json({
           message: `Getting settings for current repo has failed`
         });
-        // next(error);
       });
   },
 
@@ -34,25 +33,24 @@ const controllers = {
       .then(() => {
         api.updateSettings(req.body)
           .then(() => {
-            res.json({
-              status: 'success',
+            res.status(200).json({
               message: `Settings for repo ${req.body.repoName} successfully saved`
             });
           })
-          .catch(() => {
-            res.json({
-              status: 'error',
+          .catch((error) => {
+            // next(error);
+            console.error(`Settings didn't update because of error: ${error.message}`);
+            res.status(500).json({
               message: `Saving settings for repo ${req.body.repoName} has failed`
             });
-            // next(error);
           });
       })
       .catch((error) => {
-        res.json({
-          status: 'error',
+        // next(error);
+        console.error(`Repository didn't clone because of error: ${error.message}`);
+        res.status(500).json({
           message: error.message
         });
-        // next(error);
       })
   },
 
@@ -60,10 +58,14 @@ const controllers = {
   async getBuildsList(req, res, next) {
     api.getBuildsList()
       .then((response) => {
-        res.json(response.data);
+        res.status(200).json(response.data);
       })
       .catch((error) => {
-        next(error);
+        // next(error);
+        console.error(`Build list didn't get because of error: ${error.message}`);
+        res.status(500).json({
+          message: error.message
+        });
       });
   },
 
@@ -77,26 +79,25 @@ const controllers = {
         api.addCommitToQueue(message, req.params.commitHash, author)
           .then((data) => {
             //TODO  разобраться с data.data.data - что за ад
-            res.json({
-              status: 'success',
+            res.status(200).json({
               message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
               payload: data.data.data
             });
           })
           .catch((error) => {
-            res.json({
-              status: 'error',
+            // next(error);
+            console.error(`Commit didn't add to build queue because of error: ${error.message}`);
+            res.status(500).json({
               message: error.message
             });
-            // next(error);
           });
       })
       .catch((error) => {
-        res.json({
-          status: 'error',
+        // next(error);
+        console.error(`Repository info didn't get because of error: ${error.message}`);
+        res.status(500).json({
           message: error.message
         });
-        // next(error);
       });
   },
 
@@ -104,10 +105,14 @@ const controllers = {
   async getBuildDetails(req, res, next) {
     api.getBuildDetails(req.params.buildId)
       .then((response) => {
-        res.json(response.data);
+        res.status(200).json(response.data);
       })
       .catch((error) => {
-        next(error);
+        // next(error);
+        console.error(`Build details didn't get because of error: ${error.message}`);
+        res.status(500).json({
+          message: error.message
+        })
       });
   },
 
@@ -129,11 +134,12 @@ const controllers = {
           // }
         })
         .catch((error) => {
-          console.error('=====' + error);
-          if (error.response.status === 500) {
-            res.send('Что-то пошло не так. Ошибка 500.');
-          }
-          else next(error);
+          // next(error);
+          // error.response.status
+          console.error(`Build details didn't get because of error: ${error.message}`);
+          res.status(500).json({
+            message: error.message
+          });
         });
     }
   },
