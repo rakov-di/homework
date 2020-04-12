@@ -7,7 +7,6 @@ const buildLogs = require('../utils/buildLogs');
 const controllers = {
   // Получение сохраненных настроек репозитория
   async getSettings(req, res, next) {
-
     try {
       const response = await api.getSettings();
 
@@ -71,20 +70,19 @@ const controllers = {
 
   // Получения списка сборок
   async getBuildsList(req, res, next) {
-    api.getBuildsList()
-      .then((response) => {
-        res.status(200).json({
-          message: 'Build list successfully got',
-          payload: response.data.data || response.data
-        });
-      })
-      .catch((error) => {
-        // next(error);
-        console.error(`Build list didn't get because of error: ${error.message}`);
-        res.status(500).json({
-          message: error.message
-        });
+    try {
+      const response = await api.getBuildsList();
+
+      return res.status(200).json({
+        message: 'Build list successfully got',
+        payload: response.data.data || response.data
       });
+    } catch(error) {
+      console.error(`Build list didn't get because of error: ${error.message}`);
+      res.status(500).json({
+        message: error.message
+      });
+    }
   },
 
   // Добавление сборки в очередь для конкретного коммита
