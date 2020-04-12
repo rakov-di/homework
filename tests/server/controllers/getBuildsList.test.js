@@ -14,7 +14,7 @@ describe('Получение списка билдов текущего репо
     res.json = stub().returns(res);
   });
 
-  describe('Запрос успешен. Настройки есть', () => {
+  describe('Запрос успешен. Список билдов не пустой', () => {
     beforeEach(() => {
       const mock = new MockAdapter(axiosAPI);
 
@@ -41,7 +41,7 @@ describe('Получение списка билдов текущего репо
       expect(res.status.firstCall.args[0]).to.equal(200);
     });
 
-    it('Возвращается объект с настройками', async () => {
+    it('Возвращается массив с верным списком билдов', async () => {
       await getBuildsList(req, res);
 
       expect(res.json.firstCall.args[0].payload).is.exist;
@@ -60,7 +60,7 @@ describe('Получение списка билдов текущего репо
     });
   });
 
-  describe('Запрос успешен. Настройки пустые', () => {
+  describe('Запрос успешен. Список билдов пустой', () => {
     beforeEach(() => {
       const mock = new MockAdapter(axiosAPI);
       mock.onGet('/build/list').reply(200, { data: [] });
