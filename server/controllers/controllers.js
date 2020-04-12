@@ -29,29 +29,29 @@ const controllers = {
   // и создается такая же папка, но уже с новым репозиторием
   // При этом возникает ошибка - надо разбираться
   async updateSettings(req, res, next) {
-    cloneRepo(req.body.repoName)
-      .then(() => {
-        api.updateSettings(req.body)
-          .then(() => {
-            res.status(200).json({
-              message: `Settings for repo ${req.body.repoName} successfully saved`
-            });
-          })
-          .catch((error) => {
-            // next(error);
-            console.error(`Settings didn't update because of error: ${error.message}`);
-            res.status(500).json({
-              message: `Saving settings for repo ${req.body.repoName} has failed`
-            });
-          });
-      })
-      .catch((error) => {
-        // next(error);
-        console.error(`Repository didn't clone because of error: ${error.message}`);
-        res.status(500).json({
-          message: error.message
+    try {
+      await cloneRepo(req.body.repoName);
+
+      try {
+        await api.updateSettings(req.body);
+
+        return res.status(200).json({
+          message: `Settings for repo ${req.body.repoName} successfully saved`
         });
-      })
+      } catch(error) {
+        // next(error);
+        console.error(`Settings didn't update because of error: ${error.message}`);
+        return res.status(500).json({
+          message: `Saving settings for repo ${req.body.repoName} has failed`
+        });
+      }
+    } catch (error) {
+      // next(error);
+      console.error(`Repository didn't clone because of error: ${error.message}`);
+      res.status(500).json({
+        message: error.message
+      });
+    }
   },
 
   // Получения списка сборок
@@ -146,32 +146,6 @@ const controllers = {
           message: error.message
         });
       }
-
-
-      // api.getBuildLog(req.params.buildId)
-      //   .then((response) => {
-      //     fs.readFile('testBuildLog.txt', null, (err, contents) => {
-      //       buildLogs.set(req.params.buildId, contents);
-      //       // res.status(200).send(contents);
-      //       res.status(200).send({
-      //         message: `Build details successfully got`,
-      //         payload: `${contents}`
-      //       });
-      //     });
-      //     // TODO Заменить вышестоящую заглушка на реальные логи
-      //     // if (!response.data) {
-      //     //   res.send(String(`Лога для сборки ${req.params.buildId} нет`))
-      //     // }
-      //     // else {
-      //     // }
-      //   })
-      //   .catch((error) => {
-      //     // next(error);
-      //     console.error(`Build details didn't get because of error: ${error.message}`);
-      //     res.status(500).json({
-      //       message: error.message
-      //     });
-      //   });
     }
   },
 
