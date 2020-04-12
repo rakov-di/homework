@@ -1,7 +1,8 @@
 const fs = require('fs');
 
 const { api } = require('../externalAPI/api');
-const { cloneRepo, updateRepoStory, getCommitInfo } = require('../utils/git');
+const { cloneRepo, updateRepoStory } = require('../utils/git');
+const git = require('../utils/git');
 const buildLogs = require('../utils/buildLogs');
 
 const controllers = {
@@ -74,11 +75,15 @@ const controllers = {
   // По полному хэшу коммита определяется полное сообщение, автор. Ветка пока берется по умолчанию
   async addCommitToQueue(req, res, next) {
     try {
-      const commitInfo = await getCommitInfo(req.params.commitHash);
+      const commitInfo = await git.getCommitInfo(req.params.commitHash);
+      console.log('FUNC: ', commitInfo);
       const [message, author] = commitInfo.toString().trim().split("===");
+      console.log('FUNC: ', message, author);
 
       try {
+        console.log('FUNC: ', 3);
         const response = await api.addCommitToQueue(message, req.params.commitHash, author);
+        console.log('FUNC: ', 4);
 
         return res.status(200).json({
           message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
