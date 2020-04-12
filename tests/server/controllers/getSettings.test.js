@@ -1,27 +1,14 @@
-const mocha = require('mocha');
 const { expect } = require('chai');
 const { stub } = require('sinon');
 const { axiosAPI } = require('../../../server/externalAPI/api');
-const { api } = require('../../../server/externalAPI/api');
 const MockAdapter = require('axios-mock-adapter');
 
 const { getSettings } = require('../../../server/controllers/controllers');
 
-// const mock3 = new MockAdapter(axiosAPI);
 let res = {};
 let req = {};
+
 describe('\n========== Получение настроек текущего репозитория ==========', () => {
-  // before(() => {
-  //   // mock.resetHandlers();
-  //   // mock.reset();
-  //   mock.restore();
-  // });
-  // after(() => {
-  //   // mock.resetHandlers();
-  //   mock2.reset();
-  //   mock3.reset();
-  //   // mock.restore();
-  // });
   beforeEach(() => {
     req = {
       body: {
