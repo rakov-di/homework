@@ -9,8 +9,6 @@ const { addCommitToQueue } = require('../../../server/controllers/controllers');
 let res = {};
 let req = {};
 describe('\n========== Постановка билда в очередь ==========', () => {
-  stub(git, 'getCommitInfo').returns(Promise.resolve('[@] Косметические правки в README===Dmitry Rakov'));
-
   beforeEach(() => {
     req = {
       params: {
@@ -22,7 +20,16 @@ describe('\n========== Постановка билда в очередь =======
     res.json = stub().returns(res);
   });
 
-  describe('Запрос успешен. Билд добавлен в очередь', () => {
+  describe('Информация о коммите получена. Билд добавлен в очередь в api', () => {
+    before(() => {
+      stub(git, 'getCommitInfo').resolves('[@] Косметические правки в README===Dmitry Rakov');
+      // stub(git, 'cloneRepo').throws(() => new Error(`Can't find repository rakov-di/homework_async`));
+    });
+
+    after(() => {
+      git.getCommitInfo.restore();
+    });
+
     beforeEach(() => {
       const mock = new MockAdapter(axiosAPI);
 
@@ -54,10 +61,40 @@ describe('\n========== Постановка билда в очередь =======
     });
   });
 
-  describe('Запрос завершился с ошибкой', () => {
+  describe('Информация о коммите получена, но возникла ошибка при запросе к api', () => {
+    before(() => {
+      stub(git, 'getCommitInfo').resolves('[@] Косметические правки в README===Dmitry Rakov');
+    });
+
+    after(() => {
+      git.getCommitInfo.restore();
+    });
+
     beforeEach(() => {
       const mock = new MockAdapter(axiosAPI);
 
+      mock.onPost('/build/request').reply(500);
+    });
+
+    it('Возвращается верный код ошибки', async () => {
+      await addCommitToQueue(req, res);
+
+      expect(res.status.firstCall.args[0]).to.equal(500);
+    });
+  });
+
+  describe('Получение информация о коммите завершилось с ошибкой', () => {
+    before(() => {
+      stub(git, 'getCommitInfo').throws(() => new Error());
+    });
+
+    after(() => {
+      git.getCommitInfo.restore();
+    });
+
+    beforeEach(() => {
+      // до запроса не должно дойти. но мокаем на всякий случай
+      const mock = new MockAdapter(axiosAPI);
       mock.onPost('/build/request').reply(500);
     });
 
