@@ -1,9 +1,11 @@
 const fs = require('fs');
-
+const util = require('util');
 const { api } = require('../externalAPI/api');
 const { cloneRepo, updateRepoStory } = require('../utils/git');
 const git = require('../utils/git');
 const buildLogs = require('../utils/buildLogs');
+
+const readFile = util.promisify(fs.readFile);
 
 const controllers = {
   // Получение сохраненных настроек репозитория
@@ -76,14 +78,10 @@ const controllers = {
   async addCommitToQueue(req, res, next) {
     try {
       const commitInfo = await git.getCommitInfo(req.params.commitHash);
-      console.log('FUNC: ', commitInfo);
       const [message, author] = commitInfo.toString().trim().split("===");
-      console.log('FUNC: ', message, author);
 
       try {
-        console.log('FUNC: ', 3);
         const response = await api.addCommitToQueue(message, req.params.commitHash, author);
-        console.log('FUNC: ', 4);
 
         return res.status(200).json({
           message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
@@ -125,36 +123,57 @@ const controllers = {
   // Получение логов конкретной сборки
   async getBuildLog(req, res, next) {
     if (buildLogs.isExist(req.params.buildId)) {
-      res.status(200).send({
-        message: `Build details successfully got`,
+
+      res.status(200).json({
+        message: `Build logs successfully got from cache`,
         payload: `${buildLogs.get(req.params.buildId)}`
       });
     }
     else {
-      api.getBuildLog(req.params.buildId)
-        .then((response) => {
-          fs.readFile('testBuildLog.txt', null, (err, contents) => {
-            buildLogs.set(req.params.buildId, contents);
-            // res.status(200).send(contents);
-            res.status(200).send({
-              message: `Build details successfully got`,
-              payload: `${contents}`
-            });
-          });
-          // TODO Заменить вышестоящую заглушка на реальные логи
-          // if (!response.data) {
-          //   res.send(String(`Лога для сборки ${req.params.buildId} нет`))
-          // }
-          // else {
-          // }
-        })
-        .catch((error) => {
-          // next(error);
-          console.error(`Build details didn't get because of error: ${error.message}`);
-          res.status(500).json({
-            message: error.message
-          });
+      try {
+        // Заглушка для выдачи логов
+        const response = await api.getBuildLog(req.params.buildId);
+
+        const contents = await readFile('testBuildLog.txt');
+        buildLogs.set(req.params.buildId, contents);
+        return res.status(200).json({
+          message: `Build details successfully got from api`,
+          payload: `${contents}`
         });
+
+      } catch(error) {
+        // next(error);
+        console.error(`Build details didn't get because of error: ${error.message}`);
+        res.status(500).json({
+          message: error.message
+        });
+      }
+
+
+      // api.getBuildLog(req.params.buildId)
+      //   .then((response) => {
+      //     fs.readFile('testBuildLog.txt', null, (err, contents) => {
+      //       buildLogs.set(req.params.buildId, contents);
+      //       // res.status(200).send(contents);
+      //       res.status(200).send({
+      //         message: `Build details successfully got`,
+      //         payload: `${contents}`
+      //       });
+      //     });
+      //     // TODO Заменить вышестоящую заглушка на реальные логи
+      //     // if (!response.data) {
+      //     //   res.send(String(`Лога для сборки ${req.params.buildId} нет`))
+      //     // }
+      //     // else {
+      //     // }
+      //   })
+      //   .catch((error) => {
+      //     // next(error);
+      //     console.error(`Build details didn't get because of error: ${error.message}`);
+      //     res.status(500).json({
+      //       message: error.message
+      //     });
+      //   });
     }
   },
 
