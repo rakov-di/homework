@@ -7,7 +7,7 @@ const MockAdapter = require('axios-mock-adapter');
 let res = {};
 let req = {};
 
-describe('Получение списка билдов текущего репозитория', () => {
+describe('\n========== Получение списка билдов текущего репозитория ==========', () => {
   beforeEach(() => {
     res = {};
     res.status = stub().returns(res);

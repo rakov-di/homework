@@ -9,7 +9,7 @@ const { updateSettings } = require('../../../server/controllers/controllers');
 let res = {};
 let req = {};
 
-describe('Сохранения настроек репозитория', () => {
+describe('\n========== Сохранения настроек репозитория ==========', () => {
   stub(git, 'cloneRepo').returns(Promise.resolve());
 
   beforeEach(() => {

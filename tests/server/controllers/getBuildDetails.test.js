@@ -7,7 +7,7 @@ const MockAdapter = require('axios-mock-adapter');
 let res = {};
 let req = {};
 
-describe('Получение деталей конкретного билда', () => {
+describe('\n========== Получение деталей конкретного билда ==========', () => {
   beforeEach(() => {
     req = {
       params: {

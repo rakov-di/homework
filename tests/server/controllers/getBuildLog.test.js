@@ -11,7 +11,7 @@ let res = {};
 let req = {};
 // let sandbox;
 
-describe('Получения логов билда', () => {
+describe('\n========== Получения логов билда ==========', () => {
   stub(helpers, 'readFile').returns('Text');
   stub(buildLogs, 'get').returns('Text');
   stub(buildLogs, 'set').returns();

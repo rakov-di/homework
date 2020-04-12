@@ -8,8 +8,7 @@ const { addCommitToQueue } = require('../../../server/controllers/controllers');
 
 let res = {};
 let req = {};
-
-describe('Постановка билда в очередь', () => {
+describe('\n========== Постановка билда в очередь ==========', () => {
   stub(git, 'getCommitInfo').returns(Promise.resolve('[@] Косметические правки в README===Dmitry Rakov'));
 
   beforeEach(() => {

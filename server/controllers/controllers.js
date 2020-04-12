@@ -14,7 +14,7 @@ const controllers = {
         payload: response.data.data || response.data
       });
     } catch(error) {
-      console.error(`Settings didn't get because of error: ${error.message}`);
+      // console.error(`Settings didn't get because of error: ${error.message}`);
       return res.status(500).json({
         message: `Getting settings for current repo has failed`
       });
@@ -38,14 +38,14 @@ const controllers = {
         });
       } catch(error) {
         // next(error);
-        console.error(`Settings didn't update because of error: ${error.message}`);
+        // console.error(`Settings didn't update because of error: ${error.message}`);
         return res.status(500).json({
           message: `Saving settings for repo ${req.body.repoName} has failed`
         });
       }
     } catch (error) {
       // next(error);
-      console.error(`Repository didn't clone because of error: ${error.message}`);
+      // console.error(`Repository didn't clone because of error: ${error.message}`);
       res.status(500).json({
         message: error.message
       });
@@ -62,7 +62,7 @@ const controllers = {
         payload: response.data.data || response.data
       });
     } catch(error) {
-      console.error(`Build list didn't get because of error: ${error.message}`);
+      // console.error(`Build list didn't get because of error: ${error.message}`);
       res.status(500).json({
         message: error.message
       });
@@ -85,14 +85,14 @@ const controllers = {
         });
       } catch(error) {
         // next(error);
-        console.error(`Commit didn't add to build queue because of error: ${error.message}`);
+        // console.error(`Commit didn't add to build queue because of error: ${error.message}`);
         return res.status(500).json({
           message: error.message
         });
       }
     } catch (error) {
       // next(error);
-      console.error(`Repository info didn't get because of error: ${error.message}`);
+      // console.error(`Repository info didn't get because of error: ${error.message}`);
       return res.status(500).json({
         message: error.message
       });
@@ -109,7 +109,7 @@ const controllers = {
       });
     } catch(error) {
       // next(error);
-      console.error(`Build details didn't get because of error: ${error.message}`);
+      // console.error(`Build details didn't get because of error: ${error.message}`);
       res.status(500).json({
         message: error.message
       })
@@ -139,7 +139,7 @@ const controllers = {
 
       } catch(error) {
         // next(error);
-        console.error(`Build details didn't get because of error: ${error.message}`);
+        // console.error(`Build details didn't get because of error: ${error.message}`);
         res.status(500).json({
           message: error.message
         });
@@ -165,7 +165,7 @@ const controllers = {
   //     .catch(error => {
   //       // next(error);
   //       // error.response.status
-  //       console.error(`Repository story didn't update because of error: ${error.message}`);
+  // //       console.error(`Repository story didn't update because of error: ${error.message}`);
   //       res.status(500).json({
   //         message: error.message
   //       });

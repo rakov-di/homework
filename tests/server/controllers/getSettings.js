@@ -10,7 +10,7 @@ const { getSettings } = require('../../../server/controllers/controllers');
 // const mock3 = new MockAdapter(axiosAPI);
 let res = {};
 let req = {};
-describe('Получение настроек текущего репозитория', () => {
+describe('\n========== Получение настроек текущего репозитория ==========', () => {
   // before(() => {
   //   // mock.resetHandlers();
   //   // mock.reset();
