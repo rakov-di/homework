@@ -15,7 +15,7 @@ export const getCurSettings = () => {
         dispatch(fetchDone());
       })
       .catch(err => {
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
@@ -34,12 +34,11 @@ export const updateSettings = (settings) => {
         dispatch(fetchDone());
       })
       .catch(err => {
-        debugger
         dispatch(updateFormStatus({
           value: 'error',
           text: err.response.data.message
         }));
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
@@ -50,7 +49,7 @@ export const getBuildsList = () => {
 
     api.getBuildsList()
       .then(res => {
-        dispatch(updateStoreBuildsList(res.data.data));
+        dispatch(updateStoreBuildsList(res.data.payload));
         dispatch(fetchDone());
       })
       .catch(err => {
@@ -58,7 +57,7 @@ export const getBuildsList = () => {
           value: 'error',
           text: err.message
         }));
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
@@ -76,7 +75,7 @@ export const addCommitToQueue = (commitHash) => {
       })
       .catch(err => {
         dispatch(inputSetValidationStatus('commitHash', false))
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
@@ -87,12 +86,11 @@ export const getBuildDetails = (buildId) => {
 
     api.getBuildDetails(buildId)
       .then(res => {
-
-        dispatch(updateStoreCurBuildDetails(res.data.data));
+        dispatch(updateStoreCurBuildDetails(res.data.payload));
         dispatch(fetchDone());
       })
       .catch(err => {
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
@@ -103,27 +101,14 @@ export const getBuildLog = (buildId) => {
 
     api.getBuildLog(buildId)
       .then(res => {
-        dispatch(updateStoreCurBuildLog(convert.toHtml(res.data)));
+        dispatch(updateStoreCurBuildLog(convert.toHtml(res.data.payload)));
         dispatch(fetchDone());
       })
       .catch(err => {
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
-
-// Promise.all([
-//   api.getBuildDetails(buildId),
-//   api.getBuildLog(buildId)
-// ])
-//   .then(([settings, build, log]) => {
-//     this.setState({
-//       settings: settings.data.data,
-//       curBuild: build.data.data,
-//       curBuildLog: convert.toHtml(log.data)
-//     })
-//   })
-//   .catch(error => console.error(error.message))
 
 export const fetchStart = () => ({
   type: ACTIONS.FETCH_START,

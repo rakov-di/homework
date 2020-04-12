@@ -1,3 +1,4 @@
+// TODO Сделать нормальный кеш, а не вот это вот
 class BuildLogs {
   constructor() {
     this.clear();

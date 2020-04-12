@@ -58,7 +58,10 @@ const controllers = {
   async getBuildsList(req, res, next) {
     api.getBuildsList()
       .then((response) => {
-        res.status(200).json(response.data);
+        res.status(200).json({
+          message: 'Build list successfully got',
+          payload: response.data.data || response.data
+        });
       })
       .catch((error) => {
         // next(error);
@@ -105,7 +108,10 @@ const controllers = {
   async getBuildDetails(req, res, next) {
     api.getBuildDetails(req.params.buildId)
       .then((response) => {
-        res.status(200).json(response.data);
+        res.status(200).json({
+          message: `Build details successfully get`,
+          payload: response.data.data
+        });
       })
       .catch((error) => {
         // next(error);
@@ -118,13 +124,22 @@ const controllers = {
 
   // Получение логов конкретной сборки
   async getBuildLog(req, res, next) {
-    if (buildLogs.isExist(req.params.buildId)) res.send(buildLogs.get(req.params.buildId));
+    if (buildLogs.isExist(req.params.buildId)) {
+      res.status(200).send({
+        message: `Build details successfully got`,
+        payload: `${buildLogs.get(req.params.buildId)}`
+      });
+    }
     else {
       api.getBuildLog(req.params.buildId)
         .then((response) => {
           fs.readFile('testBuildLog.txt', null, (err, contents) => {
             buildLogs.set(req.params.buildId, contents);
-            res.send(contents);
+            // res.status(200).send(contents);
+            res.status(200).send({
+              message: `Build details successfully got`,
+              payload: `${contents}`
+            });
           });
           // TODO Заменить вышестоящую заглушка на реальные логи
           // if (!response.data) {
@@ -135,7 +150,6 @@ const controllers = {
         })
         .catch((error) => {
           // next(error);
-          // error.response.status
           console.error(`Build details didn't get because of error: ${error.message}`);
           res.status(500).json({
             message: error.message
@@ -153,11 +167,18 @@ const controllers = {
         return updateRepoStory(response.data.data)
       })
       .then(repo => {
-        res.send(String(`История ветки ${repo.mainBranch} репозитория ${repo.repoName} обновлена`));
+        res.status(200).send({
+          message: `Repository story successfully updated`,
+          payload: contents
+        });
       })
-      .catch(err => {
-        console.error(err);
-        next(err);
+      .catch(error => {
+        // next(error);
+        // error.response.status
+        console.error(`Repository story didn't update because of error: ${error.message}`);
+        res.status(500).json({
+          message: error.message
+        });
       });
   }
 };
