@@ -20,21 +20,6 @@ const controllers = {
         message: `Getting settings for current repo has failed`
       });
     }
-    // api.getSettings()
-    //   .then((response) => {
-    //
-    //     res.status(300).json({
-    //       message: `Getting settings for current repo ${req.body.repoName} successfully finished`,
-    //       payload: response.data.data || response.data
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     // next(error);
-    //     console.error(`Settings didn't get because of error: ${error.message}`);
-    //     res.status(500).json({
-    //       message: `Getting settings for current repo has failed`
-    //     });
-    //   });
   },
 
   // Сохранение (Добавление или обновление) настроек репозитория
@@ -119,20 +104,19 @@ const controllers = {
 
   // Получение информации о конкретной сборке
   async getBuildDetails(req, res, next) {
-    api.getBuildDetails(req.params.buildId)
-      .then((response) => {
-        res.status(200).json({
-          message: `Build details successfully get`,
-          payload: response.data.data
-        });
-      })
-      .catch((error) => {
-        // next(error);
-        console.error(`Build details didn't get because of error: ${error.message}`);
-        res.status(500).json({
-          message: error.message
-        })
+    try {
+      const response = await api.getBuildDetails(req.params.buildId);
+      return res.status(200).json({
+        message: `Build details successfully get`,
+        payload: response.data.data
       });
+    } catch(error) {
+      // next(error);
+      console.error(`Build details didn't get because of error: ${error.message}`);
+      res.status(500).json({
+        message: error.message
+      })
+    }
   },
 
   // Получение логов конкретной сборки
