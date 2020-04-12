@@ -55,13 +55,6 @@ describe('Получение настроек текущего репозито�
       expect(res.status.firstCall.args[0]).to.equal(200);
     });
 
-    it('Возвращается верное сообщение', async () => {
-      await getSettings(req, res);
-
-      expect(res.json.firstCall.args[0].message).is.exist;
-      expect(res.json.firstCall.args[0].message).is.equal(`Getting settings for current repo rakov-di/homework_async successfully finished`);
-    });
-
     it('Возвращается объект с настройками', async () => {
       await getSettings(req, res);
 
@@ -88,13 +81,6 @@ describe('Получение настроек текущего репозито�
       expect(res.status.firstCall.args[0]).to.equal(200);
     });
 
-    it('Возвращается верное сообщение', async () => {
-      await getSettings(req, res);
-
-      expect(res.json.firstCall.args[0].message).is.exist;
-      expect(res.json.firstCall.args[0].message).is.equal(`Getting settings for current repo rakov-di/homework_async successfully finished`);
-    });
-
     it('Возвращается пустой объект', async () => {
       await getSettings(req, res);
 
@@ -116,12 +102,6 @@ describe('Получение настроек текущего репозито�
       expect(res.status.firstCall.args[0]).to.equal(500);
     });
 
-    it('Возвращается верное сообщение об ошибке', async () => {
-      await getSettings(req, res);
-
-      expect(res.json.firstCall.args[0].message).is.exist;
-      expect(res.json.firstCall.args[0].message).is.equal(`Getting settings for current repo has failed`);
-    });
   });
 
 });
