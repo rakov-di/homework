@@ -1,16 +1,6 @@
-const { spawn, exec } = require('child_process');
-const fs = require('fs');
-const util = require('util');
-const rimraf = require("rimraf");
-
-const promisifiedSpawn = util.promisify(spawn);
-const promisifiedExec = util.promisify(exec);
-const promisifiedRimraf = util.promisify(rimraf);
-const promisifiedStat = util.promisify(fs.stat);
+const helpers = require('./helpers');
 
 const localRepoName = '_localRepo';
-
-
 
 const cloneRepo = async (repoName) => {
   const repoUrl = getRepoUrl(repoName);
@@ -26,7 +16,7 @@ const cloneRepo = async (repoName) => {
   // Проверяем, есть ли на сервере локальная папка с ранее склонированным туда репозиторием
   // Если есть - удаляем его
   if (await isLocalRepoExist(localRepoName)) {
-    await promisifiedRimraf(localRepoName);
+    await helpers.rimraf(localRepoName);
   }
 
   // Клонируем указанный репозиторий в локальную папку на сервере
@@ -47,7 +37,7 @@ const getRepoUrl = (repository) => {
 
 const isLocalRepoExist = async (dir) => {
   try {
-    const stat = await promisifiedStat(dir);
+    const stat = await helpers.stat(dir);
     return stat.isDirectory();
   }
   catch (e) {
@@ -60,8 +50,8 @@ const isLocalRepoExist = async (dir) => {
 };
 
 const runCommandInLocalRepo = async (command, dir = process.cwd()) => {
-  // const result = await promisifiedSpawn(command, { cwd: dir, shell: true });
-  const result = await promisifiedExec(command, { cwd: dir });
+  // const result = await helpers.spawn(command, { cwd: dir, shell: true });
+  const result = await helpers.exec(command, { cwd: dir });
   return result.stdout.trim();
 };
 
@@ -74,19 +64,17 @@ const getCommitInfo = async (commitHash) => {
   }
 };
 
-// Функция для тестовой ручки - пока не работает
-const updateRepoStory = async (repo) => {
-  return new Promise((resolve, reject) => {
-    const updateRepo = spawn(`cd ${localRepoName} && git checkout ${repo.mainBranch} && git pull`,{shell: true});
+// TODO Функция для тестовой ручки - пока не работает
+// const updateRepoStory = async (repo) => {
+//   return new Promise((resolve, reject) => {
+//     const updateRepo = spawn(`cd ${localRepoName} && git checkout ${repo.mainBranch} && git pull`,{shell: true});
+//
+//     updateRepo.stdout.on('data', data => console.log(`stdout: ${data}`));
+//
+//     updateRepo.stderr.on('data', data => console.error(`stderr: ${data}`));
+//
+//     updateRepo.on('close', () => resolve(repo));
+//   });
+// };
 
-    updateRepo.stdout.on('data', data => console.log(`stdout: ${data}`));
-
-    updateRepo.stderr.on('data', data => console.error(`stderr: ${data}`));
-
-    updateRepo.on('close', () => resolve(repo));
-  });
-};
-
-
-
-module.exports = { cloneRepo, getCommitInfo, updateRepoStory };
+module.exports = { cloneRepo, getCommitInfo };
