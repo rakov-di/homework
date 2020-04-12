@@ -1,11 +1,9 @@
-const fs = require('fs');
-const util = require('util');
 const { api } = require('../externalAPI/api');
 const { cloneRepo, updateRepoStory } = require('../utils/git');
 const git = require('../utils/git');
 const buildLogs = require('../utils/buildLogs');
 
-const readFile = util.promisify(fs.readFile);
+const helpers = require('../utils/helpers');
 
 const controllers = {
   // Получение сохраненных настроек репозитория
@@ -134,7 +132,7 @@ const controllers = {
         // Заглушка для выдачи логов
         const response = await api.getBuildLog(req.params.buildId);
 
-        const contents = await readFile('testBuildLog.txt');
+        const contents = await helpers.readFile('testBuildLog.txt');
         buildLogs.set(req.params.buildId, contents);
         return res.status(200).json({
           message: `Build details successfully got from api`,
