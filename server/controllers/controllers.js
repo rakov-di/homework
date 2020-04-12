@@ -1,8 +1,6 @@
 const { api } = require('../externalAPI/api');
-const { cloneRepo, updateRepoStory } = require('../utils/git');
 const git = require('../utils/git');
 const buildLogs = require('../utils/buildLogs');
-
 const helpers = require('../utils/helpers');
 
 const controllers = {
@@ -30,7 +28,7 @@ const controllers = {
   // При этом возникает ошибка - надо разбираться
   async updateSettings(req, res, next) {
     try {
-      await cloneRepo(req.body.repoName);
+      await git.cloneRepo(req.body.repoName);
 
       try {
         await api.updateSettings(req.body);
@@ -150,28 +148,29 @@ const controllers = {
   },
 
   // ========================================
+  // TODO
   // Тестовая ручка для обновления локального репозитория (подтягивание последних изменений)
   // Пока не работает
-  async updateRepoStory(req, res, next) {
-    api.get('/conf')
-      .then(response => {
-        return updateRepoStory(response.data.data)
-      })
-      .then(repo => {
-        res.status(200).send({
-          message: `Repository story successfully updated`,
-          payload: contents
-        });
-      })
-      .catch(error => {
-        // next(error);
-        // error.response.status
-        console.error(`Repository story didn't update because of error: ${error.message}`);
-        res.status(500).json({
-          message: error.message
-        });
-      });
-  }
+  // async updateRepoStory(req, res, next) {
+  //   api.get('/conf')
+  //     .then(response => {
+  //       return git.updateRepoStory(response.data.data)
+  //     })
+  //     .then(repo => {
+  //       res.status(200).send({
+  //         message: `Repository story successfully updated`,
+  //         payload: contents
+  //       });
+  //     })
+  //     .catch(error => {
+  //       // next(error);
+  //       // error.response.status
+  //       console.error(`Repository story didn't update because of error: ${error.message}`);
+  //       res.status(500).json({
+  //         message: error.message
+  //       });
+  //     });
+  // }
 };
 
 module.exports = controllers;
