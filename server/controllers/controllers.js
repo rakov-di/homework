@@ -73,33 +73,31 @@ const controllers = {
   // Добавление сборки в очередь для конкретного коммита
   // По полному хэшу коммита определяется полное сообщение, автор. Ветка пока берется по умолчанию
   async addCommitToQueue(req, res, next) {
-    getCommitInfo(req.params.commitHash)
-      .then((data) => {
-        const [message, author] = data.toString().trim().split("===");
+    try {
+      const commitInfo = await getCommitInfo(req.params.commitHash);
+      const [message, author] = commitInfo.toString().trim().split("===");
 
-        api.addCommitToQueue(message, req.params.commitHash, author)
-          .then((data) => {
-            //TODO  разобраться с data.data.data - что за ад
-            res.status(200).json({
-              message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
-              payload: data.data.data
-            });
-          })
-          .catch((error) => {
-            // next(error);
-            console.error(`Commit didn't add to build queue because of error: ${error.message}`);
-            res.status(500).json({
-              message: error.message
-            });
-          });
-      })
-      .catch((error) => {
+      try {
+        const response = await api.addCommitToQueue(message, req.params.commitHash, author);
+
+        return res.status(200).json({
+          message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
+          payload: response.data.data
+        });
+      } catch(error) {
         // next(error);
-        console.error(`Repository info didn't get because of error: ${error.message}`);
-        res.status(500).json({
+        console.error(`Commit didn't add to build queue because of error: ${error.message}`);
+        return res.status(500).json({
           message: error.message
         });
+      }
+    } catch (error) {
+      // next(error);
+      console.error(`Repository info didn't get because of error: ${error.message}`);
+      return res.status(500).json({
+        message: error.message
       });
+    }
   },
 
   // Получение информации о конкретной сборке
