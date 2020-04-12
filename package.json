@@ -29,7 +29,8 @@
     "start": "NODE_ENV=development gulp dev",
     "build_sprite": "gulp sprite",
     "build_dev": "NODE_ENV=development gulp build",
-    "build_prod": "NODE_ENV=production gulp build"
+    "build_prod": "NODE_ENV=production gulp build",
+    "tests_server": "./node_modules/.bin/mocha ./tests/**/*"
   },
   "author": "Dmitry Rakov",
   "license": "ISC"
