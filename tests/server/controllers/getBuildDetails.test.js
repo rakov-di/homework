@@ -35,7 +35,6 @@ describe('Получение деталей конкретного билда', 
           "status": "Waiting"
         }
       };
-      const buildId = '74ec0a44-2e9b-4590-8ce5-4746449e59c1';
       mock.onGet(`/build/details?buildId=74ec0a44-2e9b-4590-8ce5-4746449e59c1`).reply(200, data);
     });
 
