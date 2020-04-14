@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const { stub } = require('sinon');
-const { axiosAPI } = require('../../../server/externalAPI/api');
-const { getBuildsList } = require('../../../server/controllers/controllers');
+const { axiosAPI } = require('../../../../server/externalAPI/api');
+const { getBuildsList } = require('../../../../server/controllers/controllers');
 const MockAdapter = require('axios-mock-adapter');
 
 let res = {};

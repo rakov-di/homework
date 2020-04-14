@@ -8,7 +8,8 @@
     "axios": "^0.19.2",
     "date-fns": "^2.11.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "hermione": "^3.1.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.18.1",
@@ -30,7 +31,7 @@
     "build_sprite": "gulp sprite",
     "build_dev": "NODE_ENV=development gulp build",
     "build_prod": "NODE_ENV=production gulp build",
-    "tests_server": "./node_modules/.bin/mocha ./tests/**/*"
+    "tests_server": "./node_modules/.bin/mocha ./tests/unit-tests/**/*"
   },
   "author": "Dmitry Rakov",
   "license": "ISC"

@@ -1,9 +1,9 @@
 const { expect } = require('chai');
 const { stub } = require('sinon');
-const { axiosAPI } = require('../../../server/externalAPI/api');
+const { axiosAPI } = require('../../../../server/externalAPI/api');
 const MockAdapter = require('axios-mock-adapter');
 
-const { getSettings } = require('../../../server/controllers/controllers');
+const { getSettings } = require('../../../../server/controllers/controllers');
 
 let res = {};
 let req = {};

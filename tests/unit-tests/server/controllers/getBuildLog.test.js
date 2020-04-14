@@ -1,11 +1,11 @@
 const { expect } = require('chai');
 const { stub, createSandbox } = require('sinon');
-const { axiosAPI } = require('../../../server/externalAPI/api');
+const { axiosAPI } = require('../../../../server/externalAPI/api');
 const MockAdapter = require('axios-mock-adapter');
-const helpers = require('../../../server/utils/helpers');
-const buildLogs = require('../../../server/utils/buildLogs');
+const helpers = require('../../../../server/utils/helpers');
+const buildLogs = require('../../../../server/utils/buildLogs');
 
-const { getBuildLog } = require('../../../server/controllers/controllers');
+const { getBuildLog } = require('../../../../server/controllers/controllers');
 
 let res = {};
 let req = {};
