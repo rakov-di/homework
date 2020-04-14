@@ -20,7 +20,7 @@ class StartScreen extends Component {
               icon='settings-before'
               text='Settings'
               mixClass='header_btn'
-              onClick={this.goToPageSettings}
+              onClick={this.goToPageSettings.bind(this)}
             />
           </Header>
           <Main position='main_center'>
