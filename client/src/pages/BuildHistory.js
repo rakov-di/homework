@@ -23,7 +23,7 @@ class BuildHistoryClass extends Component {
     const { isModalShown } = this.props.modal;
 
     return (
-      <Page>
+      <Page type='build-history'>
         <Header valign='top' type='repo-title' text={settings.repoName || ''} >
           <BtnSmall
             type='icon-text'

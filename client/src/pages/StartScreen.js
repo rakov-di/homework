@@ -13,7 +13,7 @@ class StartScreen extends Component {
 
   render() {
     return (
-        <Page>
+        <Page type='start-screen'>
           <Header valign='center' type='title' text='School CI server'>
             <BtnSmall
               type='icon-text'

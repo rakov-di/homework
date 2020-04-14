@@ -15,7 +15,7 @@ import Page from '../components/Page/Page';
 class BuildDetailsClass extends Component {
   render() {
     return (
-      <Page>
+      <Page type='build-details'>
         <Header valign='top' type='repo-title' text={this.props.main.settings.repoName || ''} >
           <BtnSmall
             type='icon-text'

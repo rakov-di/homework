@@ -66,7 +66,7 @@ class SettingsClass extends Component {
     ];
 
     return (
-      <Page>
+      <Page type='settings'>
         <Header valign='center' type='title' text='School CI server' />
         <Main>
           <Form

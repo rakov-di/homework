@@ -9,7 +9,7 @@ const cnPage = cn('page');
 class Page extends Component {
   render() {
     return (
-      <div className={cnPage()}>{this.props.children}</div>
+      <div className={cnPage({[this.props.type]: true})}>{this.props.children}</div>
     );
   }
 }
