@@ -54,6 +54,11 @@ const api = {
   async getBuildLog(buildId) {
     return await axiosAPI.get(`/build/log?buildId=${buildId}`)
   },
+
+  // Удаление текущих настроек (ручка добавлена для тестов)
+  async deleteSettings() {
+    return await axiosAPI.delete(`/conf`)
+  },
 };
 
 module.exports = { api, axiosAPI };
