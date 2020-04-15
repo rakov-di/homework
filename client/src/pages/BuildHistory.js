@@ -52,7 +52,7 @@ class BuildHistoryClass extends Component {
             <Form
               isHeader={false}
               inputs={[
-                <div key='commitHash' className={`form__field form__field_direction_column`}>
+                <div key='commitHash' className={`form__field form__field_name_commit-hash form__field_direction_column`}>
                   <Label
                     htmlFor='commitHash'
                     type='default'
