@@ -9,7 +9,8 @@
     "date-fns": "^2.11.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "hermione": "^3.1.0"
+    "hermione": "^3.1.0",
+    "html-reporter": "^5.15.2"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.18.1",
@@ -32,8 +33,8 @@
     "build_dev": "NODE_ENV=development gulp build",
     "build_prod": "NODE_ENV=production gulp build",
     "tests_unit": "./node_modules/.bin/mocha ./tests/unit-tests/**/*",
-    "tests_hermiona": "./node_modules/.bin/hermione ./tests/integration-tests/**/*",
-    "test": "npm run tests_unit && npm run tests_hermiona"
+    "tests_hermione": "./node_modules/.bin/hermione ./tests/integration-tests/**/*",
+    "test": "npm run tests_unit && npm run tests_hermione"
   },
   "author": "Dmitry Rakov",
   "license": "ISC"
