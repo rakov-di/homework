@@ -3,8 +3,8 @@ var assert = require('assert');
 // const { api, axiosAPI } = require('../../server/externalAPI/api');
 
 const testData = {
-  repoName: 'rakov-di/homework_async',
-  repoNameIncorrect: 'rakov-di/homework_async123456789',
+  repoName: 'rakov-di/nodejs_test',
+  repoNameIncorrect: 'rakov-di/nodejs_test123456789',
   buildCommand: 'npm run build_prod',
   mainBranch: 'master',
   period: '100'
@@ -82,10 +82,13 @@ describe('Страница settings', function() {
       .clearElement('#repo', '')
       .click('#repo')
       .keys(['f', '\u0008'])
+      .clearElement('#command')
       .click('#command')
       .keys([testData.buildCommand])
+      .clearElement('#branch')
       .click('#branch')
       .keys([testData.mainBranch])
+      .clearElement('#minutes')
       .click('#minutes')
       .keys([testData.period])
       .click('.form .btn-big_action_primary')
@@ -103,12 +106,15 @@ describe('Страница settings', function() {
       .url('/settings')
       .waitForExist('.page_settings')
       .click('#repo')
+      .clearElement('#repo')
       .keys([testData.repoName])
       .clearElement('#command')
       .click('#command')
       .keys(['f', '\u0008'])
+      .clearElement('#branch')
       .click('#branch')
       .keys([testData.mainBranch])
+      .clearElement('#minutes')
       .click('#minutes')
       .keys([testData.period])
       .click('.form .btn-big_action_primary')
@@ -188,6 +194,8 @@ describe('Страница settings', function() {
       .then((exists) => {
         assert.ok(exists, 'Сообщение об успешном сохранении настроек не показано');
       })
+      .assertView('buildSettings_success', 'body', { screenshotDelay: 10 });
+
   });
 
   it('При сохранении НЕкорректных настроек - выдается сообщение о невозможности сохранения', function () {

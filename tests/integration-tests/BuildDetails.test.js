@@ -1,17 +1,16 @@
 var assert = require('assert');
 
 const testData = {
-  buildId: 'c19b94a6-e025-44b0-b2a0-bafac2d782a0'
+  buildId: '7bdd0bc2-1be7-466b-adbf-8c5cc9d6fa48'
 };
 
-describe('Page Build Details', function() {
-  it('Does page Build History exist - should find id', function() {
+describe('Страница build/:id', function() {
+  it('Страница открывается', function() {
     return this.browser
-      .url(`http://localhost:3000/build/${testData.buildId}`)
-      .pause(3000)
-      .isExisting('.page_build-details')
+      .url(`/build/${testData.buildId}`)
+      .waitForExist('.page_build-details')
       .then(function(exist) {
-        assert.ok(exist, 'Settings page successfully opened')
-      });
+        assert.ok(exist, 'Страницы не загрузилась')
+      })
   });
 });

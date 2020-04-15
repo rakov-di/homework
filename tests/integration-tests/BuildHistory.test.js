@@ -1,15 +1,14 @@
 var assert = require('assert');
 
-describe('Page Build History', function() {
+describe('Страница build-History', function() {
 
 
-  it('Does page Build History exist - should find id', function() {
+  it('Страница открывается', function() {
     return this.browser
-      .url('http://localhost:3000/build-history')
-      .pause(3000)
-      .isExisting('.page_build-history')
+      .url('/build-history')
+      .waitForExist('.page_build-history')
       .then(function(exist) {
-        assert.ok(exist, 'Settings page successfully opened')
-      });
+        assert.ok(exist, 'Страницы не загрузилась')
+      })
   });
 });
