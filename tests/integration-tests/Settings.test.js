@@ -74,6 +74,48 @@ describe('Страница settings', function() {
       })
   });
 
+  it('При клике иконке "Очистить поле" у поля "repo" оно очищается', function() {
+    return this.browser
+      .url('settings')
+      .waitForExist('.page_settings')
+      .click('#repo')
+      .keys(['something'])
+      .waitForExist('.form__field_name_repo .icon_clear')
+      .click('.form__field_name_repo .icon_clear')
+      .getValue('#repo')
+      .then(function(value) {
+        assert.equal(value, '', 'Поле не очищается')
+      });
+  });
+
+  it('При клике иконке "Очистить поле" у поля "command" оно очищается', function() {
+    return this.browser
+      .url('settings')
+      .waitForExist('.page_settings')
+      .click('#command')
+      .keys(['something'])
+      .waitForExist('.form__field_name_command .icon_clear')
+      .click('.form__field_name_command .icon_clear')
+      .getValue('#command')
+      .then(function(value) {
+        assert.equal(value, '', 'Поле не очищается')
+      });
+  });
+
+  it('При клике иконке "Очистить поле" у поля "branch" оно очищается', function() {
+    return this.browser
+      .url('settings')
+      .waitForExist('.page_settings')
+      .click('#branch')
+      .keys(['something'])
+      .waitForExist('.form__field_name_branch .icon_clear')
+      .click('.form__field_name_branch .icon_clear')
+      .getValue('#branch')
+      .then(function(value) {
+        assert.equal(value, '', 'Поле не очищается')
+      });
+  });
+
   // TODO Подумать, как обойтись без хака с написанием/стиранием одного символа
   it('По клику на кнопку Save при незаполненном поле "repo" - оно подсвечивается красным, выдается ошибка', function () {
     return this.browser
