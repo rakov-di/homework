@@ -22,53 +22,36 @@ describe('Страница start-screen', function() {
     (async () => await api.deleteSettings())();
     (async () => await this.browser.pause(1000))();
   });
-  // afterEach(() => {
-  //   (async () => await api.updateSettings({
-  //     repoName: "rakov-di/homework_async",
-  //     buildCommand: "npm run build_prod",
-  //     mainBranch: "master",
-  //     period: 100
-  //   }))();
-  //   (async () => await this.browser.pause(1000))();
-  // });
 
   it('Страница открывается', function() {
     return this.browser
-      .url('http://localhost:3000/start-screen')
-      .pause(3000)
-      .isExisting('.page_start-screen')
+      .url('/start-screen')
+      .waitForExist('.page_start-screen')
       .then(function(exists) {
         assert.ok(exists, 'Страницы не загрузилась')
       })
-      // .assertView('Page StartScreen', 'body');
   });
 
-  it('По клику на кнопке "Open settings" происходит переход к странице "Settings"', function() {
+  it('По клику на кнопке "Open settings" происходит переход к странице "settings"', function() {
     return this.browser
-      .url('http://localhost:3000/start-screen')
-      .isExisting('.page_start-screen')
-      .pause(500)
+      .url('/start-screen')
+      .waitForExist('.page_start-screen')
       .click('.greeting .btn-big')
-      .pause(500)
-      .isExisting('.page_settings')
+      .waitForExist('.page_settings')
       .then((exists) => {
         assert.ok(exists, 'Переход к настройкам не произошел');
       })
-      // .assertView('settingsPage', 'body', { screenshotDelay: 10 })
   });
 
   it('По клику на кнопке "Settings" в Header происходит переход к странице "Settings"', function() {
     return this.browser
-      .url('http://localhost:3000/start-screen')
-      .isExisting('.page_start-screen')
-      .pause(500)
+      .url('/start-screen')
+      .waitForExist('.page_start-screen')
       .click('.header .btn-small')
-      .pause(500)
-      .isExisting('.page_settings')
+      .waitForExist('.page_settings')
       .then((exists) => {
         assert.ok(exists, 'Переход к настройкам не произошел');
       })
-    // .assertView('settingsPage', 'body', { screenshotDelay: 10 })
   });
 });
 
