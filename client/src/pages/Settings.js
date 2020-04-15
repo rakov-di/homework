@@ -72,7 +72,7 @@ class SettingsClass extends Component {
           <Form
             isHeader={true}
             inputs={inputs.map((input, idx) =>
-                <div key={input.id} className={`form__field form__field_direction_${input.direction}`}>
+                <div key={input.id} className={`form__field form__field_name_${input.id} form__field_direction_${input.direction}`}>
                   <Label
                     htmlFor={input.id}
                     type='default'
@@ -153,7 +153,7 @@ class SettingsClass extends Component {
   }
 
   goToPageStartScreen() {
-    this.props.history.push('/start-screen');
+    this.props.history.push('/build-history');
   }
 }
 
