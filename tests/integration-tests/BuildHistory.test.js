@@ -40,7 +40,7 @@ describe('Страница build-History', function() {
       })
   });
 
-  it('По клику на кнопке "Rebuild" в Header происходит открывается модальное окно', function() {
+  it('По клику на кнопке "Rebuild" в Header открывается модальное окно', function() {
     return this.browser
       .url('build-history')
       .waitForExist('.page_build-history')
@@ -48,6 +48,46 @@ describe('Страница build-History', function() {
       .waitForExist('.modal')
       .then((exists) => {
         assert.ok(exists, 'Модальное окно не открылось');
+      })
+  });
+
+  it('По клику на кнопке "Cancel" закрывается модальное окно', function() {
+    return this.browser
+      .url('build-history')
+      .waitForExist('.page_build-history')
+      .click('.header .icon_rebuild-before')
+      .waitForExist('.modal')
+      .click('.form .btn-big_action_secondary')
+      .isExisting('.modal')
+      .then((exists) => {
+        exists ? assert.ok(exists, 'Модальное окно не закрылось') : assert.isTrue;
+      })
+  });
+
+  it('По клику на подложку модального окна оно закрывается', function() {
+    return this.browser
+      .url('build-history')
+      .waitForExist('.page_build-history')
+      .click('.header .icon_rebuild-before')
+      .waitForExist('.modal')
+      .click('.modal')
+      .isExisting('.modal')
+      .then((exists) => {
+        exists ? assert.ok(exists, 'Модальное окно не закрылось') : assert.isTrue;
+      })
+  });
+
+  it('По нажатие Esc модальное окно закрывается', function() {
+    return this.browser
+      .url('build-history')
+      .waitForExist('.page_build-history')
+      .click('.header .icon_rebuild-before')
+      .waitForExist('.modal')
+      .keys('\u001B')
+      .click('.modal')
+      .isExisting('.modal')
+      .then((exists) => {
+        exists ? assert.ok(exists, 'Модальное окно не закрылось') : assert.isTrue;
       })
   });
 
