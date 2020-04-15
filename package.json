@@ -31,7 +31,9 @@
     "build_sprite": "gulp sprite",
     "build_dev": "NODE_ENV=development gulp build",
     "build_prod": "NODE_ENV=production gulp build",
-    "tests_server": "./node_modules/.bin/mocha ./tests/unit-tests/**/*"
+    "tests_unit": "./node_modules/.bin/mocha ./tests/unit-tests/**/*",
+    "tests_hermiona": "./node_modules/.bin/hermione ./tests/integration-tests/**/*",
+    "test": "npm run tests_unit && npm run tests_hermiona"
   },
   "author": "Dmitry Rakov",
   "license": "ISC"
