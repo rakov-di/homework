@@ -1,7 +1,16 @@
 import { Router, json } from 'express';
 const router = Router();
 
-import { getSettings, updateSettings, getBuildsList, addCommitToQueue, getBuildDetails, getBuildLog } from '../controllers/controllers';
+import { controllers } from '../controllers/controllers';
+const { 
+    getSettings, 
+    updateSettings, 
+    getBuildsList, 
+    addCommitToQueue, 
+    getBuildDetails, 
+    getBuildLog 
+} = controllers;
+
 router.get('/api/settings', getSettings);
 router.post('/api/settings', json(), updateSettings);
 

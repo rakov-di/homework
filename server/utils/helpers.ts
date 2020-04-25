@@ -10,4 +10,4 @@ const stat = util.promisify(fs.stat);
 const readFile = util.promisify(fs.readFile);
 
 
-module.exports = { spawn, exec, rimraf, stat, readFile };
+export default { spawn, exec, rimraf, stat, readFile };

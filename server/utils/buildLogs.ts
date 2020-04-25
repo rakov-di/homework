@@ -1,18 +1,20 @@
 // TODO Сделать нормальный кеш, а не вот это вот
 class BuildLogs {
+  buildLogs: any;
+
   constructor() {
     this.clear();
   }
 
-  get(buildId) {
+  get(buildId: string) {
     return this.buildLogs[buildId];
   }
 
-  set(buildId, response) {
+  set(buildId: string, response: string) {
     this.buildLogs[buildId] = response;
   }
 
-  remove(buildId) {
+  remove(buildId: string) {
     delete this.buildLogs[buildId];
   }
 
@@ -20,11 +22,11 @@ class BuildLogs {
     this.buildLogs = {};
   }
 
-  isExist(buildId) {
+  isExist(buildId: string) {
     return this.buildLogs[buildId];
   }
 }
 
 
 
-module.exports = new BuildLogs();
+export default new BuildLogs();

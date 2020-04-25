@@ -77,4 +77,4 @@ const getCommitInfo = async (commitHash) => {
 //   });
 // };
 
-module.exports = { cloneRepo, getCommitInfo };
+export default { cloneRepo, getCommitInfo };

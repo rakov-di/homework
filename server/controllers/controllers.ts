@@ -1,9 +1,9 @@
-const { api } = require('../externalAPI/api');
-const git = require('../utils/git');
-const buildLogs = require('../utils/buildLogs');
-const helpers = require('../utils/helpers');
+import { api } from '../externalAPI/api';
+import git from '../utils/git';
+import buildLogs from '../utils/buildLogs';
+import helpers from '../utils/helpers';
 
-const controllers = {
+export const controllers = {
   // Получение сохраненных настроек репозитория
   async getSettings(req, res, next) {
     try {
@@ -173,4 +173,4 @@ const controllers = {
   // }
 };
 
-module.exports = controllers;
+// module.exports = controllers;
