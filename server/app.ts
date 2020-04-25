@@ -1,7 +1,10 @@
-require('dotenv').config();
-const path = require('path');
-const express = require('express');
-const { router } = require('./routes/router');
+// require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
+import path from 'path';
+import express from 'express';
+import router from './routes/router';
 
 const app = express();
 
@@ -16,12 +19,12 @@ app.use((req, res, next) => {
 });
 app.use(router);
 // Общий обработчик ошибок - пока не используется, ошибки обрабатываются индивидуально
-app.use((err, req, res, next) => {
-  console.error(`Server error: ${err.message}`);
-  res.status(500).json({
-    message: `Server error: ${err.message}`
-  });
-});
+// app.use((err, req, res) => {
+//   console.error(`Server error: ${err.message}`);
+//   res.status(500).json({
+//     message: `Server error: ${err.message}`
+//   });
+// });
 
 const port = 5000;
 app.listen(port, err => {

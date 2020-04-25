@@ -1,5 +1,6 @@
-const https = require('https');
-const axios = require('axios');
+import https from 'https';
+import axios from 'axios';
+// import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios'
 
 const axiosAPI = axios.create({
   baseURL: 'https://hw.shri.yandex/api/',
@@ -16,6 +17,8 @@ const axiosAPI = axios.create({
 const api = {
   // Получение сохраненных настроек репозитория
   async getSettings() {
+    console.log(process.env);
+    console.log(process.env.SHRI_API_KEY);
     return await axiosAPI.get('/conf')
   },
 
