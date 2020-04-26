@@ -174,7 +174,7 @@ class SettingsClass extends Component<SettingsProps> {
       repoName: repoName.value,
       buildCommand: buildCommand.value,
       mainBranch: mainBranch.value,
-      period: +period.value,
+      period: Number(period.value),
     };
 
     this.props.updateSettings(newSettings);

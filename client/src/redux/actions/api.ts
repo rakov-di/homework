@@ -10,16 +10,11 @@ export const api = {
     return await axiosAPI.get('/settings')
   },
 
-  async updateSettings(data) {
-    return await axiosAPI.post('/settings', {
-      repoName: data.repoName,
-      buildCommand: data.buildCommand,
-      mainBranch: data.mainBranch,
-      period: Number(data.period)
-    })
+  async updateSettings(data: UpdateSettingsParams) {
+    return await axiosAPI.post('/settings', data)
   },
 
-  async addCommitToQueue(commitHash) {
+  async addCommitToQueue(commitHash: string) {
     return await axiosAPI.post(`/builds/${commitHash}`)
   },
 
@@ -27,11 +22,11 @@ export const api = {
     return await axiosAPI.get('/builds')
   },
 
-  async getBuildDetails(buildId) {
+  async getBuildDetails(buildId: string) {
     return await axiosAPI.get(`/builds/${buildId}`)
   },
 
-  async getBuildLog(buildId) {
+  async getBuildLog(buildId: string) {
     return await axiosAPI.get(`/builds/${buildId}/logs`)
   },
 
