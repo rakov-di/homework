@@ -10,7 +10,23 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnInput = cn('input');
 
-class InputClass extends Component {
+type InputProps = {
+  display: 'block' | 'inline';
+  name: string;
+  id: string;
+  value: string;
+  type: string;
+  plh: string;
+  isRequired: boolean;
+  isValid: boolean;
+  pattern: string;
+  errorMsg: string;
+  needCheckOnNum: boolean;
+  inputSetValue: (name: string, value: string) => void;
+  inputSetValidationStatus: (name: string, status: boolean) => void;
+}
+
+class InputClass extends Component<InputProps> {
   render() {
     const {
       display, name, id, value, type, plh,
@@ -37,11 +53,11 @@ class InputClass extends Component {
     );
   }
 
-  focusInput(e) {
+  focusInput(e: React.FocusEvent<HTMLInputElement>): void  {
     this.props.inputSetValidationStatus(e.target.name, true)
   }
 
-  changeInput(e) {
+  changeInput(e: React.ChangeEvent<HTMLInputElement>): void  {
     let { name, value } = e.target;
     if (this.props.needCheckOnNum && !this.isNum(value)) {
       value = value.slice(0, -1); // TODO не работает, есди вставить букву МЕЖДУ цифрами
@@ -49,11 +65,12 @@ class InputClass extends Component {
     this.props.inputSetValue(name, value);
   }
 
-  isNum(value) {
+  isNum(value: string): boolean {
     return /^[0-9]*$/.test(value);
   }
 
-  clearInput(e) {
+  // TODO разобраться почему не работает React.MouseEvent<HTMLButtonElement, MouseEvent>
+  clearInput(e: any): void {
     const target = e.target.closest('.input').querySelector('.input__field');
     const name = target.name;
     this.props.inputSetValue(name, '');
