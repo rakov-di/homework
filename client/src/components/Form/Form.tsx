@@ -7,7 +7,39 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnForm = cn('form');
 
-class FormClass extends Component {
+type FormProps = {
+  isHeader: boolean;
+  btns: {
+    action?: string;
+    text?: string;
+    mixClass?: string;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;   
+  };
+  inputs: {
+    direction?: 'column' | 'row';
+    name?: string;
+    id?: string;
+    display?: 'block' | 'inline';
+    value?: string;
+    labelText?: string;
+    labelValueText?: string,
+    isRequired?: boolean;
+    isValid?: boolean;
+    inputPlh?: string;
+    errorMsg?: string;
+    pattern: string,
+    needCheckOnNum: boolean    
+  };
+  main: {
+    isFetching: boolean;
+    formStatus: {
+      value: string;
+      text: string;
+    };
+  }
+}
+
+class FormClass extends Component<FormProps> {
   render() {
     const { isHeader, inputs, btns } = this.props;
     const { isFetching, formStatus } = this.props.main; // из redux
@@ -30,8 +62,11 @@ class FormClass extends Component {
   }
 }
 
+type FormState = {
+  main: any;
+}
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: FormState) => ({
   main: state.main,
 });
 
