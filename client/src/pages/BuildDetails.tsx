@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions';
 
-import BtnSmall from '../components/BtnSmall/BtnSmall';
+import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
 import Card from '../components/Card/Card';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
