@@ -2,12 +2,13 @@ import { api } from '../externalAPI/api';
 import git from '../utils/git';
 import buildLogs from '../utils/buildLogs';
 import helpers from '../utils/helpers';
+import { Request, Response } from 'express';
 
 export const controllers = {
   // Получение сохраненных настроек репозитория
-  async getSettings(req, res, next) {
+  async getSettings(req: Request, res: Response) {
     try {
-      const response = await api.getSettings();
+      const response: GetSettingResponse = await api.getSettings();
 
       return res.status(200).json({
         message: `Getting settings for current repo ${req.body.repoName} successfully finished`,
@@ -26,26 +27,27 @@ export const controllers = {
   // При повторном вызове - папка со старым репозиторием удаляется
   // и создается такая же папка, но уже с новым репозиторием
   // При этом возникает ошибка - надо разбираться
-  async updateSettings(req, res, next) {
+  async updateSettings(req: Request, res: Response) {
+    const settings: UpdateSettingsParams = req.body;
+    const { repoName } = req.body;
+
     try {
-      await git.cloneRepo(req.body.repoName);
+      await git.cloneRepo(repoName);
 
       try {
-        await api.updateSettings(req.body);
+        await api.updateSettings(settings);
 
         return res.status(200).json({
-          message: `Settings for repo ${req.body.repoName} successfully saved`
+          message: `Settings for repo ${repoName} successfully saved`
         });
       } catch(error) {
-        // next(error);
-        // console.error(`Settings didn't update because of error: ${error.message}`);
+        console.error(`Settings didn't update because of error: ${error.message}`);
         return res.status(500).json({
-          message: `Saving settings for repo ${req.body.repoName} has failed`
+          message: `Saving settings for repo ${repoName} has failed`
         });
       }
     } catch (error) {
-      // next(error);
-      // console.error(`Repository didn't clone because of error: ${error.message}`);
+      console.error(`Repository didn't clone because of error: ${error.message}`);
       res.status(500).json({
         message: error.message
       });
@@ -53,7 +55,7 @@ export const controllers = {
   },
 
   // Получения списка сборок
-  async getBuildsList(req, res, next) {
+  async getBuildsList(req: Request, res: Response) {
     try {
       const response = await api.getBuildsList();
 
@@ -71,27 +73,32 @@ export const controllers = {
 
   // Добавление сборки в очередь для конкретного коммита
   // По полному хэшу коммита определяется полное сообщение, автор. Ветка пока берется по умолчанию
-  async addCommitToQueue(req, res, next) {
+  async addCommitToQueue(req: Request, res: Response) {
     try {
-      const commitInfo = await git.getCommitInfo(req.params.commitHash);
+      const commitInfo: string = await git.getCommitInfo(req.params.commitHash);
       const [message, author] = commitInfo.toString().trim().split("===");
 
       try {
-        const response = await api.addCommitToQueue(message, req.params.commitHash, author);
+        const params: AddCommitToQueueParams = {
+          commitMessage: message, 
+          commitHash: req.params.commitHash,
+          branchName: 'master',
+          authorName: author
+        }
+
+        const response: AddCommitToQueueResponse = await api.addCommitToQueue(params);
 
         return res.status(200).json({
           message: `Commit with hash ${req.params.commitHash} successfully add to build queue`,
           payload: response.data.data
         });
       } catch(error) {
-        // next(error);
         // console.error(`Commit didn't add to build queue because of error: ${error.message}`);
         return res.status(500).json({
           message: error.message
         });
       }
     } catch (error) {
-      // next(error);
       // console.error(`Repository info didn't get because of error: ${error.message}`);
       return res.status(500).json({
         message: error.message
@@ -100,15 +107,16 @@ export const controllers = {
   },
 
   // Получение информации о конкретной сборке
-  async getBuildDetails(req, res, next) {
+  async getBuildDetails(req: Request, res: Response) {
     try {
-      const response = await api.getBuildDetails(req.params.buildId);
+      const commitHash: string = req.params.buildId;
+
+      const response: BuildDetailsResponse = await api.getBuildDetails(commitHash);
       return res.status(200).json({
         message: `Build details successfully get`,
         payload: response.data.data
       });
     } catch(error) {
-      // next(error);
       // console.error(`Build details didn't get because of error: ${error.message}`);
       res.status(500).json({
         message: error.message
@@ -117,28 +125,28 @@ export const controllers = {
   },
 
   // Получение логов конкретной сборки
-  async getBuildLog(req, res, next) {
-    if (buildLogs.isExist(req.params.buildId)) {
+  async getBuildLog(req: Request, res: Response) {
+    const buildId: string = req.params.buildId;
 
+    if (buildLogs.isExist(buildId)) {
       res.status(200).json({
         message: `Build logs successfully got from cache`,
-        payload: `${buildLogs.get(req.params.buildId)}`
+        payload: `${buildLogs.get(buildId)}`
       });
     }
     else {
       try {
         // Заглушка для выдачи логов
-        const response = await api.getBuildLog(req.params.buildId);
+        const response = await api.getBuildLog(buildId);
 
         const contents = await helpers.readFile('testBuildLog.txt');
-        buildLogs.set(req.params.buildId, contents);
+        buildLogs.set(buildId, contents);
         return res.status(200).json({
           message: `Build details successfully got from api`,
           payload: `${contents}`
         });
 
       } catch(error) {
-        // next(error);
         // console.error(`Build details didn't get because of error: ${error.message}`);
         res.status(500).json({
           message: error.message
@@ -151,7 +159,7 @@ export const controllers = {
   // TODO
   // Тестовая ручка для обновления локального репозитория (подтягивание последних изменений)
   // Пока не работает
-  // async updateRepoStory(req, res, next) {
+  // async updateRepoStory(req: Request, res: Response) {
   //   api.get('/conf')
   //     .then(response => {
   //       return git.updateRepoStory(response.data.data)

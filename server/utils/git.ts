@@ -1,9 +1,9 @@
-const helpers = require('./helpers');
+import helpers from './helpers';
 
-const localRepoName = '_localRepo';
+const localRepoName: string = '_localRepo';
 
-const cloneRepo = async (repoName) => {
-  const repoUrl = getRepoUrl(repoName);
+const cloneRepo = async (repoName: string) => {
+  const repoUrl: string = getRepoUrl(repoName);
 
   // Проверяем, существует ли указанный репозиторий на GitHub
   try {
@@ -28,14 +28,14 @@ const cloneRepo = async (repoName) => {
   }
 };
 
-const getRepoUrl = (repository) => {
+const getRepoUrl = (repository: string):string => {
   // при обращении через https к несуществующему пользователю/репозиторию
   // постоянно спрашивает пароль (как его ни сохраняй).
   // При обращении к ssh не спрашивает
   return `git@github.com:${repository}.git`;
 };
 
-const isLocalRepoExist = async (dir) => {
+const isLocalRepoExist = async (dir: string): Promise<boolean> => {
   try {
     const stat = await helpers.stat(dir);
     return stat.isDirectory();
@@ -49,13 +49,13 @@ const isLocalRepoExist = async (dir) => {
   }
 };
 
-const runCommandInLocalRepo = async (command, dir = process.cwd()) => {
+const runCommandInLocalRepo = async (command: string, dir: string = process.cwd()): Promise<string> => {
   // const result = await helpers.spawn(command, { cwd: dir, shell: true });
   const result = await helpers.exec(command, { cwd: dir });
   return result.stdout.trim();
 };
 
-const getCommitInfo = async (commitHash) => {
+const getCommitInfo = async (commitHash: string): Promise<string> => {
   try {
     return await runCommandInLocalRepo(`cd ${localRepoName} && git show -s --format='%s===%an' ${commitHash}`);
   }

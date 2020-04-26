@@ -13,52 +13,60 @@ export const axiosAPI = axios.create({
   })
 });
 
+export type settings = {
+  repoName: string;
+  buildCommand: string;
+  mainBranch: string;
+  period: number
+}
 
-export const api = {
-  // Получение сохраненных настроек репозитория
-  async getSettings() {
-    return await axiosAPI.get('/conf')
-  },
-
-  // Сохранение (Добавление или обновление) настроек репозитория
-  async updateSettings({ repoName, buildCommand, mainBranch, period }) {
-    return await axiosAPI.post('/conf', {
-      "repoName": repoName,
-      "buildCommand": buildCommand,
-      "mainBranch": mainBranch || 'master',
-      "period": +period
-    })
-  },
-
-  // Получения списка сборок
-  async getBuildsList() {
-    return await axiosAPI.get('/build/list')
-  },
-
-  // Добавление сборки в очередь для конкретного коммита
-  // По полному хэшу коммита определяется полное сообщение, автор. Ветка пока берется по умолчанию
-  async addCommitToQueue(message, commitHash, author) {
-    return await axiosAPI.post('/build/request', {
-      "commitMessage": message,
-      "commitHash": commitHash,
-      "branchName": "master",
-      "authorName": author
-    })
-  },
-
-// Получение информации о конкретной сборке
-  async getBuildDetails(buildId) {
-    return await axiosAPI.get(`/build/details?buildId=${buildId}`)
-  },
-
-  // Получение логов конкретной сборки
-  async getBuildLog(buildId) {
-    return await axiosAPI.get(`/build/log?buildId=${buildId}`)
-  },
-
-  // Удаление текущих настроек (ручка добавлена для тестов)
-  async deleteSettings() {
-    return await axiosAPI.delete(`/conf`)
-  },
+// Получение сохраненных настроек репозитория
+const getSettings = async () => {
+  return await axiosAPI.get('/conf')
 };
 
+// Сохранение (Добавление или обновление) настроек репозитория
+const updateSettings = async({ repoName, buildCommand, mainBranch, period }: UpdateSettingsParams) => {
+  return await axiosAPI.post('/conf', {
+    "repoName": repoName,
+    "buildCommand": buildCommand,
+    "mainBranch": mainBranch || 'master',
+    "period": +period
+  })
+};
+
+// Получения списка сборок
+const getBuildsList = async () => {
+  return await axiosAPI.get('/build/list')
+};
+
+// Добавление сборки в очередь для конкретного коммита
+// По полному хэшу коммита определяется полное сообщение, автор. Ветка пока берется по умолчанию
+const addCommitToQueue = async (params: AddCommitToQueueParams) => {
+  return await axiosAPI.post('/build/request', params)
+};
+
+// Получение информации о конкретной сборке
+const getBuildDetails = async (buildId: string) => {
+  return await axiosAPI.get(`/build/details?buildId=${buildId}`)
+};
+
+// Получение логов конкретной сборки
+const getBuildLog = async (buildId: string) => {
+  return await axiosAPI.get(`/build/log?buildId=${buildId}`)
+};
+
+// Удаление текущих настроек (ручка добавлена для тестов)
+const deleteSettings = async () => {
+  return await axiosAPI.delete(`/conf`)
+};
+
+export const api = { 
+  getSettings,
+  updateSettings,
+  getBuildsList,
+  addCommitToQueue,
+  getBuildDetails,
+  getBuildLog,
+  deleteSettings
+} 
