@@ -12,7 +12,7 @@ type BtnBigProps = {
   action?: 'primary' | 'secondary';
   mixClass?: string;
   text?: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onSubmit?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isFetching?: boolean;
 }

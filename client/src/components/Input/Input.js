@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { inputSetValue, inputSetValidationStatus } from '../../redux/actions/actions';
 
-import Icon from '../Icon/Icon';
+import Icon from '../Icon/Icon.tsx';
 import { withNaming } from '@bem-react/classname';
 
 const cn = withNaming({ e: '__', m: '_' });
