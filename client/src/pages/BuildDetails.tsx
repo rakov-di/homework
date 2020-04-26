@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions';
+import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions.ts';
 
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
 import Card from '../components/Card/Card.tsx';

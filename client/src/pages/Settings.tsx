@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redux/actions/actions';
+import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redux/actions/actions.ts';
 
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import Footer from '../components/Footer/Footer.tsx';

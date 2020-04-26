@@ -1,6 +1,27 @@
-import * as ACTIONS from '../actions/_consts'
+import * as ACTIONS from '../actions/_consts.ts'
 
-const defaultState = {
+type MainActionTypes = {
+  type: string;
+  payload: {
+    err?: string
+  }
+}
+
+type MainState = {
+  isFetchEnded: boolean,
+  isFetching: boolean,
+  formStatus: boolean | null,
+  settings: {
+    id: string | null,
+    repoName: string | null,
+    buildCommand: string | null,
+    mainBranch: string | null,
+    period: number | null
+  },
+  builds: any[]
+}
+
+const defaultState: MainState = {
   isFetchEnded: false,
   isFetching: false,
   formStatus: null,
@@ -14,7 +35,7 @@ const defaultState = {
   builds: []
 };
 
-export default (state = defaultState, action) => {
+export default (state = defaultState, action: MainActionTypes) => {
   switch (action.type) {
     case ACTIONS.FETCH_START:
       return {

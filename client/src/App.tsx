@@ -2,7 +2,7 @@ import './css/style.styl';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCurSettings } from './redux/actions/actions';
+import { getCurSettings } from './redux/actions/actions.ts';
 
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';

@@ -2,7 +2,7 @@ import './Input.styl';
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { inputSetValue, inputSetValidationStatus } from '../../redux/actions/actions';
+import { inputSetValue, inputSetValidationStatus } from '../../redux/actions/actions.ts';
 
 import Icon from '../Icon/Icon.tsx';
 import { withNaming } from '@bem-react/classname';

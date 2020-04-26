@@ -1,6 +1,27 @@
-import * as ACTIONS from '../actions/_consts'
+import * as ACTIONS from '../actions/_consts.ts'
 
-const defaultState = {
+type InputData = {
+  value: string;
+  isValid: boolean;
+}
+
+type InputState = {
+  id?: InputData;
+  repoName?: InputData;
+  buildCommand?: InputData;
+  mainBranch?: InputData;
+  period?: InputData;
+  commitHash?: InputData;
+}
+
+type InputActionsType = {
+  type: string;
+  name: string;
+  value?: string;
+  status?: boolean;
+}
+
+const defaultState: InputState = {
   id: {
     value: '',
     isValid: true
@@ -27,7 +48,7 @@ const defaultState = {
   }
 };
 
-export default (state = defaultState, action) => {
+export default (state: any = defaultState, action: InputActionsType) => {
   switch (action.type) {
     case ACTIONS.INPUT_SET_VALUE:
       return {

@@ -18,10 +18,11 @@
 ## Описание <a name = "about"></a>
 
 - Перевел сервер на ts
-- Чатично перевел клиента на ts:
+- Перевел клиент на ts:
     - точка входа index.ts и App.ts
     - страницы ([pages](client/src/pages))
     - компоненты ([components](client/src/components))
+    - redux ([redux](client/src/redux))
 
 Вернуться [К содержанию](#content_table)
 
@@ -52,10 +53,9 @@ cd client && npm i && npm start
 
 ## TODO <a name = "todo"></a>
 
-- Перевести redux на ts
 - Избавиться от any
 - Выделить общие декларации на сервере и клиенте и между компонентами клиента (избавиться от дублирования)
-- Научить webpack понимать импорты tsx-файлов без прописывания расширений
+- Научить webpack понимать импорты tsx-файлов без прописывания расширений (заодно избавиться от `declare module *` в [typings/index.d.ts](typings/index.d.ts)
 
 Вернуться [К содержанию](#content_table)
 

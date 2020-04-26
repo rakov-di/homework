@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { closeModal, openModal, getBuildsList, addCommitToQueue } from '../redux/actions/actions';
+import { closeModal, openModal, getBuildsList, addCommitToQueue } from '../redux/actions/actions.ts';
 
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
