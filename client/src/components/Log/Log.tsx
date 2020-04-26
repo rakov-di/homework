@@ -6,10 +6,15 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnLog = cn('log');
 
-class Log extends Component {
+type LogProps = {
+  log: string
+}
+
+class Log extends Component<LogProps> {
   componentDidMount() {
-    // TODO Как-то перенести это в render
-    document.querySelector('.log').innerHTML = this.props.log
+    // TODO Как-то перенести это в render с сохранением ANSI-форматирования
+    const log: HTMLElement | null = document.querySelector('.log');
+    log && (log.innerHTML = this.props.log)
   }
 
   render() {
