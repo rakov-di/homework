@@ -11,7 +11,7 @@ import Form from '../components/Form/Form.tsx';
 import Input from '../components/Input/Input.tsx';
 import Label from '../components/Label/Label.tsx';
 import Main from '../components/Main/Main.tsx';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/Modal/Modal.tsx';
 import Page from '../components/Page/Page.tsx';
 import Card from '../components/Card/Card.tsx';
 

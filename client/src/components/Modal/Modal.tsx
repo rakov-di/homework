@@ -6,12 +6,12 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnModal = cn('modal');
 
-class Modal extends Component {
-  constructor(props) {
-    super(props);
+type ModalProps = {
+  children: any;
+  closeModal: () => void;
+}
 
-    this.handleKeyPress = this.handleKeyPress.bind(this)
-  }
+class Modal extends Component<ModalProps> {
   render() {
     return (
       <div className={cnModal()} onClick={this.handleClickModal.bind(this)}>
@@ -24,18 +24,18 @@ class Modal extends Component {
   }
 
   componentDidMount(){
-    document.addEventListener("keydown", this.handleKeyPress, false);
+    document.addEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
   componentWillUnmount(){
-    document.removeEventListener("keydown", this.handleKeyPress, false);
+    document.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
-  handleKeyPress(e) {
+  handleKeyPress(e: any): void {
     if (e.key === 'Escape') this.props.closeModal();
   }
 
-  handleClickModal(e) {
+  handleClickModal(e: any): void {
     if (e.target.classList.contains('modal')) {
       this.props.closeModal()
     }
