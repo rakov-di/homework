@@ -5,7 +5,7 @@ import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redu
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import Form from '../components/Form/Form';
-import Header from '../components/Header/Header';
+import Header from '../components/Header/Header.tsx';
 import Input from '../components/Input/Input';
 import Label from '../components/Label/Label';
 import Main from '../components/Main/Main';

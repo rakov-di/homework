@@ -5,7 +5,7 @@ import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
 import Card from '../components/Card/Card';
 import Footer from '../components/Footer/Footer.tsx';
-import Header from '../components/Header/Header';
+import Header from '../components/Header/Header.tsx';
 import Log from '../components/Log/Log';
 import Main from '../components/Main/Main';
 import Page from '../components/Page/Page';

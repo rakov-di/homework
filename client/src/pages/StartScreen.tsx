@@ -4,7 +4,7 @@ import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import Greeting from '../components/Greeting/Greeting.tsx';
-import Header from '../components/Header/Header';
+import Header from '../components/Header/Header.tsx';
 import Icon from '../components/Icon/Icon';
 import Main from '../components/Main/Main';
 import Page from '../components/Page/Page';

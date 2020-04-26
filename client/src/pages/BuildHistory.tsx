@@ -6,7 +6,7 @@ import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
 import CardList from '../components/CardList/CardList';
 import Footer from '../components/Footer/Footer.tsx';
-import Header from '../components/Header/Header';
+import Header from '../components/Header/Header.tsx';
 import Form from '../components/Form/Form';
 import Input from '../components/Input/Input';
 import Label from '../components/Label/Label';
