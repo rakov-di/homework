@@ -6,8 +6,8 @@ import Footer from '../components/Footer/Footer.tsx';
 import Greeting from '../components/Greeting/Greeting.tsx';
 import Header from '../components/Header/Header.tsx';
 import Icon from '../components/Icon/Icon';
-import Main from '../components/Main/Main';
-import Page from '../components/Page/Page';
+import Main from '../components/Main/Main.tsx';
+import Page from '../components/Page/Page.tsx';
 
 type StartScreenProps = {
   history: {
@@ -29,7 +29,7 @@ class StartScreen extends Component<StartScreenProps> {
               onClick={this.goToPageSettings.bind(this)}
             />
           </Header>
-          <Main position='main_center'>
+          <Main position='center'>
             <Greeting
               icon ={<Icon type='logo'/> }
               btn = {<BtnBig action='primary' text='Open settings' onClick={this.goToPageSettings.bind(this)}/>}

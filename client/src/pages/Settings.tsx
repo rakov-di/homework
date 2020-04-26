@@ -8,8 +8,8 @@ import Form from '../components/Form/Form';
 import Header from '../components/Header/Header.tsx';
 import Input from '../components/Input/Input';
 import Label from '../components/Label/Label';
-import Main from '../components/Main/Main';
-import Page from '../components/Page/Page';
+import Main from '../components/Main/Main.tsx';
+import Page from '../components/Page/Page.tsx';
 
 type SettingsProps = {
   inputs: {

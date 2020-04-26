@@ -7,12 +7,17 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnMain = cn('main');
 
-class Main extends Component {
+type MainProps = {
+  children: any;
+  position?: 'center'
+}
+
+class Main extends Component<MainProps> {
   render() {
     const { children, position } = this.props;
 
     return (
-      <div className={cnMain(null, [position])}>
+      <div className={cnMain(position && {[position]: true})}>
         <div className={cnMain('container')}>
           {children}
         </div>

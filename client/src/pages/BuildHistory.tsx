@@ -10,9 +10,9 @@ import Header from '../components/Header/Header.tsx';
 import Form from '../components/Form/Form';
 import Input from '../components/Input/Input';
 import Label from '../components/Label/Label';
-import Main from '../components/Main/Main';
+import Main from '../components/Main/Main.tsx';
 import Modal from '../components/Modal/Modal';
-import Page from '../components/Page/Page';
+import Page from '../components/Page/Page.tsx';
 import Card from '../components/Card/Card';
 
 type BuildHistoryProps = {
