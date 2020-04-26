@@ -5,7 +5,7 @@ import { closeModal, openModal, getBuildsList, addCommitToQueue } from '../redux
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
 import CardList from '../components/CardList/CardList';
-import Footer from '../components/Footer/Footer';
+import Footer from '../components/Footer/Footer.tsx';
 import Header from '../components/Header/Header';
 import Form from '../components/Form/Form';
 import Input from '../components/Input/Input';

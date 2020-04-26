@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redux/actions/actions';
 
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
-import Footer from '../components/Footer/Footer';
+import Footer from '../components/Footer/Footer.tsx';
 import Form from '../components/Form/Form';
 import Header from '../components/Header/Header';
 import Input from '../components/Input/Input';
