@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import BtnBig from '../components/BtnBig/BtnBig';
+import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import BtnSmall from '../components/BtnSmall/BtnSmall';
 import Footer from '../components/Footer/Footer';
 import Greeting from '../components/Greeting/Greeting';
