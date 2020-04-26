@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions';
 
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
-import Card from '../components/Card/Card';
+import Card from '../components/Card/Card.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import Header from '../components/Header/Header.tsx';
 import Log from '../components/Log/Log.tsx';

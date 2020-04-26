@@ -8,7 +8,21 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnCard = cn('card');
 
-class Card extends Component {
+type CardProps ={
+  build: {
+    id: string;
+    status: string;
+    buildNumber: string;
+    commitMessage: string;
+    branchName: string;
+    commitHash: string;
+    authorName: string;
+    start: string;
+    duration: number | string;
+  }
+}
+
+class Card extends Component<CardProps> {
 
   render() {
     // TODO вынести это из рендера
@@ -17,8 +31,8 @@ class Card extends Component {
     start = start ? format(Date.parse(start), 'd MMM HH:s', {locale: ru}) : '––––––––––';
 
     if (duration) {
-      const hours = Math.floor(duration / 3600000);
-      duration = `${hours} ч ${Math.floor((duration - (hours * 3600000)) / 60000)} мин`
+      const hours = Math.floor(Number(duration) / 3600000);
+      duration = `${hours} ч ${Math.floor((Number(duration) - (hours * 3600000)) / 60000)} мин`
     }
     else {
       duration = '––––––––––';
@@ -50,8 +64,8 @@ class Card extends Component {
     );
   }
 
-  handleCardClick = (e) => {
-    document.location.href = `/build/${e.currentTarget.dataset.id}`
+  handleCardClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
+    document.location.href = `/build/${e.currentTarget.dataset.id}`;
   }
 }
 

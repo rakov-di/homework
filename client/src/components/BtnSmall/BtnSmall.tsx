@@ -12,7 +12,7 @@ type BtnSmallProps = {
   icon?: string;
   mixClass?: string;
   text?: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 class BtnSmall extends Component<BtnSmallProps> {

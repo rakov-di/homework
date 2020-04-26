@@ -13,7 +13,7 @@ import Label from '../components/Label/Label.tsx';
 import Main from '../components/Main/Main.tsx';
 import Modal from '../components/Modal/Modal';
 import Page from '../components/Page/Page.tsx';
-import Card from '../components/Card/Card';
+import Card from '../components/Card/Card.tsx';
 
 type BuildHistoryProps = {
   main: {
