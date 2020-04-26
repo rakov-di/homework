@@ -67,7 +67,7 @@ npm start
 
 - [client](client) - папка с react приложением
     - [src](client/src) - исходники 
-        - [index.js](client/src/index.js) - точка входа в приложение
+        - [index.ts](client/src/index.js) - точка входа в приложение
         - [App.js](client/src/App.js) - роутер по страницам приложения
         - [redux](client/src/redux) - папка с actions и reducers 
             - [actions](client/src/redux/actions) - папка с actions

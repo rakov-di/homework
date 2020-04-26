@@ -11,8 +11,37 @@ import Label from '../components/Label/Label';
 import Main from '../components/Main/Main';
 import Page from '../components/Page/Page';
 
+type SettingsProps = {
+  inputs: {
+    repoName: {
+      value: string;
+      isValid: boolean
+    };
+    buildCommand: {
+      value: string;
+      isValid: boolean
+    };
+    mainBranch: {
+      value: string;
+      isValid: boolean
+    };
+    period: {
+      value: string;
+      isValid: boolean
+    };
+  };
+  main: {
+    settings: any
+  };
+  inputSetValidationStatus(name: string, status: boolean ): any;
+  inputSetValue(name: string, value: string): any;
+  updateSettings(settings: UpdateSettingsParams): any;
+  history: {
+    push(url: string): any
+  }  
+}
 
-class SettingsClass extends Component {
+class SettingsClass extends Component<SettingsProps> {
   render() {
     const { repoName, buildCommand, mainBranch, period } = this.props.inputs;
 
@@ -88,7 +117,6 @@ class SettingsClass extends Component {
                     plh={input.inputPlh}
                     isRequired={input.isRequired}
                     isValid={input.isValid || null}
-                    type={input.type}
                     pattern={input.pattern || null}
                     errorMsg={input.errorMsg}
                     needCheckOnNum={input.needCheckOnNum}
@@ -146,7 +174,7 @@ class SettingsClass extends Component {
       repoName: repoName.value,
       buildCommand: buildCommand.value,
       mainBranch: mainBranch.value,
-      period: period.value,
+      period: +period.value,
     };
 
     this.props.updateSettings(newSettings);
@@ -157,7 +185,7 @@ class SettingsClass extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   main: state.main,
   inputs: state.inputs,
 });

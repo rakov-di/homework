@@ -7,14 +7,21 @@ import { getCurSettings } from './redux/actions/actions';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
 
-import StartScreen from './pages/StartScreen';
-import Settings from './pages/Settings';
-import BuildHistory from './pages/BuildHistory';
-import BuildDetails from './pages/BuildDetails';
+import StartScreen from './pages/StartScreen.tsx';
+import Settings from './pages/Settings.tsx';
+import BuildHistory from './pages/BuildHistory.tsx';
+import BuildDetails from './pages/BuildDetails.tsx';
 import Loader from './components/Loader/Loader';
 
+type AppProps = {
+  main: {
+    isFetchEnded: boolean;
+    settings: any;
+  };
+  getCurSettings(): any;
+}
 
-class AppClass extends Component {
+class AppClass extends Component<AppProps, any> {
   render() {
     const { isFetchEnded, settings } = this.props.main;
 
@@ -40,7 +47,7 @@ class AppClass extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   main: state.main
 });
 

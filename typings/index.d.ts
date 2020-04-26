@@ -59,7 +59,7 @@ declare enum Status {
     Canceled = "Canceled"
 }
 
-// declare module '*'
+declare module '*'
   
 
   

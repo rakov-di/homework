@@ -11,8 +11,25 @@ import Main from '../components/Main/Main';
 import Page from '../components/Page/Page';
 
 
+type SettingsProps = {
+  main: {
+    settings: {
+      repoName: string;
+    }
+  };
+  curBuild: {
+    commitHash: string;
+    log: string;
+  };
+  addCommitToQueue(commitHash: string): any;
+  getBuildDetails(buildId: string): any;
+  getBuildLog(buildId: string): any;
+  history: {
+    push(url: string): any
+  }   
+}
 
-class BuildDetailsClass extends Component {
+class BuildDetailsClass extends Component<SettingsProps> {
   render() {
     return (
       <Page type='build-details'>
@@ -57,7 +74,7 @@ class BuildDetailsClass extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   main: state.main,
   curBuild: state.curBuild
 });

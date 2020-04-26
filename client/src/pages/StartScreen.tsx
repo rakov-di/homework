@@ -9,7 +9,13 @@ import Icon from '../components/Icon/Icon';
 import Main from '../components/Main/Main';
 import Page from '../components/Page/Page';
 
-class StartScreen extends Component {
+type StartScreenProps = {
+  history: {
+    push(url: string): any
+  }
+}
+
+class StartScreen extends Component<StartScreenProps> {
 
   render() {
     return (

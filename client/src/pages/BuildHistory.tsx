@@ -15,8 +15,30 @@ import Modal from '../components/Modal/Modal';
 import Page from '../components/Page/Page';
 import Card from '../components/Card/Card';
 
+type BuildHistoryProps = {
+  main: {
+    settings: any;
+    builds: any;
+  };
+  inputs: {
+    commitHash: {
+      value: string;
+      isValid: boolean;
+    }
+  };
+  modal: {
+    isModalShown: boolean
+  };
+  openModal(): any;
+  closeModal(): any;
+  getBuildsList(): any;
+  addCommitToQueue(commitHash: string): any;
+  history: {
+    push(url: string): any
+  }
+}
 
-class BuildHistoryClass extends Component {
+class BuildHistoryClass extends Component<BuildHistoryProps> {
   render() {
     const { settings, builds } = this.props.main;
     const { commitHash } = this.props.inputs;
@@ -42,7 +64,7 @@ class BuildHistoryClass extends Component {
         </Header>
         <Main>
           <CardList>
-            {builds.map(build =>
+            {builds.map((build: { id: string }) =>
               <Card key={build.id} build={build} />
             )}
             <BtnSmall type='only-text' text='Show more' mixClass='card-list__show-more'/>
@@ -108,7 +130,7 @@ class BuildHistoryClass extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   main: state.main,
   inputs: state.inputs,
   modal: state.modal,
