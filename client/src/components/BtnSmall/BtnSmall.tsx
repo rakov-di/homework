@@ -23,7 +23,7 @@ class BtnSmall extends Component<BtnSmallProps> {
       <button
         className={cnBtnSmall({ type }, [
           mixClass || '',
-          cnIcon({[icon || '']: true})
+          cnIcon(icon && {[icon]: true})
         ])}
         onClick={onClick}>{text}
       </button>

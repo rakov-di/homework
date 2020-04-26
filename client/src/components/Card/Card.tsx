@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import IconText from '../IconText/IconText';
+import IconText from '../IconText/IconText.tsx';
 
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'

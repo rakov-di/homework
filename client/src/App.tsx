@@ -11,7 +11,7 @@ import StartScreen from './pages/StartScreen.tsx';
 import Settings from './pages/Settings.tsx';
 import BuildHistory from './pages/BuildHistory.tsx';
 import BuildDetails from './pages/BuildDetails.tsx';
-import Loader from './components/Loader/Loader';
+import Loader from './components/Loader/Loader.tsx';
 
 type AppProps = {
   main: {

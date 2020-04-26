@@ -1,7 +1,7 @@
 import './Footer.styl';
 
 import React, { Component } from 'react';
-import Menu from '../Menu/Menu';
+import Menu from '../Menu/Menu.tsx';
 import { withNaming } from '@bem-react/classname';
 
 const cn = withNaming({ e: '__', m: '_' });

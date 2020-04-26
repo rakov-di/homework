@@ -6,7 +6,12 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnMenu = cn('menu');
 
-class Menu extends Component {
+type MenuProps = {
+  links: string[];
+  mixClass: 'string'
+}
+
+class Menu extends Component<MenuProps> {
   render() {
     const { links, mixClass } = this.props;
 
