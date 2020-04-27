@@ -86,7 +86,7 @@ export const addCommitToQueue = (commitHash: string) => {
     api.addCommitToQueue(commitHash)
       .then((res: Response) => {
         dispatch(getBuildsList()); // ???
-        document.location.href = `/build/${res.data.payload.id}`;
+        document.location.href = `../../../../archive/build`;
         // dispatch(updateStoreBuildsList(res.data.data));
         // dispatch(fetchDone());
       })

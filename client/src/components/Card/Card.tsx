@@ -65,7 +65,7 @@ class Card extends Component<CardProps> {
   }
 
   handleCardClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
-    document.location.href = `/build/${e.currentTarget.dataset.id}`;
+    document.location.href = `../../../../archive/build`;
   }
 }
 

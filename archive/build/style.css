@@ -165,10 +165,6 @@ table {
   --ls-s: 0.06px;
   --ls-m: 0.25px;
 }
-.input__field::-ms-input-placeholder {
-  font-family: "YS Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-style: normal;
-}
 .text,
 .icon-text__primary,
 .icon-text__secondary,
@@ -263,10 +259,6 @@ table {
   line-height: var(--lh-s);
   letter-spacing: var(--ls-s);
 }
-.input__field::-ms-input-placeholder {
-  font-weight: var(--fw-medium);
-  font-size: var(--fsz-m);
-}
 .text_type_font-450,
 .input__field,
 .input__field::placeholder {
@@ -302,9 +294,6 @@ table {
 }
 .label_value {
   color: var(--cLabelValue);
-}
-.input__field::-ms-input-placeholder {
-  color: var(--cInputPlh);
 }
 .input__field::placeholder {
   color: var(--cInputPlh);
@@ -389,26 +378,17 @@ table {
   width: 16px;
   height: 16px;
 }
-.icon_calendar-before::before {
-  content: '';
-}
 .icon_clear,
 .icon_clear-before::before {
   background-position: -130px -100px;
   width: 16px;
   height: 16px;
 }
-.icon_clear-before::before {
-  content: '';
-}
 .icon_code-commit,
 .icon_code-commit-before::before {
   background-position: -2px -130px;
   width: 16px;
   height: 16px;
-}
-.icon_code-commit-before::before {
-  content: '';
 }
 .icon_done-desktop,
 .icon_done-desktop-before::before,
@@ -417,18 +397,12 @@ table {
   width: 22px;
   height: 22px;
 }
-.icon_done-desktop-before::before {
-  content: '';
-}
 .icon_done-mobile,
 .icon_done-mobile-before::before,
 .card_status_done .card__icon {
   background-position: -22px -130px;
   width: 16px;
   height: 16px;
-}
-.icon_done-mobile-before::before {
-  content: '';
 }
 .icon_fail-desktop,
 .icon_fail-desktop-before::before,
@@ -437,9 +411,6 @@ table {
   width: 22px;
   height: 22px;
 }
-.icon_fail-desktop-before::before {
-  content: '';
-}
 .icon_fail-mobile,
 .icon_fail-mobile-before::before,
 .card_status_fail .card__icon {
@@ -447,17 +418,11 @@ table {
   width: 16px;
   height: 16px;
 }
-.icon_fail-mobile-before::before {
-  content: '';
-}
 .icon_logo,
 .icon_logo-before::before {
   background-position: -2px -2px;
   width: 124px;
   height: 124px;
-}
-.icon_logo-before::before {
-  content: '';
 }
 .icon_rebuild,
 .icon_rebuild-before::before {
@@ -465,17 +430,11 @@ table {
   width: 12px;
   height: 12px;
 }
-.icon_rebuild-before::before {
-  content: '';
-}
 .icon_run,
 .icon_run-before::before {
   background-position: -156px -2px;
   width: 9px;
   height: 10px;
-}
-.icon_run-before::before {
-  content: '';
 }
 .icon_settings,
 .icon_settings-before::before {
@@ -483,26 +442,17 @@ table {
   width: 13px;
   height: 12px;
 }
-.icon_settings-before::before {
-  content: '';
-}
 .icon_stopwatch,
 .icon_stopwatch-before::before {
   background-position: -62px -130px;
   width: 16px;
   height: 16px;
 }
-.icon_stopwatch-before::before {
-  content: '';
-}
 .icon_user,
 .icon_user-before::before {
   background-position: -82px -130px;
   width: 16px;
   height: 16px;
-}
-.icon_user-before::before {
-  content: '';
 }
 .icon_wait-desktop,
 .icon_wait-desktop-before::before,
@@ -511,15 +461,54 @@ table {
   width: 22px;
   height: 22px;
 }
-.icon_wait-desktop-before::before {
-  content: '';
-}
 .icon_wait-mobile,
 .icon_wait-mobile-before::before,
 .card_status_wait .card__icon {
   background-position: -102px -130px;
   width: 16px;
   height: 16px;
+}
+.icon_calendar-before::before {
+  content: '';
+}
+.icon_clear-before::before {
+  content: '';
+}
+.icon_code-commit-before::before {
+  content: '';
+}
+.icon_done-desktop-before::before {
+  content: '';
+}
+.icon_done-mobile-before::before {
+  content: '';
+}
+.icon_fail-desktop-before::before {
+  content: '';
+}
+.icon_fail-mobile-before::before {
+  content: '';
+}
+.icon_logo-before::before {
+  content: '';
+}
+.icon_rebuild-before::before {
+  content: '';
+}
+.icon_run-before::before {
+  content: '';
+}
+.icon_settings-before::before {
+  content: '';
+}
+.icon_stopwatch-before::before {
+  content: '';
+}
+.icon_user-before::before {
+  content: '';
+}
+.icon_wait-desktop-before::before {
+  content: '';
 }
 .icon_wait-mobile-before::before {
   content: '';
