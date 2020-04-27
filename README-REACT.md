@@ -67,7 +67,7 @@ npm start
 
 - [client](client) - папка с react приложением
     - [src](client/src) - исходники 
-        - [index.js](client/src/index.js) - точка входа в приложение
+        - [index.ts](client/src/index.js) - точка входа в приложение
         - [App.js](client/src/App.js) - роутер по страницам приложения
         - [redux](client/src/redux) - папка с actions и reducers 
             - [actions](client/src/redux/actions) - папка с actions
@@ -82,7 +82,7 @@ npm start
 
 - [server](server) - папка с node js сервером
 
-- [build](build), [src](src) - папки с версткой для первой домашки. Пока используются для контроля, что при переносе в react ничего не потерялось. По завершении домашки по react - перенести в архив.
+- [build](archive/build), [src](archive/src) - папки с версткой для первой домашки. Пока используются для контроля, что при переносе в react ничего не потерялось. По завершении домашки по react - перенести в архив.
 
 Вернуться [К содержанию](#content_table)
 

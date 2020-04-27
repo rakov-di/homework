@@ -1,5 +1,7 @@
 # CI-сервер
 
+> [Ридми к текущей домашке - TypeScript](README-TS.md)
+
 ## Содержание <a name="content_table"></a>
 
 - [Описание](#about)
@@ -89,3 +91,4 @@ npm test
 - [NodeJS](README-NODEJS.md)
 - [React](README-REACT.md)
 - [Tests](README-TESTS.md)
+- [TypeScript](README-TS.md)
