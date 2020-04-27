@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { closeModal, openModal, getBuildsList, addCommitToQueue } from '../redux/actions/actions.ts';
+import { History } from 'history';
 
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
@@ -15,34 +16,37 @@ import Modal from '../components/Modal/Modal.tsx';
 import Page from '../components/Page/Page.tsx';
 import Card from '../components/Card/Card.tsx';
 
-type BuildHistoryProps = {
+type BuildHistoryState = {
   main: {
-    settings: any;
+    settings: Settings;
     builds: any;
-  };
+  },
   inputs: {
     commitHash: {
       value: string;
       isValid: boolean;
     }
-  };
+  },
   modal: {
     isModalShown: boolean
-  };
-  openModal(): any;
-  closeModal(): any;
-  getBuildsList(): any;
-  addCommitToQueue(commitHash: string): any;
-  history: {
-    push(url: string): any
   }
 }
 
+type BuildHistoryDispatch = {
+  openModal(): void;
+  closeModal(): void;
+  getBuildsList(): void;
+  addCommitToQueue(commitHash: string): void;
+}
+
+type BuildHistoryProps = BuildHistoryState & BuildHistoryDispatch & { history : History }
+
 class BuildHistoryClass extends Component<BuildHistoryProps> {
   render() {
-    const { settings, builds } = this.props.main;
-    const { commitHash } = this.props.inputs;
-    const { isModalShown } = this.props.modal;
+    const { main, inputs, modal } = this.props;
+    const { settings, builds } = main;
+    const { commitHash } = inputs;
+    const { isModalShown } = modal;
 
     return (
       <Page type='build-history'>
@@ -130,7 +134,7 @@ class BuildHistoryClass extends Component<BuildHistoryProps> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: BuildHistoryState) => ({
   main: state.main,
   inputs: state.inputs,
   modal: state.modal,

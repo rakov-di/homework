@@ -7,6 +7,14 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnForm = cn('form');
 
+type FormState = {
+  isFetching: boolean;
+  formStatus: {
+    value: string;
+    text: string;
+  };
+}
+
 type FormProps = {
   isHeader: boolean;
   btns: {
@@ -30,13 +38,7 @@ type FormProps = {
     pattern: string,
     needCheckOnNum: boolean    
   };
-  main: {
-    isFetching: boolean;
-    formStatus: {
-      value: string;
-      text: string;
-    };
-  }
+  main: FormState
 }
 
 class FormClass extends Component<FormProps> {
@@ -62,11 +64,7 @@ class FormClass extends Component<FormProps> {
   }
 }
 
-type FormState = {
-  main: any;
-}
-
-const mapStateToProps = (state: FormState) => ({
+const mapStateToProps = (state: { main: FormState }) => ({
   main: state.main,
 });
 

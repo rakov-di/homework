@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { History } from 'history';
 
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
@@ -9,11 +10,7 @@ import Icon from '../components/Icon/Icon.tsx';
 import Main from '../components/Main/Main.tsx';
 import Page from '../components/Page/Page.tsx';
 
-type StartScreenProps = {
-  history: {
-    push(url: string): any
-  }
-}
+type StartScreenProps = { history: History }
 
 class StartScreen extends Component<StartScreenProps> {
 

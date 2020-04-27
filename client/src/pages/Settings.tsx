@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redux/actions/actions.ts';
+import { History } from 'history';
 
 import BtnBig from '../components/BtnBig/BtnBig.tsx';
 import Footer from '../components/Footer/Footer.tsx';
@@ -11,35 +12,39 @@ import Label from '../components/Label/Label.tsx';
 import Main from '../components/Main/Main.tsx';
 import Page from '../components/Page/Page.tsx';
 
-type SettingsProps = {
+type SettingsState = {
   inputs: {
     repoName: {
       value: string;
       isValid: boolean
-    };
+    },
     buildCommand: {
       value: string;
       isValid: boolean
-    };
+    },
     mainBranch: {
       value: string;
       isValid: boolean
-    };
+    },
     period: {
       value: string;
       isValid: boolean
-    };
-  };
+    }
+  },
   main: {
     settings: any
-  };
-  inputSetValidationStatus(name: string, status: boolean ): any;
-  inputSetValue(name: string, value: string): any;
-  updateSettings(settings: UpdateSettingsParams): any;
-  history: {
-    push(url: string): any
-  }  
+  }
 }
+
+type a = 'repoName' | 'mainBranch' | 'buildCommand' | 'period';
+
+type SettingsDispatch = {
+  inputSetValidationStatus(name: string, status: boolean ): void;
+  inputSetValue(name: string, value: string): void;
+  updateSettings(settings: UpdateSettingsParams): void;
+}
+
+type SettingsProps = SettingsState & SettingsDispatch & { history : History }
 
 class SettingsClass extends Component<SettingsProps> {
   render() {
@@ -151,11 +156,10 @@ class SettingsClass extends Component<SettingsProps> {
       </Page>
     )
   }
-
   componentDidMount() {
     const inputs = this.props.inputs;
     const { settings } = this.props.main;
-    Object.keys(inputs).map((name) => this.props.inputSetValue(name, settings[name]));
+    Object.keys(inputs).map((name: string) => this.props.inputSetValue(name, settings[name]));
   }
 
   handlePrimaryClick() {
@@ -185,9 +189,9 @@ class SettingsClass extends Component<SettingsProps> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: SettingsState) => ({
   main: state.main,
-  inputs: state.inputs,
+  inputs: state.inputs
 });
 
 const mapDispatchToProps = { inputSetValue, inputSetValidationStatus, updateSettings };

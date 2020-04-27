@@ -70,6 +70,7 @@ class InputClass extends Component<InputProps> {
   }
 
   // TODO разобраться почему не работает React.MouseEvent<HTMLButtonElement, MouseEvent>
+  //  или e.target as HTMLElement
   clearInput(e: any): void {
     const target = e.target.closest('.input').querySelector('.input__field');
     const name = target.name;

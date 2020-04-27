@@ -11,13 +11,7 @@ type MainState = {
   isFetchEnded: boolean,
   isFetching: boolean,
   formStatus: boolean | null,
-  settings: {
-    id: string | null,
-    repoName: string | null,
-    buildCommand: string | null,
-    mainBranch: string | null,
-    period: number | null
-  },
+  settings: Settings,
   builds: any[]
 }
 
@@ -26,11 +20,11 @@ const defaultState: MainState = {
   isFetching: false,
   formStatus: null,
   settings: {
-    id: null,
-    repoName: null,
-    buildCommand: null,
-    mainBranch: null,
-    period: null
+    id: '',
+    repoName: '',
+    buildCommand: '',
+    mainBranch: '',
+    period: 0
   },
   builds: []
 };

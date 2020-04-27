@@ -6,7 +6,12 @@ import { withNaming } from '@bem-react/classname';
 const cn = withNaming({ e: '__', m: '_' });
 const cnGreeting = cn('greeting');
 
-class Greeting extends Component {
+type GreetingProps = {
+  icon: React.ReactNode;
+  btn: React.ReactNode;
+}
+
+class Greeting extends Component<GreetingProps> {
   render() {
     const { icon, btn } = this.props;
 

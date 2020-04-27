@@ -13,15 +13,18 @@ import BuildHistory from './pages/BuildHistory.tsx';
 import BuildDetails from './pages/BuildDetails.tsx';
 import Loader from './components/Loader/Loader.tsx';
 
-type AppProps = {
-  main: {
-    isFetchEnded: boolean;
-    settings: any;
-  };
-  getCurSettings(): any;
+
+type AppState = {
+  isFetchEnded: boolean;
+  settings: Settings;
 }
 
-class AppClass extends Component<AppProps, any> {
+type AppProps = {
+  main: AppState;
+  getCurSettings(): void;
+}
+
+class AppClass extends Component<AppProps> {
   render() {
     const { isFetchEnded, settings } = this.props.main;
 
@@ -47,7 +50,7 @@ class AppClass extends Component<AppProps, any> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: { main: AppState }) => ({
   main: state.main
 });
 

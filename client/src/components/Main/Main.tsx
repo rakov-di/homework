@@ -8,7 +8,7 @@ const cn = withNaming({ e: '__', m: '_' });
 const cnMain = cn('main');
 
 type MainProps = {
-  children: any;
+  children: React.ReactNode;
   position?: 'center'
 }
 

@@ -7,7 +7,7 @@ const cn = withNaming({ e: '__', m: '_' });
 const cnHeader = cn('header');
 
 type HeaderProps = {
-  children: any;
+  children: React.ReactNode;
   valign: 'top' | 'center';
   type: 'title' | 'repo-title';
   text: string

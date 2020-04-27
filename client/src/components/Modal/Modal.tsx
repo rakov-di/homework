@@ -7,7 +7,7 @@ const cn = withNaming({ e: '__', m: '_' });
 const cnModal = cn('modal');
 
 type ModalProps = {
-  children: any;
+  children: React.ReactNode;
   closeModal: () => void;
 }
 
@@ -31,12 +31,12 @@ class Modal extends Component<ModalProps> {
     document.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
-  handleKeyPress(e: any): void {
+  handleKeyPress(e: KeyboardEvent): void {
     if (e.key === 'Escape') this.props.closeModal();
   }
 
-  handleClickModal(e: any): void {
-    if (e.target.classList.contains('modal')) {
+  handleClickModal(e: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
+    if ((e.target as HTMLDivElement).classList.contains('modal')) {
       this.props.closeModal()
     }
   }

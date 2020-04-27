@@ -53,7 +53,7 @@ export const updateSettings = (settings: UpdateSettingsParams) => {
       .catch((err: Error) => {
         dispatch(updateFormStatus({
           value: 'error',
-          text: err.response.data.message
+          text: err.response && err.response.data && err.response.data.message
         }));
         dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
@@ -72,9 +72,9 @@ export const getBuildsList = ():any => {
       .catch((err: Error) => {
         dispatch(updateFormStatus({
           value: 'error',
-          text: err.response.data.message
+          text: err.response && err.response.data && err.response.data.message
         }));
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
@@ -107,7 +107,7 @@ export const getBuildDetails = (buildId: string) => {
         dispatch(fetchDone());
       })
       .catch((err: Error) => {
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };
@@ -122,7 +122,7 @@ export const getBuildLog = (buildId: string) => {
         dispatch(fetchDone());
       })
       .catch((err: Error) => {
-        dispatch(fetchFail(err.response.data.message));
+        dispatch(fetchFail(err.response && err.response.data && err.response.data.message));
       });
   };
 };

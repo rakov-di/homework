@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions.ts';
+import { History } from 'history';
 
 import BtnSmall from '../components/BtnSmall/BtnSmall.tsx';
 import Card from '../components/Card/Card.tsx';
@@ -10,26 +11,27 @@ import Log from '../components/Log/Log.tsx';
 import Main from '../components/Main/Main.tsx';
 import Page from '../components/Page/Page.tsx';
 
-
-type SettingsProps = {
+type BuildDetailsState = {
   main: {
     settings: {
       repoName: string;
     }
-  };
+  },
   curBuild: {
     commitHash: string;
     log: string;
-  };
-  addCommitToQueue(commitHash: string): any;
-  getBuildDetails(buildId: string): any;
-  getBuildLog(buildId: string): any;
-  history: {
-    push(url: string): any
-  }   
+  }
 }
 
-class BuildDetailsClass extends Component<SettingsProps> {
+type BuildDetailsDispatch = {
+  addCommitToQueue(commitHash: string): void;
+  getBuildDetails(buildId: string): void;
+  getBuildLog(buildId: string): void;
+}
+
+type BuildDetailsProps = BuildDetailsState & BuildDetailsDispatch & { history: History }
+
+class BuildDetailsClass extends Component<BuildDetailsProps> {
   render() {
     return (
       <Page type='build-details'>
@@ -74,7 +76,7 @@ class BuildDetailsClass extends Component<SettingsProps> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: BuildDetailsState) => ({
   main: state.main,
   curBuild: state.curBuild
 });
