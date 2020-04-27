@@ -20,6 +20,22 @@ declare interface UpdateSettingsParams {
   period: number;
 }
 
+declare interface Build {
+  id: string,
+  configurationId: string;
+  buildNumber: number;
+  commitMessage: string;
+  commitHash: string;
+  branchName: string;
+  authorName: string;
+  status: string
+}
+
+declare interface GetBuildsListResponse {
+  data: Build[]
+}
+
+
 declare interface AddCommitToQueueParams {
   commitMessage: string;
   commitHash: string;

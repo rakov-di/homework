@@ -158,12 +158,12 @@ export const updateStoreSettings = (payload: UpdateSettingsParams):ActionTypeAnd
   payload
 });
 
-export const updateStoreBuildsList = (payload: any):ActionTypeAndPayload => ({
+export const updateStoreBuildsList = (payload: Build[]):ActionTypeAndPayload => ({
   type: ACTIONS.UPDATE_STORE_BUILDS_LIST,
   payload
 });
 
-export const updateStoreCurBuildDetails = (payload: any):ActionTypeAndPayload => ({
+export const updateStoreCurBuildDetails = (payload: string):ActionTypeAndPayload => ({
   type: ACTIONS.UPDATE_STORE_CUR_BUILD_DETAILS,
   payload
 });

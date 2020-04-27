@@ -12,7 +12,7 @@ type MainState = {
   isFetching: boolean,
   formStatus: boolean | null,
   settings: Settings,
-  builds: any[]
+  builds: Build[]
 }
 
 const defaultState: MainState = {
