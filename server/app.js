@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const port = 5000;
+const port = 5555;
 app.listen(port, err => {
   if (err) console.log(`Server didn't launch because of error: ${err}`);
   else console.log(`Server successfully launched on the port: ${port}`);
