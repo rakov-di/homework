@@ -70,6 +70,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "sw": "src/creatCachedFilesList.sh",
+    "build_sw": "npm run build && npm run sw",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
