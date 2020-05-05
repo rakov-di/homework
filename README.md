@@ -1,5 +1,7 @@
 # CI-сервер
 
+> [README](README-SW.md) к домашке по Воркерам
+
 ## Содержание <a name="content_table"></a>
 
 - [Описание](#about)
@@ -20,16 +22,16 @@
 npm i
 ``` 
 
-Запуститить серевер:
+Запустить сервер:
 
-Создать в папке [server](server) файл `.env` и записать туда свой токен для авторизации в виде SHRI_API_KEY=... (Bearer писать не надо, пример файла - [.env.example](server/.env.example)):
+Переименовать файл [.env.example](server/.env.example) в файл `.env`. Подставить в поле `SHRI_API_KEY` свой ключ авторизации ([ссылка для получения ключа](https://hw.shri.yandex/)):
 
 ```bash
-cd server && npm i && node app.js
+cd server && npm ci && npm start
 ```
 Запустить клиентское-приложение
 ```bash
-cd client && npm i && npm start
+cd client && npm ci && npm start
 ```
 
 Для запуска unit-тестов
