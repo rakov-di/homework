@@ -1,30 +1,31 @@
 'use strict';
 
-// Конфиг для кэша
-var config = {
-  SWVersion: 8,
+const config = {
+  cacheName: 'cache-and-update-v8',
   cachedFiles: [
-    '/index.html',
+    '/',
+    '/favicon.ico',
+    '/logo192.png ',
+    '/logo512.png ',
+    '/static/js/bundle.js',
+    '/static/js/0.chunk.js',
     '/static/js/main.chunk.js',
-    '/static/css/main.chunk.css',
-    '/static/css/2.chunk.css',
-    'icons-8a67240e.svg'
+    '/static/media/icons-8a67240e.8a67240e.svg',
+    'http://yastatic.net/islands/_/7_GKBdKFbUPzKlghJRv55xgz0FQ.woff2',
+    'http://yastatic.net/islands/_/PyVcRbwHetz0gOVWLonWH7Od8zM.woff2'
   ]
 };
-config.cacheName = 'cache-static-v' + config.SWVersion;
 
 self.addEventListener('install', (e) => {
-  console.log('Установлен');
+  console.log('Service Worker successfully INSTALLED');
   // Сохраняем текущие ресурсы в кэш
   e.waitUntil(
-    caches
-      .open(config.cacheName)
-      .then((cache) => cache.addAll(config.cachedFiles))
+    openCache().then((cache) => cache.addAll(config.cachedFiles))
   );
 });
 
 self.addEventListener('activate', (e) => {
-  console.log('Активирован');
+  console.log('Service Worker successfully ACTIVATED');
   // Удаляем старый кэш
   e.waitUntil(
     caches
@@ -38,46 +39,49 @@ self.addEventListener('activate', (e) => {
         }));
       })
       .then(() => self.clients.claim())
+      .catch((err) => console.warn('Something goes wrong on Activate' + err))
   );
 });
 
 self.addEventListener('fetch', (e) => {
-  console.log('Происходит запрос на сервер');
+  console.log('Service Worker FETCH');
+
+  // Не кешируем запросы
+  if (e.request.method !== 'GET' || e.request.url.indexOf('/api/') !== -1) {
+    return;
+  }
 
   // Сначала отдаем ресурсы из кэша
   e.respondWith(fromCache(e.request));
   // Уже потом проверяем, обновился ли он и обновляем при необходимости
-  e.waitUntil(
-    updateCache(e.request)
-      // В конце, после получения "свежих" данных от сервера уведомляем всех клиентов.
-      .then(refresh)
-  );
+  e.waitUntil(updateCache(e.request));
 });
 
 function fromCache(request) {
-  return caches.open(config.cacheName).then((cache) =>
-    cache.match(request).then((matching) =>
-      matching || Promise.reject('no-match')
-    ));
+  return openCache()
+    .then((cache) =>
+      cache.match(request, { ignoreSearch: true }).then((matching) =>
+        matching || Promise.reject('no-match')
+      ))
+    .catch((err) => console.warn('Something goes wrong on getting from cache: ' + err))
+
 }
 
 function updateCache(request) {
-  return caches.open(config.cacheName).then((cache) =>
-    fetch(request).then((response) =>
-      cache.put(request, response.clone()).then(() => response)
-    )
+  return openCache()
+    .then((cache) =>
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            return cache.put(request, response.clone()).then(() => response);
+          } else {
+            console.warn('Something goes wrong on update cache');
+          }
+        })
+    .catch((err) => console.warn('Something goes wrong: ' + err))
   );
 }
 
-// Шлём сообщения об обновлении данных всем клиентам.
-function refresh(response) {
-  return self.clients.matchAll().then((clients) => {
-    clients.forEach((client) => {
-      const message = {
-        text: 'Данные на странице обновились. Обновить?',
-      };
-      // Уведомляем клиент об обновлении данных.
-      client.postMessage(JSON.stringify(message));
-    });
-  });
+function openCache() {
+  return caches.open(config.cacheName);
 }
