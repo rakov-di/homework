@@ -13,7 +13,7 @@ class Menu extends Component {
     return (
       <ul className={cnMenu(null, [mixClass])}>
         {items.map((item, idx) =>
-          <a key={idx} href="#" className={cnMenu('link')} onClick={item.onClick}>{item.text}</a>
+          <a key={idx} href="/" className={cnMenu('link')} onClick={item.onClick}>{item.text}</a>
         )}
       </ul>
     );
