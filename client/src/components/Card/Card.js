@@ -17,8 +17,9 @@ class Card extends Component {
     const { t } = this.props;
 
     let { id, status, buildNumber, commitMessage, branchName, commitHash, authorName, start, duration } = this.props.build;
-
-    start = start ? format(Date.parse(start), 'd MMM HH:s', { locale: i18n.language === 'en' ? enGB : ru }) : '––––––––––';
+    const dateFormat = i18n.language === 'en' ? 'MMM d HH:mm' : 'd MMM HH:mm';
+    const locale = i18n.language === 'en' ? enGB : ru;
+    start = start ? format(Date.parse(start), dateFormat, { locale: locale }) : '––––––––––';
 
     if (duration) {
       const hours = Math.floor(duration / 3600000);
