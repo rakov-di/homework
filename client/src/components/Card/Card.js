@@ -4,7 +4,8 @@ import IconText from '../IconText/IconText';
 import { format } from 'date-fns'
 import { ru, enGB } from 'date-fns/locale'
 import { withNaming } from '@bem-react/classname';
-import i18n from '../../utils/i18n';
+import i18n from '../../utils/i18n/i18n';
+import { withTranslation } from "react-i18next";
 
 const cn = withNaming({ e: '__', m: '_' });
 const cnCard = cn('card');
@@ -13,15 +14,15 @@ class Card extends Component {
 
   render() {
     // TODO вынести это из рендера
+    const { t } = this.props;
+
     let { id, status, buildNumber, commitMessage, branchName, commitHash, authorName, start, duration } = this.props.build;
 
     start = start ? format(Date.parse(start), 'd MMM HH:s', { locale: i18n.language === 'en' ? enGB : ru }) : '––––––––––';
 
     if (duration) {
       const hours = Math.floor(duration / 3600000);
-      const hoursSymbol = i18n.language === 'en' ? 'h' : 'ч';
-      const minsSymbol = i18n.language === 'en' ? 'min' : 'мин';
-      duration = `${hours} ${hoursSymbol} ${Math.floor((duration - (hours * 3600000)) / 60000)} ${minsSymbol}`
+      duration = `${hours} ${t('hours')} ${Math.floor((duration - (hours * 3600000)) / 60000)} ${t('mins')}`
     }
     else {
       duration = '––––––––––';
@@ -58,4 +59,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default withTranslation()(Card);

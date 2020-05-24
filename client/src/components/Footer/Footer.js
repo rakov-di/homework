@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Menu from '../Menu/Menu';
 import { withNaming } from '@bem-react/classname';
 import { withTranslation } from 'react-i18next';
-import i18n from '../../utils/i18n';
+import i18n from '../../utils/i18n/i18n';
 
 const cn = withNaming({ e: '__', m: '_' });
 const cnFooter = cn('footer');
