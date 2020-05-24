@@ -14,13 +14,16 @@ const resources = {
   },
 };
 
-i18n.use(initReactI18next).use(LanguageDetector).init({
-  resources,
-  fallbackLng: 'en',
-  debug: true,
-  interpolation: {
-    escapeValue: false,
-  },
-});
+i18n
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .init({
+    resources,
+    fallbackLng: 'en',
+    debug: true,
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 
 export default i18n;

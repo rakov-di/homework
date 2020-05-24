@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redux/actions/actions';
 import { withTranslation } from 'react-i18next';
+import plural from '../utils/i18n/plural';
 
 import BtnBig from '../components/BtnBig/BtnBig';
 import Footer from '../components/Footer/Footer';
@@ -59,8 +60,8 @@ class SettingsClass extends Component {
         id: 'minutes',
         display: 'inline',
         value: period.value,
-        labelText: t('syncEvery'),
-        labelValueText: t('minutes'),
+        labelText: t(plural('syncEvery', period.value), { count: period.value }).split(period.value)[0],
+        labelValueText: t(plural('syncEvery', period.value), { count: period.value }).split(period.value)[1],
         pattern: '^[0-9]*$',
         isValid: period.isValid,
         needCheckOnNum: true
