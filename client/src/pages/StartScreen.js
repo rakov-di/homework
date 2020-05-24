@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withTranslation } from 'react-i18next';
 
 import BtnBig from '../components/BtnBig/BtnBig';
 import BtnSmall from '../components/BtnSmall/BtnSmall';
@@ -12,13 +13,15 @@ import Page from '../components/Page/Page';
 class StartScreen extends Component {
 
   render() {
+    const { t } = this.props;
+
     return (
         <Page type='start-screen'>
-          <Header valign='center' type='title' text='School CI server'>
+          <Header valign='center' type='title' text={t('ciServer')}>
             <BtnSmall
               type='icon-text'
               icon='settings-before'
-              text='Settings'
+              text={t('settings')}
               mixClass='header_btn'
               onClick={this.goToPageSettings.bind(this)}
             />
@@ -26,7 +29,7 @@ class StartScreen extends Component {
           <Main position='main_center'>
             <Greeting
               icon ={<Icon type='logo'/> }
-              btn = {<BtnBig action='primary' text='Open settings' onClick={this.goToPageSettings.bind(this)}/>}
+              btn = {<BtnBig action='primary' text={t('openSettings')} onClick={this.goToPageSettings.bind(this)}/>}
             />
           </Main>
           <Footer />
@@ -39,4 +42,4 @@ class StartScreen extends Component {
   }
 }
 
-export default StartScreen;
+export default withTranslation()(StartScreen);

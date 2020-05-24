@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { inputSetValue, inputSetValidationStatus, updateSettings } from '../redux/actions/actions';
+import { withTranslation } from 'react-i18next';
+import plural from '../utils/i18n/plural';
 
 import BtnBig from '../components/BtnBig/BtnBig';
 import Footer from '../components/Footer/Footer';
@@ -14,6 +16,7 @@ import Page from '../components/Page/Page';
 
 class SettingsClass extends Component {
   render() {
+    const { t } = this.props;
     const { repoName, buildCommand, mainBranch, period } = this.props.inputs;
 
     const inputs = [
@@ -23,11 +26,11 @@ class SettingsClass extends Component {
         id: 'repo',
         display: 'block',
         value: repoName.value,
-        labelText: 'GitHub repository',
+        labelText: t('githubRepo'),
         isRequired: true,
         isValid: repoName.isValid,
-        inputPlh: 'user-name/repo-name',
-        errorMsg: 'This field can\'t be empty',
+        inputPlh: t('typeRepo'),
+        errorMsg: t('errorEmpty'),
       },
       {
         direction: 'column',
@@ -35,11 +38,11 @@ class SettingsClass extends Component {
         id: 'command',
         display: 'block',
         value: buildCommand.value,
-        labelText: 'Build command',
+        labelText: t('buildCommand'),
         isRequired: true,
         isValid: buildCommand.isValid,
-        inputPlh: 'type command',
-        errorMsg: 'This field can\'t be empty',
+        inputPlh: t('typeCommand'),
+        errorMsg: t('errorEmpty'),
       },
       {
         direction: 'column',
@@ -47,8 +50,8 @@ class SettingsClass extends Component {
         id: 'branch',
         display: 'block',
         value: mainBranch.value,
-        labelText: 'Main branch',
-        inputPlh: 'type branch',
+        labelText: t('mainBranch'),
+        inputPlh: t('typeBranch'),
         isValid: mainBranch.isValid,
       },
       {
@@ -57,8 +60,8 @@ class SettingsClass extends Component {
         id: 'minutes',
         display: 'inline',
         value: period.value,
-        labelText: 'Synchronize every',
-        labelValueText: 'minutes',
+        labelText: t(plural('syncEvery', period.value), { count: period.value }).split(period.value)[0],
+        labelValueText: t(plural('syncEvery', period.value), { count: period.value }).split(period.value)[1],
         pattern: '^[0-9]*$',
         isValid: period.isValid,
         needCheckOnNum: true
@@ -67,7 +70,7 @@ class SettingsClass extends Component {
 
     return (
       <Page type='settings'>
-        <Header valign='center' type='title' text='School CI server' />
+        <Header valign='center' type='title' text={t('ciServer')} />
         <Main>
           <Form
             isHeader={true}
@@ -105,13 +108,13 @@ class SettingsClass extends Component {
               <>
                 <BtnBig
                   action='primary'
-                  text='Save'
+                  text={t('save')}
                   mixClass='form__btn'
                   onClick={this.handlePrimaryClick.bind(this)}
                 />
                 <BtnBig
                   action='secondary'
-                  text='Cancel'
+                  text={t('cancel')}
                   mixClass='form__btn'
                   onClick={this.goToPageStartScreen.bind(this)}
                 />
@@ -167,4 +170,4 @@ const mapDispatchToProps = { inputSetValue, inputSetValidationStatus, updateSett
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SettingsClass);
+)(withTranslation()(SettingsClass));

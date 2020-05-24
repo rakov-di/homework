@@ -3,12 +3,14 @@ import './Form.styl';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withNaming } from '@bem-react/classname';
+import { withTranslation } from 'react-i18next';
 
 const cn = withNaming({ e: '__', m: '_' });
 const cnForm = cn('form');
 
 class FormClass extends Component {
   render() {
+    const { t } = this.props;
     const { isHeader, inputs, btns } = this.props;
     const { isFetching, formStatus } = this.props.main; // из redux
 
@@ -16,8 +18,8 @@ class FormClass extends Component {
       <form className={cnForm()}>
         {/*TODO Переписать header послойно, а не целиком*/}
         {isHeader && <div className={cnForm('header')}>
-          <div className={cnForm('title')}>Settings</div>
-          <div className={cnForm('subtitle')}>Configure repository connection and synchronization settings.</div>
+          <div className={cnForm('title')}>{t('settings')}</div>
+          <div className={cnForm('subtitle')}>{t('descriptionSettings')}</div>
         </div>
         }
         <div className={cnForm('fields')}>
@@ -37,4 +39,4 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-)(FormClass);
+)(withTranslation()(FormClass));

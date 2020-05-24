@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { closeModal, openModal, getBuildsList, addCommitToQueue } from '../redux/actions/actions';
+import { withTranslation } from 'react-i18next';
 
 import BtnBig from '../components/BtnBig/BtnBig';
 import BtnSmall from '../components/BtnSmall/BtnSmall';
@@ -18,6 +19,7 @@ import Card from '../components/Card/Card';
 
 class BuildHistoryClass extends Component {
   render() {
+    const { t } = this.props;
     const { settings, builds } = this.props.main;
     const { commitHash } = this.props.inputs;
     const { isModalShown } = this.props.modal;
@@ -28,7 +30,7 @@ class BuildHistoryClass extends Component {
           <BtnSmall
             type='icon-text'
             icon='rebuild-before'
-            text='Rum build'
+            text={t('runBuild')}
             mixClass='header__btn'
             onClick={this.props.openModal}
           />
@@ -45,7 +47,7 @@ class BuildHistoryClass extends Component {
             {builds.map(build =>
               <Card key={build.id} build={build} />
             )}
-            <BtnSmall type='only-text' text='Show more' mixClass='card-list__show-more'/>
+            <BtnSmall type='only-text' text={t('showMore')} mixClass='card-list__show-more'/>
           </CardList>
           {/*TODO Возможно, по клику стоит создавать Modal с нуля, а не показывать заранее созданный*/}
           {isModalShown && <Modal closeModal={this.props.closeModal}>
@@ -57,16 +59,16 @@ class BuildHistoryClass extends Component {
                     htmlFor='commitHash'
                     type='default'
                     display='block'
-                    text='Enter the commit hash which you want to build.'
+                    text={t('descriptionNewBuild')}
                   />
                   <Input
                     name='commitHash'
                     id='commitHash'
                     display='block'
                     value={commitHash.value}
-                    plh='Commit hash'
+                    plh={t('commitHash')}
                     isValid={commitHash.isValid}
-                    errorMsg='There is no commit with such hash'
+                    errorMsg={t('errorHash')}
                   />
                 </div>
               ]}
@@ -74,13 +76,13 @@ class BuildHistoryClass extends Component {
                 <>
                   <BtnBig
                     action='primary'
-                    text='Run build'
+                    text={t('runBuild')}
                     mixClass='form__btn'
                     onClick={this.handlePrimaryClick.bind(this)}
                   />
                   <BtnBig
                     action='secondary'
-                    text='Cancel'
+                    text={t('cancel')}
                     mixClass='form__btn'
                     onClick={this.props.closeModal}
                   />
@@ -119,4 +121,4 @@ const mapDispatchToProps = { getBuildsList, closeModal, openModal, addCommitToQu
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuildHistoryClass);
+)(withTranslation()(BuildHistoryClass));
