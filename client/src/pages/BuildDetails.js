@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getBuildDetails, getBuildLog, addCommitToQueue } from '../redux/actions/actions';
+import { withTranslation } from 'react-i18next';
 
 import BtnSmall from '../components/BtnSmall/BtnSmall';
 import Card from '../components/Card/Card';
@@ -11,16 +12,17 @@ import Main from '../components/Main/Main';
 import Page from '../components/Page/Page';
 
 
-
 class BuildDetailsClass extends Component {
   render() {
+    const { t } = this.props;
+
     return (
       <Page type='build-details'>
         <Header valign='top' type='repo-title' text={this.props.main.settings.repoName || ''} >
           <BtnSmall
             type='icon-text'
             icon='rebuild-before'
-            text='Rebuild'
+            text={t('rebuild')}
             mixClass='header__btn'
             onClick={this.handleRebuildClick.bind(this)}
           />
@@ -67,5 +69,5 @@ const mapDispatchToProps = { getBuildDetails,  getBuildLog,  addCommitToQueue};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuildDetailsClass);
+)(withTranslation()(BuildDetailsClass));
 

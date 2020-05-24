@@ -8,12 +8,12 @@ const cnMenu = cn('menu');
 
 class Menu extends Component {
   render() {
-    const { links, mixClass } = this.props;
+    const { items, mixClass } = this.props;
 
     return (
       <ul className={cnMenu(null, [mixClass])}>
-        {links.map((link, idx) =>
-          <a key={idx} href="/" className={cnMenu('link')}>{link}</a>
+        {items.map((item, idx) =>
+          <a key={idx} href="#" className={cnMenu('link')} onClick={item.onClick}>{item.text}</a>
         )}
       </ul>
     );

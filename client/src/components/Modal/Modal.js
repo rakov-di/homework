@@ -2,6 +2,7 @@ import './Modal.styl';
 
 import React, { Component } from 'react';
 import { withNaming } from '@bem-react/classname';
+import { withTranslation } from 'react-i18next';
 
 const cn = withNaming({ e: '__', m: '_' });
 const cnModal = cn('modal');
@@ -13,10 +14,12 @@ class Modal extends Component {
     this.handleKeyPress = this.handleKeyPress.bind(this)
   }
   render() {
+    const { t } = this.props;
+
     return (
       <div className={cnModal()} onClick={this.handleClickModal.bind(this)}>
         <div className={cnModal('content')}>
-          <div className={cnModal('title')}>New build</div>
+          <div className={cnModal('title')}>{t('newBuild')}</div>
           {this.props.children}
         </div>
       </div>
@@ -42,5 +45,5 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+export default withTranslation()(Modal);
 
